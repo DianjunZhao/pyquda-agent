@@ -72,6 +72,7 @@ There is no full build system yet. Use small local commands:
 
 - `python3 scripts/<name>.py`
 - `python3 -m py_compile scripts/*.py`
+- `python3 -m unittest tests.test_index_pyquda_repo`
 - `git status --short`
 
 If a script grows beyond a single-file utility, factor reusable logic into a package later instead of embedding everything into one long script.
@@ -86,6 +87,8 @@ For now, validate work by:
 - documenting assumptions in `docs/` when behavior is non-obvious
 
 If logic becomes nontrivial, start introducing small tests under a future `tests/` directory.
+
+Do not commit local runtime caches such as `__pycache__/` or `*.pyc`.
 
 ## Commit and PR Guidance
 
