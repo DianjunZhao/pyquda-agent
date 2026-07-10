@@ -1,0 +1,6243 @@
+{
+  "dependency_edges": {
+    "examples": {
+      "pyquda_core": 6,
+      "pyquda_utils": 6
+    },
+    "pyquda_io": {
+      "pyquda_core": 1
+    },
+    "pyquda_plugins": {
+      "pyquda_core": 4,
+      "pyquda_utils": 1
+    },
+    "pyquda_utils": {
+      "pyquda_core": 36
+    },
+    "tests": {
+      "pyquda_core": 15,
+      "pyquda_io": 1,
+      "pyquda_plugins": 1,
+      "pyquda_utils": 34
+    }
+  },
+  "excluded_parts": [
+    ".git",
+    ".github",
+    "__pycache__",
+    "pycparser",
+    "quda"
+  ],
+  "files": [
+    {
+      "area": "examples",
+      "category": "example",
+      "extension": ".ipynb",
+      "module_name": null,
+      "path": "examples/1_Quenched_HMC.ipynb",
+      "size_bytes": 87300
+    },
+    {
+      "area": "examples",
+      "category": "example",
+      "classes": [
+        "O2Nf1Ng0V"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "math",
+        "pyquda.action",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.core",
+        "time"
+      ],
+      "imports_grouped": {
+        "external": [
+          "math",
+          "time"
+        ],
+        "internal": [
+          "pyquda.action",
+          "pyquda.hmc",
+          "pyquda_utils",
+          "pyquda_utils.core"
+        ],
+        "relative": []
+      },
+      "module_name": null,
+      "path": "examples/1_Quenched_HMC.py",
+      "size_bytes": 2314
+    },
+    {
+      "area": "examples",
+      "category": "example",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "cupy",
+        "matplotlib",
+        "numpy",
+        "opt_einsum",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "cupy",
+          "matplotlib",
+          "numpy",
+          "opt_einsum"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": null,
+      "path": "examples/2_Quark_Propagator.py",
+      "size_bytes": 1417
+    },
+    {
+      "area": "examples",
+      "category": "example",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "cupy",
+        "itertools",
+        "matplotlib",
+        "numpy",
+        "opt_einsum",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "cupy",
+          "itertools",
+          "matplotlib",
+          "numpy",
+          "opt_einsum"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": null,
+      "path": "examples/3_Pion_Proton_2pt.py",
+      "size_bytes": 3526
+    },
+    {
+      "area": "examples",
+      "category": "example",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "cupy",
+        "matplotlib",
+        "numpy",
+        "opt_einsum",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "cupy",
+          "matplotlib",
+          "numpy",
+          "opt_einsum"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": null,
+      "path": "examples/4_Pion_PCAC.py",
+      "size_bytes": 1638
+    },
+    {
+      "area": "examples",
+      "category": "example",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "cupy",
+        "matplotlib",
+        "numpy",
+        "opt_einsum",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "cupy",
+          "matplotlib",
+          "numpy",
+          "opt_einsum"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": null,
+      "path": "examples/5_Pion_Dispersion.py",
+      "size_bytes": 1659
+    },
+    {
+      "area": "examples",
+      "category": "example",
+      "extension": ".md",
+      "module_name": null,
+      "path": "examples/README.md",
+      "size_bytes": 286
+    },
+    {
+      "area": "examples",
+      "category": "example",
+      "classes": [
+        "HMC"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "getLoopsCoeffs"
+      ],
+      "imports": [
+        "numpy",
+        "pyquda.dirac",
+        "pyquda.enum_quda",
+        "pyquda.field",
+        "pyquda.quda",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda.dirac",
+          "pyquda.enum_quda",
+          "pyquda.field",
+          "pyquda.quda"
+        ],
+        "relative": []
+      },
+      "module_name": null,
+      "path": "examples/hmc.py",
+      "size_bytes": 5354
+    },
+    {
+      "area": "examples",
+      "category": "example",
+      "extension": ".svg",
+      "module_name": null,
+      "path": "examples/plaquette.drawio.svg",
+      "size_bytes": 54601
+    },
+    {
+      "area": "pyquda_core",
+      "category": "other",
+      "extension": "<none>",
+      "module_name": null,
+      "path": "pyquda_core/LICENSE",
+      "size_bytes": 1079
+    },
+    {
+      "area": "pyquda_core",
+      "category": "other",
+      "extension": ".in",
+      "module_name": null,
+      "path": "pyquda_core/MANIFEST.in",
+      "size_bytes": 443
+    },
+    {
+      "area": "pyquda_core",
+      "category": "other",
+      "extension": ".md",
+      "module_name": null,
+      "path": "pyquda_core/README.md",
+      "size_bytes": 2980
+    },
+    {
+      "area": "pyquda_core",
+      "category": "other",
+      "extension": ".toml",
+      "module_name": null,
+      "path": "pyquda_core/pyproject.toml",
+      "size_bytes": 1467
+    },
+    {
+      "area": "pyquda_core",
+      "category": "package-init",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "_setEnviron",
+        "_setEnvironWarn",
+        "initQUDA",
+        "init",
+        "isQUDAInitialized"
+      ],
+      "imports": [
+        ".",
+        "._version",
+        "os",
+        "pyquda_comm",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "os",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm"
+        ],
+        "relative": [
+          ".",
+          "._version"
+        ]
+      },
+      "module_name": "pyquda",
+      "path": "pyquda_core/pyquda/__init__.py",
+      "size_bytes": 7725
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "main"
+      ],
+      "imports": [
+        ".",
+        "argparse"
+      ],
+      "imports_grouped": {
+        "external": [
+          "argparse"
+        ],
+        "internal": [],
+        "relative": [
+          "."
+        ]
+      },
+      "module_name": "pyquda.__main__",
+      "path": "pyquda_core/pyquda/__main__.py",
+      "size_bytes": 2073
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [],
+      "imports_grouped": {
+        "external": [],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda._version",
+      "path": "pyquda_core/pyquda/_version.py",
+      "size_bytes": 24
+    },
+    {
+      "area": "pyquda_core",
+      "category": "package-init",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".abstract",
+        ".clover_wilson",
+        ".gauge",
+        ".hisq"
+      ],
+      "imports_grouped": {
+        "external": [],
+        "internal": [],
+        "relative": [
+          ".abstract",
+          ".clover_wilson",
+          ".gauge",
+          ".hisq"
+        ]
+      },
+      "module_name": "pyquda.action",
+      "path": "pyquda_core/pyquda/action/__init__.py",
+      "size_bytes": 227
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "LoopParam",
+        "RationalParam",
+        "Action",
+        "FermionAction",
+        "StaggeredFermionAction"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "..dirac",
+        "..dirac.abstract",
+        "..enum_quda",
+        "..field",
+        "..quda",
+        "abc",
+        "pyquda_comm.array",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "abc",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm.array"
+        ],
+        "relative": [
+          "..dirac",
+          "..dirac.abstract",
+          "..enum_quda",
+          "..field",
+          "..quda"
+        ]
+      },
+      "module_name": "pyquda.action.abstract",
+      "path": "pyquda_core/pyquda/action/abstract.py",
+      "size_bytes": 6012
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "CloverWilsonAction"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "..dirac",
+        "..enum_quda",
+        "..field",
+        "..quda",
+        ".abstract",
+        "numpy",
+        "pyquda_comm",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm"
+        ],
+        "relative": [
+          "..dirac",
+          "..enum_quda",
+          "..field",
+          "..quda",
+          ".abstract"
+        ]
+      },
+      "module_name": "pyquda.action.clover_wilson",
+      "path": "pyquda_core/pyquda/action/clover_wilson.py",
+      "size_bytes": 4540
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "PathParam",
+        "GaugeAction"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "actionPath",
+        "forcePath"
+      ],
+      "imports": [
+        "..dirac",
+        "..field",
+        "..quda",
+        ".abstract",
+        "numpy",
+        "numpy.typing",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "numpy.typing",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          "..dirac",
+          "..field",
+          "..quda",
+          ".abstract"
+        ]
+      },
+      "module_name": "pyquda.action.gauge",
+      "path": "pyquda_core/pyquda/action/gauge.py",
+      "size_bytes": 5155
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "HISQAction",
+        "MultiHISQAction"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "..dirac",
+        "..enum_quda",
+        "..field",
+        "..quda",
+        ".abstract",
+        "numpy",
+        "pyquda_comm",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm"
+        ],
+        "relative": [
+          "..dirac",
+          "..enum_quda",
+          "..field",
+          "..quda",
+          ".abstract"
+        ]
+      },
+      "module_name": "pyquda.action.hisq",
+      "path": "pyquda_core/pyquda/action/hisq.py",
+      "size_bytes": 11073
+    },
+    {
+      "area": "pyquda_core",
+      "category": "package-init",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".clover_wilson",
+        ".gauge",
+        ".general",
+        ".hisq",
+        ".staggered",
+        ".wilson"
+      ],
+      "imports_grouped": {
+        "external": [],
+        "internal": [],
+        "relative": [
+          ".clover_wilson",
+          ".gauge",
+          ".general",
+          ".hisq",
+          ".staggered",
+          ".wilson"
+        ]
+      },
+      "module_name": "pyquda.dirac",
+      "path": "pyquda_core/pyquda/dirac/__init__.py",
+      "size_bytes": 329
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "DiracGaugeStack",
+        "Dirac",
+        "FermionDirac",
+        "StaggeredFermionDirac"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "..enum_quda",
+        "..quda",
+        ".general",
+        "abc",
+        "contextlib",
+        "pyquda_comm",
+        "pyquda_comm.field",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "abc",
+          "contextlib",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm",
+          "pyquda_comm.field"
+        ],
+        "relative": [
+          "..enum_quda",
+          "..quda",
+          ".general"
+        ]
+      },
+      "module_name": "pyquda.dirac.abstract",
+      "path": "pyquda_core/pyquda/dirac/abstract.py",
+      "size_bytes": 16514
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "CloverWilsonDirac"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".",
+        "..enum_quda",
+        "..field",
+        ".abstract",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".",
+          "..enum_quda",
+          "..field",
+          ".abstract"
+        ]
+      },
+      "module_name": "pyquda.dirac.clover_wilson",
+      "path": "pyquda_core/pyquda/dirac/clover_wilson.py",
+      "size_bytes": 3249
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "GaugeDirac"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".",
+        "..enum_quda",
+        "..quda",
+        ".abstract",
+        "numpy",
+        "pyquda_comm.field",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm.field"
+        ],
+        "relative": [
+          ".",
+          "..enum_quda",
+          "..quda",
+          ".abstract"
+        ]
+      },
+      "module_name": "pyquda.dirac.gauge",
+      "path": "pyquda_core/pyquda/dirac/gauge.py",
+      "size_bytes": 17813
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "Precision",
+        "Reconstruct",
+        "Multigrid",
+        "Deflation"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "getGlobalPrecision",
+        "setGlobalPrecision",
+        "getGlobalReconstruct",
+        "setGlobalReconstruct",
+        "setPrecisionParam",
+        "setReconstructParam",
+        "fieldLocation",
+        "newQudaGaugeParam",
+        "newQudaMultigridParam",
+        "newQudaInvertParam",
+        "loadMultigrid",
+        "freeMultigrid",
+        "loadGauge",
+        "freeGauge",
+        "loadClover",
+        "saveClover",
+        "freeClover",
+        "newAsqtadPathCoeff",
+        "newHISQPathCoeff",
+        "computeULink",
+        "computeWLink",
+        "computeVWLink",
+        "computeXLink",
+        "computeXLinkEpsilon",
+        "loadStaggeredGauge",
+        "freeStaggeredGauge",
+        "loadFatLongGauge",
+        "freeFatLongGauge"
+      ],
+      "imports": [
+        "..enum_quda",
+        "..field",
+        "..quda",
+        "..quda_define",
+        "numpy",
+        "numpy.typing",
+        "pyquda_comm",
+        "pyquda_comm.pointer",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "numpy.typing",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm",
+          "pyquda_comm.pointer"
+        ],
+        "relative": [
+          "..enum_quda",
+          "..field",
+          "..quda",
+          "..quda_define"
+        ]
+      },
+      "module_name": "pyquda.dirac.general",
+      "path": "pyquda_core/pyquda/dirac/general.py",
+      "size_bytes": 31301
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "HISQDirac"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".",
+        "..enum_quda",
+        "..field",
+        ".abstract",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".",
+          "..enum_quda",
+          "..field",
+          ".abstract"
+        ]
+      },
+      "module_name": "pyquda.dirac.hisq",
+      "path": "pyquda_core/pyquda/dirac/hisq.py",
+      "size_bytes": 3568
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "StaggeredDirac"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".",
+        "..enum_quda",
+        "..field",
+        ".abstract",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".",
+          "..enum_quda",
+          "..field",
+          ".abstract"
+        ]
+      },
+      "module_name": "pyquda.dirac.staggered",
+      "path": "pyquda_core/pyquda/dirac/staggered.py",
+      "size_bytes": 2198
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "WilsonDirac"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".",
+        "..enum_quda",
+        "..field",
+        ".abstract",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".",
+          "..enum_quda",
+          "..field",
+          ".abstract"
+        ]
+      },
+      "module_name": "pyquda.dirac.wilson",
+      "path": "pyquda_core/pyquda/dirac/wilson.py",
+      "size_bytes": 2085
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "qudaError_t",
+        "QudaDslashType",
+        "QudaEigSpectrumType",
+        "QudaCABasis",
+        "QudaMatPCType",
+        "QudaParity",
+        "QudaFieldLocation",
+        "QudaSiteSubset",
+        "QudaSiteOrder",
+        "QudaFieldOrder",
+        "QudaGammaBasis",
+        "QudaProjectionType",
+        "QudaPCType",
+        "QudaExtLibType"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "enum"
+      ],
+      "imports_grouped": {
+        "external": [
+          "enum"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda.enum_quda",
+      "path": "pyquda_core/pyquda/enum_quda.in.py",
+      "size_bytes": 2184
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "_Direction",
+        "LatticeRotation",
+        "LatticeGauge",
+        "LatticeMom"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "lexico",
+        "evenodd",
+        "cb2"
+      ],
+      "imports": [
+        "math",
+        "numpy",
+        "numpy.typing",
+        "pyquda_comm",
+        "pyquda_comm.field",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "math",
+          "numpy",
+          "numpy.typing",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm",
+          "pyquda_comm.field"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda.field",
+      "path": "pyquda_core/pyquda/field.py",
+      "size_bytes": 19328
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "_GammaMatrix",
+        "DeGrandRossiMatrix",
+        "DiracPauliMatrix",
+        "_GammaSparse",
+        "DeGrandRossiSparse",
+        "DiracPauliSparse",
+        "Gamma",
+        "Projector"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "numpy",
+        "numpy.typing",
+        "pyquda_comm",
+        "pyquda_comm.array",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "numpy.typing",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm",
+          "pyquda_comm.array"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda.gamma",
+      "path": "pyquda_core/pyquda/gamma.py",
+      "size_bytes": 12762
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "Integrator",
+        "INT_3G1F",
+        "O2Nf1Ng0V",
+        "O2Nf1Ng0P",
+        "O2Nf2Ng0V",
+        "O2Nf2Ng0P",
+        "O4Nf5Ng0V",
+        "O4Nf5Ng0P",
+        "HMC"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".action.abstract",
+        ".dirac",
+        ".enum_quda",
+        ".field",
+        ".quda",
+        "abc",
+        "math",
+        "numpy",
+        "pyquda_comm",
+        "pyquda_comm.array",
+        "random",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "abc",
+          "math",
+          "numpy",
+          "random",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm",
+          "pyquda_comm.array"
+        ],
+        "relative": [
+          ".action.abstract",
+          ".dirac",
+          ".enum_quda",
+          ".field",
+          ".quda"
+        ]
+      },
+      "module_name": "pyquda.hmc",
+      "path": "pyquda_core/pyquda/hmc.py",
+      "size_bytes": 17743
+    },
+    {
+      "area": "pyquda_core",
+      "category": "other",
+      "extension": ".pyi",
+      "module_name": null,
+      "path": "pyquda_core/pyquda/quda.pyi",
+      "size_bytes": 71857
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "target",
+        "mmaAvailable"
+      ],
+      "imports": [
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda.quda_define",
+      "path": "pyquda_core/pyquda/quda_define.in.py",
+      "size_bytes": 420
+    },
+    {
+      "area": "pyquda_core",
+      "category": "other",
+      "extension": ".cpp",
+      "module_name": null,
+      "path": "pyquda_core/pyquda/src/malloc_quda.cpp",
+      "size_bytes": 387
+    },
+    {
+      "area": "pyquda_core",
+      "category": "cython",
+      "extension": ".pxd",
+      "imports": [
+        "enum_quda",
+        "libc.stdio",
+        "libcpp",
+        "quda_constants"
+      ],
+      "module_name": null,
+      "path": "pyquda_core/pyquda/src/quda.in.pxd",
+      "size_bytes": 42183
+    },
+    {
+      "area": "pyquda_core",
+      "category": "cython",
+      "extension": ".pyx",
+      "imports": [
+        "contextlib",
+        "cython.operator",
+        "io",
+        "libc.stdio",
+        "libc.stdlib",
+        "libc.string",
+        "numpy",
+        "os",
+        "pyquda_comm.pointer",
+        "quda",
+        "sys"
+      ],
+      "module_name": null,
+      "path": "pyquda_core/pyquda/src/quda.in.pyx",
+      "size_bytes": 17425
+    },
+    {
+      "area": "pyquda_core",
+      "category": "package-init",
+      "classes": [
+        "_MPILogger",
+        "_FileWithOffset"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "_defaultRankFromCoord",
+        "_defaultCoordFromRank",
+        "_defaultCoordFromSharedRank",
+        "getRankFromCoord",
+        "getCoordFromRank",
+        "getNeighbourRank",
+        "getSublatticeSize",
+        "_composition",
+        "_factorization",
+        "_partition",
+        "getDefaultGrid",
+        "initGrid",
+        "initDevice",
+        "isGridInitialized",
+        "isDeviceInitialized",
+        "getLogger",
+        "setLoggerLevel",
+        "getMPIComm",
+        "getMPISize",
+        "getMPIRank",
+        "getGridMap",
+        "getGridSize",
+        "getGridCoord",
+        "getGridRanks",
+        "getArrayBackend",
+        "getArrayBackendTarget",
+        "getArrayDevice",
+        "openReadHeader",
+        "openWriteHeader",
+        "_getSubarray",
+        "readMPIFile",
+        "readMPIFileInChunks",
+        "writeMPIFile",
+        "writeMPIFileInChunks"
+      ],
+      "imports": [
+        ".array",
+        "contextlib",
+        "logging",
+        "math",
+        "mpi4py",
+        "mpi4py.util",
+        "numpy",
+        "numpy.typing",
+        "os",
+        "sys",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "contextlib",
+          "logging",
+          "math",
+          "mpi4py",
+          "mpi4py.util",
+          "numpy",
+          "numpy.typing",
+          "os",
+          "sys",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".array"
+        ]
+      },
+      "module_name": "pyquda_comm",
+      "path": "pyquda_core/pyquda_comm/__init__.py",
+      "size_bytes": 23220
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "setDPNPDevice",
+        "backendDeviceAPI",
+        "arrayDType",
+        "arrayAsNumpy",
+        "arrayAsNumpyCopy",
+        "arrayIsArray",
+        "arrayAsArray",
+        "arrayCopy",
+        "arrayIsContiguous",
+        "arrayAsContiguous",
+        "arrayLinalgNorm",
+        "arrayZeros",
+        "arrayEmpty",
+        "arrayExp",
+        "arrayIdentity",
+        "arrayRandomRandom",
+        "arrayRandomRandomComplex",
+        "arrayRandomNormal",
+        "arrayRandomNormalComplex",
+        "arrayRandomGetState",
+        "arrayRandomSetState",
+        "arrayRandomSeed",
+        "arrayFFT",
+        "arrayFFTN",
+        "arrayIFFT",
+        "arrayIFFTN"
+      ],
+      "imports": [
+        "numpy",
+        "numpy.typing",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "numpy.typing",
+          "typing"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda_comm.array",
+      "path": "pyquda_core/pyquda_comm/array.py",
+      "size_bytes": 15955
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "BaseInfo",
+        "LatticeInfo",
+        "LexicoInfo",
+        "BaseField",
+        "LexicoField",
+        "ParityField",
+        "FullField",
+        "MultiField",
+        "LatticeInt",
+        "MultiLatticeInt",
+        "LatticeReal",
+        "MultiLatticeReal",
+        "LatticeComplex",
+        "MultiLatticeComplex",
+        "LatticeLink",
+        "LatticeRotation",
+        "LatticeGauge",
+        "LatticeMom",
+        "LatticeClover",
+        "HalfLatticeFermion",
+        "MultiHalfLatticeFermion",
+        "LatticeFermion",
+        "MultiLatticeFermion",
+        "LatticePropagator",
+        "HalfLatticeStaggeredFermion",
+        "MultiHalfLatticeStaggeredFermion",
+        "LatticeStaggeredFermion",
+        "MultiLatticeStaggeredFermion",
+        "LatticeStaggeredPropagator"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "read_array_header",
+        "write_array_header",
+        "_field_spin_color_dtype",
+        "_field_shape_dtype"
+      ],
+      "imports": [
+        ".",
+        ".array",
+        ".pointer",
+        "abc",
+        "math",
+        "numpy",
+        "numpy.lib.format",
+        "numpy.typing",
+        "os",
+        "time",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "abc",
+          "math",
+          "numpy",
+          "numpy.lib.format",
+          "numpy.typing",
+          "os",
+          "time",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".",
+          ".array",
+          ".pointer"
+        ]
+      },
+      "module_name": "pyquda_comm.field",
+      "path": "pyquda_core/pyquda_comm/field.py",
+      "size_bytes": 50059
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "_LatticeInfo",
+        "File"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "checksum",
+        "_field_info"
+      ],
+      "imports": [
+        ".",
+        "h5py",
+        "math",
+        "mpi4py",
+        "numpy",
+        "time",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "h5py",
+          "math",
+          "mpi4py",
+          "numpy",
+          "time",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          "."
+        ]
+      },
+      "module_name": "pyquda_comm.hdf5",
+      "path": "pyquda_core/pyquda_comm/hdf5.py",
+      "size_bytes": 14971
+    },
+    {
+      "area": "pyquda_core",
+      "category": "cython",
+      "extension": ".pxd",
+      "imports": [],
+      "module_name": null,
+      "path": "pyquda_core/pyquda_comm/pointer.pxd",
+      "size_bytes": 447
+    },
+    {
+      "area": "pyquda_core",
+      "category": "other",
+      "extension": ".pyi",
+      "module_name": null,
+      "path": "pyquda_core/pyquda_comm/pointer.pyi",
+      "size_bytes": 399
+    },
+    {
+      "area": "pyquda_core",
+      "category": "cython",
+      "extension": ".pyx",
+      "imports": [
+        "libc.stdlib"
+      ],
+      "module_name": null,
+      "path": "pyquda_core/pyquda_comm/src/pointer.pyx",
+      "size_bytes": 6707
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [
+        "QudaEnumMeta",
+        "QudaParamsMeta"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "build_pyquda_pyx"
+      ],
+      "imports": [
+        "os",
+        "subprocess",
+        "sys",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "os",
+          "subprocess",
+          "sys",
+          "typing"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda_pyx",
+      "path": "pyquda_core/pyquda_pyx.py",
+      "size_bytes": 19059
+    },
+    {
+      "area": "pyquda_core",
+      "category": "other",
+      "extension": ".txt",
+      "module_name": null,
+      "path": "pyquda_core/requirements.txt",
+      "size_bytes": 13
+    },
+    {
+      "area": "pyquda_core",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "os",
+        "pyquda_pyx",
+        "setuptools",
+        "sys"
+      ],
+      "imports_grouped": {
+        "external": [
+          "os",
+          "setuptools",
+          "sys"
+        ],
+        "internal": [
+          "pyquda_pyx"
+        ],
+        "relative": []
+      },
+      "module_name": "setup",
+      "path": "pyquda_core/setup.py",
+      "size_bytes": 2204
+    },
+    {
+      "area": "pyquda_io",
+      "category": "package-init",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".chroma",
+        ".ildg",
+        ".io_general",
+        ".kyu",
+        ".lime",
+        ".milc",
+        ".mpi_utils",
+        ".nersc",
+        ".npy",
+        ".openqcd",
+        ".xqcd"
+      ],
+      "imports_grouped": {
+        "external": [],
+        "internal": [],
+        "relative": [
+          ".chroma",
+          ".ildg",
+          ".io_general",
+          ".kyu",
+          ".lime",
+          ".milc",
+          ".mpi_utils",
+          ".nersc",
+          ".npy",
+          ".openqcd",
+          ".xqcd"
+        ]
+      },
+      "module_name": "pyquda_io",
+      "path": "pyquda_io/__init__.py",
+      "size_bytes": 1510
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "readQIOGauge",
+        "readQIOPropagator",
+        "readQIOStaggeredPropagator"
+      ],
+      "imports": [
+        ".io_utils",
+        ".mpi_utils",
+        "os"
+      ],
+      "imports_grouped": {
+        "external": [
+          "os"
+        ],
+        "internal": [],
+        "relative": [
+          ".io_utils",
+          ".mpi_utils"
+        ]
+      },
+      "module_name": "pyquda_io.chroma",
+      "path": "pyquda_io/chroma.py",
+      "size_bytes": 4584
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "readGauge",
+        "readBinGauge"
+      ],
+      "imports": [
+        ".io_utils",
+        ".mpi_utils",
+        "os",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "os",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".io_utils",
+          ".mpi_utils"
+        ]
+      },
+      "module_name": "pyquda_io.ildg",
+      "path": "pyquda_io/ildg.py",
+      "size_bytes": 1947
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [
+        "_DimensionType",
+        "_OneDim",
+        "_Head",
+        "_FileType",
+        "IOGeneral"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "read",
+        "write"
+      ],
+      "imports": [
+        "ctypes",
+        "enum",
+        "io",
+        "numpy",
+        "numpy.typing",
+        "os",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "ctypes",
+          "enum",
+          "io",
+          "numpy",
+          "numpy.typing",
+          "os",
+          "typing"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda_io.io_general",
+      "path": "pyquda_io/io_general.py",
+      "size_bytes": 5059
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "checksumSciDAC",
+        "checksumMILC",
+        "checksumNERSC",
+        "gaugeEvenOdd",
+        "gaugeLexico",
+        "gaugeLinkTrace",
+        "gaugePlaquette",
+        "gaugeOddShiftForward",
+        "gaugeEvenShiftBackward",
+        "gaugeReunitarize",
+        "gaugeReunitarizeReconstruct12",
+        "gaugeReconstruct12",
+        "propagatorFromDiracPauli",
+        "propagatorToDiracPauli"
+      ],
+      "imports": [
+        ".mpi_utils",
+        "math",
+        "mpi4py",
+        "numpy",
+        "numpy.typing",
+        "typing",
+        "zlib"
+      ],
+      "imports_grouped": {
+        "external": [
+          "math",
+          "mpi4py",
+          "numpy",
+          "numpy.typing",
+          "typing",
+          "zlib"
+        ],
+        "internal": [],
+        "relative": [
+          ".mpi_utils"
+        ]
+      },
+      "module_name": "pyquda_io.io_utils",
+      "path": "pyquda_io/io_utils.py",
+      "size_bytes": 20719
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "readGauge",
+        "writeGauge",
+        "readPropagator",
+        "writePropagator"
+      ],
+      "imports": [
+        ".io_utils",
+        ".mpi_utils",
+        "numpy",
+        "os",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "os",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".io_utils",
+          ".mpi_utils"
+        ]
+      },
+      "module_name": "pyquda_io.kyu",
+      "path": "pyquda_io/kyu.py",
+      "size_bytes": 2407
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [
+        "LimeRecord",
+        "Lime"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "io",
+        "os",
+        "struct",
+        "typing",
+        "xml.etree"
+      ],
+      "imports_grouped": {
+        "external": [
+          "io",
+          "os",
+          "struct",
+          "typing",
+          "xml.etree"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda_io.lime",
+      "path": "pyquda_io/lime.py",
+      "size_bytes": 1430
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "readGauge",
+        "writeGauge",
+        "readQIOPropagator",
+        "readQIOStaggeredPropagator"
+      ],
+      "imports": [
+        ".io_utils",
+        ".mpi_utils",
+        "datetime",
+        "numpy",
+        "os",
+        "struct",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "datetime",
+          "numpy",
+          "os",
+          "struct",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".io_utils",
+          ".mpi_utils"
+        ]
+      },
+      "module_name": "pyquda_io.milc",
+      "path": "pyquda_io/milc.py",
+      "size_bytes": 5006
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "init"
+      ],
+      "imports": [
+        "pyquda_comm",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_io.mpi_utils",
+      "path": "pyquda_io/mpi_utils.py",
+      "size_bytes": 443
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "readGauge",
+        "writeGauge"
+      ],
+      "imports": [
+        ".io_utils",
+        ".mpi_utils",
+        "datetime",
+        "getpass",
+        "math",
+        "numpy",
+        "os",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "datetime",
+          "getpass",
+          "math",
+          "numpy",
+          "os",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".io_utils",
+          ".mpi_utils"
+        ]
+      },
+      "module_name": "pyquda_io.nersc",
+      "path": "pyquda_io/nersc.py",
+      "size_bytes": 5179
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "read_array_header",
+        "write_array_header",
+        "readGauge",
+        "writeGauge",
+        "readPropagator",
+        "writePropagator"
+      ],
+      "imports": [
+        ".mpi_utils",
+        "numpy",
+        "numpy.lib.format",
+        "os",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "numpy.lib.format",
+          "os",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".mpi_utils"
+        ]
+      },
+      "module_name": "pyquda_io.npy",
+      "path": "pyquda_io/npy.py",
+      "size_bytes": 2517
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "readGauge",
+        "writeGauge"
+      ],
+      "imports": [
+        ".io_utils",
+        ".mpi_utils",
+        "math",
+        "numpy",
+        "os",
+        "struct",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "math",
+          "numpy",
+          "os",
+          "struct",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".io_utils",
+          ".mpi_utils"
+        ]
+      },
+      "module_name": "pyquda_io.openqcd",
+      "path": "pyquda_io/openqcd.py",
+      "size_bytes": 2936
+    },
+    {
+      "area": "pyquda_io",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "readPropagator",
+        "readStaggeredPropagator",
+        "writePropagator",
+        "writeStaggeredPropagator",
+        "readPropagatorFast",
+        "writePropagatorFast"
+      ],
+      "imports": [
+        ".io_utils",
+        ".mpi_utils",
+        "numpy",
+        "os",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "os",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".io_utils",
+          ".mpi_utils"
+        ]
+      },
+      "module_name": "pyquda_io.xqcd",
+      "path": "pyquda_io/xqcd.py",
+      "size_bytes": 2899
+    },
+    {
+      "area": "pyquda_plugins",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "dynamic",
+        "build_and_install",
+        "main"
+      ],
+      "imports": [
+        "Cython.Build",
+        "argparse",
+        "logging",
+        "numpy",
+        "os",
+        "setuptools",
+        "setuptools.command.build_ext",
+        "setuptools.dist",
+        "shutil",
+        "sys",
+        "tempfile"
+      ],
+      "imports_grouped": {
+        "external": [
+          "Cython.Build",
+          "argparse",
+          "logging",
+          "numpy",
+          "os",
+          "setuptools",
+          "setuptools.command.build_ext",
+          "setuptools.dist",
+          "shutil",
+          "sys",
+          "tempfile"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda_plugins.__main__",
+      "path": "pyquda_plugins/__main__.py",
+      "size_bytes": 2995
+    },
+    {
+      "area": "pyquda_plugins",
+      "category": "python",
+      "classes": [
+        "FunctionMeta"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "parseHeader",
+        "build_plugin_pyx"
+      ],
+      "imports": [
+        "os",
+        "sys",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "os",
+          "sys",
+          "typing"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda_plugins.plugin_pyx",
+      "path": "pyquda_plugins/plugin_pyx.py",
+      "size_bytes": 11925
+    },
+    {
+      "area": "pyquda_plugins",
+      "category": "package-init",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "init",
+        "mesonTwoPoint",
+        "mesonAllSinkTwoPoint",
+        "mesonAllSourceTwoPoint",
+        "baryonDiquark",
+        "baryonTwoPoint",
+        "baryonGeneralTwoPoint",
+        "baryonSequentialTwoPoint",
+        "baryonTwoPoint_v2"
+      ],
+      "imports": [
+        ".",
+        ".contract",
+        "numpy",
+        "numpy.typing",
+        "pyquda_comm",
+        "pyquda_comm.field",
+        "pyquda_utils.gamma",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "numpy.typing",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm",
+          "pyquda_comm.field",
+          "pyquda_utils.gamma"
+        ],
+        "relative": [
+          ".",
+          ".contract"
+        ]
+      },
+      "module_name": "pyquda_plugins.pycontract",
+      "path": "pyquda_plugins/pycontract/__init__.py",
+      "size_bytes": 8148
+    },
+    {
+      "area": "pyquda_plugins",
+      "category": "package-init",
+      "classes": [
+        "Overlap"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "init",
+        "multiFermionFromDiracPauli",
+        "multiFermionToDiracPauli",
+        "negMultiFermionFromDiracPauli",
+        "negFermionFromDiracPauli",
+        "readEigenValue",
+        "readEigenSystem",
+        "readEigenSystemInChunks"
+      ],
+      "imports": [
+        ".",
+        "numpy",
+        "os",
+        "pyquda_comm",
+        "pyquda_comm.field",
+        "time",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "os",
+          "time",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm",
+          "pyquda_comm.field"
+        ],
+        "relative": [
+          "."
+        ]
+      },
+      "module_name": "pyquda_plugins.pygwu",
+      "path": "pyquda_plugins/pygwu/__init__.py",
+      "size_bytes": 9254
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "package-init",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "._version"
+      ],
+      "imports_grouped": {
+        "external": [],
+        "internal": [],
+        "relative": [
+          "._version"
+        ]
+      },
+      "module_name": "pyquda_utils",
+      "path": "pyquda_utils/__init__.py",
+      "size_bytes": 48
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [
+        "AlgRemez"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "LU_decomp",
+        "L_solve",
+        "U_solve",
+        "lu_solve"
+      ],
+      "imports": [
+        "gmpy2",
+        "math"
+      ],
+      "imports_grouped": {
+        "external": [
+          "gmpy2",
+          "math"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.alg_remez",
+      "path": "pyquda_utils/alg_remez.py",
+      "size_bytes": 12277
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "checksumSciDAC"
+      ],
+      "imports": [
+        "mpi4py",
+        "numpy",
+        "numpy.typing",
+        "pyquda_comm",
+        "pyquda_comm.field",
+        "typing",
+        "zlib"
+      ],
+      "imports_grouped": {
+        "external": [
+          "mpi4py",
+          "numpy",
+          "numpy.typing",
+          "typing",
+          "zlib"
+        ],
+        "internal": [
+          "pyquda_comm",
+          "pyquda_comm.field"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.checksum",
+      "path": "pyquda_utils/checksum.py",
+      "size_bytes": 1110
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "linkToFermion",
+        "fermionToLink",
+        "multiFermionToPropagator",
+        "multiFermionToPropagator",
+        "multiFermionToPropagator",
+        "propagatorToMultiFermion",
+        "propagatorToMultiFermion",
+        "propagatorToMultiFermion",
+        "multiField",
+        "multiField",
+        "multiField",
+        "multiField",
+        "multiField",
+        "multiField"
+      ],
+      "imports": [
+        "pyquda",
+        "pyquda.field",
+        "pyquda_comm.array",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [
+          "pyquda",
+          "pyquda.field",
+          "pyquda_comm.array"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.convert",
+      "path": "pyquda_utils/convert.py",
+      "size_bytes": 5357
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "invert",
+        "invertEigenvector",
+        "invertSequential",
+        "invertPropagator",
+        "invertStaggered",
+        "invertStaggeredSequential",
+        "invertStaggeredPropagator",
+        "gatherLattice2",
+        "scatterLattice",
+        "gatherScatterLattice",
+        "gatherLattice",
+        "getDirac",
+        "getStaggeredDirac",
+        "getWilson",
+        "getClover",
+        "getStaggered",
+        "getHISQ"
+      ],
+      "imports": [
+        ".",
+        ".deprecated",
+        "math",
+        "numpy",
+        "pyquda",
+        "pyquda.dirac.abstract",
+        "pyquda.field",
+        "pyquda_comm",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "math",
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda",
+          "pyquda.dirac.abstract",
+          "pyquda.field",
+          "pyquda_comm"
+        ],
+        "relative": [
+          ".",
+          ".deprecated"
+        ]
+      },
+      "module_name": "pyquda_utils.core",
+      "path": "pyquda_utils/core.py",
+      "size_bytes": 15907
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "cb2",
+        "smear",
+        "smear4",
+        "invert12",
+        "getDslash",
+        "getStaggeredDslash"
+      ],
+      "imports": [
+        "numpy",
+        "pyquda",
+        "pyquda.dirac.abstract",
+        "pyquda.field",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda",
+          "pyquda.dirac.abstract",
+          "pyquda.field"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.deprecated",
+      "path": "pyquda_utils/deprecated.py",
+      "size_bytes": 5028
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "laplace3d"
+      ],
+      "imports": [
+        "pyquda",
+        "pyquda.enum_quda",
+        "pyquda.field"
+      ],
+      "imports_grouped": {
+        "external": [],
+        "internal": [
+          "pyquda",
+          "pyquda.enum_quda",
+          "pyquda.field"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.eigensolve",
+      "path": "pyquda_utils/eigensolve.py",
+      "size_bytes": 1790
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "loadBalanceSubsize",
+        "loadBalanceStart",
+        "transform",
+        "redistribute",
+        "redistribute_reverse",
+        "fft",
+        "ifft",
+        "fft4"
+      ],
+      "imports": [
+        "math",
+        "mpi4py",
+        "mpi4py.util",
+        "numpy",
+        "numpy.typing",
+        "pyquda_comm",
+        "pyquda_comm.array",
+        "pyquda_comm.field",
+        "time",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "math",
+          "mpi4py",
+          "mpi4py.util",
+          "numpy",
+          "numpy.typing",
+          "time",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm",
+          "pyquda_comm.array",
+          "pyquda_comm.field"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.fft",
+      "path": "pyquda_utils/fft.py",
+      "size_bytes": 14826
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": [
+        "gamma",
+        "Gamma",
+        "Projector"
+      ],
+      "extension": ".py",
+      "functions": [
+        "gamma_mul_fermion",
+        "propagator_mul_gamma",
+        "gamma_mul_propagator",
+        "gamma_mul_propagator_mul_gamma",
+        "gamma"
+      ],
+      "imports": [
+        "pyquda.gamma",
+        "pyquda_comm.field"
+      ],
+      "imports_grouped": {
+        "external": [],
+        "internal": [
+          "pyquda.gamma",
+          "pyquda_comm.field"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.gamma",
+      "path": "pyquda_utils/gamma.py",
+      "size_bytes": 2744
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [
+        "LatticeLink",
+        "LatticeGauge"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "init",
+        "getSublatticeSize",
+        "getShiftedRank",
+        "gaugeSendRecv",
+        "link"
+      ],
+      "imports": [
+        "numpy",
+        "pyquda_comm",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.gauge_nd_sun",
+      "path": "pyquda_utils/gauge_nd_sun.py",
+      "size_bytes": 10020
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "real_geo_block_size",
+        "_partition"
+      ],
+      "imports": [
+        "copy",
+        "pyquda_comm",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "copy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.geo_block_size",
+      "path": "pyquda_utils/geo_block_size.py",
+      "size_bytes": 2914
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "LatticeInfoGPT",
+        "LatticeGaugeGPT",
+        "LatticePropagatorGPT"
+      ],
+      "imports": [
+        ".core",
+        "gpt",
+        "numpy",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "gpt",
+          "numpy",
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".core"
+        ]
+      },
+      "module_name": "pyquda_utils.gpt",
+      "path": "pyquda_utils/gpt.py",
+      "size_bytes": 3737
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [
+        "ScientificNotation",
+        "_WilsonMD",
+        "_WilsonFA",
+        "_StaggeredMD",
+        "_StaggeredFA"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "wilsonGaugeLoopParam",
+        "iwasakiGaugeLoopParam",
+        "symanzikTreeGaugeLoopParam",
+        "symanzikOneLoopGaugeLoopParam",
+        "_loadCache",
+        "_dumpCache",
+        "fermionRationalParam",
+        "staggeredFermionRationalParam"
+      ],
+      "imports": [
+        ".alg_remez",
+        "gmpy2",
+        "json",
+        "math",
+        "os",
+        "pyquda.action.abstract",
+        "pyquda.field",
+        "pyquda_comm",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "gmpy2",
+          "json",
+          "math",
+          "os",
+          "typing"
+        ],
+        "internal": [
+          "pyquda.action.abstract",
+          "pyquda.field",
+          "pyquda_comm"
+        ],
+        "relative": [
+          ".alg_remez"
+        ]
+      },
+      "module_name": "pyquda_utils.hmc_param",
+      "path": "pyquda_utils/hmc_param.py",
+      "size_bytes": 9888
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "package-init",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "readChromaQIOGauge",
+        "readILDGGauge",
+        "readILDGBinGauge",
+        "readChromaQIOPropagator",
+        "readChromaQIOStaggeredPropagator",
+        "readMILCGauge",
+        "writeMILCGauge",
+        "readMILCQIOPropagator",
+        "readMILCQIOStaggeredPropagator",
+        "readKYUGauge",
+        "writeKYUGauge",
+        "readKYUPropagator",
+        "writeKYUPropagator",
+        "readXQCDPropagator",
+        "readXQCDStaggeredPropagator",
+        "writeXQCDPropagator",
+        "writeXQCDStaggeredPropagator",
+        "readNPYGauge",
+        "writeNPYGauge",
+        "readNPYPropagator",
+        "writeNPYPropagator",
+        "readOpenQCDGauge",
+        "writeOpenQCDGauge",
+        "readNERSCGauge",
+        "writeNERSCGauge",
+        "readQIOGauge",
+        "readQIOPropagator",
+        "readQIOStaggeredPropagator",
+        "readKYUPropagatorF",
+        "writeKYUPropagatorF",
+        "rotateToDiracPauli",
+        "rotateToDeGrandRossi",
+        "readXQCDPropagatorFast",
+        "writeXQCDPropagatorFast",
+        "readKYUPropagatorFFast",
+        "writeKYUPropagatorFFast"
+      ],
+      "imports": [
+        "numpy",
+        "pyquda.field",
+        "pyquda_comm",
+        "pyquda_comm.array",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda.field",
+          "pyquda_comm",
+          "pyquda_comm.array"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.io",
+      "path": "pyquda_utils/io/__init__.py",
+      "size_bytes": 10586
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "symanzik_1loop_hisq",
+        "poly4_rhmc_param"
+      ],
+      "imports": [
+        "math",
+        "pyquda.action.abstract",
+        "pyquda.field",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "math",
+          "typing"
+        ],
+        "internal": [
+          "pyquda.action.abstract",
+          "pyquda.field"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.milc_rhmc_param",
+      "path": "pyquda_utils/milc_rhmc_param.py",
+      "size_bytes": 4107
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [
+        "MomentumPhase",
+        "GridPhase"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "getMomList",
+        "getMomDict"
+      ],
+      "imports": [
+        ".core",
+        "math",
+        "numpy",
+        "pyquda_comm.array",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "math",
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm.array"
+        ],
+        "relative": [
+          ".core"
+        ]
+      },
+      "module_name": "pyquda_utils.phase",
+      "path": "pyquda_utils/phase.py",
+      "size_bytes": 4228
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [
+        "LocationPhase",
+        "DistancePhase",
+        "MomentumPhase",
+        "GridPhase"
+      ],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        ".core",
+        "math",
+        "numpy",
+        "pyquda_comm.array",
+        "pyquda_comm.field",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "math",
+          "numpy",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_comm.array",
+          "pyquda_comm.field"
+        ],
+        "relative": [
+          ".core"
+        ]
+      },
+      "module_name": "pyquda_utils.phase_v2",
+      "path": "pyquda_utils/phase_v2.py",
+      "size_bytes": 2670
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "quasiAxialGaugeFixing"
+      ],
+      "imports": [
+        ".core",
+        "numpy"
+      ],
+      "imports_grouped": {
+        "external": [
+          "numpy"
+        ],
+        "internal": [],
+        "relative": [
+          ".core"
+        ]
+      },
+      "module_name": "pyquda_utils.quasi_axial_gauge_fixing",
+      "path": "pyquda_utils/quasi_axial_gauge_fixing.py",
+      "size_bytes": 2674
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "point",
+        "point",
+        "point",
+        "wall",
+        "wall",
+        "wall",
+        "volume",
+        "volume",
+        "volume",
+        "fermion",
+        "fermion",
+        "fermion",
+        "multiFermion",
+        "multiStaggeredFermion",
+        "propagator",
+        "staggeredPropagator",
+        "momentum",
+        "colorvector",
+        "source",
+        "source",
+        "source",
+        "source12",
+        "source3",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussian",
+        "gaussian12",
+        "gaussian3",
+        "_gaussian3",
+        "_gaussian2",
+        "_gaussian1",
+        "sequential",
+        "sequential",
+        "sequential",
+        "sequential12",
+        "sequential3"
+      ],
+      "imports": [
+        "pyquda",
+        "pyquda.enum_quda",
+        "pyquda.field",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [
+          "pyquda",
+          "pyquda.enum_quda",
+          "pyquda.field"
+        ],
+        "relative": []
+      },
+      "module_name": "pyquda_utils.source",
+      "path": "pyquda_utils/source.py",
+      "size_bytes": 18732
+    },
+    {
+      "area": "pyquda_utils",
+      "category": "python",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "wilson_loop"
+      ],
+      "imports": [
+        ".core",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [],
+        "relative": [
+          ".core"
+        ]
+      },
+      "module_name": "pyquda_utils.wilson_loop",
+      "path": "pyquda_utils/wilson_loop.py",
+      "size_bytes": 506
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "chroma",
+        "hmc",
+        "data"
+      ],
+      "imports": [
+        "os"
+      ],
+      "imports_grouped": {
+        "external": [
+          "os"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "check_pyquda",
+      "path": "tests/check_pyquda.py",
+      "size_bytes": 940
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": "<none>",
+      "module_name": null,
+      "path": "tests/chroma/Dockerfile",
+      "size_bytes": 1416
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": "<none>",
+      "module_name": null,
+      "path": "tests/chroma/LICENSE",
+      "size_bytes": 2163
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": "<none>",
+      "module_name": null,
+      "path": "tests/chroma/aarch64-linux-gnu/chroma",
+      "size_bytes": 132
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".sh",
+      "module_name": null,
+      "path": "tests/chroma/build.sh",
+      "size_bytes": 38
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".sh",
+      "module_name": null,
+      "path": "tests/chroma/build_automake.sh",
+      "size_bytes": 2879
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".sh",
+      "module_name": null,
+      "path": "tests/chroma/build_cmake.sh",
+      "size_bytes": 4228
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": "<none>",
+      "module_name": null,
+      "path": "tests/chroma/x86_64-linux-gnu/chroma",
+      "size_bytes": 132
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "os"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "os"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "generate_resource",
+      "path": "tests/generate_resource.py",
+      "size_bytes": 569
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "readQIOGauge",
+        "readQIOPropagator",
+        "readGauge"
+      ],
+      "imports": [
+        "io",
+        "math",
+        "numpy",
+        "os",
+        "struct",
+        "typing",
+        "zlib"
+      ],
+      "imports_grouped": {
+        "external": [
+          "io",
+          "math",
+          "numpy",
+          "os",
+          "struct",
+          "typing",
+          "zlib"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "test_checksum",
+      "path": "tests/test_checksum.py",
+      "size_bytes": 3954
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/test_clover.ini.xml",
+      "size_bytes": 3896
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_clover",
+      "path": "tests/test_clover.py",
+      "size_bytes": 637
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "pyquda_utils",
+        "tests.check_pyquda"
+      ],
+      "imports_grouped": {
+        "external": [
+          "tests.check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_clover_cli",
+      "path": "tests/test_clover_cli.py",
+      "size_bytes": 640
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_clover_distance",
+      "path": "tests/test_clover_distance.py",
+      "size_bytes": 756
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/test_clover_isotropic.ini.xml",
+      "size_bytes": 2735
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_clover_isotropic",
+      "path": "tests/test_clover_isotropic.py",
+      "size_bytes": 635
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_clover_multigrid",
+      "path": "tests/test_clover_multigrid.py",
+      "size_bytes": 663
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_clover_numpy",
+      "path": "tests/test_clover_numpy.py",
+      "size_bytes": 654
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_clover_torch",
+      "path": "tests/test_clover_torch.py",
+      "size_bytes": 654
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "covdev",
+        "shift"
+      ],
+      "imports": [
+        "check_pyquda",
+        "cupy",
+        "numpy",
+        "pyquda.field",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "cupy",
+          "numpy"
+        ],
+        "internal": [
+          "pyquda.field",
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_covdev",
+      "path": "tests/test_covdev.py",
+      "size_bytes": 1710
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "applyDslash"
+      ],
+      "imports": [
+        "check_pyquda",
+        "cupy",
+        "numpy",
+        "pyquda.field",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "cupy",
+          "numpy"
+        ],
+        "internal": [
+          "pyquda.field",
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_dslash",
+      "path": "tests/test_dslash.py",
+      "size_bytes": 1064
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "math",
+        "pyquda.action",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.hmc_param",
+        "time"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "math",
+          "time"
+        ],
+        "internal": [
+          "pyquda.action",
+          "pyquda.hmc",
+          "pyquda_utils",
+          "pyquda_utils.hmc_param"
+        ],
+        "relative": []
+      },
+      "module_name": "test_field",
+      "path": "tests/test_field.py",
+      "size_bytes": 3004
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/test_gaussian.ini.xml",
+      "size_bytes": 3000
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_gaussian",
+      "path": "tests/test_gaussian.py",
+      "size_bytes": 807
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/test_gfix.ini.xml",
+      "size_bytes": 1358
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_gfix",
+      "path": "tests/test_gfix.py",
+      "size_bytes": 296
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "composition4",
+        "composition4_v2",
+        "factorization4",
+        "partition",
+        "getDefaultGrid"
+      ],
+      "imports": [
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "typing"
+        ],
+        "internal": [],
+        "relative": []
+      },
+      "module_name": "test_grid",
+      "path": "tests/test_grid.py",
+      "size_bytes": 2520
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/test_hisq.ini.xml",
+      "size_bytes": 2383
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "cupy",
+        "pyquda.enum_quda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "cupy"
+        ],
+        "internal": [
+          "pyquda.enum_quda",
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_hisq",
+      "path": "tests/test_hisq.py",
+      "size_bytes": 1707
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "math",
+        "pyquda.action",
+        "pyquda.enum_quda",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.hmc_param",
+        "time"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "math",
+          "time"
+        ],
+        "internal": [
+          "pyquda.action",
+          "pyquda.enum_quda",
+          "pyquda.hmc",
+          "pyquda_utils",
+          "pyquda_utils.hmc_param"
+        ],
+        "relative": []
+      },
+      "module_name": "test_hmc_clover",
+      "path": "tests/test_hmc_clover.py",
+      "size_bytes": 2475
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "math",
+        "pyquda.action",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.hmc_param",
+        "time"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "math",
+          "time"
+        ],
+        "internal": [
+          "pyquda.action",
+          "pyquda.hmc",
+          "pyquda_utils",
+          "pyquda_utils.hmc_param"
+        ],
+        "relative": []
+      },
+      "module_name": "test_hmc_gauge",
+      "path": "tests/test_hmc_gauge.py",
+      "size_bytes": 1836
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "math",
+        "pyquda.action",
+        "pyquda.enum_quda",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.hmc_param",
+        "time"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "math",
+          "time"
+        ],
+        "internal": [
+          "pyquda.action",
+          "pyquda.enum_quda",
+          "pyquda.hmc",
+          "pyquda_utils",
+          "pyquda_utils.hmc_param"
+        ],
+        "relative": []
+      },
+      "module_name": "test_hmc_hisq",
+      "path": "tests/test_hmc_hisq.py",
+      "size_bytes": 2696
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_io",
+      "path": "tests/test_io.py",
+      "size_bytes": 1987
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "Laplacian",
+        "_Laplacian"
+      ],
+      "imports": [
+        "check_pyquda",
+        "cupy",
+        "cupyx.scipy.sparse",
+        "numpy",
+        "opt_einsum",
+        "pyquda",
+        "pyquda.field",
+        "pyquda_utils",
+        "time"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "cupy",
+          "cupyx.scipy.sparse",
+          "numpy",
+          "opt_einsum",
+          "time"
+        ],
+        "internal": [
+          "pyquda",
+          "pyquda.field",
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_laplace",
+      "path": "tests/test_laplace.py",
+      "size_bytes": 4014
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils",
+        "pyquda_utils.core",
+        "pyquda_utils.wilson_loop"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils",
+          "pyquda_utils.core",
+          "pyquda_utils.wilson_loop"
+        ],
+        "relative": []
+      },
+      "module_name": "test_loop",
+      "path": "tests/test_loop.py",
+      "size_bytes": 630
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/test_mesonspec.ini.xml",
+      "size_bytes": 5482
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "cupy",
+        "numpy",
+        "pyquda_utils",
+        "time"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "cupy",
+          "numpy",
+          "time"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_mesonspec",
+      "path": "tests/test_mesonspec.py",
+      "size_bytes": 2249
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [
+        "mesonTwoPoint",
+        "baryonTwoPoint",
+        "mesonTwoPoint_v2",
+        "baryonDiquark",
+        "baryonTwoPoint_v2",
+        "baryonSequentialTwoPoint"
+      ],
+      "imports": [
+        "check_pyquda",
+        "cupy",
+        "cupy.cuda.runtime",
+        "opt_einsum",
+        "pyquda_plugins",
+        "pyquda_utils",
+        "time",
+        "typing"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "cupy",
+          "cupy.cuda.runtime",
+          "opt_einsum",
+          "time",
+          "typing"
+        ],
+        "internal": [
+          "pyquda_plugins",
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_pycontract",
+      "path": "tests/test_pycontract.py",
+      "size_bytes": 14048
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "cupy",
+        "pyquda_utils",
+        "pyquda_utils.core",
+        "time"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "cupy",
+          "time"
+        ],
+        "internal": [
+          "pyquda_utils",
+          "pyquda_utils.core"
+        ],
+        "relative": []
+      },
+      "module_name": "test_shift",
+      "path": "tests/test_shift.py",
+      "size_bytes": 2915
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/test_smear.ini.xml",
+      "size_bytes": 3893
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_smear",
+      "path": "tests/test_smear.py",
+      "size_bytes": 772
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "math",
+        "mpi4py",
+        "pyquda_io.chroma",
+        "pyquda_utils.gauge_nd_sun",
+        "time"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda",
+          "math",
+          "mpi4py",
+          "time"
+        ],
+        "internal": [
+          "pyquda_io.chroma",
+          "pyquda_utils.gauge_nd_sun"
+        ],
+        "relative": []
+      },
+      "module_name": "test_sun",
+      "path": "tests/test_sun.py",
+      "size_bytes": 3573
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/test_wflow.ini.xml",
+      "size_bytes": 1249
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_wflow",
+      "path": "tests/test_wflow.py",
+      "size_bytes": 363
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_wflow.scale",
+      "path": "tests/test_wflow.scale.py",
+      "size_bytes": 239
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/test_wilson.ini.xml",
+      "size_bytes": 3678
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "classes": [],
+      "docstring": null,
+      "exports": null,
+      "extension": ".py",
+      "functions": [],
+      "imports": [
+        "check_pyquda",
+        "pyquda_utils"
+      ],
+      "imports_grouped": {
+        "external": [
+          "check_pyquda"
+        ],
+        "internal": [
+          "pyquda_utils"
+        ],
+        "relative": []
+      },
+      "module_name": "test_wilson",
+      "path": "tests/test_wilson.py",
+      "size_bytes": 583
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".xml",
+      "module_name": null,
+      "path": "tests/weak_field.ini.xml",
+      "size_bytes": 745
+    },
+    {
+      "area": "tests",
+      "category": "test",
+      "extension": ".lime",
+      "module_name": null,
+      "path": "tests/weak_field.lime",
+      "size_bytes": 296944
+    }
+  ],
+  "python_modules": [
+    {
+      "area": "examples",
+      "classes": [
+        "O2Nf1Ng0V"
+      ],
+      "exports": null,
+      "external_imports": [
+        "math",
+        "time"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda.action",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.core"
+      ],
+      "module_name": null,
+      "path": "examples/1_Quenched_HMC.py"
+    },
+    {
+      "area": "examples",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "cupy",
+        "matplotlib",
+        "numpy",
+        "opt_einsum"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": null,
+      "path": "examples/2_Quark_Propagator.py"
+    },
+    {
+      "area": "examples",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "cupy",
+        "itertools",
+        "matplotlib",
+        "numpy",
+        "opt_einsum"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": null,
+      "path": "examples/3_Pion_Proton_2pt.py"
+    },
+    {
+      "area": "examples",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "cupy",
+        "matplotlib",
+        "numpy",
+        "opt_einsum"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": null,
+      "path": "examples/4_Pion_PCAC.py"
+    },
+    {
+      "area": "examples",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "cupy",
+        "matplotlib",
+        "numpy",
+        "opt_einsum"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": null,
+      "path": "examples/5_Pion_Dispersion.py"
+    },
+    {
+      "area": "examples",
+      "classes": [
+        "HMC"
+      ],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        "getLoopsCoeffs"
+      ],
+      "internal_imports": [
+        "pyquda.dirac",
+        "pyquda.enum_quda",
+        "pyquda.field",
+        "pyquda.quda"
+      ],
+      "module_name": null,
+      "path": "examples/hmc.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "os",
+        "typing"
+      ],
+      "functions": [
+        "_setEnviron",
+        "_setEnvironWarn",
+        "initQUDA",
+        "init",
+        "isQUDAInitialized"
+      ],
+      "internal_imports": [
+        "pyquda_comm"
+      ],
+      "module_name": "pyquda",
+      "path": "pyquda_core/pyquda/__init__.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "argparse"
+      ],
+      "functions": [
+        "main"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda.__main__",
+      "path": "pyquda_core/pyquda/__main__.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [],
+      "exports": null,
+      "external_imports": [],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda._version",
+      "path": "pyquda_core/pyquda/_version.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [],
+      "exports": null,
+      "external_imports": [],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda.action",
+      "path": "pyquda_core/pyquda/action/__init__.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "LoopParam",
+        "RationalParam",
+        "Action",
+        "FermionAction",
+        "StaggeredFermionAction"
+      ],
+      "exports": null,
+      "external_imports": [
+        "abc",
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_comm.array"
+      ],
+      "module_name": "pyquda.action.abstract",
+      "path": "pyquda_core/pyquda/action/abstract.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "CloverWilsonAction"
+      ],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_comm"
+      ],
+      "module_name": "pyquda.action.clover_wilson",
+      "path": "pyquda_core/pyquda/action/clover_wilson.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "PathParam",
+        "GaugeAction"
+      ],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "numpy.typing",
+        "typing"
+      ],
+      "functions": [
+        "actionPath",
+        "forcePath"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda.action.gauge",
+      "path": "pyquda_core/pyquda/action/gauge.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "HISQAction",
+        "MultiHISQAction"
+      ],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_comm"
+      ],
+      "module_name": "pyquda.action.hisq",
+      "path": "pyquda_core/pyquda/action/hisq.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [],
+      "exports": null,
+      "external_imports": [],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda.dirac",
+      "path": "pyquda_core/pyquda/dirac/__init__.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "DiracGaugeStack",
+        "Dirac",
+        "FermionDirac",
+        "StaggeredFermionDirac"
+      ],
+      "exports": null,
+      "external_imports": [
+        "abc",
+        "contextlib",
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_comm",
+        "pyquda_comm.field"
+      ],
+      "module_name": "pyquda.dirac.abstract",
+      "path": "pyquda_core/pyquda/dirac/abstract.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "CloverWilsonDirac"
+      ],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda.dirac.clover_wilson",
+      "path": "pyquda_core/pyquda/dirac/clover_wilson.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "GaugeDirac"
+      ],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_comm.field"
+      ],
+      "module_name": "pyquda.dirac.gauge",
+      "path": "pyquda_core/pyquda/dirac/gauge.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "Precision",
+        "Reconstruct",
+        "Multigrid",
+        "Deflation"
+      ],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "numpy.typing",
+        "typing"
+      ],
+      "functions": [
+        "getGlobalPrecision",
+        "setGlobalPrecision",
+        "getGlobalReconstruct",
+        "setGlobalReconstruct",
+        "setPrecisionParam",
+        "setReconstructParam",
+        "fieldLocation",
+        "newQudaGaugeParam",
+        "newQudaMultigridParam",
+        "newQudaInvertParam",
+        "loadMultigrid",
+        "freeMultigrid",
+        "loadGauge",
+        "freeGauge",
+        "loadClover",
+        "saveClover",
+        "freeClover",
+        "newAsqtadPathCoeff",
+        "newHISQPathCoeff",
+        "computeULink",
+        "computeWLink",
+        "computeVWLink",
+        "computeXLink",
+        "computeXLinkEpsilon",
+        "loadStaggeredGauge",
+        "freeStaggeredGauge",
+        "loadFatLongGauge",
+        "freeFatLongGauge"
+      ],
+      "internal_imports": [
+        "pyquda_comm",
+        "pyquda_comm.pointer"
+      ],
+      "module_name": "pyquda.dirac.general",
+      "path": "pyquda_core/pyquda/dirac/general.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "HISQDirac"
+      ],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda.dirac.hisq",
+      "path": "pyquda_core/pyquda/dirac/hisq.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "StaggeredDirac"
+      ],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda.dirac.staggered",
+      "path": "pyquda_core/pyquda/dirac/staggered.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "WilsonDirac"
+      ],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda.dirac.wilson",
+      "path": "pyquda_core/pyquda/dirac/wilson.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "qudaError_t",
+        "QudaDslashType",
+        "QudaEigSpectrumType",
+        "QudaCABasis",
+        "QudaMatPCType",
+        "QudaParity",
+        "QudaFieldLocation",
+        "QudaSiteSubset",
+        "QudaSiteOrder",
+        "QudaFieldOrder",
+        "QudaGammaBasis",
+        "QudaProjectionType",
+        "QudaPCType",
+        "QudaExtLibType"
+      ],
+      "exports": null,
+      "external_imports": [
+        "enum"
+      ],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda.enum_quda",
+      "path": "pyquda_core/pyquda/enum_quda.in.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "_Direction",
+        "LatticeRotation",
+        "LatticeGauge",
+        "LatticeMom"
+      ],
+      "exports": null,
+      "external_imports": [
+        "math",
+        "numpy",
+        "numpy.typing",
+        "typing"
+      ],
+      "functions": [
+        "lexico",
+        "evenodd",
+        "cb2"
+      ],
+      "internal_imports": [
+        "pyquda_comm",
+        "pyquda_comm.field"
+      ],
+      "module_name": "pyquda.field",
+      "path": "pyquda_core/pyquda/field.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "_GammaMatrix",
+        "DeGrandRossiMatrix",
+        "DiracPauliMatrix",
+        "_GammaSparse",
+        "DeGrandRossiSparse",
+        "DiracPauliSparse",
+        "Gamma",
+        "Projector"
+      ],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "numpy.typing",
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_comm",
+        "pyquda_comm.array"
+      ],
+      "module_name": "pyquda.gamma",
+      "path": "pyquda_core/pyquda/gamma.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "Integrator",
+        "INT_3G1F",
+        "O2Nf1Ng0V",
+        "O2Nf1Ng0P",
+        "O2Nf2Ng0V",
+        "O2Nf2Ng0P",
+        "O4Nf5Ng0V",
+        "O4Nf5Ng0P",
+        "HMC"
+      ],
+      "exports": null,
+      "external_imports": [
+        "abc",
+        "math",
+        "numpy",
+        "random",
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_comm",
+        "pyquda_comm.array"
+      ],
+      "module_name": "pyquda.hmc",
+      "path": "pyquda_core/pyquda/hmc.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [
+        "target",
+        "mmaAvailable"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda.quda_define",
+      "path": "pyquda_core/pyquda/quda_define.in.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "_MPILogger",
+        "_FileWithOffset"
+      ],
+      "exports": null,
+      "external_imports": [
+        "contextlib",
+        "logging",
+        "math",
+        "mpi4py",
+        "mpi4py.util",
+        "numpy",
+        "numpy.typing",
+        "os",
+        "sys",
+        "typing"
+      ],
+      "functions": [
+        "_defaultRankFromCoord",
+        "_defaultCoordFromRank",
+        "_defaultCoordFromSharedRank",
+        "getRankFromCoord",
+        "getCoordFromRank",
+        "getNeighbourRank",
+        "getSublatticeSize",
+        "_composition",
+        "_factorization",
+        "_partition",
+        "getDefaultGrid",
+        "initGrid",
+        "initDevice",
+        "isGridInitialized",
+        "isDeviceInitialized",
+        "getLogger",
+        "setLoggerLevel",
+        "getMPIComm",
+        "getMPISize",
+        "getMPIRank",
+        "getGridMap",
+        "getGridSize",
+        "getGridCoord",
+        "getGridRanks",
+        "getArrayBackend",
+        "getArrayBackendTarget",
+        "getArrayDevice",
+        "openReadHeader",
+        "openWriteHeader",
+        "_getSubarray",
+        "readMPIFile",
+        "readMPIFileInChunks",
+        "writeMPIFile",
+        "writeMPIFileInChunks"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_comm",
+      "path": "pyquda_core/pyquda_comm/__init__.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "numpy.typing",
+        "typing"
+      ],
+      "functions": [
+        "setDPNPDevice",
+        "backendDeviceAPI",
+        "arrayDType",
+        "arrayAsNumpy",
+        "arrayAsNumpyCopy",
+        "arrayIsArray",
+        "arrayAsArray",
+        "arrayCopy",
+        "arrayIsContiguous",
+        "arrayAsContiguous",
+        "arrayLinalgNorm",
+        "arrayZeros",
+        "arrayEmpty",
+        "arrayExp",
+        "arrayIdentity",
+        "arrayRandomRandom",
+        "arrayRandomRandomComplex",
+        "arrayRandomNormal",
+        "arrayRandomNormalComplex",
+        "arrayRandomGetState",
+        "arrayRandomSetState",
+        "arrayRandomSeed",
+        "arrayFFT",
+        "arrayFFTN",
+        "arrayIFFT",
+        "arrayIFFTN"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_comm.array",
+      "path": "pyquda_core/pyquda_comm/array.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "BaseInfo",
+        "LatticeInfo",
+        "LexicoInfo",
+        "BaseField",
+        "LexicoField",
+        "ParityField",
+        "FullField",
+        "MultiField",
+        "LatticeInt",
+        "MultiLatticeInt",
+        "LatticeReal",
+        "MultiLatticeReal",
+        "LatticeComplex",
+        "MultiLatticeComplex",
+        "LatticeLink",
+        "LatticeRotation",
+        "LatticeGauge",
+        "LatticeMom",
+        "LatticeClover",
+        "HalfLatticeFermion",
+        "MultiHalfLatticeFermion",
+        "LatticeFermion",
+        "MultiLatticeFermion",
+        "LatticePropagator",
+        "HalfLatticeStaggeredFermion",
+        "MultiHalfLatticeStaggeredFermion",
+        "LatticeStaggeredFermion",
+        "MultiLatticeStaggeredFermion",
+        "LatticeStaggeredPropagator"
+      ],
+      "exports": null,
+      "external_imports": [
+        "abc",
+        "math",
+        "numpy",
+        "numpy.lib.format",
+        "numpy.typing",
+        "os",
+        "time",
+        "typing"
+      ],
+      "functions": [
+        "read_array_header",
+        "write_array_header",
+        "_field_spin_color_dtype",
+        "_field_shape_dtype"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_comm.field",
+      "path": "pyquda_core/pyquda_comm/field.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "_LatticeInfo",
+        "File"
+      ],
+      "exports": null,
+      "external_imports": [
+        "h5py",
+        "math",
+        "mpi4py",
+        "numpy",
+        "time",
+        "typing"
+      ],
+      "functions": [
+        "checksum",
+        "_field_info"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_comm.hdf5",
+      "path": "pyquda_core/pyquda_comm/hdf5.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [
+        "QudaEnumMeta",
+        "QudaParamsMeta"
+      ],
+      "exports": null,
+      "external_imports": [
+        "os",
+        "subprocess",
+        "sys",
+        "typing"
+      ],
+      "functions": [
+        "build_pyquda_pyx"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_pyx",
+      "path": "pyquda_core/pyquda_pyx.py"
+    },
+    {
+      "area": "pyquda_core",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "os",
+        "setuptools",
+        "sys"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_pyx"
+      ],
+      "module_name": "setup",
+      "path": "pyquda_core/setup.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda_io",
+      "path": "pyquda_io/__init__.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "os"
+      ],
+      "functions": [
+        "readQIOGauge",
+        "readQIOPropagator",
+        "readQIOStaggeredPropagator"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.chroma",
+      "path": "pyquda_io/chroma.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "os",
+        "typing"
+      ],
+      "functions": [
+        "readGauge",
+        "readBinGauge"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.ildg",
+      "path": "pyquda_io/ildg.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [
+        "_DimensionType",
+        "_OneDim",
+        "_Head",
+        "_FileType",
+        "IOGeneral"
+      ],
+      "exports": null,
+      "external_imports": [
+        "ctypes",
+        "enum",
+        "io",
+        "numpy",
+        "numpy.typing",
+        "os",
+        "typing"
+      ],
+      "functions": [
+        "read",
+        "write"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.io_general",
+      "path": "pyquda_io/io_general.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "math",
+        "mpi4py",
+        "numpy",
+        "numpy.typing",
+        "typing",
+        "zlib"
+      ],
+      "functions": [
+        "checksumSciDAC",
+        "checksumMILC",
+        "checksumNERSC",
+        "gaugeEvenOdd",
+        "gaugeLexico",
+        "gaugeLinkTrace",
+        "gaugePlaquette",
+        "gaugeOddShiftForward",
+        "gaugeEvenShiftBackward",
+        "gaugeReunitarize",
+        "gaugeReunitarizeReconstruct12",
+        "gaugeReconstruct12",
+        "propagatorFromDiracPauli",
+        "propagatorToDiracPauli"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.io_utils",
+      "path": "pyquda_io/io_utils.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "os",
+        "typing"
+      ],
+      "functions": [
+        "readGauge",
+        "writeGauge",
+        "readPropagator",
+        "writePropagator"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.kyu",
+      "path": "pyquda_io/kyu.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [
+        "LimeRecord",
+        "Lime"
+      ],
+      "exports": null,
+      "external_imports": [
+        "io",
+        "os",
+        "struct",
+        "typing",
+        "xml.etree"
+      ],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda_io.lime",
+      "path": "pyquda_io/lime.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "datetime",
+        "numpy",
+        "os",
+        "struct",
+        "typing"
+      ],
+      "functions": [
+        "readGauge",
+        "writeGauge",
+        "readQIOPropagator",
+        "readQIOStaggeredPropagator"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.milc",
+      "path": "pyquda_io/milc.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [
+        "init"
+      ],
+      "internal_imports": [
+        "pyquda_comm"
+      ],
+      "module_name": "pyquda_io.mpi_utils",
+      "path": "pyquda_io/mpi_utils.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "datetime",
+        "getpass",
+        "math",
+        "numpy",
+        "os",
+        "typing"
+      ],
+      "functions": [
+        "readGauge",
+        "writeGauge"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.nersc",
+      "path": "pyquda_io/nersc.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "numpy.lib.format",
+        "os",
+        "typing"
+      ],
+      "functions": [
+        "read_array_header",
+        "write_array_header",
+        "readGauge",
+        "writeGauge",
+        "readPropagator",
+        "writePropagator"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.npy",
+      "path": "pyquda_io/npy.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "math",
+        "numpy",
+        "os",
+        "struct",
+        "typing"
+      ],
+      "functions": [
+        "readGauge",
+        "writeGauge"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.openqcd",
+      "path": "pyquda_io/openqcd.py"
+    },
+    {
+      "area": "pyquda_io",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "os",
+        "typing"
+      ],
+      "functions": [
+        "readPropagator",
+        "readStaggeredPropagator",
+        "writePropagator",
+        "writeStaggeredPropagator",
+        "readPropagatorFast",
+        "writePropagatorFast"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_io.xqcd",
+      "path": "pyquda_io/xqcd.py"
+    },
+    {
+      "area": "pyquda_plugins",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "Cython.Build",
+        "argparse",
+        "logging",
+        "numpy",
+        "os",
+        "setuptools",
+        "setuptools.command.build_ext",
+        "setuptools.dist",
+        "shutil",
+        "sys",
+        "tempfile"
+      ],
+      "functions": [
+        "dynamic",
+        "build_and_install",
+        "main"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_plugins.__main__",
+      "path": "pyquda_plugins/__main__.py"
+    },
+    {
+      "area": "pyquda_plugins",
+      "classes": [
+        "FunctionMeta"
+      ],
+      "exports": null,
+      "external_imports": [
+        "os",
+        "sys",
+        "typing"
+      ],
+      "functions": [
+        "parseHeader",
+        "build_plugin_pyx"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_plugins.plugin_pyx",
+      "path": "pyquda_plugins/plugin_pyx.py"
+    },
+    {
+      "area": "pyquda_plugins",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "numpy.typing",
+        "typing"
+      ],
+      "functions": [
+        "init",
+        "mesonTwoPoint",
+        "mesonAllSinkTwoPoint",
+        "mesonAllSourceTwoPoint",
+        "baryonDiquark",
+        "baryonTwoPoint",
+        "baryonGeneralTwoPoint",
+        "baryonSequentialTwoPoint",
+        "baryonTwoPoint_v2"
+      ],
+      "internal_imports": [
+        "pyquda_comm",
+        "pyquda_comm.field",
+        "pyquda_utils.gamma"
+      ],
+      "module_name": "pyquda_plugins.pycontract",
+      "path": "pyquda_plugins/pycontract/__init__.py"
+    },
+    {
+      "area": "pyquda_plugins",
+      "classes": [
+        "Overlap"
+      ],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "os",
+        "time",
+        "typing"
+      ],
+      "functions": [
+        "init",
+        "multiFermionFromDiracPauli",
+        "multiFermionToDiracPauli",
+        "negMultiFermionFromDiracPauli",
+        "negFermionFromDiracPauli",
+        "readEigenValue",
+        "readEigenSystem",
+        "readEigenSystemInChunks"
+      ],
+      "internal_imports": [
+        "pyquda_comm",
+        "pyquda_comm.field"
+      ],
+      "module_name": "pyquda_plugins.pygwu",
+      "path": "pyquda_plugins/pygwu/__init__.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "pyquda_utils",
+      "path": "pyquda_utils/__init__.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [
+        "AlgRemez"
+      ],
+      "exports": null,
+      "external_imports": [
+        "gmpy2",
+        "math"
+      ],
+      "functions": [
+        "LU_decomp",
+        "L_solve",
+        "U_solve",
+        "lu_solve"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_utils.alg_remez",
+      "path": "pyquda_utils/alg_remez.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "mpi4py",
+        "numpy",
+        "numpy.typing",
+        "typing",
+        "zlib"
+      ],
+      "functions": [
+        "checksumSciDAC"
+      ],
+      "internal_imports": [
+        "pyquda_comm",
+        "pyquda_comm.field"
+      ],
+      "module_name": "pyquda_utils.checksum",
+      "path": "pyquda_utils/checksum.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [
+        "linkToFermion",
+        "fermionToLink",
+        "multiFermionToPropagator",
+        "multiFermionToPropagator",
+        "multiFermionToPropagator",
+        "propagatorToMultiFermion",
+        "propagatorToMultiFermion",
+        "propagatorToMultiFermion",
+        "multiField",
+        "multiField",
+        "multiField",
+        "multiField",
+        "multiField",
+        "multiField"
+      ],
+      "internal_imports": [
+        "pyquda",
+        "pyquda.field",
+        "pyquda_comm.array"
+      ],
+      "module_name": "pyquda_utils.convert",
+      "path": "pyquda_utils/convert.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "math",
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        "invert",
+        "invertEigenvector",
+        "invertSequential",
+        "invertPropagator",
+        "invertStaggered",
+        "invertStaggeredSequential",
+        "invertStaggeredPropagator",
+        "gatherLattice2",
+        "scatterLattice",
+        "gatherScatterLattice",
+        "gatherLattice",
+        "getDirac",
+        "getStaggeredDirac",
+        "getWilson",
+        "getClover",
+        "getStaggered",
+        "getHISQ"
+      ],
+      "internal_imports": [
+        "pyquda",
+        "pyquda.dirac.abstract",
+        "pyquda.field",
+        "pyquda_comm"
+      ],
+      "module_name": "pyquda_utils.core",
+      "path": "pyquda_utils/core.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        "cb2",
+        "smear",
+        "smear4",
+        "invert12",
+        "getDslash",
+        "getStaggeredDslash"
+      ],
+      "internal_imports": [
+        "pyquda",
+        "pyquda.dirac.abstract",
+        "pyquda.field"
+      ],
+      "module_name": "pyquda_utils.deprecated",
+      "path": "pyquda_utils/deprecated.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [],
+      "functions": [
+        "laplace3d"
+      ],
+      "internal_imports": [
+        "pyquda",
+        "pyquda.enum_quda",
+        "pyquda.field"
+      ],
+      "module_name": "pyquda_utils.eigensolve",
+      "path": "pyquda_utils/eigensolve.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "math",
+        "mpi4py",
+        "mpi4py.util",
+        "numpy",
+        "numpy.typing",
+        "time",
+        "typing"
+      ],
+      "functions": [
+        "loadBalanceSubsize",
+        "loadBalanceStart",
+        "transform",
+        "redistribute",
+        "redistribute_reverse",
+        "fft",
+        "ifft",
+        "fft4"
+      ],
+      "internal_imports": [
+        "pyquda_comm",
+        "pyquda_comm.array",
+        "pyquda_comm.field"
+      ],
+      "module_name": "pyquda_utils.fft",
+      "path": "pyquda_utils/fft.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": [
+        "gamma",
+        "Gamma",
+        "Projector"
+      ],
+      "external_imports": [],
+      "functions": [
+        "gamma_mul_fermion",
+        "propagator_mul_gamma",
+        "gamma_mul_propagator",
+        "gamma_mul_propagator_mul_gamma",
+        "gamma"
+      ],
+      "internal_imports": [
+        "pyquda.gamma",
+        "pyquda_comm.field"
+      ],
+      "module_name": "pyquda_utils.gamma",
+      "path": "pyquda_utils/gamma.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [
+        "LatticeLink",
+        "LatticeGauge"
+      ],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        "init",
+        "getSublatticeSize",
+        "getShiftedRank",
+        "gaugeSendRecv",
+        "link"
+      ],
+      "internal_imports": [
+        "pyquda_comm"
+      ],
+      "module_name": "pyquda_utils.gauge_nd_sun",
+      "path": "pyquda_utils/gauge_nd_sun.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "copy",
+        "typing"
+      ],
+      "functions": [
+        "real_geo_block_size",
+        "_partition"
+      ],
+      "internal_imports": [
+        "pyquda_comm"
+      ],
+      "module_name": "pyquda_utils.geo_block_size",
+      "path": "pyquda_utils/geo_block_size.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "gpt",
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        "LatticeInfoGPT",
+        "LatticeGaugeGPT",
+        "LatticePropagatorGPT"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_utils.gpt",
+      "path": "pyquda_utils/gpt.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [
+        "ScientificNotation",
+        "_WilsonMD",
+        "_WilsonFA",
+        "_StaggeredMD",
+        "_StaggeredFA"
+      ],
+      "exports": null,
+      "external_imports": [
+        "gmpy2",
+        "json",
+        "math",
+        "os",
+        "typing"
+      ],
+      "functions": [
+        "wilsonGaugeLoopParam",
+        "iwasakiGaugeLoopParam",
+        "symanzikTreeGaugeLoopParam",
+        "symanzikOneLoopGaugeLoopParam",
+        "_loadCache",
+        "_dumpCache",
+        "fermionRationalParam",
+        "staggeredFermionRationalParam"
+      ],
+      "internal_imports": [
+        "pyquda.action.abstract",
+        "pyquda.field",
+        "pyquda_comm"
+      ],
+      "module_name": "pyquda_utils.hmc_param",
+      "path": "pyquda_utils/hmc_param.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        "readChromaQIOGauge",
+        "readILDGGauge",
+        "readILDGBinGauge",
+        "readChromaQIOPropagator",
+        "readChromaQIOStaggeredPropagator",
+        "readMILCGauge",
+        "writeMILCGauge",
+        "readMILCQIOPropagator",
+        "readMILCQIOStaggeredPropagator",
+        "readKYUGauge",
+        "writeKYUGauge",
+        "readKYUPropagator",
+        "writeKYUPropagator",
+        "readXQCDPropagator",
+        "readXQCDStaggeredPropagator",
+        "writeXQCDPropagator",
+        "writeXQCDStaggeredPropagator",
+        "readNPYGauge",
+        "writeNPYGauge",
+        "readNPYPropagator",
+        "writeNPYPropagator",
+        "readOpenQCDGauge",
+        "writeOpenQCDGauge",
+        "readNERSCGauge",
+        "writeNERSCGauge",
+        "readQIOGauge",
+        "readQIOPropagator",
+        "readQIOStaggeredPropagator",
+        "readKYUPropagatorF",
+        "writeKYUPropagatorF",
+        "rotateToDiracPauli",
+        "rotateToDeGrandRossi",
+        "readXQCDPropagatorFast",
+        "writeXQCDPropagatorFast",
+        "readKYUPropagatorFFast",
+        "writeKYUPropagatorFFast"
+      ],
+      "internal_imports": [
+        "pyquda.field",
+        "pyquda_comm",
+        "pyquda_comm.array"
+      ],
+      "module_name": "pyquda_utils.io",
+      "path": "pyquda_utils/io/__init__.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "math",
+        "typing"
+      ],
+      "functions": [
+        "symanzik_1loop_hisq",
+        "poly4_rhmc_param"
+      ],
+      "internal_imports": [
+        "pyquda.action.abstract",
+        "pyquda.field"
+      ],
+      "module_name": "pyquda_utils.milc_rhmc_param",
+      "path": "pyquda_utils/milc_rhmc_param.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [
+        "MomentumPhase",
+        "GridPhase"
+      ],
+      "exports": null,
+      "external_imports": [
+        "math",
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        "getMomList",
+        "getMomDict"
+      ],
+      "internal_imports": [
+        "pyquda_comm.array"
+      ],
+      "module_name": "pyquda_utils.phase",
+      "path": "pyquda_utils/phase.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [
+        "LocationPhase",
+        "DistancePhase",
+        "MomentumPhase",
+        "GridPhase"
+      ],
+      "exports": null,
+      "external_imports": [
+        "math",
+        "numpy",
+        "typing"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_comm.array",
+        "pyquda_comm.field"
+      ],
+      "module_name": "pyquda_utils.phase_v2",
+      "path": "pyquda_utils/phase_v2.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "numpy"
+      ],
+      "functions": [
+        "quasiAxialGaugeFixing"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_utils.quasi_axial_gauge_fixing",
+      "path": "pyquda_utils/quasi_axial_gauge_fixing.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [
+        "point",
+        "point",
+        "point",
+        "wall",
+        "wall",
+        "wall",
+        "volume",
+        "volume",
+        "volume",
+        "fermion",
+        "fermion",
+        "fermion",
+        "multiFermion",
+        "multiStaggeredFermion",
+        "propagator",
+        "staggeredPropagator",
+        "momentum",
+        "colorvector",
+        "source",
+        "source",
+        "source",
+        "source12",
+        "source3",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussianSmear",
+        "gaussian",
+        "gaussian12",
+        "gaussian3",
+        "_gaussian3",
+        "_gaussian2",
+        "_gaussian1",
+        "sequential",
+        "sequential",
+        "sequential",
+        "sequential12",
+        "sequential3"
+      ],
+      "internal_imports": [
+        "pyquda",
+        "pyquda.enum_quda",
+        "pyquda.field"
+      ],
+      "module_name": "pyquda_utils.source",
+      "path": "pyquda_utils/source.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [
+        "wilson_loop"
+      ],
+      "internal_imports": [],
+      "module_name": "pyquda_utils.wilson_loop",
+      "path": "pyquda_utils/wilson_loop.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "os"
+      ],
+      "functions": [
+        "chroma",
+        "hmc",
+        "data"
+      ],
+      "internal_imports": [],
+      "module_name": "check_pyquda",
+      "path": "tests/check_pyquda.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "os"
+      ],
+      "functions": [],
+      "internal_imports": [],
+      "module_name": "generate_resource",
+      "path": "tests/generate_resource.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "io",
+        "math",
+        "numpy",
+        "os",
+        "struct",
+        "typing",
+        "zlib"
+      ],
+      "functions": [
+        "readQIOGauge",
+        "readQIOPropagator",
+        "readGauge"
+      ],
+      "internal_imports": [],
+      "module_name": "test_checksum",
+      "path": "tests/test_checksum.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_clover",
+      "path": "tests/test_clover.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "tests.check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_clover_cli",
+      "path": "tests/test_clover_cli.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_clover_distance",
+      "path": "tests/test_clover_distance.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_clover_isotropic",
+      "path": "tests/test_clover_isotropic.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_clover_multigrid",
+      "path": "tests/test_clover_multigrid.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_clover_numpy",
+      "path": "tests/test_clover_numpy.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_clover_torch",
+      "path": "tests/test_clover_torch.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "cupy",
+        "numpy"
+      ],
+      "functions": [
+        "covdev",
+        "shift"
+      ],
+      "internal_imports": [
+        "pyquda.field",
+        "pyquda_utils"
+      ],
+      "module_name": "test_covdev",
+      "path": "tests/test_covdev.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "cupy",
+        "numpy"
+      ],
+      "functions": [
+        "applyDslash"
+      ],
+      "internal_imports": [
+        "pyquda.field",
+        "pyquda_utils"
+      ],
+      "module_name": "test_dslash",
+      "path": "tests/test_dslash.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "math",
+        "time"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda.action",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.hmc_param"
+      ],
+      "module_name": "test_field",
+      "path": "tests/test_field.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_gaussian",
+      "path": "tests/test_gaussian.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_gfix",
+      "path": "tests/test_gfix.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "typing"
+      ],
+      "functions": [
+        "composition4",
+        "composition4_v2",
+        "factorization4",
+        "partition",
+        "getDefaultGrid"
+      ],
+      "internal_imports": [],
+      "module_name": "test_grid",
+      "path": "tests/test_grid.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "cupy"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda.enum_quda",
+        "pyquda_utils"
+      ],
+      "module_name": "test_hisq",
+      "path": "tests/test_hisq.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "math",
+        "time"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda.action",
+        "pyquda.enum_quda",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.hmc_param"
+      ],
+      "module_name": "test_hmc_clover",
+      "path": "tests/test_hmc_clover.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "math",
+        "time"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda.action",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.hmc_param"
+      ],
+      "module_name": "test_hmc_gauge",
+      "path": "tests/test_hmc_gauge.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "math",
+        "time"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda.action",
+        "pyquda.enum_quda",
+        "pyquda.hmc",
+        "pyquda_utils",
+        "pyquda_utils.hmc_param"
+      ],
+      "module_name": "test_hmc_hisq",
+      "path": "tests/test_hmc_hisq.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_io",
+      "path": "tests/test_io.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "cupy",
+        "cupyx.scipy.sparse",
+        "numpy",
+        "opt_einsum",
+        "time"
+      ],
+      "functions": [
+        "Laplacian",
+        "_Laplacian"
+      ],
+      "internal_imports": [
+        "pyquda",
+        "pyquda.field",
+        "pyquda_utils"
+      ],
+      "module_name": "test_laplace",
+      "path": "tests/test_laplace.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils",
+        "pyquda_utils.core",
+        "pyquda_utils.wilson_loop"
+      ],
+      "module_name": "test_loop",
+      "path": "tests/test_loop.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "cupy",
+        "numpy",
+        "time"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_mesonspec",
+      "path": "tests/test_mesonspec.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "cupy",
+        "cupy.cuda.runtime",
+        "opt_einsum",
+        "time",
+        "typing"
+      ],
+      "functions": [
+        "mesonTwoPoint",
+        "baryonTwoPoint",
+        "mesonTwoPoint_v2",
+        "baryonDiquark",
+        "baryonTwoPoint_v2",
+        "baryonSequentialTwoPoint"
+      ],
+      "internal_imports": [
+        "pyquda_plugins",
+        "pyquda_utils"
+      ],
+      "module_name": "test_pycontract",
+      "path": "tests/test_pycontract.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "cupy",
+        "time"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils",
+        "pyquda_utils.core"
+      ],
+      "module_name": "test_shift",
+      "path": "tests/test_shift.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_smear",
+      "path": "tests/test_smear.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda",
+        "math",
+        "mpi4py",
+        "time"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_io.chroma",
+        "pyquda_utils.gauge_nd_sun"
+      ],
+      "module_name": "test_sun",
+      "path": "tests/test_sun.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_wflow",
+      "path": "tests/test_wflow.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_wflow.scale",
+      "path": "tests/test_wflow.scale.py"
+    },
+    {
+      "area": "tests",
+      "classes": [],
+      "exports": null,
+      "external_imports": [
+        "check_pyquda"
+      ],
+      "functions": [],
+      "internal_imports": [
+        "pyquda_utils"
+      ],
+      "module_name": "test_wilson",
+      "path": "tests/test_wilson.py"
+    }
+  ],
+  "repo_root": "/Users/zhaodianjun/PyQUDA",
+  "scopes": [
+    {
+      "description": "Cython bindings, runtime package, and communication layer.",
+      "exists": true,
+      "kind": "package-root",
+      "name": "pyquda_core",
+      "relative_path": "pyquda_core"
+    },
+    {
+      "description": "High-level lattice utilities built on top of pyquda.",
+      "exists": true,
+      "kind": "package-root",
+      "name": "pyquda_utils",
+      "relative_path": "pyquda_utils"
+    },
+    {
+      "description": "Gauge and propagator file-format I/O helpers.",
+      "exists": true,
+      "kind": "package-root",
+      "name": "pyquda_io",
+      "relative_path": "pyquda_io"
+    },
+    {
+      "description": "Plugin scaffolding and optional compiled extensions.",
+      "exists": true,
+      "kind": "package-root",
+      "name": "pyquda_plugins",
+      "relative_path": "pyquda_plugins"
+    },
+    {
+      "description": "Regression, smoke, and CLI coverage.",
+      "exists": true,
+      "kind": "validation",
+      "name": "tests",
+      "relative_path": "tests"
+    },
+    {
+      "description": "User-facing example workflows.",
+      "exists": true,
+      "kind": "usage",
+      "name": "examples",
+      "relative_path": "examples"
+    }
+  ],
+  "summary": {
+    "area_file_counts": {
+      "examples": 9,
+      "pyquda_core": 39,
+      "pyquda_io": 13,
+      "pyquda_plugins": 4,
+      "pyquda_utils": 20,
+      "tests": 49
+    },
+    "category_counts": {
+      "cython": 4,
+      "example": 9,
+      "other": 8,
+      "package-init": 9,
+      "python": 55,
+      "test": 49
+    },
+    "cython_file_count": 4,
+    "extension_counts": {
+      ".cpp": 1,
+      ".in": 1,
+      ".ipynb": 1,
+      ".lime": 1,
+      ".md": 2,
+      ".pxd": 2,
+      ".py": 101,
+      ".pyi": 2,
+      ".pyx": 2,
+      ".sh": 3,
+      ".svg": 1,
+      ".toml": 1,
+      ".txt": 1,
+      ".xml": 10,
+      "<none>": 5
+    },
+    "file_count": 134,
+    "python_module_count": 101
+  },
+  "top_level_files": [
+    ".gitattributes",
+    ".gitignore",
+    ".gitmodules",
+    "LICENSE",
+    "MANIFEST.in",
+    "README.md",
+    "pyproject.toml",
+    "setup.py"
+  ],
+  "top_level_packages": [
+    {
+      "area": "pyquda_core",
+      "module_name": "pyquda",
+      "path": "pyquda_core/pyquda/__init__.py"
+    },
+    {
+      "area": "pyquda_core",
+      "module_name": "pyquda_comm",
+      "path": "pyquda_core/pyquda_comm/__init__.py"
+    },
+    {
+      "area": "pyquda_io",
+      "module_name": "pyquda_io",
+      "path": "pyquda_io/__init__.py"
+    },
+    {
+      "area": "pyquda_utils",
+      "module_name": "pyquda_utils",
+      "path": "pyquda_utils/__init__.py"
+    }
+  ]
+}
