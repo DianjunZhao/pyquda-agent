@@ -1,0 +1,183 @@
+{
+  "objective": "first_workflow_pion_2pt",
+  "last_audited_on": "2026-07-10",
+  "items": [
+    {
+      "id": "req-1-local-retrieval",
+      "requirement": "Retrieve implementation details from ~/pyquda-agent and ~/PyQUDA, especially runnable examples, tests, IO helpers, source helpers, inversion paths, contraction patterns, and output conventions.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/retrieval/context_builder.py",
+        "src/pyquda_agent/retrieval/repo_scan.py",
+        "outputs/run_pion_api.plan.json",
+        "tests/test_context_builder.py"
+      ],
+      "notes": "The implementation plan records pinned PyQUDA references including examples, tests, io/__init__.py, source.py, core.py, and gamma.py."
+    },
+    {
+      "id": "req-2-external-citations",
+      "requirement": "When local repository knowledge is insufficient for physics conventions, consult authoritative sources and record chosen conventions with citations.",
+      "status": "proved",
+      "evidence": [
+        "scripts/refresh_physics_citations.py",
+        "data/physics_citations/pion_2pt_chroma_wall_local_zero_momentum_npy_v1.sources.json",
+        "data/physics_citations/pion_2pt_chroma_wall_local_zero_momentum_npy_v1.json",
+        "src/pyquda_agent/generator/plan.py",
+        "outputs/run_pion_api.plan.json",
+        "tests/test_cli_run.py",
+        "tests/test_refresh_physics_citations.py"
+      ],
+      "notes": "Citations are recorded in the implementation plan; they are currently refreshed from a curated manifest rather than chosen by live task-time browsing."
+    },
+    {
+      "id": "req-3-structured-task-spec",
+      "requirement": "Parse the user request into a structured task specification instead of directly writing code.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/tasks/parser.py",
+        "src/pyquda_agent/tasks/schema.py",
+        "outputs/run_pion_api.task.json",
+        "tests/test_task_parser.py"
+      ],
+      "notes": "The CLI emits a structured task artifact before generation."
+    },
+    {
+      "id": "req-4-clarification-loop",
+      "requirement": "Detect underspecified fields and ask follow-up questions rather than inventing missing parameters.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/tasks/clarifier.py",
+        "tests/test_clarifier.py",
+        "tests/test_cli_run.py"
+      ],
+      "notes": "Missing required fields stop complete generation and surface follow-up questions."
+    },
+    {
+      "id": "req-5-choice-separation",
+      "requirement": "Distinguish physics choices, PyQUDA implementation choices, and cluster/runtime choices.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/generator/plan.py",
+        "src/pyquda_agent/models.py",
+        "outputs/run_pion_api.plan.json",
+        "docs/TASK_SCHEMAS.md"
+      ],
+      "notes": "The implementation plan has dedicated sections for all three categories."
+    },
+    {
+      "id": "req-6-complete-after-resolution",
+      "requirement": "Generate a complete Python script only after required fields are resolved.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/app.py",
+        "src/pyquda_agent/tasks/pion_2pt.py",
+        "tests/test_cli_run.py"
+      ],
+      "notes": "The command returns needs_input or unsupported before generation when fields are unresolved."
+    },
+    {
+      "id": "req-7-no-placeholders",
+      "requirement": "Refuse to label output as complete if placeholders, TODOs, fake helper calls, or guessed APIs remain.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/generator/validate.py",
+        "tests/test_generator.py"
+      ],
+      "notes": "Validation rejects forbidden tokens and asserts required real API strings."
+    },
+    {
+      "id": "req-8-validate-against-real-interfaces",
+      "requirement": "Validate generated scripts against real PyQUDA interfaces and example usage patterns.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/generator/templates.py",
+        "outputs/run_pion_api.py",
+        "outputs/run_pion_api.plan.json",
+        "data/run_pion_api_probe.json",
+        "scripts/probe_generated_workflow.py",
+        "tests/test_generator.py"
+      ],
+      "notes": "Static structure and reference grounding are validated; direct execution is also probed. Full numerical validation still depends on a working PyQUDA runtime."
+    },
+    {
+      "id": "dod-real-imports-and-apis",
+      "requirement": "Generated script uses real PyQUDA imports, source/inversion/contraction APIs, and real gauge IO paths.",
+      "status": "proved",
+      "evidence": [
+        "outputs/run_pion_api.py",
+        "outputs/run_pion_api.task.json",
+        "outputs/run_pion_api.plan.json",
+        "data/run_pion_api_probe.json",
+        "tests/test_generator.py"
+      ],
+      "notes": "The script uses real local gauge input and reference-grounded API choices; the direct probe shows runtime preflight is reached."
+    },
+    {
+      "id": "dod-traceable-upstream-references",
+      "requirement": "Generated script is derived from and traceable to concrete upstream references in ~/PyQUDA.",
+      "status": "proved",
+      "evidence": [
+        "outputs/run_pion_api.py",
+        "outputs/run_pion_api.plan.json",
+        "tests/test_generator.py"
+      ],
+      "notes": "The plan and generated script trace the workflow back to concrete upstream PyQUDA references."
+    },
+    {
+      "id": "dod-no-todo-pass-placeholder",
+      "requirement": "Generated complete script contains no TODO/pass/placeholder sections.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/generator/validate.py",
+        "tests/test_generator.py",
+        "outputs/run_pion_api.py"
+      ],
+      "notes": "The generated script is guarded by token-level validation and regression tests."
+    },
+    {
+      "id": "dod-explain-field-provenance",
+      "requirement": "The system explains which task fields were user-specified, clarified interactively, and which conventions were chosen from references.",
+      "status": "proved",
+      "evidence": [
+        "outputs/run_pion_api.task.json",
+        "outputs/run_pion_api.plan.json",
+        "src/pyquda_agent/generator/plan.py",
+        "src/pyquda_agent/sessions/state.py",
+        "tests/test_cli_run.py",
+        "tests/test_generator.py"
+      ],
+      "notes": "Field provenance is tracked in field_sources/field_resolution, and convention decisions plus clarification traces are carried in the implementation plan."
+    },
+    {
+      "id": "dod-support-api-and-codex",
+      "requirement": "The system supports both --backend api and --backend codex.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/cli.py",
+        "src/pyquda_agent/app.py",
+        "data/backend_parity.json",
+        "scripts/check_backend_parity.py",
+        "tests/test_cli_run.py"
+      ],
+      "notes": "Both backends drive the same structured generation path for the fixed workflow, and artifact parity is checked directly."
+    },
+    {
+      "id": "env-runtime-readiness",
+      "requirement": "Have local evidence that the current machine can numerically execute the generated script.",
+      "status": "not_proved",
+      "evidence": [
+        "data/pyquda_runtime_check.json",
+        "data/runtime_candidates.json",
+        "data/run_pion_api_probe.json",
+        "outputs/run_pion_api.plan.json",
+        "scripts/check_pyquda_runtime.py",
+        "scripts/probe_generated_workflow.py",
+        "scripts/scan_runtime_candidates.py",
+        "scripts/refresh_runtime_check.py",
+        "docs/PYQUDA_RUNTIME_BOOTSTRAP.md",
+        "docs/FIRST_WORKFLOW_AUDIT.md"
+      ],
+      "notes": "Current runtime readiness is false, the direct probe fails at runtime dependency preflight, the scanned local interpreter candidates do not provide a ready PyQUDA runtime, and the local PyQUDA checkout does not currently expose compiled core extensions or root-level development symlinks."
+    }
+  ]
+}

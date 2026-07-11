@@ -1,0 +1,42 @@
+[
+  {
+    "id": "bulava-2022-hadron-spectroscopy",
+    "type": "authoritative_review",
+    "title": "Hadron Spectroscopy with Lattice QCD",
+    "authors": [
+      "John Bulava",
+      "Raul Briceno",
+      "William Detmold",
+      "et al."
+    ],
+    "year": 2022,
+    "url": "https://arxiv.org/abs/2203.03230",
+    "metadata_source": "curated_fallback",
+    "metadata_refresh": "curated_fallback",
+    "supports": [
+      "two_point_spectral_decomposition",
+      "interpolating_operators_carry_target_quantum_numbers_and_momentum"
+    ],
+    "chosen_convention": "Use a Euclidean two-point correlator with interpolating operators chosen to overlap the target pion channel at zero momentum.",
+    "why_needed": "PyQUDA examples and tests show the implementation pattern, but this review provides the lattice-spectroscopy framing for the correlator and operator-selection convention."
+  },
+  {
+    "id": "howarth-giedt-2015-sigma",
+    "type": "primary_reference",
+    "title": "The sigma meson from lattice QCD with two-pion interpolating operators",
+    "authors": [
+      "Dean Howarth",
+      "Joel Giedt"
+    ],
+    "year": 2015,
+    "url": "https://arxiv.org/abs/1508.05658",
+    "metadata_source": "curated_fallback",
+    "metadata_refresh": "curated_fallback",
+    "supports": [
+      "wall_source_as_p_equals_0_momentum_source",
+      "zero_momentum_projection"
+    ],
+    "chosen_convention": "Use the narrow wall-source zero-momentum convention and record that the p=0 truncation corresponds to wall sources.",
+    "why_needed": "PyQUDA local references encode wall inversions and zero-momentum contractions but do not explain the physics-side meaning of the wall-source p=0 choice."
+  }
+]

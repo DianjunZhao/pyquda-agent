@@ -1,0 +1,83 @@
+{
+  "cluster_launch": "local",
+  "coeff_r": 2.32582045,
+  "coeff_t": 0.8549165664,
+  "correlator_output_format": "npy",
+  "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_parity/pion_api.npy",
+  "fermion_action": "clover",
+  "field_sources": {
+    "cluster_launch": "parsed",
+    "coeff_r": "parsed",
+    "coeff_t": "parsed",
+    "correlator_output_format": "parsed",
+    "correlator_output_path": "parsed",
+    "fermion_action": "parsed",
+    "gauge_fixed": "parsed",
+    "gauge_format": "parsed",
+    "gauge_path": "parsed",
+    "grid_size": "parsed",
+    "has_existing_propagators": "parsed",
+    "lattice_size": "parsed",
+    "mass": "parsed",
+    "momenta": "parsed",
+    "momentum_projection": "parsed",
+    "nu": "parsed",
+    "resource_path": "parsed",
+    "script_output_path": "parsed",
+    "script_style": "parsed",
+    "sink_type": "parsed",
+    "solver_maxiter": "parsed",
+    "solver_tol": "parsed",
+    "source_timeslices": "parsed",
+    "source_type": "parsed",
+    "start_from": "parsed",
+    "task_type": "parsed",
+    "workflow_id": "fixed",
+    "xi_0": "parsed"
+  },
+  "gauge_fixed": true,
+  "gauge_format": "chroma_qio",
+  "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+  "grid_size": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "has_existing_propagators": false,
+  "lattice_size": [
+    4,
+    4,
+    4,
+    8
+  ],
+  "mass": 0.09253,
+  "missing_fields": [],
+  "momenta": [
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "momentum_projection": "zero",
+  "notes": "generate complete runnable pion 2pt from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime with clover wall source local sink zero momentum timeslice 0 lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 gauge fixed /Users/zhaodianjun/pyquda-agent/outputs/backend_parity/pion_api.npy /Users/zhaodianjun/pyquda-agent/outputs/backend_parity/run_pion_api.py resource_path=.cache/quda cluster_launch=local",
+  "nu": 0.86679,
+  "propagator_format": null,
+  "propagator_paths": [],
+  "resource_path": ".cache/quda",
+  "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_parity/run_pion_api.py",
+  "script_style": "complete",
+  "sink_type": "local",
+  "solver_maxiter": 1000,
+  "solver_tol": 1e-12,
+  "source_timeslices": [
+    0
+  ],
+  "source_type": "wall",
+  "start_from": "gauge",
+  "task_type": "pion_2pt",
+  "unsupported_reasons": [],
+  "workflow_id": "pion_2pt_chroma_wall_local_zero_momentum_npy_v1",
+  "xi_0": 4.8965
+}

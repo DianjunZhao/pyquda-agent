@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "module": "numpy",
+      "ok": true,
+      "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+    },
+    {
+      "error": "No module named 'cupy'",
+      "error_type": "ModuleNotFoundError",
+      "module": "cupy",
+      "ok": false
+    },
+    {
+      "error": "No module named 'pyquda'",
+      "error_type": "ModuleNotFoundError",
+      "module": "pyquda",
+      "ok": false
+    },
+    {
+      "error": "No module named 'pyquda_utils'",
+      "error_type": "ModuleNotFoundError",
+      "module": "pyquda_utils",
+      "ok": false
+    },
+    {
+      "error": "No module named 'pyquda_utils'",
+      "error_type": "ModuleNotFoundError",
+      "module": "pyquda_utils.core",
+      "ok": false
+    }
+  ],
+  "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+  "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+  "ready": false,
+  "used_repo_pythonpath": false
+}

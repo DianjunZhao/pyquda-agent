@@ -1,0 +1,10 @@
+{
+  "duration_seconds": 0.053048834088258445,
+  "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+  "returncode": 1,
+  "script": "/Users/zhaodianjun/pyquda-agent/outputs/run_pion_api.py",
+  "script_exists": true,
+  "status": "runtime_missing",
+  "stderr": "Missing runtime dependency 'cupy'. Activate a PyQUDA environment with CuPy installed before running this script.",
+  "stdout": ""
+}
