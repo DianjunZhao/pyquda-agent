@@ -1,11 +1,12 @@
 {
-  "cluster_launch": null,
+  "cluster_launch": "slurm",
   "coeff_r": 2.32582045,
   "coeff_t": 0.8549165664,
   "correlator_output_format": "npy",
   "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion.npy",
   "fermion_action": "clover",
   "field_sources": {
+    "cluster_launch": "parsed",
     "coeff_r": "parsed",
     "coeff_t": "parsed",
     "correlator_output_format": "parsed",
@@ -60,7 +61,7 @@
     ]
   ],
   "momentum_projection": "zero",
-  "notes": "generate complete runnable pion 2pt from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime with clover wall source local sink zero momentum timeslice 0 lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 gauge fixed outputs/pion.npy outputs/run_pion.py resource_path=.cache/quda",
+  "notes": "generate complete runnable pion 2pt from gauge ~/PyQUDA/tests/weak_field.lime with clover wall source local sink zero momentum timeslice 0 lattice size 4 4\n    4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 gauge fixed outputs/pion.npy outputs/\n    run_pion.py resource_path=.cache/quda cluster_launch=slurm",
   "nu": 0.86679,
   "propagator_format": null,
   "propagator_paths": [],

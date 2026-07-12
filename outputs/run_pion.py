@@ -4,9 +4,20 @@
 from __future__ import annotations
 
 from pathlib import Path
-import sys
 from time import perf_counter
 
+# Fixed workflow: gauge -> Clover inversion -> wall source -> local sink -> zero momentum -> npy.
+# Review the sibling .task.json and .plan.json artifacts before treating this script as complete.
+# HPC handoff contract:
+# - launch mode assumption: slurm
+# - gauge input is expected on a filesystem visible to all ranks
+# - only rank 0 writes the final correlator artifact
+# - this script assumes the target environment already provides PyQUDA, QUDA, CuPy, and MPI layout support
+
+WORKFLOW_ID = 'pion_2pt_chroma_wall_local_zero_momentum_npy_v1'
+SCRIPT_PATH = Path(__file__).resolve()
+TASK_ARTIFACT = SCRIPT_PATH.with_suffix(".task.json")
+PLAN_ARTIFACT = SCRIPT_PATH.with_suffix(".plan.json")
 GAUGE_PATH = Path('/Users/zhaodianjun/PyQUDA/tests/weak_field.lime')
 CORRELATOR_OUTPUT = Path('/Users/zhaodianjun/pyquda-agent/outputs/pion.npy')
 RESOURCE_PATH = '.cache/quda'
@@ -22,7 +33,61 @@ SOLVER_TOL = 1e-12
 SOLVER_MAXITER = 1000
 
 
+def _validate_handoff_contract() -> None:
+    expected_suffixes = {".lime", ".xml"}
+    if GAUGE_PATH.suffix not in expected_suffixes:
+        raise ValueError(
+            f"Expected a Chroma/QIO gauge path ending in one of {sorted(expected_suffixes)}; got {GAUGE_PATH}"
+        )
+    if CORRELATOR_OUTPUT.suffix != ".npy":
+        raise ValueError(f"Expected a .npy correlator output path; got {CORRELATOR_OUTPUT}")
+    if len(LATTICE_SIZE) != 4 or len(GRID_SIZE) != 4:
+        raise ValueError("LATTICE_SIZE and GRID_SIZE must both contain exactly four integers.")
+    if any(value <= 0 for value in LATTICE_SIZE):
+        raise ValueError(f"LATTICE_SIZE must be strictly positive; got {LATTICE_SIZE}")
+    if any(value <= 0 for value in GRID_SIZE):
+        raise ValueError(f"GRID_SIZE must be strictly positive; got {GRID_SIZE}")
+    for axis, (latt_extent, grid_extent) in enumerate(zip(LATTICE_SIZE, GRID_SIZE, strict=True)):
+        if latt_extent % grid_extent != 0:
+            raise ValueError(
+                f"LATTICE_SIZE[{axis}]={latt_extent} must be divisible by GRID_SIZE[{axis}]={grid_extent}"
+            )
+    if not SOURCE_TIMESLICES:
+        raise ValueError("At least one source timeslice is required.")
+    global_lt = LATTICE_SIZE[3]
+    invalid_timeslices = [t_src for t_src in SOURCE_TIMESLICES if t_src < 0 or t_src >= global_lt]
+    if invalid_timeslices:
+        raise ValueError(
+            f"All source timeslices must satisfy 0 <= t_src < {global_lt}; got {invalid_timeslices}"
+        )
+    if not RESOURCE_PATH:
+        raise ValueError("RESOURCE_PATH must be a non-empty string.")
+    if not TASK_ARTIFACT.exists() or not PLAN_ARTIFACT.exists():
+        raise FileNotFoundError(
+            "Expected sibling review artifacts next to this script: "
+            f"{TASK_ARTIFACT.name} and {PLAN_ARTIFACT.name}"
+        )
+
+
+def _print_handoff_summary() -> None:
+    print(f"Workflow ID: {WORKFLOW_ID}")
+    print(f"Launch assumption: slurm")
+    print(f"Gauge input path: {GAUGE_PATH}")
+    print(f"Correlator output path: {CORRELATOR_OUTPUT}")
+    print(f"Structured task artifact: {TASK_ARTIFACT}")
+    print(f"Implementation plan artifact: {PLAN_ARTIFACT}")
+    print("Filesystem contract: gauge input must be visible to all ranks; only rank 0 writes output.")
+    print("Layout contract: lattice extents must be divisible by the requested QUDA/MPI grid.")
+
+
 def _load_runtime_modules():
+    try:
+        import numpy as np
+    except ModuleNotFoundError as exc:
+        raise SystemExit(
+            "Missing runtime dependency 'numpy'. Activate a PyQUDA Python environment with NumPy installed before running this script."
+        ) from exc
+
     try:
         import cupy as cp
     except ModuleNotFoundError as exc:
@@ -45,18 +110,21 @@ def _load_runtime_modules():
             "Unable to import 'pyquda'. The PyQUDA core bindings are not available in this Python environment."
         ) from exc
 
-    return cp, core, gamma, io
+    return np, cp, core, gamma, io
 
 
 def contract_pion_zero_momentum(propagator, latt_info, t_src):
-    cp, _, gamma, _ = _load_runtime_modules()
+    _, cp, _, gamma, _ = _load_runtime_modules()
     gamma5 = gamma.gamma(15)
+    vol = latt_info.volume
+    nc = 3
+    ns = 4
     tmp = cp.einsum(
         "ij,xkjba,kl,xliba->x",
         gamma5 @ gamma5,
-        propagator.data.reshape(latt_info.volume, 4, 4, 3, 3).conj(),
+        propagator.data.reshape(vol, ns, ns, nc, nc).conj(),
         gamma5 @ gamma5,
-        propagator.data.reshape(latt_info.volume, 4, 4, 3, 3),
+        propagator.data.reshape(vol, ns, ns, nc, nc),
         optimize=True,
     )
     correlator = cp.einsum(
@@ -68,11 +136,13 @@ def contract_pion_zero_momentum(propagator, latt_info, t_src):
 
 
 def main() -> None:
+    _validate_handoff_contract()
     if not GAUGE_PATH.exists():
         raise FileNotFoundError(f"Gauge configuration not found: {GAUGE_PATH}")
 
-    cp, core, _, io = _load_runtime_modules()
-    core.init(GRID_SIZE, resource_path=RESOURCE_PATH)
+    np, cp, core, _, io = _load_runtime_modules()
+    _print_handoff_summary()
+    core.init(GRID_SIZE, LATTICE_SIZE, resource_path=RESOURCE_PATH)
     latt_info = core.LatticeInfo(LATTICE_SIZE, -1, XI_0 / NU)
     dirac = core.getClover(latt_info, MASS, SOLVER_TOL, SOLVER_MAXITER, XI_0, COEFF_T, COEFF_R)
 
@@ -81,7 +151,7 @@ def main() -> None:
     if latt_info.mpi_rank == 0:
         print(f"Loaded gauge from {GAUGE_PATH} in {perf_counter() - start:.2f} sec")
 
-    lt = latt_info.Lt * GRID_SIZE[3]
+    lt = latt_info.Lt * (GRID_SIZE[3] if GRID_SIZE[3] is not None else 1)
     twopt = np.zeros((len(SOURCE_TIMESLICES), lt), dtype=np.float64)
 
     with dirac.useGauge(gauge):

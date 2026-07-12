@@ -1,5 +1,5 @@
 {
-  "duration_seconds": 0.053048834088258445,
+  "duration_seconds": 0.051554958103224635,
   "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
   "returncode": 1,
   "script": "/Users/zhaodianjun/pyquda-agent/outputs/run_pion_api.py",

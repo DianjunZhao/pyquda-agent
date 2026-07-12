@@ -11,8 +11,10 @@ class GoalAuditTests(unittest.TestCase):
         items = {item["id"]: item for item in payload["items"]}
         self.assertIn("req-3-structured-task-spec", items)
         self.assertIn("dod-support-api-and-codex", items)
-        self.assertIn("env-runtime-readiness", items)
-        self.assertEqual(items["env-runtime-readiness"]["status"], "not_proved")
+        self.assertIn("dod-hpc-script-readiness", items)
+        self.assertEqual(items["dod-hpc-script-readiness"]["status"], "proved")
+        self.assertIn("env-local-runtime-readiness", items)
+        self.assertEqual(items["env-local-runtime-readiness"]["status"], "not_proved")
 
 
 if __name__ == "__main__":

@@ -127,7 +127,7 @@ python3 scripts/refresh_pyquda_analysis.py --repo /path/to/PyQUDA
 
 The scripts default to `~/PyQUDA` and fail fast if that checkout or the requested scopes are missing.
 
-Check whether the current Python environment can actually run generated PyQUDA scripts:
+Optional local runtime check on this workstation:
 
 ```bash
 python3 scripts/check_pyquda_runtime.py --pyquda-repo ~/PyQUDA
@@ -157,6 +157,8 @@ python3 scripts/refresh_first_workflow_demo.py --pyquda-repo ~/PyQUDA --backend 
 python3 scripts/refresh_first_workflow_demo.py --pyquda-repo ~/PyQUDA --backend codex
 ```
 
+The default demo success criterion is now static HPC readiness, not local numerical execution. Add `--require-local-runtime-proof` only when you explicitly want the current workstation to prove it can run the generated script.
+
 Check that `--backend api` and `--backend codex` produce identical fixed-workflow artifacts:
 
 ```bash
@@ -169,7 +171,7 @@ Scan local Python interpreters for an already-available PyQUDA runtime:
 python3 scripts/scan_runtime_candidates.py --pyquda-repo ~/PyQUDA
 ```
 
-If no candidate interpreter is ready, follow the local bootstrap notes in
+If you also want local execution evidence and no candidate interpreter is ready, follow the local bootstrap notes in
 [docs/PYQUDA_RUNTIME_BOOTSTRAP.md](/Users/zhaodianjun/pyquda-agent/docs/PYQUDA_RUNTIME_BOOTSTRAP.md).
 
 Run the local tests:

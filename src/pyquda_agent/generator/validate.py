@@ -12,6 +12,9 @@ def validate_generated_script(code: str) -> None:
     if hits:
         raise ValueError(f"Generated script still contains forbidden placeholder markers: {', '.join(hits)}")
     required_tokens = [
+        "def _validate_handoff_contract() -> None:",
+        "TASK_ARTIFACT = SCRIPT_PATH.with_suffix(\".task.json\")",
+        "PLAN_ARTIFACT = SCRIPT_PATH.with_suffix(\".plan.json\")",
         "def _load_runtime_modules():",
         "from pyquda_utils import core, gamma, io",
         "import cupy as cp",
@@ -21,6 +24,8 @@ def validate_generated_script(code: str) -> None:
         "io.readQIOGauge",
         "core.gatherLattice",
         "np.save",
+        "_validate_handoff_contract()",
+        "_print_handoff_summary()",
     ]
     missing = [token for token in required_tokens if token not in code]
     if missing:

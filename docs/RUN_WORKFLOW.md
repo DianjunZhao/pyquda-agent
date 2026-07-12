@@ -50,19 +50,21 @@ Single-command refresh for the fixed demo artifacts:
 python3 scripts/refresh_first_workflow_demo.py --pyquda-repo ~/PyQUDA --backend api
 ```
 
+This command is considered successful when it refreshes the structured artifacts, implementation plan, generated script, and backend-parity evidence. It does not require the current workstation to have a runnable PyQUDA environment.
+
 Direct backend parity check:
 
 ```bash
 python3 scripts/check_backend_parity.py --pyquda-repo ~/PyQUDA
 ```
 
-Local interpreter scan for an already-usable PyQUDA runtime:
+Optional local interpreter scan for an already-usable PyQUDA runtime:
 
 ```bash
 python3 scripts/scan_runtime_candidates.py --pyquda-repo ~/PyQUDA
 ```
 
-If the scan still reports no ready interpreter, use
+If you explicitly want local execution proof and the scan still reports no ready interpreter, use
 [PYQUDA_RUNTIME_BOOTSTRAP.md](/Users/zhaodianjun/pyquda-agent/docs/PYQUDA_RUNTIME_BOOTSTRAP.md)
 to align the Python environment with the upstream PyQUDA install/development paths already present on this machine.
 
@@ -82,6 +84,15 @@ Generated intermediate artifacts:
 
 The script is the last artifact in the chain, not the first one to review. If required fields are missing, complete mode must stop at `needs_input` or `unsupported` instead of emitting template-style code.
 
+For HPC handoff, the generated script now also embeds:
+
+- launch assumption text
+- input/output filesystem contract
+- sibling `task.json` / `plan.json` expectations
+- lattice/grid divisibility checks
+- source-timeslice bounds checks
+- early path/suffix validation before any PyQUDA initialization
+
 Review order should follow the same pipeline:
 
 1. inspect `*.task.json`
@@ -96,11 +107,17 @@ Recommended local checks:
 python3 -B -m unittest tests.test_index_pyquda_repo tests.test_cli_run tests.test_task_parser tests.test_clarifier tests.test_context_builder tests.test_generator
 python3 scripts/refresh_pyquda_analysis.py
 python3 scripts/refresh_physics_citations.py
-python3 scripts/refresh_physics_citations.py --enrich-from-arxiv
-python3 scripts/check_pyquda_runtime.py --pyquda-repo ~/PyQUDA
-python3 scripts/refresh_runtime_check.py --pyquda-repo ~/PyQUDA
-python3 scripts/probe_generated_workflow.py --script outputs/run_pion_api.py --output data/run_pion_api_probe.json
+python3 scripts/refresh_first_workflow_demo.py --pyquda-repo ~/PyQUDA --backend api
 python3 scripts/refresh_goal_audit.py
 ```
 
-If you want to actually run a generated script, you also need a real PyQUDA runtime environment. The current repository can validate structure and reference-grounding without that environment, but numerical execution still depends on the upstream PyQUDA installation/build state.
+Optional local runtime-only checks:
+
+```bash
+python3 scripts/check_pyquda_runtime.py --pyquda-repo ~/PyQUDA
+python3 scripts/refresh_runtime_check.py --pyquda-repo ~/PyQUDA
+python3 scripts/probe_generated_workflow.py --script outputs/run_pion_api.py --output data/run_pion_api_probe.json
+python3 scripts/scan_runtime_candidates.py --pyquda-repo ~/PyQUDA
+```
+
+If you do not need to run the script locally, these runtime checks are not part of the default done condition. The repository can validate structure, traceability, and HPC handoff readiness without a local PyQUDA runtime.

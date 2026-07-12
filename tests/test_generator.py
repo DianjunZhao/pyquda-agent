@@ -103,7 +103,15 @@ class GeneratorTests(unittest.TestCase):
         self.assertNotIn("fake_", code)
         self.assertNotIn("mock_", code)
         self.assertIn("Review the sibling .task.json and .plan.json artifacts", code)
-        self.assertIn("Cluster/runtime assumption: hpc", code)
+        self.assertIn("launch mode assumption: hpc", code)
+        self.assertIn("TASK_ARTIFACT = SCRIPT_PATH.with_suffix(\".task.json\")", code)
+        self.assertIn("PLAN_ARTIFACT = SCRIPT_PATH.with_suffix(\".plan.json\")", code)
+        self.assertIn("def _validate_handoff_contract() -> None:", code)
+        self.assertIn("def _print_handoff_summary() -> None:", code)
+        self.assertIn("enumerate(zip(LATTICE_SIZE, GRID_SIZE, strict=True))", code)
+        self.assertIn("must be divisible by GRID_SIZE[{axis}]={grid_extent}", code)
+        self.assertIn("Gauge input path:", code)
+        self.assertIn("Filesystem contract: gauge input must be visible to all ranks", code)
 
 
 if __name__ == "__main__":

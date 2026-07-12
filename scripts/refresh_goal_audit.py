@@ -54,7 +54,6 @@ def build_goal_audit(task: dict, plan: dict, runtime: dict, probe: dict, backend
     field_resolution = plan.get("field_resolution", {})
     validation_checks = set(plan.get("validation_checks", []))
     clarification_trace = plan.get("clarification_trace", [])
-    runtime_ready = bool(runtime.get("ready"))
     probe_status = probe.get("status")
     parity_comparisons = backend_parity.get("comparisons", {})
     parity_ok = bool(parity_comparisons) and all(item.get("identical") for item in parity_comparisons.values())
@@ -121,7 +120,7 @@ def build_goal_audit(task: dict, plan: dict, runtime: dict, probe: dict, backend
     no_placeholder = req7
     field_provenance = _all_parsed_or_fixed(field_resolution, required_task_fields) and "workflow_id" in field_resolution
     supports_both = parity_ok
-    runtime_proved = runtime_ready and probe_status == "ok"
+    hpc_ready = req8_static and field_provenance and supports_both and task.get("cluster_launch") not in (None, "", [])
 
     def status(value: bool, partial: bool = False) -> str:
         if value:
@@ -294,9 +293,23 @@ def build_goal_audit(task: dict, plan: dict, runtime: dict, probe: dict, backend
                 "notes": "Both backends drive the same structured generation path for the fixed workflow, and artifact parity is checked directly.",
             },
             {
-                "id": "env-runtime-readiness",
-                "requirement": "Have local evidence that the current machine can numerically execute the generated script.",
-                "status": status(runtime_proved),
+                "id": "dod-hpc-script-readiness",
+                "requirement": "Generated script is complete and HPC-ready: real APIs, explicit cluster/runtime assumptions, no placeholders, and suitable for handoff to a properly configured PyQUDA cluster environment.",
+                "status": status(hpc_ready),
+                "evidence": [
+                    str(DEFAULT_TASK.relative_to(REPO_ROOT)),
+                    str(DEFAULT_PLAN.relative_to(REPO_ROOT)),
+                    "outputs/run_pion_api.py",
+                    "src/pyquda_agent/generator/templates.py",
+                    "tests/test_generator.py",
+                    "tests/test_cli_run.py",
+                ],
+                "notes": "This repository now treats static HPC readiness as the default done condition. A local runtime probe remains optional evidence, not a merge blocker.",
+            },
+            {
+                "id": "env-local-runtime-readiness",
+                "requirement": "Optional: have local evidence that the current machine can numerically execute the generated script.",
+                "status": "not_proved" if not any_runtime_candidate else "partially_proved",
                 "evidence": [
                     str(DEFAULT_RUNTIME.relative_to(REPO_ROOT)),
                     "data/runtime_candidates.json",
@@ -307,9 +320,8 @@ def build_goal_audit(task: dict, plan: dict, runtime: dict, probe: dict, backend
                     "scripts/scan_runtime_candidates.py",
                     "scripts/refresh_runtime_check.py",
                     "docs/PYQUDA_RUNTIME_BOOTSTRAP.md",
-                    "docs/FIRST_WORKFLOW_AUDIT.md",
                 ],
-                "notes": "Current runtime readiness is false, the direct probe fails at runtime dependency preflight, the scanned local interpreter candidates do not provide a ready PyQUDA runtime, and the local PyQUDA checkout does not currently expose compiled core extensions or root-level development symlinks." if not any_runtime_candidate else "A ready candidate interpreter exists, but full runtime proof still requires successful direct script execution.",
+                "notes": "Local runtime proof is informative only. The generated script may still be complete for HPC handoff even when this workstation lacks CuPy, pyquda, or built QUDA bindings.",
             },
         ],
     }
@@ -368,17 +380,19 @@ def render_audit_markdown(audit: dict) -> str:
             "- `outputs/run_pion_api.task.json`",
             "- `outputs/run_pion_api.plan.json`",
             "",
-            "## Current blocker to full proof",
+            "## Completion stance",
             "",
-            f"- Runtime readiness status: `{items['env-runtime-readiness']['status']}`.",
-            "- The active Python environment still lacks the runtime pieces needed for numerical execution: `cupy`, `pyquda`, and a working `pyquda_utils` import path tied to built PyQUDA core bindings.",
-            "- The direct script probe currently reaches runtime dependency preflight and stops there.",
+            f"- HPC script readiness status: `{items['dod-hpc-script-readiness']['status']}`.",
+            f"- Optional local runtime readiness status: `{items['env-local-runtime-readiness']['status']}`.",
+            "- The repository default done condition is now: generate a complete, reference-grounded PyQUDA script that should run in a properly configured HPC environment.",
+            "- This workstation's missing CuPy/PyQUDA runtime is treated as a local environment limitation, not a blocker on complete script generation.",
             "",
             "## Exit condition for this audit",
             "",
-            "1. `scripts/check_pyquda_runtime.py` reports `ready: true` for a real PyQUDA environment.",
-            "2. `scripts/probe_generated_workflow.py` reports `status: ok` for a generated complete pion 2pt script.",
-            "3. The resulting runtime evidence is captured in repository artifacts or documented command output.",
+            "1. `outputs/*.task.json` and `outputs/*.plan.json` fully resolve the fixed workflow without unsupported fields.",
+            "2. The generated script remains traceable to concrete local PyQUDA references and passes placeholder-free static validation.",
+            "3. The script records explicit cluster/runtime assumptions for HPC handoff.",
+            "4. Optional: capture local runtime evidence when a usable PyQUDA environment happens to be available.",
             "",
         ]
     )

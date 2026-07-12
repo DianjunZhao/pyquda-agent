@@ -26,6 +26,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--script-output", type=Path, default=DEFAULT_SCRIPT_OUTPUT, help="Generated script output path.")
     parser.add_argument("--correlator-output", type=Path, default=DEFAULT_CORRELATOR_OUTPUT, help="Generated correlator output path.")
     parser.add_argument("--resource-path", default=".cache/quda", help="Resource path passed to the generated workflow request.")
+    parser.add_argument(
+        "--require-local-runtime-proof",
+        action="store_true",
+        help="Fail when local runtime check, candidate scan, or direct script probe cannot prove execution on this workstation.",
+    )
     return parser.parse_args(argv)
 
 
@@ -134,14 +139,21 @@ def main(argv: list[str] | None = None) -> int:
     if argv is None:
         print(json.dumps(summary, indent=2, sort_keys=True))
 
-    fatal_steps = (
+    fatal_steps = [
         "refresh_analysis",
         "refresh_citations",
-        "scan_runtime_candidates",
         "generate_workflow",
         "check_backend_parity",
         "refresh_goal_audit",
-    )
+    ]
+    if args.require_local_runtime_proof:
+        fatal_steps.extend(
+            [
+                "refresh_runtime",
+                "scan_runtime_candidates",
+                "probe_workflow",
+            ]
+        )
     return 0 if all(results[name].returncode == 0 for name in fatal_steps) else 1
 
 

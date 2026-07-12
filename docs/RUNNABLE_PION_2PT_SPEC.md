@@ -99,7 +99,7 @@ The implementation plan also records `implementation_plan.convention_decisions`,
 
 When clarification answers are actually collected, the implementation plan records them under `implementation_plan.clarification_trace`.
 
-The implementation plan also records `implementation_plan.runtime_readiness`, which captures whether the current Python environment can import the runtime pieces needed to execute the generated script.
+The implementation plan may also record `implementation_plan.runtime_readiness`, which is optional local-environment evidence rather than a blocker on complete generation.
 
 Current v1 citations are stored in:
 
@@ -139,13 +139,27 @@ The complete script should be traceable to these concrete APIs and patterns:
 - `numpy.save(correlator_output_path, data)`
 - the structured siblings `run_pion.task.json` and `run_pion.plan.json` must exist before the script is treated as reviewable complete output
 
-## Runtime prerequisites
+## HPC handoff prerequisites
 
-- A working PyQUDA environment with GPU/QUDA support already installed.
+- A target HPC environment with PyQUDA, QUDA, GPU support, and the expected MPI/grid layout.
 - `pyquda_utils`, `cupy`, and their runtime dependencies import successfully.
 - The requested gauge path exists and is readable at runtime.
 - The requested `grid_size` and `lattice_size` are consistent with the deployment.
 - For a local source checkout, the upstream PyQUDA development steps must already be completed, including built core bindings and a Python import path that exposes both `pyquda` and `pyquda_utils`.
+
+These are target-environment assumptions. The local workstation used to generate the script does not need to satisfy them in order for the script to be considered complete.
+
+## Required handoff information inside the generated script
+
+The complete script should also embed explicit handoff metadata and preflight checks:
+
+- launch-mode assumption such as `local`, `mpi`, or `slurm`
+- input visibility assumption: the gauge path must be readable from all ranks
+- output ownership assumption: only rank 0 writes the final correlator file
+- sibling artifact expectation: `*.task.json` and `*.plan.json` must exist next to the script
+- lattice/grid divisibility checks before runtime initialization
+- source-timeslice bounds checks before inversion
+- output suffix and gauge suffix checks before runtime initialization
 
 ## Complete-mode acceptance criteria
 
@@ -158,5 +172,6 @@ A script may be labeled `complete` only if:
 - the script checks that the gauge file exists before attempting the run
 - no `TODO`, `pass`, `placeholder`, or fake helper names remain
 - the script passes Python syntax validation
+- the script records enough cluster/runtime assumptions for handoff to an HPC environment
 
 If any required field is missing or the request leaves the supported scope, the agent must continue clarification or refuse complete generation.

@@ -1,4 +1,50 @@
 {
+  "clarification_trace": [],
+  "convention_decisions": [
+    {
+      "category": "physics",
+      "citations": [],
+      "decision": "Use wall source at a specified source timeslice.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+      ],
+      "why": "The fixed v1 workflow follows the local meson-spec test pattern for wall-source propagator generation."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Use the gamma5-based zero-momentum pion contraction written with CuPy einsum.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+        "/Users/zhaodianjun/PyQUDA/examples/3_Pion_Proton_2pt.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py"
+      ],
+      "why": "The contraction shape and gamma-matrix usage are grounded in the local meson-spec test and pion example, with gamma helpers from pyquda_utils.gamma."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Read the input gauge with io.readQIOGauge from a Chroma/QIO gauge path.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py"
+      ],
+      "why": "The fixed workflow uses the same QIO gauge-loading path exercised in the local IO test and helper module."
+    },
+    {
+      "category": "physics",
+      "citations": [
+        "bulava-2022-hadron-spectroscopy",
+        "howarth-giedt-2015-sigma"
+      ],
+      "decision": "Restrict v1 to a single pion two-point correlator at zero momentum.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/examples/5_Pion_Dispersion.py",
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+      ],
+      "why": "The local examples separate zero-momentum and dispersion workflows; the external citations justify the narrow two-point zero-momentum convention."
+    }
+  ],
   "external_citations": [
     {
       "authors": [
@@ -9,6 +55,8 @@
       ],
       "chosen_convention": "Use a Euclidean two-point correlator with interpolating operators chosen to overlap the target pion channel at zero momentum.",
       "id": "bulava-2022-hadron-spectroscopy",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
       "supports": [
         "two_point_spectral_decomposition",
         "interpolating_operators_carry_target_quantum_numbers_and_momentum"
@@ -24,21 +72,23 @@
         "Dean Howarth",
         "Joel Giedt"
       ],
-      "chosen_convention": "Represent the pion with a local pseudoscalar bilinear and project to total momentum zero; using only the p=0 momentum mode corresponds to a wall source.",
+      "chosen_convention": "Use the narrow wall-source zero-momentum convention and record that the p=0 truncation corresponds to wall sources.",
       "id": "howarth-giedt-2015-sigma",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
       "supports": [
-        "pion_pseudoscalar_bilinear_operator",
-        "zero_momentum_projection",
-        "wall_source_as_p_equals_0_momentum_source"
+        "wall_source_as_p_equals_0_momentum_source",
+        "zero_momentum_projection"
       ],
       "title": "The sigma meson from lattice QCD with two-pion interpolating operators",
       "type": "primary_reference",
       "url": "https://arxiv.org/abs/1508.05658",
-      "why_needed": "PyQUDA local references encode gamma5-based contractions and wall inversions but do not explain the physics-side meaning of the chosen pion operator and p=0 wall-source convention.",
+      "why_needed": "PyQUDA local references encode wall inversions and zero-momentum contractions but do not explain the physics-side meaning of the wall-source p=0 choice.",
       "year": 2015
     }
   ],
   "field_resolution": {
+    "cluster_launch": "parsed",
     "coeff_r": "parsed",
     "coeff_t": "parsed",
     "correlator_output_format": "parsed",
@@ -153,9 +203,46 @@
     }
   ],
   "runtime_choices": {
-    "cluster_launch": null,
+    "cluster_launch": "slurm",
     "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion.npy",
     "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/run_pion.py"
+  },
+  "runtime_readiness": {
+    "checks": [
+      {
+        "module": "numpy",
+        "ok": true,
+        "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+      },
+      {
+        "error": "No module named 'cupy'",
+        "error_type": "ModuleNotFoundError",
+        "module": "cupy",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils.core",
+        "ok": false
+      }
+    ],
+    "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+    "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+    "ready": false,
+    "used_repo_pythonpath": false
   },
   "task_type": "pion_2pt",
   "unresolved_fields": [],

@@ -41,6 +41,7 @@ class RefreshGoalAuditTests(unittest.TestCase):
                     "correlator_output_format": "npy",
                     "correlator_output_path": "outputs/pion.npy",
                     "resource_path": ".cache/quda",
+                    "cluster_launch": "local",
                     "script_output_path": "outputs/run.py",
                     "script_style": "complete",
                     "missing_fields": [],
@@ -87,6 +88,7 @@ class RefreshGoalAuditTests(unittest.TestCase):
                         "correlator_output_format": "parsed",
                         "correlator_output_path": "parsed",
                         "resource_path": "parsed",
+                        "cluster_launch": "parsed",
                         "script_output_path": "parsed",
                         "script_style": "parsed",
                     },
@@ -136,7 +138,8 @@ class RefreshGoalAuditTests(unittest.TestCase):
             items = {item["id"]: item for item in audit["items"]}
             self.assertEqual(items["req-1-local-retrieval"]["status"], "proved")
             self.assertEqual(items["req-8-validate-against-real-interfaces"]["status"], "proved")
-            self.assertEqual(items["env-runtime-readiness"]["status"], "not_proved")
+            self.assertEqual(items["dod-hpc-script-readiness"]["status"], "proved")
+            self.assertEqual(items["env-local-runtime-readiness"]["status"], "not_proved")
             self.assertEqual(items["dod-support-api-and-codex"]["status"], "proved")
 
     def test_main_writes_audit_and_doc(self):

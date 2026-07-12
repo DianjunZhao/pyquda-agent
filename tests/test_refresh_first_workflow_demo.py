@@ -35,7 +35,7 @@ class RefreshFirstWorkflowDemoTests(unittest.TestCase):
         self.assertEqual(calls[6][1], "scripts/check_backend_parity.py")
         self.assertEqual(calls[7][1], "scripts/refresh_goal_audit.py")
 
-    def test_demo_script_fails_when_generation_fails(self):
+    def test_demo_script_ignores_local_runtime_failures_by_default(self):
         class Completed:
             def __init__(self, returncode: int = 0, stdout: str = "", stderr: str = ""):
                 self.returncode = returncode
@@ -46,12 +46,32 @@ class RefreshFirstWorkflowDemoTests(unittest.TestCase):
 
         def fake_run(cmd, cwd=None, text=None, capture_output=None, check=None, env=None):
             counter["n"] += 1
-            if counter["n"] == 4:
+            if counter["n"] in {3, 4, 6}:
                 return Completed(returncode=1, stderr="generation failed")
             return Completed(returncode=0)
 
         with patch("scripts.refresh_first_workflow_demo.subprocess.run", side_effect=fake_run):
             exit_code = main(["--pyquda-repo", "/tmp/PyQUDA", "--backend", "api"])
+
+        self.assertEqual(exit_code, 0)
+
+    def test_demo_script_can_require_local_runtime_proof(self):
+        class Completed:
+            def __init__(self, returncode: int = 0, stdout: str = "", stderr: str = ""):
+                self.returncode = returncode
+                self.stdout = stdout
+                self.stderr = stderr
+
+        counter = {"n": 0}
+
+        def fake_run(cmd, cwd=None, text=None, capture_output=None, check=None, env=None):
+            counter["n"] += 1
+            if counter["n"] == 3:
+                return Completed(returncode=1, stderr="runtime missing")
+            return Completed(returncode=0)
+
+        with patch("scripts.refresh_first_workflow_demo.subprocess.run", side_effect=fake_run):
+            exit_code = main(["--pyquda-repo", "/tmp/PyQUDA", "--backend", "api", "--require-local-runtime-proof"])
 
         self.assertEqual(exit_code, 1)
 
