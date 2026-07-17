@@ -106,7 +106,10 @@ class CodexBackend(LLMBackend):
         if "failed to initialize in-process app-server client" in lowered:
             return (
                 "local_environment_error",
-                "Codex backend failed during local app-client initialization in the current environment.",
+                (
+                    "Codex backend failed during local app-client initialization in the current environment. "
+                    "If stderr also reports 'Operation not permitted', the current sandbox or local permission model is likely blocking the in-process client."
+                ),
                 "codex_app_client_init_failed",
             )
         if any(token in lowered for token in ("permission denied", "operation not permitted")):
@@ -137,6 +140,7 @@ class CodexBackend(LLMBackend):
             raise BackendInvocationError(
                 f"Codex auto-preflight timed out after {timeout_seconds:g} seconds.",
                 category="timeout",
+                detail_category="codex_preflight_timeout",
             ) from exc
         if result.returncode != 0:
             stderr = result.stderr.strip()
@@ -157,6 +161,7 @@ class CodexBackend(LLMBackend):
             raise BackendInvocationError(
                 f"Codex backend timed out after {self.timeout_seconds:g} seconds.",
                 category="timeout",
+                detail_category="codex_backend_timeout",
             ) from exc
         if result.returncode != 0:
             stderr = result.stderr.strip()

@@ -8,7 +8,7 @@ from scripts.refresh_goal_audit import main
 
 
 class RefreshGoalAuditTests(unittest.TestCase):
-    def _write_fixture(self, root: Path) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
+    def _write_fixture(self, root: Path) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
         task_path = root / "run.task.json"
         plan_path = root / "run.plan.json"
         runtime_path = root / "runtime.json"
@@ -19,6 +19,7 @@ class RefreshGoalAuditTests(unittest.TestCase):
         supported_path = root / "supported_workflows_validation.json"
         v9_behavior_path = root / "v9_product_behavior.json"
         v11_task_suite_path = root / "v11_task_suite.json"
+        v13_codex_runtime_path = root / "v13_codex_runtime_readiness.json"
 
         task_path.write_text(
             json.dumps(
@@ -283,6 +284,26 @@ class RefreshGoalAuditTests(unittest.TestCase):
             ),
             encoding="utf-8",
         )
+        v13_codex_runtime_path.write_text(
+            json.dumps(
+                {
+                    "suite": "v13_codex_runtime_readiness",
+                    "all_passed": True,
+                    "summary": {
+                        "contract": "codex_runtime_readiness_v13",
+                        "coverage": [
+                            "codex backend usable or explicitly fallback_only",
+                            "runtime proved or exact remaining blockers",
+                        ],
+                    },
+                    "cases": [
+                        {"case_id": "codex_backend_state", "passed": True},
+                        {"case_id": "runtime_remaining_blocker_contract", "passed": True},
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
         return (
             task_path,
             plan_path,
@@ -294,6 +315,7 @@ class RefreshGoalAuditTests(unittest.TestCase):
             supported_path,
             v9_behavior_path,
             v11_task_suite_path,
+            v13_codex_runtime_path,
         )
 
     def test_build_goal_audit_aggregates_references_from_validated_workflow_plans(self):
@@ -310,6 +332,7 @@ class RefreshGoalAuditTests(unittest.TestCase):
                 supported_path,
                 v9_behavior_path,
                 v11_task_suite_path,
+                _v13_codex_runtime_path,
             ) = self._write_fixture(root)
             primary_plan = json.loads(plan_path.read_text(encoding="utf-8"))
             primary_plan["references"] = [
@@ -367,6 +390,7 @@ class RefreshGoalAuditTests(unittest.TestCase):
                 supported_path,
                 v9_behavior_path,
                 v11_task_suite_path,
+                _v13_codex_runtime_path,
             ) = self._write_fixture(root)
             audit = build_goal_audit(
                 json.loads(task_path.read_text(encoding="utf-8")),
@@ -412,6 +436,7 @@ class RefreshGoalAuditTests(unittest.TestCase):
                 supported_path,
                 v9_behavior_path,
                 v11_task_suite_path,
+                v13_codex_runtime_path,
             ) = self._write_fixture(root)
             audit_path = root / "goal_audit.json"
             doc_path = root / "audit.md"
@@ -437,6 +462,8 @@ class RefreshGoalAuditTests(unittest.TestCase):
                     str(v9_behavior_path),
                     "--v11-task-suite",
                     str(v11_task_suite_path),
+                    "--v13-codex-runtime-readiness",
+                    str(v13_codex_runtime_path),
                     "--audit-date",
                     "2026-07-16",
                     "--audit-output",

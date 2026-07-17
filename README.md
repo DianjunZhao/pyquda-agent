@@ -352,6 +352,14 @@ $PYTHON_BIN scripts/validate_v11_task_suite.py
 That report writes [data/v11_task_suite.json](/Users/zhaodianjun/pyquda-agent/data/v11_task_suite.json) and checks current summary-contract behavior for ambiguous meson asks, explicit supported requests, propagator/smear/flow requests, and explicit unsupported edge cases.
 It now also covers unsupported propagator / smear / flow boundary variants, so nearest-grounded repair scope stays visible across those families instead of only in isolated CLI tests.
 
+Refresh the v12 execution-readiness report:
+
+```bash
+$PYTHON_BIN scripts/validate_v12_execution_readiness.py
+```
+
+That report writes [data/v12_execution_readiness.json](/Users/zhaodianjun/pyquda-agent/data/v12_execution_readiness.json) and checks whether backend fallback paths remain repairable and whether runtime blockers are classified as dependency, probe-harness, input-visibility, output-writability, or cluster-assumption issues.
+
 Refresh the demo pipeline end to end for the reference supported workflow:
 
 ```bash
@@ -389,9 +397,10 @@ Use these commands as the current closeout gate. All of them require `PYTHON_BIN
 ```bash
 $PYTHON_BIN -B -m unittest
 $PYTHON_BIN scripts/validate_backend_execution.py --pyquda-repo ~/PyQUDA
-$PYTHON_BIN scripts/validate_supported_workflows.py --pyquda-repo ~/PyQUDA --backend codex
+$PYTHON_BIN scripts/validate_supported_workflows.py --pyquda-repo ~/PyQUDA --backend api
 $PYTHON_BIN scripts/validate_v9_product_behavior.py
 $PYTHON_BIN scripts/validate_v11_task_suite.py
+$PYTHON_BIN scripts/validate_v12_execution_readiness.py
 $PYTHON_BIN scripts/refresh_goal_audit.py
 ```
 
@@ -401,6 +410,7 @@ Interpret these gates narrowly:
   `scripts/validate_supported_workflows.py`, `scripts/validate_v9_product_behavior.py`, `scripts/validate_v11_task_suite.py`, and `scripts/refresh_goal_audit.py` prove the current `11` families / `17` grounded targets remain coherent, auditable, and suitable for HPC handoff in principle.
 - Backend usable:
   `scripts/validate_backend_execution.py` proves whether `auto` / `api` / `codex` are currently usable in the real CLI path, or whether they remain explicit fallback-only backend routes.
+  As of July 17, 2026, the latest real report shows `api=usable`, `auto=usable`, and `codex=usable`.
 - Local runtime proved:
   none of the default closeout gates prove that this workstation can numerically execute PyQUDA end to end unless a probe actually reaches `runtime_proved`.
 - Product-behavior gates:
@@ -413,8 +423,8 @@ Interpret these gates narrowly:
 Minimal product-path checks:
 
 ```bash
-PYTHONPATH=src $PYTHON_BIN -m pyquda_agent.cli run "please compute the pion two-point correlator" --backend codex --no-interactive --result-format terminal --output outputs/v9_rough_check.py --pyquda-repo ~/PyQUDA
-PYTHONPATH=src $PYTHON_BIN -m pyquda_agent.cli run "please compute the pion two-point correlator from gauge ~/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 gauge fixed source timeslice 0 outputs/v9_pion.npy outputs/v9_pion.py resource_path=.cache/quda cluster_launch=local" --backend codex --no-interactive --result-format terminal --runtime-probe --probe-timeout 5 --output outputs/v9_pion.py --pyquda-repo ~/PyQUDA
+PYTHONPATH=src $PYTHON_BIN -m pyquda_agent.cli run "please compute the pion two-point correlator" --backend auto --no-interactive --result-format terminal --output outputs/v9_rough_check.py --pyquda-repo ~/PyQUDA
+PYTHONPATH=src $PYTHON_BIN -m pyquda_agent.cli run "please compute the pion two-point correlator from gauge ~/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 gauge fixed source timeslice 0 outputs/v9_pion.npy outputs/v9_pion.py resource_path=.cache/quda cluster_launch=local" --backend auto --no-interactive --result-format terminal --runtime-probe --probe-timeout 5 --output outputs/v9_pion.py --pyquda-repo ~/PyQUDA
 ```
 
 Artifact boundary for the v9 closeout:
@@ -435,6 +445,10 @@ Artifact boundary for the v9 closeout:
 - `data/v11_task_suite.json`
   Proves the current task-suite contract for realistic natural-language requests, including candidate-target previews, formula/workflow previews, clarification-vs-unsupported behavior, and nearest-grounded recovery expectations.
   It is intentionally a behavior audit, not proof that the current machine can execute PyQUDA numerically.
+- `data/v12_execution_readiness.json`
+  Answers the v12 closeout questions directly: whether at least one backend is currently usable, whether runtime evidence is stronger than v11, and whether high-value rough tasks now land in clarification/recovery paths instead of manual-fallback-first responses.
+  It also proves that backend degradation still yields repair contracts and that runtime blockers are separated into dependency, probe-harness, input-visibility, output-writability, and cluster-assumption classes.
+  It does not replace full supported-workflow validation or prove local `runtime_proved`.
 
 ## Design Rules
 

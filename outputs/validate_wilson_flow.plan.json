@@ -281,6 +281,9 @@
       "plan_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow.plan.json",
       "task_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow.task.json"
     },
+    "blocker_categories": [
+      "module_missing"
+    ],
     "checks": [
       {
         "module": "numpy",
@@ -334,7 +337,8 @@
       "command": "python3 scripts/probe_generated_workflow.py --script /Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow.py --output /Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow.probe.json",
       "reason": null,
       "result": {
-        "duration_seconds": 0.1015861660707742,
+        "blocker_scope": "runtime",
+        "duration_seconds": 0.09400108398403972,
         "evidence_levels": {
           "blockers": [
             "Missing runtime dependency 'cupy'. Activate a PyQUDA environment with CuPy installed before running this script."
@@ -345,6 +349,7 @@
           "structurally_grounded": null,
           "syntax_valid": null
         },
+        "next_action": "Install or activate the missing runtime dependencies, then rerun the probe.",
         "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
         "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
         "returncode": 1,
@@ -354,9 +359,34 @@
         "status": "runtime_missing",
         "stderr": "Missing runtime dependency 'cupy'. Activate a PyQUDA environment with CuPy installed before running this script.",
         "stdout": "",
+        "submission_checklist": [
+          "Verify the generated script and sibling review artifacts are present on the submission filesystem.",
+          "Verify runtime dependencies import in the target Python environment before heavy work starts.",
+          "Verify input paths are visible to all ranks and output parents are writable on the target filesystem.",
+          "Verify lattice/grid/resource-path assumptions still match the cluster launch layout."
+        ],
         "used_repo_pythonpath": false
       },
       "status": "runtime_missing"
+    },
+    "missing_modules": [
+      "cupy",
+      "pyquda",
+      "pyquda_utils",
+      "pyquda_utils.core"
+    ],
+    "next_actions": [
+      "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.",
+      "Build or install the PyQUDA core bindings in this Python environment before runtime proof.",
+      "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.",
+      "Check that pyquda_utils is importable and that the built core helpers are present.",
+      "Re-run this check with --use-repo-pythonpath if you want to test whether the local ~/PyQUDA checkout is sufficient for import discovery."
+    ],
+    "primary_blocker": {
+      "category": "module_missing",
+      "error": "No module named 'cupy'",
+      "error_type": "ModuleNotFoundError",
+      "module": "cupy"
     },
     "probe_policy": {
       "auto_run": true,
@@ -370,8 +400,36 @@
     "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
     "ready": false,
     "reference_grounded": true,
+    "repo_pythonpath_diagnostic": {
+      "detail": "Re-run with --use-repo-pythonpath if you want to test whether the local checkout is discoverable without installation.",
+      "status": "not_attempted"
+    },
     "runtime_level": "environment_missing",
     "runtime_proved": false,
+    "shortest_remaining_steps": [
+      "Install CuPy into the target Python environment.",
+      "Build or install pyquda into the target Python environment.",
+      "Install the PyQUDA Python package or make the checkout importable in upstream-supported dev mode.",
+      "Ensure pyquda_utils.core is importable after installing/building PyQUDA."
+    ],
+    "status": "environment_missing",
+    "submission_checklist": [
+      {
+        "detail": "Using interpreter /Users/zhaodianjun/lamet-agent/.venv/bin/python3.",
+        "kind": "python_interpreter",
+        "status": "ok"
+      },
+      {
+        "detail": "One or more required runtime modules are missing from the current Python environment.",
+        "kind": "module_imports",
+        "status": "blocked"
+      },
+      {
+        "detail": "Did not modify PYTHONPATH for this probe.",
+        "kind": "repo_pythonpath",
+        "status": "disabled"
+      }
+    ],
     "syntax_valid": true,
     "used_repo_pythonpath": false
   },

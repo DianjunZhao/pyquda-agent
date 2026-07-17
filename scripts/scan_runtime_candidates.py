@@ -22,6 +22,54 @@ DEFAULT_INTERPRETERS = (
 )
 
 
+def _best_candidate(entries: list[dict]) -> dict | None:
+    scored: list[tuple[int, dict]] = []
+    for entry in entries:
+        if not entry.get("exists"):
+            continue
+        report = entry.get("report") or {}
+        if report.get("ready"):
+            score = 0
+        elif report:
+            score = 1
+        else:
+            score = 2
+        scored.append((score, entry))
+    if not scored:
+        return None
+    scored.sort(key=lambda item: item[0])
+    return scored[0][1]
+
+
+def _build_summary(entries: list[dict], ready_candidates: list[str]) -> dict:
+    best = _best_candidate(entries)
+    if best is None:
+        return {
+            "best_candidate_status": "missing",
+            "best_candidate_python": None,
+            "blocker_categories": [],
+            "shortest_remaining_blockers": [],
+        }
+    report = best.get("report") or {}
+    if ready_candidates:
+        return {
+            "best_candidate_status": "ready",
+            "best_candidate_python": best.get("python"),
+            "blocker_categories": [],
+            "shortest_remaining_blockers": [],
+        }
+    blocker_categories = list(report.get("blocker_categories") or [])
+    missing_modules = list(report.get("missing_modules") or [])
+    if not blocker_categories and report:
+        blocker_categories = ["unknown_blocker"]
+    return {
+        "best_candidate_status": "blocked" if report or best.get("stderr") else "missing",
+        "best_candidate_python": best.get("python"),
+        "blocker_categories": blocker_categories,
+        "shortest_remaining_blockers": missing_modules,
+    }
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Scan candidate Python interpreters for PyQUDA runtime readiness.")
     parser.add_argument("--pyquda-repo", type=Path, default=DEFAULT_PYQUDA_REPO, help="Path to the local PyQUDA checkout.")
@@ -86,6 +134,7 @@ def build_scan(interpreters: list[Path], pyquda_repo: Path) -> dict:
         "interpreters": entries,
         "ready_candidates": ready_candidates,
         "any_ready": bool(ready_candidates),
+        "summary": _build_summary(entries, ready_candidates),
     }
 
 

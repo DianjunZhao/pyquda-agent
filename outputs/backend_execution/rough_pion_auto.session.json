@@ -6,13 +6,13 @@
     "codex_preflight_attempted": true,
     "codex_preflight_category": "local_environment_error",
     "codex_preflight_detail_category": "codex_app_client_init_failed",
-    "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment.",
+    "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment. If stderr also reports 'Operation not permitted', the current sandbox or local permission model is likely blocking the in-process client.",
     "codex_preflight_skip_reason": null,
     "codex_preflight_skipped": false,
     "codex_preflight_soft_failed": false,
     "codex_preflight_soft_failure_reason": null,
     "codex_preflight_status": "failed",
-    "codex_preflight_timeout_seconds": 3.0,
+    "codex_preflight_timeout_seconds": 8.0,
     "configured": true,
     "configured_backend": "api:deepseek/deepseek-chat",
     "fallback": true,
@@ -22,6 +22,7 @@
     "intent_primary_timeout_seconds": null,
     "intent_prompt_profile": "full",
     "intent_strategy": "full_interpretation",
+    "intent_timeout_capped": false,
     "model_name": "deepseek-chat",
     "notes": [],
     "provider": "deepseek",
@@ -566,6 +567,9 @@
       "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_auto.py"
     },
     "runtime_readiness": {
+      "blocker_categories": [
+        "module_missing"
+      ],
       "checks": [
         {
           "module": "numpy",
@@ -605,24 +609,28 @@
       "evidence_levels": {
         "blockers": [
           {
+            "category": "module_missing",
             "error": "No module named 'cupy'",
             "error_type": "ModuleNotFoundError",
             "module": "cupy",
             "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
           },
           {
+            "category": "module_missing",
             "error": "No module named 'pyquda'",
             "error_type": "ModuleNotFoundError",
             "module": "pyquda",
             "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
           },
           {
+            "category": "module_missing",
             "error": "No module named 'pyquda_utils'",
             "error_type": "ModuleNotFoundError",
             "module": "pyquda_utils",
             "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
           },
           {
+            "category": "module_missing",
             "error": "No module named 'pyquda_utils'",
             "error_type": "ModuleNotFoundError",
             "module": "pyquda_utils.core",
@@ -635,6 +643,25 @@
         "structurally_grounded": true,
         "syntax_valid": true
       },
+      "missing_modules": [
+        "cupy",
+        "pyquda",
+        "pyquda_utils",
+        "pyquda_utils.core"
+      ],
+      "next_actions": [
+        "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.",
+        "Build or install the PyQUDA core bindings in this Python environment before runtime proof.",
+        "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.",
+        "Check that pyquda_utils is importable and that the built core helpers are present.",
+        "Re-run this check with --use-repo-pythonpath if you want to test whether the local ~/PyQUDA checkout is sufficient for import discovery."
+      ],
+      "primary_blocker": {
+        "category": "module_missing",
+        "error": "No module named 'cupy'",
+        "error_type": "ModuleNotFoundError",
+        "module": "cupy"
+      },
       "probe_policy": {
         "auto_run": false,
         "reason": "Generated-script probes are not run automatically because a complete script may start a real inversion workload."
@@ -643,8 +670,36 @@
       "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
       "ready": false,
       "reference_grounded": true,
+      "repo_pythonpath_diagnostic": {
+        "detail": "Re-run with --use-repo-pythonpath if you want to test whether the local checkout is discoverable without installation.",
+        "status": "not_attempted"
+      },
       "runtime_level": "structurally_grounded",
       "runtime_proved": false,
+      "shortest_remaining_steps": [
+        "Install CuPy into the target Python environment.",
+        "Build or install pyquda into the target Python environment.",
+        "Install the PyQUDA Python package or make the checkout importable in upstream-supported dev mode.",
+        "Ensure pyquda_utils.core is importable after installing/building PyQUDA."
+      ],
+      "status": "environment_missing",
+      "submission_checklist": [
+        {
+          "detail": "Using interpreter /Users/zhaodianjun/lamet-agent/.venv/bin/python3.",
+          "kind": "python_interpreter",
+          "status": "ok"
+        },
+        {
+          "detail": "One or more required runtime modules are missing from the current Python environment.",
+          "kind": "module_imports",
+          "status": "blocked"
+        },
+        {
+          "detail": "Did not modify PYTHONPATH for this probe.",
+          "kind": "repo_pythonpath",
+          "status": "disabled"
+        }
+      ],
       "syntax_valid": true,
       "used_repo_pythonpath": false
     },
@@ -885,13 +940,13 @@
       "codex_preflight_attempted": true,
       "codex_preflight_category": "local_environment_error",
       "codex_preflight_detail_category": "codex_app_client_init_failed",
-      "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment.",
+      "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment. If stderr also reports 'Operation not permitted', the current sandbox or local permission model is likely blocking the in-process client.",
       "codex_preflight_skip_reason": null,
       "codex_preflight_skipped": false,
       "codex_preflight_soft_failed": false,
       "codex_preflight_soft_failure_reason": null,
       "codex_preflight_status": "failed",
-      "codex_preflight_timeout_seconds": 3.0,
+      "codex_preflight_timeout_seconds": 8.0,
       "configured": true,
       "configured_backend": "api:deepseek/deepseek-chat",
       "fallback": true,
@@ -901,6 +956,7 @@
       "intent_primary_timeout_seconds": null,
       "intent_prompt_profile": "full",
       "intent_strategy": "full_interpretation",
+      "intent_timeout_capped": false,
       "model_name": "deepseek-chat",
       "notes": [],
       "provider": "deepseek",

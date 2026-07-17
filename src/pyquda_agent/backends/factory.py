@@ -20,10 +20,10 @@ CODEX_CANDIDATES = (
     "/opt/homebrew/bin/codex",
     "/usr/local/bin/codex",
 )
-AUTO_CODEX_PREFLIGHT_TIMEOUT_SECONDS = 3.0
+AUTO_CODEX_PREFLIGHT_TIMEOUT_SECONDS = 8.0
 # Explicit codex still keeps the real backend call alive after a timeout preflight,
 # so keep this probe short to avoid paying a large fixed latency tax up front.
-EXPLICIT_CODEX_PREFLIGHT_TIMEOUT_SECONDS = 2.0
+EXPLICIT_CODEX_PREFLIGHT_TIMEOUT_SECONDS = 6.0
 SESSION_MEMORY_API_PREFER_CATEGORIES = {
     "authentication_error",
     "backend_process_error",
@@ -281,6 +281,24 @@ def build_llm_backend(
         "session_backend_prior_category": None,
         "session_backend_prior_selected_backend": None,
     }
+
+    if isinstance(request_profile_hint, dict) and request_profile_hint.get("backend_policy") == "skip":
+        skip_reason = request_profile_hint.get("backend_skip_reason") or (
+            "Skipped LLM backend because the request already contains a confirmed physics target and runnable task fields."
+        )
+        status.update(
+            {
+                "selected_backend": "rules",
+                "configured": False,
+                "backend_name": None,
+                "selection_reason": skip_reason,
+                "fallback": False,
+                "fallback_reason": None,
+                "fallback_category": None,
+                "fallback_detail_category": None,
+            }
+        )
+        return None, status
 
     if requested_backend == "auto":
         session_api_preference = _session_backend_api_preference(config, prior_backend_assistance)

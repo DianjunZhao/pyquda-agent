@@ -2,9 +2,9 @@
   "objective": "product_like_multi_workflow_pyquda_agent",
   "last_audited_on": "2026-07-17",
   "backend_availability": {
-    "api": "fallback_only",
-    "auto": "fallback_only",
-    "codex": "fallback_only"
+    "api": "usable",
+    "auto": "usable",
+    "codex": "usable"
   },
   "items": [
     {
@@ -168,7 +168,7 @@
         "scripts/validate_backend_execution.py",
         "tests/test_cli_run.py"
       ],
-      "notes": "Both backends drive the same structured generation path. Parity and non-mocked execution artifacts track either real use or explicit fallback. Current backend availability states: {'api': 'fallback_only', 'auto': 'fallback_only', 'codex': 'fallback_only'}."
+      "notes": "Both backends drive the same structured generation path. Parity and non-mocked execution artifacts track either real use or explicit fallback. Current backend availability states: {'api': 'usable', 'auto': 'usable', 'codex': 'usable'}."
     },
     {
       "id": "multi-workflow-routing",
@@ -317,6 +317,32 @@
         "tests/test_cli_run.py"
       ],
       "notes": "The current v11 task suite covers 16 realistic requests across ['ambiguous_meson', 'explicit_supported', 'flow', 'non_grounded_meson_like', 'propagator', 'smear', 'unsupported_baryon', 'unsupported_flow_variant', 'unsupported_propagator_variant', 'unsupported_smear_variant'], including unsupported propagator/smear/flow boundary variants."
+    },
+    {
+      "id": "v12-execution-readiness-surface",
+      "requirement": "Execution-readiness artifacts distinguish backend repairability, runtime dependency blockers, probe-harness failures, and runtime-side handoff blockers with explicit next actions.",
+      "status": "proved",
+      "evidence": [
+        "data/v12_execution_readiness.json",
+        "scripts/validate_v12_execution_readiness.py",
+        "scripts/check_pyquda_runtime.py",
+        "scripts/probe_generated_workflow.py",
+        "tests/test_validate_v12_execution_readiness.py",
+        "tests/test_check_pyquda_runtime.py",
+        "tests/test_probe_generated_workflow.py"
+      ],
+      "notes": "The current v12 execution-readiness surface covers 8 cases across ['backend truly usable', 'backend degraded but continueable', 'backend repair path', 'runtime blocked but handoff ready', 'runtime blocked due to missing dependencies', 'runtime blocked due to probe harness failure', 'runtime blocked due to input visibility / output writability / cluster assumptions', 'real tasks less reliant on manual fallback']."
+    },
+    {
+      "id": "v13-codex-runtime-readiness-surface",
+      "requirement": "V13 validation artifacts distinguish codex usable vs fallback-only state and local runtime-proved vs exact remaining blockers without blurring those boundaries.",
+      "status": "proved",
+      "evidence": [
+        "data/v13_codex_runtime_readiness.json",
+        "scripts/validate_v13_codex_runtime_readiness.py",
+        "tests/test_validate_v13_codex_runtime_readiness.py"
+      ],
+      "notes": "The current v13 codex/runtime-readiness surface covers 4 cases across ['codex backend usable or explicitly fallback_only', 'runtime proved or exact remaining blockers', 'backend repair contract', 'runtime repair contract', 'docs and audit consistency']."
     }
   ]
 }

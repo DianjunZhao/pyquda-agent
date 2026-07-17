@@ -21,6 +21,8 @@ DEFAULT_RUNTIME_CANDIDATES = REPO_ROOT / "data" / "runtime_candidates.json"
 DEFAULT_SUPPORTED_VALIDATION = REPO_ROOT / "data" / "supported_workflows_validation.json"
 DEFAULT_V9_PRODUCT_BEHAVIOR = REPO_ROOT / "data" / "v9_product_behavior.json"
 DEFAULT_V11_TASK_SUITE = REPO_ROOT / "data" / "v11_task_suite.json"
+DEFAULT_V12_EXECUTION_READINESS = REPO_ROOT / "data" / "v12_execution_readiness.json"
+DEFAULT_V13_CODEX_RUNTIME_READINESS = REPO_ROOT / "data" / "v13_codex_runtime_readiness.json"
 DEFAULT_AUDIT = REPO_ROOT / "data" / "goal_audit.json"
 DEFAULT_DOC = REPO_ROOT / "docs" / "FIRST_WORKFLOW_AUDIT.md"
 
@@ -56,6 +58,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         type=Path,
         default=DEFAULT_V11_TASK_SUITE,
         help="Natural-language regression artifact covering v11 realistic task-suite behavior.",
+    )
+    parser.add_argument(
+        "--v12-execution-readiness",
+        type=Path,
+        default=DEFAULT_V12_EXECUTION_READINESS,
+        help="Execution-readiness artifact covering backend repair contracts and runtime blocker classification.",
+    )
+    parser.add_argument(
+        "--v13-codex-runtime-readiness",
+        type=Path,
+        default=DEFAULT_V13_CODEX_RUNTIME_READINESS,
+        help="V13 artifact covering codex usability and local runtime-proof blocker contraction.",
     )
     parser.add_argument(
         "--audit-date",
@@ -128,8 +142,12 @@ def build_goal_audit(
     supported_validation: dict,
     v9_product_behavior: dict,
     v11_task_suite: dict,
+    v12_execution_readiness: dict | None = None,
+    v13_codex_runtime_readiness: dict | None = None,
     audit_date: str | None = None,
 ) -> dict:
+    v12_execution_readiness = v12_execution_readiness or {}
+    v13_codex_runtime_readiness = v13_codex_runtime_readiness or {}
     audit_date = _resolve_audit_date(audit_date)
     workflow_id = task.get("workflow_id")
     references = plan.get("references", [])
@@ -162,6 +180,10 @@ def build_goal_audit(
     unsupported_behavior = v9_summary.get("unsupported_behavior") or {}
     v11_cases = v11_task_suite.get("cases", [])
     v11_summary = v11_task_suite.get("summary") or {}
+    v12_cases = v12_execution_readiness.get("cases", [])
+    v12_summary = v12_execution_readiness.get("summary") or {}
+    v13_cases = v13_codex_runtime_readiness.get("cases", [])
+    v13_summary = v13_codex_runtime_readiness.get("summary") or {}
     supported_workflows_ok = len(supported_results) >= 3 and all(item.get("coherent") for item in supported_results)
     backend_product_path_ok = bool(backend_execution_entries) and all(
         all(
@@ -212,6 +234,8 @@ def build_goal_audit(
         and bool((unsupported_behavior.get("primary_action_contract") or {}).get("backend_fix_should_not_be_primary"))
     )
     v11_task_suite_ok = bool(v11_task_suite.get("all_passed")) and bool(v11_cases)
+    v12_execution_readiness_ok = bool(v12_execution_readiness.get("all_passed")) and bool(v12_cases)
+    v13_codex_runtime_readiness_ok = bool(v13_codex_runtime_readiness.get("all_passed")) and bool(v13_cases)
 
     required_task_fields = [
         "start_from",
@@ -612,6 +636,40 @@ def build_goal_audit(
                     f"{v11_summary.get('categories', [])}, including unsupported propagator/smear/flow boundary variants."
                 ),
             },
+            {
+                "id": "v12-execution-readiness-surface",
+                "requirement": "Execution-readiness artifacts distinguish backend repairability, runtime dependency blockers, probe-harness failures, and runtime-side handoff blockers with explicit next actions.",
+                "status": status(v12_execution_readiness_ok, partial=bool(v12_cases)),
+                "evidence": [
+                    "data/v12_execution_readiness.json",
+                    "scripts/validate_v12_execution_readiness.py",
+                    "scripts/check_pyquda_runtime.py",
+                    "scripts/probe_generated_workflow.py",
+                    "tests/test_validate_v12_execution_readiness.py",
+                    "tests/test_check_pyquda_runtime.py",
+                    "tests/test_probe_generated_workflow.py",
+                ],
+                "notes": (
+                    "The current v12 execution-readiness surface covers "
+                    f"{v12_summary.get('case_count', len(v12_cases))} cases across "
+                    f"{v12_summary.get('coverage', [])}."
+                ),
+            },
+            {
+                "id": "v13-codex-runtime-readiness-surface",
+                "requirement": "V13 validation artifacts distinguish codex usable vs fallback-only state and local runtime-proved vs exact remaining blockers without blurring those boundaries.",
+                "status": status(v13_codex_runtime_readiness_ok, partial=bool(v13_cases)),
+                "evidence": [
+                    "data/v13_codex_runtime_readiness.json",
+                    "scripts/validate_v13_codex_runtime_readiness.py",
+                    "tests/test_validate_v13_codex_runtime_readiness.py",
+                ],
+                "notes": (
+                    "The current v13 codex/runtime-readiness surface covers "
+                    f"{v13_summary.get('case_count', len(v13_cases))} cases across "
+                    f"{v13_summary.get('coverage', [])}."
+                ),
+            },
         ],
     }
 
@@ -680,6 +738,8 @@ def render_audit_markdown(audit: dict) -> str:
             "- `data/supported_workflows_validation.json`",
             "- `data/v9_product_behavior.json`",
             "- `data/v11_task_suite.json`",
+            "- `data/v12_execution_readiness.json`",
+            "- `data/v13_codex_runtime_readiness.json`",
             "- `data/runtime_candidates.json`",
             "- `data/goal_audit.json`",
             "- `outputs/run_pion_api.py`",
@@ -710,8 +770,10 @@ def render_audit_markdown(audit: dict) -> str:
             f"- V9 actionable recovery-guidance status: `{items['v9-actionable-recovery-guidance']['status']}`.",
             f"- V9 unsupported actionability status: `{items['v9-unsupported-actionability-contract']['status']}`.",
             f"- V11 realistic task-suite regression status: `{items['v11-realistic-task-suite-regression']['status']}`.",
+            f"- V12 execution-readiness status: `{items['v12-execution-readiness-surface']['status']}`.",
+            f"- V13 codex/runtime-readiness status: `{items['v13-codex-runtime-readiness-surface']['status']}`.",
             "- The repository default done condition is now: generate a complete, reference-grounded PyQUDA script with an auditable HPC handoff contract.",
-            "- Backend usability is audited separately through backend_execution artifacts; a `fallback_only` backend state does not negate grounded generation or handoff readiness.",
+            "- Backend usability is audited separately through backend_execution artifacts; current usable backends do not imply local runtime proof, and a remaining fallback-only backend does not negate grounded generation or handoff readiness.",
             "- Local runtime proof on this workstation remains a separate evidence layer; missing CuPy/PyQUDA runtime is treated as an environment limitation, not a blocker on grounded generation.",
             "",
             "## Exit condition for this audit",
@@ -738,6 +800,8 @@ def main(argv: list[str] | None = None) -> int:
     supported_validation = _load_json(args.supported_validation.expanduser().resolve())
     v9_product_behavior = _load_json(args.v9_product_behavior.expanduser().resolve())
     v11_task_suite = _load_json(args.v11_task_suite.expanduser().resolve())
+    v12_execution_readiness = _load_json(args.v12_execution_readiness.expanduser().resolve())
+    v13_codex_runtime_readiness = _load_json(args.v13_codex_runtime_readiness.expanduser().resolve())
 
     audit = build_goal_audit(
         task,
@@ -750,6 +814,8 @@ def main(argv: list[str] | None = None) -> int:
         supported_validation,
         v9_product_behavior,
         v11_task_suite,
+        v12_execution_readiness,
+        v13_codex_runtime_readiness,
         audit_date=args.audit_date,
     )
 

@@ -1,0 +1,114 @@
+{
+  "all_passed": true,
+  "answers": {
+    "codex_backend_state": {
+      "answer": "usable",
+      "evidence_cases": [
+        "codex_backend_state"
+      ]
+    },
+    "codex_backend_usable": {
+      "answer": true,
+      "evidence_cases": [
+        "codex_backend_state",
+        "codex_backend_repair_contract"
+      ]
+    },
+    "docs_and_audit_consistent": {
+      "answer": true,
+      "evidence_cases": [
+        "docs_and_audit_consistent_with_reports"
+      ]
+    },
+    "local_runtime_proved": {
+      "answer": false,
+      "evidence_cases": [
+        "runtime_remaining_blocker_contract"
+      ]
+    },
+    "runtime_remaining_blockers": {
+      "answer": [
+        "module_missing"
+      ],
+      "evidence_cases": [
+        "runtime_remaining_blocker_contract"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "case_id": "codex_backend_state",
+      "failure": null,
+      "observed": {
+        "codex_state": "usable",
+        "fallback_only_backends": [],
+        "usable_backends": [
+          "auto",
+          "api",
+          "codex"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case_id": "codex_backend_repair_contract",
+      "failure": null,
+      "observed": {
+        "availability_state": "usable",
+        "reason": "Codex is currently usable in the real CLI path, so no fallback repair contract is required.",
+        "state": "not_needed"
+      },
+      "passed": true
+    },
+    {
+      "case_id": "runtime_remaining_blocker_contract",
+      "failure": null,
+      "observed": {
+        "best_candidate_python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python",
+        "best_candidate_status": "blocked",
+        "blocker_categories": [
+          "module_missing"
+        ],
+        "primary_blocker": {
+          "category": "module_missing",
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy"
+        },
+        "runtime_level": "environment_missing",
+        "shortest_remaining_steps": [
+          "Install CuPy into the target Python environment.",
+          "Build or install pyquda into the target Python environment.",
+          "Install the PyQUDA Python package or make the checkout importable in upstream-supported dev mode.",
+          "Ensure pyquda_utils.core is importable after installing/building PyQUDA."
+        ],
+        "status": "environment_missing"
+      },
+      "passed": true
+    },
+    {
+      "case_id": "docs_and_audit_consistent_with_reports",
+      "failure": null,
+      "observed": {
+        "backend_execution_codex_state": "usable",
+        "bootstrap_mentions_runtime": true,
+        "goal_audit_codex_state": "usable",
+        "readme_mentions_codex": true,
+        "runtime_proved": false
+      },
+      "passed": true
+    }
+  ],
+  "suite": "v13_codex_runtime_readiness",
+  "summary": {
+    "case_count": 4,
+    "contract": "codex_runtime_readiness_v13",
+    "coverage": [
+      "codex backend usable or explicitly fallback_only",
+      "runtime proved or exact remaining blockers",
+      "backend repair contract",
+      "runtime repair contract",
+      "docs and audit consistency"
+    ]
+  }
+}

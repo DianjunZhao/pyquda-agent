@@ -1,0 +1,422 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "medium",
+      "label": "meson two-point correlator with unspecified channel/operator",
+      "status": "needs_confirmation",
+      "summary": "The request asks for a meson correlator but does not identify the channel or operator.",
+      "target_id": "meson_two_point_correlator_unspecified",
+      "task_type_hint": null
+    },
+    {
+      "confidence": "low",
+      "label": "pion two-point correlator",
+      "status": "candidate",
+      "summary": "Pion is the most likely meson channel for the current grounded workflows, but it is not confirmed by the request.",
+      "target_id": "pion_two_point_correlator",
+      "task_type_hint": "pion_2pt"
+    },
+    {
+      "confidence": "low",
+      "label": "meson spectroscopy correlator",
+      "status": "candidate",
+      "summary": "If the intent is a small meson-spectroscopy code path with fixed gamma insertions, the grounded meson-spec workflow is another plausible candidate.",
+      "target_id": "meson_spectrum_correlator",
+      "task_type_hint": "meson_spec"
+    },
+    {
+      "confidence": "low",
+      "label": "pion dispersion correlator",
+      "status": "candidate",
+      "summary": "If the user actually intends a momentum-projected pion study, the supported narrow dispersion workflow is another plausible candidate.",
+      "target_id": "pion_dispersion_correlator",
+      "task_type_hint": "pion_dispersion"
+    }
+  ],
+  "chosen_workflow_target": null,
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": null,
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use a Euclidean two-point correlator with interpolating operators chosen to overlap the target pion channel at zero momentum.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "two_point_spectral_decomposition",
+        "interpolating_operators_carry_target_quantum_numbers_and_momentum"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "PyQUDA examples and tests show the implementation pattern, but this review provides the lattice-spectroscopy framing for the correlator and operator-selection convention.",
+      "year": 2022
+    },
+    {
+      "authors": [
+        "Dean Howarth",
+        "Joel Giedt"
+      ],
+      "chosen_convention": "Use the narrow wall-source zero-momentum convention and record that the p=0 truncation corresponds to wall sources.",
+      "citation_source_kind": "local_curated_json",
+      "id": "howarth-giedt-2015-sigma",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "wall_source_as_p_equals_0_momentum_source",
+        "zero_momentum_projection"
+      ],
+      "title": "The sigma meson from lattice QCD with two-pion interpolating operators",
+      "type": "primary_reference",
+      "url": "https://arxiv.org/abs/1508.05658",
+      "why_needed": "PyQUDA local references encode wall inversions and zero-momentum contractions but do not explain the physics-side meaning of the wall-source p=0 choice.",
+      "year": 2015
+    }
+  ],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "fixed_by_workflow_fields": {},
+  "formula_proposals": [
+    {
+      "citations": [],
+      "convention": "A meson two-point request is not runnable until the hadron channel and interpolating operator are fixed.",
+      "correlator": "C(t) = \\sum_{\\vec x} \\langle O(\\vec x,t) O^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Meson two-point correlator requires channel/operator choice",
+      "local_references": [],
+      "operator": "Underspecified",
+      "proposal_id": "meson_operator_needs_channel_choice",
+      "provenance": "model_inference",
+      "target_id": "meson_two_point_correlator_unspecified"
+    },
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a Euclidean two-point correlator with interpolating operators chosen to overlap the target pion channel at zero momentum.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "two_point_spectral_decomposition",
+            "interpolating_operators_carry_target_quantum_numbers_and_momentum"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "PyQUDA examples and tests show the implementation pattern, but this review provides the lattice-spectroscopy framing for the correlator and operator-selection convention.",
+          "year": 2022
+        },
+        {
+          "authors": [
+            "Dean Howarth",
+            "Joel Giedt"
+          ],
+          "chosen_convention": "Use the narrow wall-source zero-momentum convention and record that the p=0 truncation corresponds to wall sources.",
+          "citation_source_kind": "local_curated_json",
+          "id": "howarth-giedt-2015-sigma",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "wall_source_as_p_equals_0_momentum_source",
+            "zero_momentum_projection"
+          ],
+          "title": "The sigma meson from lattice QCD with two-pion interpolating operators",
+          "type": "primary_reference",
+          "url": "https://arxiv.org/abs/1508.05658",
+          "why_needed": "PyQUDA local references encode wall inversions and zero-momentum contractions but do not explain the physics-side meaning of the wall-source p=0 choice.",
+          "year": 2015
+        }
+      ],
+      "convention": "Use the canonical pseudoscalar pion interpolating operator and the zero-momentum Euclidean two-point correlator.",
+      "correlator": "C_\\pi(t) = \\sum_{\\vec x} \\langle O_\\pi(\\vec x,t) O_\\pi^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Pion pseudoscalar two-point correlator",
+      "local_references": [
+        "examples/3_Pion_Proton_2pt.py",
+        "examples/5_Pion_Dispersion.py",
+        "tests/test_mesonspec.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/source.py",
+        "pyquda_utils/gamma.py"
+      ],
+      "operator": "O_\\pi(x) = \\bar d(x) \\gamma_5 u(x)",
+      "proposal_id": "pion_pseudoscalar_gamma5_twopt",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "pion_two_point_correlator"
+    },
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "momentum_projected_two_point_correlators",
+            "dispersion_analysis_from_hadron_two_point_functions"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+          "year": 2022
+        }
+      ],
+      "convention": "Use the canonical pseudoscalar pion interpolating operator together with an explicit finite momentum list to build a narrow pion-dispersion workflow.",
+      "correlator": "C_\\pi(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_\\pi(\\vec x,t) O_\\pi^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Pion momentum-projected two-point correlator for dispersion analysis",
+      "local_references": [
+        "examples/5_Pion_Dispersion.py",
+        "tests/test_mesonspec.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/source.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py"
+      ],
+      "operator": "O_\\pi(x) = \\bar d(x) \\gamma_5 u(x)",
+      "proposal_id": "pion_dispersion_gamma5_momentum_projected_twopt",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "pion_dispersion_correlator"
+    },
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "meson_two_point_spectroscopy",
+            "operator_channel_choice_for_hadron_spectroscopy"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+          "year": 2022
+        }
+      ],
+      "convention": "Use the fixed wall-source meson-spectroscopy path from the local PyQUDA meson-spec test, including the grounded momentum family with |p|^2 <= 9.",
+      "correlator": "C_{\\gamma_5}(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_{\\gamma_5}(\\vec x,t) O_{\\gamma_5}^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Meson spectroscopy correlator with pseudoscalar insertion",
+      "local_references": [
+        "tests/test_mesonspec.py",
+        "tests/test_mesonspec.ini.xml",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py",
+        "pyquda_utils/phase.py"
+      ],
+      "operator": "O_{\\gamma_5}(x) = \\bar q(x) \\gamma_5 q(x)",
+      "proposal_id": "meson_spec_gamma5_wall_momentum_family",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "meson_spectrum_correlator"
+    },
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "meson_two_point_spectroscopy",
+            "operator_channel_choice_for_hadron_spectroscopy"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+          "year": 2022
+        }
+      ],
+      "convention": "Keep the same local meson-spec workflow, but expose the second fixed gamma-insertion channel already present in the upstream test path.",
+      "correlator": "C_{\\gamma_4\\gamma_5}(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_{\\gamma_4\\gamma_5}(\\vec x,t) O_{\\gamma_4\\gamma_5}^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Meson spectroscopy correlator with temporal-axial insertion",
+      "local_references": [
+        "tests/test_mesonspec.py",
+        "tests/test_mesonspec.ini.xml",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py",
+        "pyquda_utils/phase.py"
+      ],
+      "operator": "O_{\\gamma_4\\gamma_5}(x) = \\bar q(x) \\gamma_4 \\gamma_5 q(x)",
+      "proposal_id": "meson_spec_gamma4gamma5_wall_momentum_family",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "meson_spectrum_correlator"
+    }
+  ],
+  "inferred_fields": {
+    "target_id": "meson_two_point_correlator_unspecified"
+  },
+  "inferred_interpretation": {
+    "confidence": "medium",
+    "label": "meson two-point correlator with unspecified channel/operator",
+    "status": "needs_confirmation",
+    "summary": "The request asks for a meson correlator but does not identify the channel or operator.",
+    "target_id": "meson_two_point_correlator_unspecified",
+    "task_type_hint": null
+  },
+  "inherited_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": true
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": true,
+    "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+    "codex_preflight_attempted": true,
+    "codex_preflight_category": "timeout",
+    "codex_preflight_detail_category": null,
+    "codex_preflight_reason": "Codex auto-preflight timed out after 2 seconds.",
+    "codex_preflight_skip_reason": null,
+    "codex_preflight_skipped": false,
+    "codex_preflight_soft_failed": true,
+    "codex_preflight_soft_failure_reason": "Codex auto-preflight timed out after 2 seconds.",
+    "codex_preflight_status": "failed",
+    "codex_preflight_timeout_seconds": 2.0,
+    "configured": true,
+    "configured_backend": "codex",
+    "fallback": true,
+    "fallback_category": "timeout",
+    "fallback_detail_category": null,
+    "fallback_reason": "Initial LLM attempt timed out (Codex backend timed out after 12 seconds.); timeout-recovery attempt then failed (Codex backend timed out after 10 seconds.).",
+    "intent_primary_timeout_seconds": 12.0,
+    "intent_prompt_profile": "full",
+    "intent_strategy": "full_interpretation",
+    "model_name": null,
+    "notes": [],
+    "provider": null,
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "selected_backend": "codex",
+    "selection_reason": "Explicit codex backend kept running after a short preflight timeout; the full codex call will decide whether fallback is still necessary.",
+    "session_backend_memory_considered": false,
+    "session_backend_memory_reason": null,
+    "session_backend_memory_used": false,
+    "session_backend_prior_category": null,
+    "session_backend_prior_selected_backend": null,
+    "stages_attempted": [
+      "rough_request_normalization",
+      "physics_target_interpretation",
+      "formula_operator_explanation",
+      "timeout_recovery_interpretation"
+    ],
+    "stages_completed": [],
+    "timeout_recovery_attempted": true,
+    "timeout_recovery_failed": true,
+    "timeout_recovery_failure_category": "timeout",
+    "timeout_recovery_failure_detail_category": null,
+    "timeout_recovery_failure_reason": "Codex backend timed out after 10 seconds.",
+    "timeout_recovery_skip_reason": null,
+    "timeout_recovery_skipped": false,
+    "timeout_recovery_timeout_seconds": 10.0,
+    "timeout_recovery_trigger_category": "timeout",
+    "timeout_recovery_trigger_reason": "Codex backend timed out after 12 seconds.",
+    "timeout_recovery_used": false,
+    "used": false
+  },
+  "local_references": [
+    "examples/3_Pion_Proton_2pt.py",
+    "examples/5_Pion_Dispersion.py",
+    "tests/test_mesonspec.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/source.py",
+    "pyquda_utils/gamma.py",
+    "pyquda_utils/core.py",
+    "tests/test_mesonspec.ini.xml",
+    "pyquda_utils/phase.py"
+  ],
+  "normalized_request": "I want a meson correlator script but I am not sure about the exact operator",
+  "parser_guesses": {
+    "target_id": "meson_two_point_correlator_unspecified"
+  },
+  "status": "needs_confirmation",
+  "task_type_hint": null,
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {},
+  "user_request": "I want a meson correlator script but I am not sure about the exact operator"
+}

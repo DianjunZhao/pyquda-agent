@@ -480,6 +480,28 @@ def _probe_artifact_path(script_output_path: str) -> Path:
 
 def _backend_request_profile_hint(config: RunConfig) -> dict | None:
     physics_preview = interpret_request(config.task_description)
+    draft_preview = parse_task_description(config.task_description)
+    if (
+        physics_preview.status == "confirmed"
+        and physics_preview.confirmed_interpretation is not None
+        and draft_preview.task_type is not None
+        and draft_preview.start_from in {"gauge", "propagator"}
+        and bool(draft_preview.lattice_size)
+        and bool(draft_preview.grid_size)
+        and bool(draft_preview.script_output_path)
+        and bool(draft_preview.correlator_output_path)
+        and (
+            bool(draft_preview.gauge_path)
+            or bool(draft_preview.propagator_paths)
+        )
+    ):
+        return {
+            "backend_policy": "skip",
+            "backend_skip_reason": (
+                "Skipped backend-assisted interpretation because the request already contains a confirmed physics target "
+                "and enough runnable task fields for grounded PyQUDA generation."
+            ),
+        }
     if not should_use_normalization_only_intent_prompt(physics_preview, backend_name="codex"):
         return None
     hint = {
@@ -2280,6 +2302,7 @@ def _build_backend_diagnostic(
     intent_strategy = llm_assistance.get("intent_strategy")
     intent_prompt_profile = llm_assistance.get("intent_prompt_profile")
     intent_primary_timeout_seconds = llm_assistance.get("intent_primary_timeout_seconds")
+    intent_timeout_capped = bool(llm_assistance.get("intent_timeout_capped"))
     timeout_recovery_attempted = bool(llm_assistance.get("timeout_recovery_attempted"))
     timeout_recovery_skipped = bool(llm_assistance.get("timeout_recovery_skipped"))
     timeout_recovery_skip_reason = llm_assistance.get("timeout_recovery_skip_reason")
@@ -2329,11 +2352,12 @@ def _build_backend_diagnostic(
         elif category == "local_environment_error":
             if detail_category == "codex_app_client_init_failed":
                 recommended_fix = (
-                    "Run `codex exec 'Reply with exactly: OK'` outside pyquda-agent. If that still fails, inspect the local codex app-client setup or switch to `--backend api --model <provider/model>`."
+                    "Run `codex exec 'Reply with exactly: OK'` in a normal local shell outside the current sandboxed runner. If that still fails, inspect the local codex app-client setup or switch to `--backend api --model <provider/model>`."
                 )
                 next_step = (
                     f"The local codex CLI started but failed during app-client initialization, so the run used the rule-based path. "
-                    f"Continue with the {result_context}, or verify `codex exec 'Reply with exactly: OK'` outside pyquda-agent before retrying."
+                    f"If the environment reported 'Operation not permitted', verify `codex exec 'Reply with exactly: OK'` from a normal local shell outside the current sandbox before retrying. "
+                    f"Otherwise continue with the {result_context}, or inspect the local codex runtime and retry."
                 )
             elif detail_category == "local_permission_error":
                 recommended_fix = (
@@ -2369,7 +2393,7 @@ def _build_backend_diagnostic(
                 recommended_fix = "Retry with working network access, or switch to a locally available backend."
                 next_step = f"Network access failed, so the run used the rule-based path. Continue with the {result_context}, or retry later with connectivity."
         elif category == "timeout":
-            if selected_backend == "codex" and intent_primary_timeout_seconds:
+            if selected_backend == "codex" and intent_primary_timeout_seconds and intent_timeout_capped:
                 recommended_fix = (
                     "Switch to `--backend api --model <provider/model>`, or keep the current rule-based result if it is sufficient."
                 )
@@ -2384,6 +2408,15 @@ def _build_backend_diagnostic(
                         f"The backend did not answer in time. This codex intent path is already capped at {intent_primary_timeout_seconds:g} seconds before recovery/fallback, "
                         f"so switching backend is more likely to help than only increasing `--llm-timeout`. Continue with the {result_context}, or retry with another backend."
                     )
+            elif selected_backend == "codex" and intent_primary_timeout_seconds:
+                recommended_fix = (
+                    "Increase `--llm-timeout`, or switch to `--backend api --model <provider/model>` if codex remains slow in this environment."
+                )
+                next_step = (
+                    f"The backend did not answer within {intent_primary_timeout_seconds:g} seconds on the current codex path. "
+                    f"Continue with the {result_context}, or retry with a larger `--llm-timeout`. "
+                    f"If repeated retries still time out, switch backend."
+                )
             else:
                 recommended_fix = f"Increase `--llm-timeout`, or keep the {result_context} if it is sufficient."
                 next_step = f"The backend did not answer in time. Continue with the {result_context}, or retry with a larger timeout."
@@ -2496,6 +2529,7 @@ def _build_backend_diagnostic(
         "intent_strategy": intent_strategy,
         "intent_prompt_profile": intent_prompt_profile,
         "intent_primary_timeout_seconds": intent_primary_timeout_seconds,
+        "intent_timeout_capped": intent_timeout_capped,
         "timeout_recovery_attempted": timeout_recovery_attempted,
         "timeout_recovery_skipped": timeout_recovery_skipped,
         "timeout_recovery_skip_reason": timeout_recovery_skip_reason,
@@ -2868,6 +2902,12 @@ def _runtime_environment_recommended_fix(blockers: list[str]) -> str:
             return "Activate the Python environment that contains the PyQUDA core bindings, then rerun the probe command."
         if "Gauge configuration not found:" in blocker or "Propagator not found:" in blocker:
             return "Fix the input-path visibility on the target filesystem, then rerun the probe command."
+        if "requires a writable parent directory" in blocker or "Unable to locate an existing parent directory for" in blocker:
+            return "Choose or create a writable output directory on the target filesystem, then rerun the probe command."
+        if "must be divisible by GRID_SIZE" in blocker or "GRID_SIZE must" in blocker or "LATTICE_SIZE must" in blocker:
+            return "Fix the lattice/grid launch assumptions so they match the target cluster layout, then rerun the probe command."
+        if "Expected sibling review artifacts next to this script" in blocker:
+            return "Restore the sibling .physics.json, .task.json, and .plan.json artifacts next to the generated script, then rerun the probe command."
     return "Fix the missing runtime prerequisites, then rerun the probe command."
 
 
@@ -2875,6 +2915,24 @@ def _runtime_probe_driver_recommended_fix(*, artifact_path: str | None) -> str:
     if artifact_path:
         return f"Inspect the probe artifact at `{artifact_path}` for the harness-side traceback, then rerun the probe command."
     return "Inspect the probe artifact for the harness-side traceback, then rerun the probe command."
+
+
+def _runtime_probe_blocked_recommended_fix(*, status: str | None, blockers: list[str], artifact_path: str | None) -> str:
+    if status == "input_visibility_blocked":
+        return "Fix the input-path visibility on the target filesystem for all ranks, then rerun the probe command."
+    if status == "output_writability_blocked":
+        return "Choose or create a writable output directory on the target filesystem, then rerun the probe command."
+    if status == "cluster_assumption_mismatch":
+        return "Align lattice/grid/resource-path assumptions with the target cluster launch configuration, then rerun the probe command."
+    if status == "artifact_chain_missing":
+        return "Restore the sibling .physics.json, .task.json, and .plan.json artifacts next to the generated script, then rerun the probe command."
+    if status == "handoff_contract_mismatch":
+        return "Fix the generated-script handoff contract inputs or fixed workflow parameters, then rerun the probe command."
+    if status == "probe_timeout":
+        return "Increase the probe timeout or reduce startup latency in the target runtime environment, then rerun the probe command."
+    if blockers:
+        return _runtime_environment_recommended_fix(blockers)
+    return _runtime_probe_driver_recommended_fix(artifact_path=artifact_path)
 
 
 def _build_runtime_diagnostic(*, result: dict, workflow_outcome: dict) -> dict | None:
@@ -2967,12 +3025,27 @@ def _build_runtime_diagnostic(*, result: dict, workflow_outcome: dict) -> dict |
         }
 
     if _runtime_probe_is_blocked(runtime_probe_status):
+        blocked_status = str(runtime_probe_status or execution_status or "runtime_blocked")
+        recommended_fix = _runtime_probe_blocked_recommended_fix(
+            status=blocked_status,
+            blockers=blockers,
+            artifact_path=artifact_path,
+        )
+        category = blocked_status if blocked_status in {
+            "input_visibility_blocked",
+            "output_writability_blocked",
+            "cluster_assumption_mismatch",
+            "artifact_chain_missing",
+            "handoff_contract_mismatch",
+            "probe_timeout",
+            "probe_failed",
+        } else "runtime_blocked"
         return {
-            "status": str(runtime_probe_status or execution_status or "runtime_blocked"),
-            "category": "runtime_blocked",
+            "status": blocked_status,
+            "category": category,
             "message": "Runtime proof was attempted, but the generated script is still blocked on runtime-side issues.",
-            "next_step": workflow_outcome.get("next_step"),
-            "recommended_fix": None,
+            "next_step": recommended_fix,
+            "recommended_fix": recommended_fix,
             "artifact_path": artifact_path,
             "probe_command": probe_command,
             "retry_command": probe_command,
@@ -3837,6 +3910,7 @@ def _backend_fix_command(config: RunConfig, result: dict, backend_diagnostic: di
     selected_backend = backend_diagnostic.get("selected_backend")
     requested_backend = backend_diagnostic.get("requested_backend")
     intent_primary_timeout_seconds = backend_diagnostic.get("intent_primary_timeout_seconds")
+    intent_timeout_capped = bool(backend_diagnostic.get("intent_timeout_capped"))
     resume_hint = result.get("resume_hint")
     if category == "configuration_missing":
         if requested_backend == "api":
@@ -3848,15 +3922,14 @@ def _backend_fix_command(config: RunConfig, result: dict, backend_diagnostic: di
     if category == "local_environment_error":
         if detail_category == "codex_app_client_init_failed":
             return "codex exec 'Reply with exactly: OK'"
-        if requested_backend in {"codex", "auto"}:
-            return _suggest_api_backend_retry(resume_hint)
+    if category == "network_error":
         return resume_hint
     if category == "authentication_error" and selected_backend == "codex":
         return "codex login"
     if category == "authentication_error" and requested_backend == "api":
         return resume_hint
     if category == "timeout":
-        if selected_backend == "codex" and intent_primary_timeout_seconds:
+        if selected_backend == "codex" and intent_primary_timeout_seconds and intent_timeout_capped:
             return _suggest_api_backend_retry(resume_hint) or resume_hint
         return _suggest_llm_timeout_retry(config, resume_hint)
     if category == "rate_limited":
@@ -3880,6 +3953,7 @@ def _backend_fix_title(backend_diagnostic: dict | None) -> str:
     selected_backend = backend_diagnostic.get("selected_backend")
     requested_backend = backend_diagnostic.get("requested_backend")
     intent_primary_timeout_seconds = backend_diagnostic.get("intent_primary_timeout_seconds")
+    intent_timeout_capped = bool(backend_diagnostic.get("intent_timeout_capped"))
     if category == "configuration_missing":
         if requested_backend == "api":
             return "Add an API model and retry backend assistance"
@@ -3894,7 +3968,7 @@ def _backend_fix_title(backend_diagnostic: dict | None) -> str:
         return "Switch to an API backend or install local codex"
     if category == "local_environment_error":
         if detail_category == "codex_app_client_init_failed":
-            return "Verify local codex exec outside pyquda-agent"
+            return "Verify local codex exec in a normal shell"
         if detail_category == "local_permission_error":
             return "Repair local codex permissions or switch backend"
         return "Repair the local codex environment or switch backend"
@@ -3909,7 +3983,7 @@ def _backend_fix_title(backend_diagnostic: dict | None) -> str:
             return "Check backend endpoint reachability before retrying"
         return "Restore network access before retrying backend assistance"
     if category == "timeout":
-        if selected_backend == "codex" and intent_primary_timeout_seconds:
+        if selected_backend == "codex" and intent_primary_timeout_seconds and intent_timeout_capped:
             return "Switch to an API backend for this request"
         return "Increase backend timeout and retry"
     if category == "rate_limited":
@@ -3933,6 +4007,7 @@ def _backend_fix_state(backend_diagnostic: dict | None) -> tuple[str, str | None
     selected_backend = backend_diagnostic.get("selected_backend")
     requested_backend = backend_diagnostic.get("requested_backend")
     intent_primary_timeout_seconds = backend_diagnostic.get("intent_primary_timeout_seconds")
+    intent_timeout_capped = bool(backend_diagnostic.get("intent_timeout_capped"))
     if category == "configuration_missing":
         if requested_backend == "api":
             return "conditional", "Re-run will add a model, but API credentials may still be required."
@@ -3945,7 +4020,7 @@ def _backend_fix_state(backend_diagnostic: dict | None) -> tuple[str, str | None
         return "conditional", "Switching to an API backend may help, but API credentials may still be required."
     if category == "local_environment_error":
         if detail_category == "codex_app_client_init_failed":
-            return "conditional", "Requires checking whether bare `codex exec` works outside pyquda-agent before retrying or switching backend."
+            return "conditional", "Requires checking whether bare `codex exec` works in a normal local shell outside the current sandbox before retrying or switching backend."
         if detail_category == "local_permission_error":
             return "conditional", "Requires fixing local codex permissions or environment restrictions before retrying."
         return "conditional", "Retry may require fixing the local codex environment or switching to an API backend."
@@ -3954,7 +4029,7 @@ def _backend_fix_state(backend_diagnostic: dict | None) -> tuple[str, str | None
     if category == "authentication_error":
         return "conditional", "Requires correcting backend authentication before retrying."
     if category == "timeout":
-        if selected_backend == "codex" and intent_primary_timeout_seconds:
+        if selected_backend == "codex" and intent_primary_timeout_seconds and intent_timeout_capped:
             return "conditional", "This codex intent path already uses a short capped first-attempt timeout; switching backend may help more than increasing --llm-timeout."
         return "ready", None
     if category == "rate_limited":
@@ -3986,6 +4061,18 @@ def _runtime_fix_title(runtime_diagnostic: dict | None) -> str:
         return "Repair the runtime environment before retrying the probe"
     if category == "probe_driver_failed":
         return "Inspect the probe artifact and repair the harness-side failure"
+    if category == "input_visibility_blocked":
+        return "Fix input visibility before retrying the probe"
+    if category == "output_writability_blocked":
+        return "Fix output-directory writability before retrying the probe"
+    if category == "cluster_assumption_mismatch":
+        return "Fix cluster-layout assumptions before retrying the probe"
+    if category == "artifact_chain_missing":
+        return "Restore sibling review artifacts before retrying the probe"
+    if category == "handoff_contract_mismatch":
+        return "Fix the handoff contract before retrying the probe"
+    if category == "probe_timeout":
+        return "Increase probe timeout or reduce startup latency"
     return "Repair the runtime blockers before retrying the probe"
 
 
@@ -4003,6 +4090,18 @@ def _runtime_fix_state(runtime_diagnostic: dict | None) -> tuple[str, str | None
             "conditional",
             "Requires inspecting the probe artifact and fixing the harness-side failure before retrying.",
         )
+    if category == "input_visibility_blocked":
+        return "conditional", "Requires making all input paths visible on the target filesystem before retrying."
+    if category == "output_writability_blocked":
+        return "conditional", "Requires a writable output directory on the target filesystem before retrying."
+    if category == "cluster_assumption_mismatch":
+        return "conditional", "Requires aligning lattice/grid/resource-path assumptions with the target launch layout before retrying."
+    if category == "artifact_chain_missing":
+        return "conditional", "Requires restoring the sibling review artifacts next to the generated script before retrying."
+    if category == "handoff_contract_mismatch":
+        return "conditional", "Requires correcting generated-script handoff inputs or fixed workflow parameters before retrying."
+    if category == "probe_timeout":
+        return "conditional", "Requires increasing probe timeout or reducing runtime startup latency before retrying."
     if category == "runtime_blocked":
         return "conditional", "Requires resolving the current runtime blockers before the probe can succeed."
     return "blocked", None

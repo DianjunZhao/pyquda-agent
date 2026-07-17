@@ -25,6 +25,9 @@
       "exists": true,
       "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python",
       "report": {
+        "blocker_categories": [
+          "module_missing"
+        ],
         "checks": [
           {
             "module": "numpy",
@@ -60,24 +63,28 @@
         "evidence_levels": {
           "blockers": [
             {
+              "category": "module_missing",
               "error": "No module named 'cupy'",
               "error_type": "ModuleNotFoundError",
               "module": "cupy",
               "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
             },
             {
+              "category": "module_missing",
               "error": "No module named 'pyquda'",
               "error_type": "ModuleNotFoundError",
               "module": "pyquda",
               "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
             },
             {
+              "category": "module_missing",
               "error": "No module named 'pyquda_utils'",
               "error_type": "ModuleNotFoundError",
               "module": "pyquda_utils",
               "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
             },
             {
+              "category": "module_missing",
               "error": "No module named 'pyquda_utils'",
               "error_type": "ModuleNotFoundError",
               "module": "pyquda_utils.core",
@@ -90,22 +97,72 @@
           "structurally_grounded": null,
           "syntax_valid": null
         },
+        "missing_modules": [
+          "cupy",
+          "pyquda",
+          "pyquda_utils",
+          "pyquda_utils.core"
+        ],
+        "next_actions": [
+          "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.",
+          "Build or install the PyQUDA core bindings in this Python environment before runtime proof.",
+          "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.",
+          "Check that pyquda_utils is importable and that the built core helpers are present.",
+          "Re-run this check with --use-repo-pythonpath if you want to test whether the local ~/PyQUDA checkout is sufficient for import discovery."
+        ],
+        "primary_blocker": {
+          "category": "module_missing",
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy"
+        },
         "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
         "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python",
         "ready": false,
+        "repo_pythonpath_diagnostic": {
+          "detail": "Re-run with --use-repo-pythonpath if you want to test whether the local checkout is discoverable without installation.",
+          "status": "not_attempted"
+        },
         "runtime_level": "environment_missing",
+        "shortest_remaining_steps": [
+          "Install CuPy into the target Python environment.",
+          "Build or install pyquda into the target Python environment.",
+          "Install the PyQUDA Python package or make the checkout importable in upstream-supported dev mode.",
+          "Ensure pyquda_utils.core is importable after installing/building PyQUDA."
+        ],
+        "status": "environment_missing",
+        "submission_checklist": [
+          {
+            "detail": "Using interpreter /Users/zhaodianjun/lamet-agent/.venv/bin/python.",
+            "kind": "python_interpreter",
+            "status": "ok"
+          },
+          {
+            "detail": "One or more required runtime modules are missing from the current Python environment.",
+            "kind": "module_imports",
+            "status": "blocked"
+          },
+          {
+            "detail": "Did not modify PYTHONPATH for this probe.",
+            "kind": "repo_pythonpath",
+            "status": "disabled"
+          }
+        ],
         "used_repo_pythonpath": false
       },
       "resolved_python": "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
       "returncode": 1,
       "stderr": "",
-      "stdout": "{\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"environment_ready\": false,\n  \"evidence_levels\": {\n    \"blockers\": [\n      {\n        \"error\": \"No module named 'cupy'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"cupy\",\n        \"suggestion\": \"Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda\",\n        \"suggestion\": \"Build or install the PyQUDA core bindings in this Python environment before runtime proof.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda_utils'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils\",\n        \"suggestion\": \"Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda_utils'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils.core\",\n        \"suggestion\": \"Check that pyquda_utils is importable and that the built core helpers are present.\"\n      }\n    ],\n    \"current_level\": \"environment_missing\",\n    \"runtime_proved\": false,\n    \"runtime_ready\": false,\n    \"structurally_grounded\": null,\n    \"syntax_valid\": null\n  },\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/lamet-agent/.venv/bin/python\",\n  \"ready\": false,\n  \"runtime_level\": \"environment_missing\",\n  \"used_repo_pythonpath\": false\n}",
+      "stdout": "{\n  \"blocker_categories\": [\n    \"module_missing\"\n  ],\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"environment_ready\": false,\n  \"evidence_levels\": {\n    \"blockers\": [\n      {\n        \"category\": \"module_missing\",\n        \"error\": \"No module named 'cupy'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"cupy\",\n        \"suggestion\": \"Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.\"\n      },\n      {\n        \"category\": \"module_missing\",\n        \"error\": \"No module named 'pyquda'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda\",\n        \"suggestion\": \"Build or install the PyQUDA core bindings in this Python environment before runtime proof.\"\n      },\n      {\n        \"category\": \"module_missing\",\n        \"error\": \"No module named 'pyquda_utils'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils\",\n        \"suggestion\": \"Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.\"\n      },\n      {\n        \"category\": \"module_missing\",\n        \"error\": \"No module named 'pyquda_utils'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils.core\",\n        \"suggestion\": \"Check that pyquda_utils is importable and that the built core helpers are present.\"\n      }\n    ],\n    \"current_level\": \"environment_missing\",\n    \"runtime_proved\": false,\n    \"runtime_ready\": false,\n    \"structurally_grounded\": null,\n    \"syntax_valid\": null\n  },\n  \"missing_modules\": [\n    \"cupy\",\n    \"pyquda\",\n    \"pyquda_utils\",\n    \"pyquda_utils.core\"\n  ],\n  \"next_actions\": [\n    \"Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.\",\n    \"Build or install the PyQUDA core bindings in this Python environment before runtime proof.\",\n    \"Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.\",\n    \"Check that pyquda_utils is importable and that the built core helpers are present.\",\n    \"Re-run this check with --use-repo-pythonpath if you want to test whether the local ~/PyQUDA checkout is sufficient for import discovery.\"\n  ],\n  \"primary_blocker\": {\n    \"category\": \"module_missing\",\n    \"error\": \"No module named 'cupy'\",\n    \"error_type\": \"ModuleNotFoundError\",\n    \"module\": \"cupy\"\n  },\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/lamet-agent/.venv/bin/python\",\n  \"ready\": false,\n  \"repo_pythonpath_diagnostic\": {\n    \"detail\": \"Re-run with --use-repo-pythonpath if you want to test whether the local checkout is discoverable without installation.\",\n    \"status\": \"not_attempted\"\n  },\n  \"runtime_level\": \"environment_missing\",\n  \"shortest_remaining_steps\": [\n    \"Install CuPy into the target Python environment.\",\n    \"Build or install pyquda into the target Python environment.\",\n    \"Install the PyQUDA Python package or make the checkout importable in upstream-supported dev mode.\",\n    \"Ensure pyquda_utils.core is importable after installing/building PyQUDA.\"\n  ],\n  \"status\": \"environment_missing\",\n  \"submission_checklist\": [\n    {\n      \"detail\": \"Using interpreter /Users/zhaodianjun/lamet-agent/.venv/bin/python.\",\n      \"kind\": \"python_interpreter\",\n      \"status\": \"ok\"\n    },\n    {\n      \"detail\": \"One or more required runtime modules are missing from the current Python environment.\",\n      \"kind\": \"module_imports\",\n      \"status\": \"blocked\"\n    },\n    {\n      \"detail\": \"Did not modify PYTHONPATH for this probe.\",\n      \"kind\": \"repo_pythonpath\",\n      \"status\": \"disabled\"\n    }\n  ],\n  \"used_repo_pythonpath\": false\n}",
       "used_repo_pythonpath": false
     },
     {
       "exists": true,
       "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python",
       "report": {
+        "blocker_categories": [
+          "module_missing"
+        ],
         "checks": [
           {
             "module": "numpy",
@@ -141,24 +198,28 @@
         "evidence_levels": {
           "blockers": [
             {
+              "category": "module_missing",
               "error": "No module named 'cupy'",
               "error_type": "ModuleNotFoundError",
               "module": "cupy",
               "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
             },
             {
+              "category": "module_missing",
               "error": "No module named 'pyquda'",
               "error_type": "ModuleNotFoundError",
               "module": "pyquda",
               "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
             },
             {
+              "category": "module_missing",
               "error": "No module named 'pyquda_utils._version'",
               "error_type": "ModuleNotFoundError",
               "module": "pyquda_utils",
               "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
             },
             {
+              "category": "module_missing",
               "error": "No module named 'pyquda_utils._version'",
               "error_type": "ModuleNotFoundError",
               "module": "pyquda_utils.core",
@@ -171,16 +232,63 @@
           "structurally_grounded": null,
           "syntax_valid": null
         },
+        "missing_modules": [
+          "cupy",
+          "pyquda",
+          "pyquda_utils",
+          "pyquda_utils.core"
+        ],
+        "next_actions": [
+          "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.",
+          "Build or install the PyQUDA core bindings in this Python environment before runtime proof.",
+          "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.",
+          "Check that pyquda_utils is importable and that the built core helpers are present."
+        ],
+        "primary_blocker": {
+          "category": "module_missing",
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy"
+        },
         "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
         "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python",
         "ready": false,
+        "repo_pythonpath_diagnostic": {
+          "detail": "The checkout became partially visible on PYTHONPATH, but imports still failed because `pyquda_utils._version` is missing from the uninstalled layout. This indicates that plain repo-root PYTHONPATH is not enough; use the upstream install/dev-mode path.",
+          "status": "insufficient_checkout_layout"
+        },
         "runtime_level": "environment_missing",
+        "shortest_remaining_steps": [
+          "Install CuPy into the target Python environment.",
+          "Build or install pyquda into the target Python environment.",
+          "Install the PyQUDA Python package or make the checkout importable in upstream-supported dev mode.",
+          "Ensure pyquda_utils.core is importable after installing/building PyQUDA.",
+          "Follow the upstream install/dev-mode path instead of relying on repo-root PYTHONPATH alone."
+        ],
+        "status": "environment_missing",
+        "submission_checklist": [
+          {
+            "detail": "Using interpreter /Users/zhaodianjun/lamet-agent/.venv/bin/python.",
+            "kind": "python_interpreter",
+            "status": "ok"
+          },
+          {
+            "detail": "One or more required runtime modules are missing from the current Python environment.",
+            "kind": "module_imports",
+            "status": "blocked"
+          },
+          {
+            "detail": "Temporarily prepended /Users/zhaodianjun/PyQUDA to PYTHONPATH for this probe.",
+            "kind": "repo_pythonpath",
+            "status": "enabled"
+          }
+        ],
         "used_repo_pythonpath": true
       },
       "resolved_python": "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
       "returncode": 1,
       "stderr": "",
-      "stdout": "{\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"environment_ready\": false,\n  \"evidence_levels\": {\n    \"blockers\": [\n      {\n        \"error\": \"No module named 'cupy'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"cupy\",\n        \"suggestion\": \"Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda\",\n        \"suggestion\": \"Build or install the PyQUDA core bindings in this Python environment before runtime proof.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda_utils._version'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils\",\n        \"suggestion\": \"Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda_utils._version'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils.core\",\n        \"suggestion\": \"Check that pyquda_utils is importable and that the built core helpers are present.\"\n      }\n    ],\n    \"current_level\": \"environment_missing\",\n    \"runtime_proved\": false,\n    \"runtime_ready\": false,\n    \"structurally_grounded\": null,\n    \"syntax_valid\": null\n  },\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/lamet-agent/.venv/bin/python\",\n  \"ready\": false,\n  \"runtime_level\": \"environment_missing\",\n  \"used_repo_pythonpath\": true\n}",
+      "stdout": "{\n  \"blocker_categories\": [\n    \"module_missing\"\n  ],\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"environment_ready\": false,\n  \"evidence_levels\": {\n    \"blockers\": [\n      {\n        \"category\": \"module_missing\",\n        \"error\": \"No module named 'cupy'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"cupy\",\n        \"suggestion\": \"Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.\"\n      },\n      {\n        \"category\": \"module_missing\",\n        \"error\": \"No module named 'pyquda'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda\",\n        \"suggestion\": \"Build or install the PyQUDA core bindings in this Python environment before runtime proof.\"\n      },\n      {\n        \"category\": \"module_missing\",\n        \"error\": \"No module named 'pyquda_utils._version'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils\",\n        \"suggestion\": \"Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.\"\n      },\n      {\n        \"category\": \"module_missing\",\n        \"error\": \"No module named 'pyquda_utils._version'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils.core\",\n        \"suggestion\": \"Check that pyquda_utils is importable and that the built core helpers are present.\"\n      }\n    ],\n    \"current_level\": \"environment_missing\",\n    \"runtime_proved\": false,\n    \"runtime_ready\": false,\n    \"structurally_grounded\": null,\n    \"syntax_valid\": null\n  },\n  \"missing_modules\": [\n    \"cupy\",\n    \"pyquda\",\n    \"pyquda_utils\",\n    \"pyquda_utils.core\"\n  ],\n  \"next_actions\": [\n    \"Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.\",\n    \"Build or install the PyQUDA core bindings in this Python environment before runtime proof.\",\n    \"Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.\",\n    \"Check that pyquda_utils is importable and that the built core helpers are present.\"\n  ],\n  \"primary_blocker\": {\n    \"category\": \"module_missing\",\n    \"error\": \"No module named 'cupy'\",\n    \"error_type\": \"ModuleNotFoundError\",\n    \"module\": \"cupy\"\n  },\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/lamet-agent/.venv/bin/python\",\n  \"ready\": false,\n  \"repo_pythonpath_diagnostic\": {\n    \"detail\": \"The checkout became partially visible on PYTHONPATH, but imports still failed because `pyquda_utils._version` is missing from the uninstalled layout. This indicates that plain repo-root PYTHONPATH is not enough; use the upstream install/dev-mode path.\",\n    \"status\": \"insufficient_checkout_layout\"\n  },\n  \"runtime_level\": \"environment_missing\",\n  \"shortest_remaining_steps\": [\n    \"Install CuPy into the target Python environment.\",\n    \"Build or install pyquda into the target Python environment.\",\n    \"Install the PyQUDA Python package or make the checkout importable in upstream-supported dev mode.\",\n    \"Ensure pyquda_utils.core is importable after installing/building PyQUDA.\",\n    \"Follow the upstream install/dev-mode path instead of relying on repo-root PYTHONPATH alone.\"\n  ],\n  \"status\": \"environment_missing\",\n  \"submission_checklist\": [\n    {\n      \"detail\": \"Using interpreter /Users/zhaodianjun/lamet-agent/.venv/bin/python.\",\n      \"kind\": \"python_interpreter\",\n      \"status\": \"ok\"\n    },\n    {\n      \"detail\": \"One or more required runtime modules are missing from the current Python environment.\",\n      \"kind\": \"module_imports\",\n      \"status\": \"blocked\"\n    },\n    {\n      \"detail\": \"Temporarily prepended /Users/zhaodianjun/PyQUDA to PYTHONPATH for this probe.\",\n      \"kind\": \"repo_pythonpath\",\n      \"status\": \"enabled\"\n    }\n  ],\n  \"used_repo_pythonpath\": true\n}",
       "used_repo_pythonpath": true
     },
     {
@@ -205,5 +313,18 @@
     }
   ],
   "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
-  "ready_candidates": []
+  "ready_candidates": [],
+  "summary": {
+    "best_candidate_python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python",
+    "best_candidate_status": "blocked",
+    "blocker_categories": [
+      "module_missing"
+    ],
+    "shortest_remaining_blockers": [
+      "cupy",
+      "pyquda",
+      "pyquda_utils",
+      "pyquda_utils.core"
+    ]
+  }
 }

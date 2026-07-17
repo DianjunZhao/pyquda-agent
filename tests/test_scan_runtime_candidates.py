@@ -16,7 +16,12 @@ class ScanRuntimeCandidatesTests(unittest.TestCase):
             fake_python.write_text("", encoding="utf-8")
 
             class Completed:
-                def __init__(self, returncode=1, stdout='{"ready": false}', stderr=""):
+                def __init__(
+                    self,
+                    returncode=1,
+                    stdout='{"ready": false, "blocker_categories": ["module_missing"], "missing_modules": ["cupy"]}',
+                    stderr="",
+                ):
                     self.returncode = returncode
                     self.stdout = stdout
                     self.stderr = stderr
@@ -28,6 +33,8 @@ class ScanRuntimeCandidatesTests(unittest.TestCase):
             self.assertEqual(len(report["interpreters"]), 2)
             self.assertEqual(report["interpreters"][0]["python"], str(fake_python))
             self.assertIn("resolved_python", report["interpreters"][0])
+            self.assertEqual(report["summary"]["best_candidate_status"], "blocked")
+            self.assertIn("module_missing", report["summary"]["blocker_categories"])
 
     def test_main_writes_report(self):
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -58,6 +65,7 @@ class ScanRuntimeCandidatesTests(unittest.TestCase):
             payload = json.loads(output.read_text(encoding="utf-8"))
             self.assertTrue(payload["any_ready"])
             self.assertEqual(payload["interpreters"][0]["python"], str(fake_python))
+            self.assertEqual(payload["summary"]["best_candidate_status"], "ready")
 
 
 if __name__ == "__main__":

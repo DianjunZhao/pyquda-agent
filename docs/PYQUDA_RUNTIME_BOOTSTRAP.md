@@ -81,6 +81,16 @@ Additional local checkout evidence:
 
 That means the remaining blocker is not missing workflow inputs; it is the absence of an importable built PyQUDA runtime in the currently scanned environments.
 
+The newer execution-readiness surface in `data/v12_execution_readiness.json` now separates runtime blockers into:
+
+- `module_missing`: the Python environment is missing `cupy`, `pyquda`, or `pyquda_utils`
+- `probe_driver_failed`: the probe harness could not execute cleanly enough to assess the script
+- `input_visibility_blocked`: gauge or propagator inputs are not visible on the target filesystem
+- `output_writability_blocked`: the chosen output parent is not writable on the submission filesystem
+- `cluster_assumption_mismatch`: lattice/grid/resource-path assumptions do not match the intended launch layout
+
+Those categories are meant to drive pre-submit repair actions instead of collapsing every blocked run into a generic `runtime_missing`.
+
 ## Minimal completion path
 
 To close the last unproved audit item on this machine:
@@ -95,6 +105,7 @@ To close the last unproved audit item on this machine:
 $PYTHON_BIN scripts/scan_runtime_candidates.py --pyquda-repo ~/PyQUDA
 $PYTHON_BIN scripts/refresh_runtime_check.py --pyquda-repo ~/PyQUDA
 $PYTHON_BIN scripts/probe_generated_workflow.py --script outputs/run_pion_api.py --output data/run_pion_api_probe.json
+$PYTHON_BIN scripts/validate_v12_execution_readiness.py
 $PYTHON_BIN scripts/refresh_goal_audit.py
 ```
 

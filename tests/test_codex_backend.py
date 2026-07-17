@@ -81,6 +81,16 @@ class CodexBackendTests(unittest.TestCase):
                 with self.assertRaises(BackendInvocationError) as ctx:
                     backend.preflight(timeout_seconds=1.0)
         self.assertEqual(ctx.exception.category, "timeout")
+        self.assertEqual(ctx.exception.detail_category, "codex_preflight_timeout")
+
+    def test_codex_backend_generate_text_timeout_has_detail_category(self):
+        backend = self._backend()
+        with patch("pyquda_agent.backends.codex.shutil.which", return_value="/usr/bin/codex"):
+            with patch("pyquda_agent.backends.codex.subprocess.run", side_effect=TimeoutExpired(cmd=["codex"], timeout=1)):
+                with self.assertRaises(BackendInvocationError) as ctx:
+                    backend.generate_text(system_prompt="s", user_prompt="u")
+        self.assertEqual(ctx.exception.category, "timeout")
+        self.assertEqual(ctx.exception.detail_category, "codex_backend_timeout")
 
     def test_codex_backend_generate_text_does_not_pass_output_schema(self):
         backend = self._backend()

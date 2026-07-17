@@ -1,4 +1,5 @@
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -15,7 +16,7 @@ class ValidateBackendExecutionTests(unittest.TestCase):
                 self.returncode = returncode
                 self.stderr = stderr
 
-        def fake_run(cmd, cwd=None, text=None, capture_output=None, check=None, env=None):
+        def fake_run(cmd, cwd=None, text=None, capture_output=None, check=None, env=None, timeout=None):
             output_path = Path(cmd[cmd.index("--output") + 1])
             output_path.with_suffix(".physics.json").write_text(json.dumps({}), encoding="utf-8")
             output_path.with_suffix(".task.json").write_text(json.dumps({}), encoding="utf-8")
@@ -57,7 +58,7 @@ class ValidateBackendExecutionTests(unittest.TestCase):
                     "session_backend_memory_used": False,
                     "session_backend_memory_reason": None,
                     "session_backend_prior_category": None,
-                    "intent_primary_timeout_seconds": 8.0 if rough_pion else 12.0,
+                    "intent_primary_timeout_seconds": 10.0 if rough_pion else 12.0,
                     "timeout_recovery_attempted": not rough_pion,
                     "timeout_recovery_skipped": rough_pion,
                     "timeout_recovery_skip_reason": (
@@ -169,7 +170,7 @@ class ValidateBackendExecutionTests(unittest.TestCase):
                             self.assertFalse(case["backend_path"]["codex_preflight_attempted"])
                             self.assertTrue(case["backend_path"]["codex_preflight_skipped"])
                             self.assertEqual(case["backend_path"]["codex_preflight_status"], "skipped")
-                            self.assertEqual(case["backend_path"]["intent_primary_timeout_seconds"], 8.0)
+                            self.assertEqual(case["backend_path"]["intent_primary_timeout_seconds"], 10.0)
                             self.assertTrue(case["backend_path"]["timeout_recovery_skipped"])
                             self.assertFalse(case["backend_path"]["timeout_recovery_attempted"])
                         else:
@@ -218,6 +219,11 @@ class ValidateBackendExecutionTests(unittest.TestCase):
                     self.assertEqual(case["case_summary"]["execution_phase"], "blocked_by_generation")
                     self.assertTrue(case["case_summary"]["backend_retryable_now"])
                     self.assertEqual(case["case_summary"]["runtime_category"], None)
+            self.assertIn("repair_contract", backend_entry)
+            if backend_entry["availability_state"] == "fallback_only":
+                self.assertIsNotNone(backend_entry["repair_contract"])
+                self.assertIn("recommended_fix", backend_entry["repair_contract"])
+                self.assertIn("verification_command", backend_entry["repair_contract"])
             self.assertEqual(payload["backend_summary"]["failure_origin_counts"]["local_configuration"], 4)
             self.assertEqual(payload["backend_summary"]["failure_origin_counts"]["network"], 2)
             self.assertEqual(payload["backend_summary"]["recovery_mode_counts"]["configure_backend"], 4)
@@ -230,7 +236,7 @@ class ValidateBackendExecutionTests(unittest.TestCase):
                 self.returncode = returncode
                 self.stderr = stderr
 
-        def fake_run(cmd, cwd=None, text=None, capture_output=None, check=None, env=None):
+        def fake_run(cmd, cwd=None, text=None, capture_output=None, check=None, env=None, timeout=None):
             output_path = Path(cmd[cmd.index("--output") + 1])
             output_path.with_suffix(".physics.json").write_text(json.dumps({}), encoding="utf-8")
             output_path.with_suffix(".task.json").write_text(json.dumps({}), encoding="utf-8")
@@ -261,7 +267,7 @@ class ValidateBackendExecutionTests(unittest.TestCase):
                     "session_backend_memory_used": False,
                     "session_backend_memory_reason": None,
                     "session_backend_prior_category": None,
-                    "intent_primary_timeout_seconds": 8.0 if rough_pion else 12.0,
+                    "intent_primary_timeout_seconds": 10.0 if rough_pion else 12.0,
                     "timeout_recovery_attempted": not rough_pion,
                     "timeout_recovery_skipped": rough_pion,
                     "timeout_recovery_skip_reason": (
@@ -374,7 +380,7 @@ class ValidateBackendExecutionTests(unittest.TestCase):
                         self.assertEqual(case["case_summary"]["backend_failure_origin"], "network")
                         if case["case"] == "rough_pion":
                             self.assertTrue(case["case_summary"]["codex_preflight_skipped"])
-                            self.assertEqual(case["case_summary"]["intent_primary_timeout_seconds"], 8.0)
+                            self.assertEqual(case["case_summary"]["intent_primary_timeout_seconds"], 10.0)
                             self.assertTrue(case["case_summary"]["timeout_recovery_skipped"])
                         else:
                             self.assertTrue(case["case_summary"]["codex_preflight_soft_failed"])
@@ -393,6 +399,104 @@ class ValidateBackendExecutionTests(unittest.TestCase):
                         self.assertTrue(case["case_summary"]["session_backend_memory_considered"])
                         self.assertFalse(case["case_summary"]["session_backend_memory_used"])
                         self.assertEqual(case["case_summary"]["session_backend_prior_category"], "timeout")
+
+    def test_main_records_case_timeout_as_validator_timeout(self):
+        class Completed:
+            def __init__(self, stdout: str, returncode: int = 0, stderr: str = ""):
+                self.stdout = stdout
+                self.returncode = returncode
+                self.stderr = stderr
+
+        def fake_run(cmd, cwd=None, text=None, capture_output=None, check=None, env=None, timeout=None):
+            output_path = Path(cmd[cmd.index("--output") + 1])
+            backend = cmd[cmd.index("--backend") + 1]
+            request = cmd[4]
+            if backend == "codex" and "pi meson two-point" in request:
+                raise subprocess.TimeoutExpired(
+                    cmd=cmd,
+                    timeout=timeout,
+                    output='{"status":"partial"}',
+                    stderr="validator case timeout",
+                )
+            output_path.with_suffix(".physics.json").write_text(json.dumps({}), encoding="utf-8")
+            output_path.with_suffix(".task.json").write_text(json.dumps({}), encoding="utf-8")
+            output_path.with_suffix(".plan.json").write_text(json.dumps({}), encoding="utf-8")
+            target_id = "meson_two_point_correlator_unspecified" if "meson correlator" in request else "pion_two_point_correlator"
+            payload = {
+                "status": "needs_input",
+                "product_status": "needs_input",
+                "physics": {
+                    "inferred_interpretation": {"target_id": target_id},
+                    "formula_proposals": [{"proposal_id": "proposal"}],
+                },
+                "generation_result": {"phase": "blocked_on_input"},
+                "execution_result": {"phase": "blocked_by_generation"},
+                "delivery_status": {
+                    "generation": {"phase": "blocked_on_input"},
+                    "execution": {"phase": "blocked_by_generation"},
+                },
+                "llm_assistance": {
+                    "used": True,
+                    "attempted": True,
+                    "fallback": False,
+                    "requested_backend": backend,
+                    "selected_backend": backend,
+                    "selection_reason": "mock used",
+                },
+                "backend_diagnostic": {
+                    "status": "used",
+                    "category": None,
+                    "failure_origin": None,
+                    "recovery_mode": "continue",
+                    "retryable_now": True,
+                },
+            }
+            return Completed(stdout=json.dumps(payload))
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            report_path = Path(tmpdir) / "data" / "backend_execution.json"
+            with patch("scripts.validate_backend_execution.subprocess.run", side_effect=fake_run):
+                exit_code = main(
+                    [
+                        "--pyquda-repo",
+                        "/tmp/PyQUDA",
+                        "--output",
+                        str(report_path),
+                        "--case-timeout",
+                        "7",
+                    ]
+                )
+
+            self.assertEqual(exit_code, 1)
+            payload = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertEqual(payload["case_timeout"], 7.0)
+            codex_entry = next(item for item in payload["backends"] if item["backend"] == "codex")
+            self.assertEqual(codex_entry["availability_state"], "incoherent")
+            self.assertFalse(codex_entry["coherent"])
+            timeout_case = next(case for case in codex_entry["cases"] if case["case"] == "rough_pion")
+            self.assertEqual(timeout_case["status"], "validator_timeout")
+            self.assertEqual(timeout_case["product_status"], "validator_timeout")
+            self.assertEqual(timeout_case["backend_diagnostic"]["status"], "validator_timeout")
+            self.assertEqual(timeout_case["backend_diagnostic"]["detail_category"], "validator_case_timeout")
+            self.assertEqual(timeout_case["backend_diagnostic"]["failure_origin"], "local_validator")
+            self.assertEqual(
+                timeout_case["backend_diagnostic"]["recovery_mode"],
+                "increase_validator_timeout_or_run_case_directly",
+            )
+            self.assertEqual(timeout_case["backend_path"]["backend_mode"], "attempted_without_result")
+            self.assertEqual(timeout_case["backend_path"]["requested_backend"], "codex")
+            self.assertEqual(timeout_case["backend_path"]["selected_backend"], "codex")
+            self.assertEqual(timeout_case["case_timeout_seconds"], 7.0)
+            self.assertEqual(timeout_case["case_summary"]["backend_category"], "timeout")
+            self.assertEqual(timeout_case["case_summary"]["product_status"], "validator_timeout")
+            self.assertEqual(timeout_case["case_summary"]["generation_phase"], "validator_timeout")
+            self.assertEqual(timeout_case["case_summary"]["execution_phase"], "blocked_by_validator")
+            self.assertIsNotNone(codex_entry["repair_contract"])
+            self.assertEqual(codex_entry["repair_contract"]["detail_category"], "validator_case_timeout")
+            verification_command = codex_entry["repair_contract"]["verification_command"]
+            self.assertIn("scripts/validate_backend_execution.py", verification_command)
+            self.assertIn("--pyquda-repo", verification_command)
+            self.assertIn("--case-timeout 17", verification_command)
 
 
 if __name__ == "__main__":

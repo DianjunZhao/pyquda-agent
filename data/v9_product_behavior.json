@@ -18,7 +18,7 @@
       "group": "rough_request_clarification",
       "passed": true,
       "returncode": 0,
-      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.130s\n\nOK",
+      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.097s\n\nOK",
       "stdout": "",
       "tests": [
         "tests.test_intent_interpreter.IntentInterpreterTests.test_ambiguous_meson_request_generates_physics_question",
@@ -43,7 +43,7 @@
       "group": "backend_degradation",
       "passed": true,
       "returncode": 0,
-      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.082s\n\nOK",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.083s\n\nOK",
       "stdout": "",
       "tests": [
         "tests.test_cli_run.CliRunTests.test_cli_run_summary_reports_codex_timeout_guidance",
@@ -66,7 +66,7 @@
       "group": "terminal_execution_awareness",
       "passed": true,
       "returncode": 0,
-      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.115s\n\nOK",
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.117s\n\nOK",
       "stdout": "",
       "tests": [
         "tests.test_cli_run.CliRunTests.test_cli_run_can_print_terminal_message_via_result_format",
@@ -91,7 +91,7 @@
       "group": "supported_workflow_generation",
       "passed": true,
       "returncode": 0,
-      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.130s\n\nOK",
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.133s\n\nOK",
       "stdout": "",
       "tests": [
         "tests.test_cli_run.CliRunTests.test_cli_run_can_report_runtime_proved_after_probe",
@@ -136,7 +136,7 @@
       "group": "runtime_recovery_guidance",
       "passed": true,
       "returncode": 0,
-      "stderr": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.090s\n\nOK",
+      "stderr": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.077s\n\nOK",
       "stdout": "",
       "tests": [
         "tests.test_cli_run.CliRunTests.test_cli_run_can_optionally_probe_after_generation",
@@ -157,7 +157,7 @@
       "group": "explicit_unsupported_refusal",
       "passed": true,
       "returncode": 0,
-      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.105s\n\nOK",
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.098s\n\nOK",
       "stdout": "",
       "tests": [
         "tests.test_cli_run.CliRunTests.test_cli_run_explicit_unsupported_request_does_not_suggest_backend_fix_as_primary_action",

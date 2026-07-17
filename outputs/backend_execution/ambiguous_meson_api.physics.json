@@ -365,6 +365,7 @@
     "intent_primary_timeout_seconds": null,
     "intent_prompt_profile": "full",
     "intent_strategy": "full_interpretation",
+    "intent_timeout_capped": false,
     "model_name": "deepseek-chat",
     "notes": [],
     "provider": "deepseek",

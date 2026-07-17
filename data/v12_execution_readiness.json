@@ -1,0 +1,209 @@
+{
+  "all_passed": true,
+  "answers": {
+    "backend_truly_usable": {
+      "answer": true,
+      "evidence_cases": [
+        "backend_usable"
+      ]
+    },
+    "real_tasks_less_reliant_on_manual_fallback": {
+      "answer": true,
+      "evidence_cases": [
+        "real_tasks_need_less_manual_fallback"
+      ]
+    },
+    "runtime_evidence_stronger_than_v11": {
+      "answer": true,
+      "evidence_cases": [
+        "runtime_blocked_but_handoff_ready",
+        "runtime_blocked_due_to_missing_dependencies",
+        "runtime_blocked_due_to_probe_harness_failure",
+        "runtime_blocked_subclassification"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "case_id": "backend_usable",
+      "failure": null,
+      "observed": {
+        "fallback_only_backends": [],
+        "states": {
+          "api": "usable",
+          "auto": "usable",
+          "codex": "usable"
+        },
+        "usable_backends": [
+          "auto",
+          "api",
+          "codex"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case_id": "backend_degraded_but_continueable",
+      "failure": null,
+      "observed": {
+        "reason": "All tracked backends are currently usable, so no degraded-backend repair contract is required.",
+        "state": "not_needed",
+        "states": {
+          "api": "usable",
+          "auto": "usable",
+          "codex": "usable"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case_id": "backend_repair_path",
+      "failure": null,
+      "observed": {
+        "reason": "All tracked backends are currently usable, so no backend repair-path contract is required.",
+        "state": "not_needed",
+        "states": {
+          "api": "usable",
+          "auto": "usable",
+          "codex": "usable"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case_id": "runtime_blocked_but_handoff_ready",
+      "failure": null,
+      "observed": {
+        "direct_execution_status_counts": {
+          "runtime_missing": 17
+        },
+        "hpc_handoff_coherent_count": 17,
+        "report_status": "coherent_but_runtime_blocked"
+      },
+      "passed": true
+    },
+    {
+      "case_id": "runtime_blocked_due_to_missing_dependencies",
+      "failure": null,
+      "observed": {
+        "blocker_categories": [
+          "module_missing"
+        ],
+        "missing_modules": [
+          "cupy",
+          "pyquda",
+          "pyquda_utils",
+          "pyquda_utils.core"
+        ],
+        "next_actions": [
+          "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.",
+          "Build or install the PyQUDA core bindings in this Python environment before runtime proof.",
+          "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.",
+          "Check that pyquda_utils is importable and that the built core helpers are present.",
+          "Re-run this check with --use-repo-pythonpath if you want to test whether the local ~/PyQUDA checkout is sufficient for import discovery."
+        ],
+        "status": "environment_missing"
+      },
+      "passed": true
+    },
+    {
+      "case_id": "runtime_blocked_due_to_probe_harness_failure",
+      "failure": null,
+      "observed": {
+        "blocker_scope": "probe",
+        "next_action": "Inspect the local probe harness error and repair the Python/subprocess environment before retrying the probe.",
+        "runtime_level": "probe_driver_failed",
+        "status": "probe_driver_failed"
+      },
+      "passed": true
+    },
+    {
+      "case_id": "runtime_blocked_subclassification",
+      "failure": null,
+      "observed": {
+        "cluster_assumption_mismatch": {
+          "blocker_scope": "cluster",
+          "next_action": "Align lattice/grid/resource-path assumptions with the target cluster launch configuration, then rerun the probe.",
+          "status": "cluster_assumption_mismatch"
+        },
+        "input_visibility_blocked": {
+          "blocker_scope": "input",
+          "next_action": "Fix the input-path visibility on the target filesystem, then rerun the probe.",
+          "status": "input_visibility_blocked"
+        },
+        "output_writability_blocked": {
+          "blocker_scope": "output",
+          "next_action": "Choose or create a writable output directory on the target filesystem, then rerun the probe.",
+          "status": "output_writability_blocked"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case_id": "real_tasks_need_less_manual_fallback",
+      "failure": null,
+      "observed": {
+        "ambiguous_meson_operator": {
+          "category": "ambiguous_meson",
+          "clarification_mode": "physics_confirmation",
+          "passed": true,
+          "primary_action_kind": "continue_by_reply",
+          "product_status": "needs_input"
+        },
+        "explicit_meson_spec": {
+          "category": "explicit_supported",
+          "clarification_mode": "task_fields",
+          "passed": true,
+          "primary_action_kind": "continue_by_set",
+          "product_status": "needs_input"
+        },
+        "explicit_pion_2pt": {
+          "category": "explicit_supported",
+          "clarification_mode": "task_fields",
+          "passed": true,
+          "primary_action_kind": "continue_by_set",
+          "product_status": "needs_input"
+        },
+        "explicit_pion_pcac": {
+          "category": "explicit_supported",
+          "clarification_mode": "task_fields",
+          "passed": true,
+          "primary_action_kind": "continue_by_set",
+          "product_status": "needs_input"
+        },
+        "explicit_proton": {
+          "category": "explicit_supported",
+          "clarification_mode": "task_fields",
+          "passed": true,
+          "primary_action_kind": "continue_by_set",
+          "product_status": "needs_input"
+        },
+        "explicit_rho": {
+          "category": "explicit_supported",
+          "clarification_mode": "task_fields",
+          "passed": true,
+          "primary_action_kind": "continue_by_set",
+          "product_status": "needs_input"
+        }
+      },
+      "passed": true
+    }
+  ],
+  "note": "This validator does not claim runtime_proved on the current machine. It checks whether backend usability, backend repair contracts, runtime-blocker classifications, and rough-task first-response quality remain explicit enough for HPC handoff and retry planning.",
+  "suite": "v12_execution_readiness",
+  "summary": {
+    "case_count": 8,
+    "contract": "execution_readiness_v12",
+    "coverage": [
+      "backend truly usable",
+      "backend degraded but continueable",
+      "backend repair path",
+      "runtime blocked but handoff ready",
+      "runtime blocked due to missing dependencies",
+      "runtime blocked due to probe harness failure",
+      "runtime blocked due to input visibility / output writability / cluster assumptions",
+      "real tasks less reliant on manual fallback"
+    ],
+    "passed_case_count": 8
+  }
+}

@@ -19,6 +19,30 @@ class ProbeGeneratedWorkflowTests(unittest.TestCase):
             self.assertEqual(artifact["status"], "runtime_missing")
             self.assertNotEqual(artifact["returncode"], 0)
             self.assertIn("cupy", artifact["stderr"] or artifact["stdout"])
+            self.assertEqual(artifact["runtime_level"], "environment_missing")
+            self.assertEqual(artifact["blocker_scope"], "runtime")
+
+    def test_build_probe_classifies_input_visibility_blocker(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            script_path = Path(tmpdir) / "run.py"
+            script_path.write_text(
+                "raise FileNotFoundError('Gauge configuration not found: /missing/gauge.lime')\n",
+                encoding="utf-8",
+            )
+            artifact = build_probe(script_path, timeout=5.0)
+            self.assertEqual(artifact["status"], "input_visibility_blocked")
+            self.assertEqual(artifact["blocker_scope"], "input")
+
+    def test_build_probe_classifies_output_writability_blocker(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            script_path = Path(tmpdir) / "run.py"
+            script_path.write_text(
+                "raise PermissionError('Correlator output path /tmp/out.npy requires a writable parent directory on the submission filesystem')\n",
+                encoding="utf-8",
+            )
+            artifact = build_probe(script_path, timeout=5.0)
+            self.assertEqual(artifact["status"], "output_writability_blocked")
+            self.assertEqual(artifact["blocker_scope"], "output")
 
     def test_main_writes_probe_artifact(self):
         with tempfile.TemporaryDirectory() as tmpdir:

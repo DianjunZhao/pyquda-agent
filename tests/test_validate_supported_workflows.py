@@ -4,6 +4,9 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from pyquda_agent.intent.resolver import INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS
+from pyquda_agent.intent.resolver import INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS
+
 from scripts.validate_supported_workflows import main
 
 
@@ -32,6 +35,9 @@ class ValidateSupportedWorkflowsTests(unittest.TestCase):
                                 "current_level": "structurally_grounded",
                                 "runtime_ready": False,
                                 "runtime_proved": False,
+                            },
+                            "generated_script_probe": {
+                                "status": "requested" if "lattice size" not in lowered_request else "runtime_missing"
                             },
                         }
                     }
@@ -221,12 +227,12 @@ class ValidateSupportedWorkflowsTests(unittest.TestCase):
                 "llm_session_backend_memory_used": workflow == "pion_dispersion",
                 "llm_session_backend_memory_reason": "mock session memory reason",
                 "llm_session_backend_prior_category": "timeout",
-                "llm_intent_primary_timeout_seconds": 12.0,
+                "llm_intent_primary_timeout_seconds": INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS,
                 "llm_timeout_recovery_attempted": True,
                 "llm_timeout_recovery_used": True,
                 "llm_timeout_recovery_failed": False,
                 "llm_timeout_recovery_trigger_category": "timeout",
-                "llm_timeout_recovery_timeout_seconds": 10.0,
+                "llm_timeout_recovery_timeout_seconds": INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS,
                 "llm_timeout_recovery_failure_category": None,
                 "backend_diagnostic": backend_diagnostic,
             }
@@ -289,6 +295,7 @@ class ValidateSupportedWorkflowsTests(unittest.TestCase):
             self.assertTrue(all(item["rough"]["artifacts_exist"] for item in payload["workflows"]))
             self.assertTrue(all(item["direct"]["script_exists"] for item in payload["workflows"]))
             self.assertTrue(all(item["direct"]["probe_exists"] for item in payload["workflows"]))
+            self.assertTrue(all(item["rough"]["probe_status"] == "requested" for item in payload["workflows"]))
             self.assertTrue(all("handoff" in item for item in payload["workflows"]))
             self.assertTrue(all(item["handoff"]["present"] is True for item in payload["workflows"]))
             self.assertTrue(all(item["handoff"]["coherent"] is True for item in payload["workflows"]))
@@ -307,7 +314,7 @@ class ValidateSupportedWorkflowsTests(unittest.TestCase):
             pion_rows = [item for item in payload["workflows"] if item["workflow"] in {"pion_2pt", "pion_2pt_existing_propagator"}]
             self.assertTrue(all(item["direct"]["execution_status"] == "failed" for item in pion_rows))
             self.assertTrue(all(item["direct"]["probe_status"] == "failed" for item in pion_rows))
-            self.assertTrue(all(item["product_path"]["rough_backend"]["intent_primary_timeout_seconds"] == 12.0 for item in payload["workflows"]))
+            self.assertTrue(all(item["product_path"]["rough_backend"]["intent_primary_timeout_seconds"] == INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS for item in payload["workflows"]))
             self.assertTrue(all(item["product_path"]["rough_backend"]["timeout_recovery_used"] for item in payload["workflows"]))
             self.assertTrue(all(item["product_path"]["direct_backend"]["timeout_recovery_attempted"] for item in payload["workflows"]))
 

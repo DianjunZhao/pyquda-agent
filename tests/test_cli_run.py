@@ -9,9 +9,14 @@ from unittest.mock import patch
 
 from pyquda_agent.backends.base import BackendInvocationError
 from pyquda_agent.app import run_command
+from pyquda_agent.backends.factory import AUTO_CODEX_PREFLIGHT_TIMEOUT_SECONDS
+from pyquda_agent.backends.factory import EXPLICIT_CODEX_PREFLIGHT_TIMEOUT_SECONDS
 from pyquda_agent.cli import main
 from pyquda_agent.config import RunConfig
 from pyquda_agent.intent.interpreter import interpret_request
+from pyquda_agent.intent.resolver import INTENT_CODEX_NORMALIZATION_PRIMARY_TIMEOUT_SECONDS
+from pyquda_agent.intent.resolver import INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS
+from pyquda_agent.intent.resolver import INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS
 from pyquda_agent.sessions.state import SessionState
 from pyquda_agent.sessions.state import save_session
 from pyquda_agent.tasks.parser import parse_task_description
@@ -325,6 +330,57 @@ class CliRunTests(unittest.TestCase):
             self.assertEqual(request_profile_hint.get("auto_codex_preflight_policy"), "skip")
             self.assertIn("rough normalization-only path", request_profile_hint.get("auto_codex_preflight_skip_reason", ""))
 
+    def test_cli_run_passes_backend_skip_hint_for_explicit_direct_request(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pyquda, output, index_path = self._prepare_repo_fixture(root)
+            captured_kwargs: dict = {}
+
+            def fake_build_llm_backend(*args, **kwargs):
+                captured_kwargs.update(kwargs)
+                return (
+                    None,
+                    {
+                        "requested_backend": "auto",
+                        "selected_backend": "rules",
+                        "configured": False,
+                        "backend_name": None,
+                        "fallback": False,
+                        "fallback_reason": None,
+                        "selection_reason": "mock explicit direct request skip",
+                    },
+                )
+
+            stdout = io.StringIO()
+            argv = [
+                "run",
+                (
+                    "please compute the pion two-point correlator from gauge "
+                    f"{pyquda / 'tests' / 'weak_field.lime'} lattice size 4 4 4 8 grid 1 1 1 1 "
+                    "mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 "
+                    "tol=1e-12 maxiter=1000 gauge fixed source timeslice 0 outputs/pion.npy outputs/pion.py "
+                    "resource_path=.cache/quda cluster_launch=local"
+                ),
+                "--dry-run",
+                "--no-interactive",
+                "--pyquda-repo",
+                str(pyquda),
+                "--output",
+                str(output),
+            ]
+            with patch("pyquda_agent.app.DEFAULT_INDEX_PATH", index_path):
+                with patch("pyquda_agent.app.build_llm_backend", side_effect=fake_build_llm_backend):
+                    with redirect_stdout(stdout):
+                        exit_code = main(argv)
+
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(payload["llm_assistance"]["selected_backend"], "rules")
+            request_profile_hint = captured_kwargs.get("request_profile_hint")
+            self.assertIsInstance(request_profile_hint, dict)
+            self.assertEqual(request_profile_hint.get("backend_policy"), "skip")
+            self.assertIn("confirmed physics target", request_profile_hint.get("backend_skip_reason", ""))
+
     def test_cli_run_records_soft_codex_preflight_timeout_when_llm_still_succeeds(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -374,12 +430,12 @@ class CliRunTests(unittest.TestCase):
                             "fallback_category": None,
                             "selection_reason": "Auto mode kept the local codex backend after a short preflight timeout because no configured API backend was available; the real codex call will decide whether fallback is still necessary.",
                             "codex_preflight_attempted": True,
-                            "codex_preflight_timeout_seconds": 3.0,
+                            "codex_preflight_timeout_seconds": AUTO_CODEX_PREFLIGHT_TIMEOUT_SECONDS,
                             "codex_preflight_status": "failed",
                             "codex_preflight_category": "timeout",
-                            "codex_preflight_reason": "Codex auto-preflight timed out after 3 seconds.",
+                            "codex_preflight_reason": f"Codex auto-preflight timed out after {AUTO_CODEX_PREFLIGHT_TIMEOUT_SECONDS:g} seconds.",
                             "codex_preflight_soft_failed": True,
-                            "codex_preflight_soft_failure_reason": "Codex auto-preflight timed out after 3 seconds.",
+                            "codex_preflight_soft_failure_reason": f"Codex auto-preflight timed out after {AUTO_CODEX_PREFLIGHT_TIMEOUT_SECONDS:g} seconds.",
                         },
                     ),
                 ):
@@ -393,7 +449,7 @@ class CliRunTests(unittest.TestCase):
             self.assertTrue(payload["llm_codex_preflight_soft_failed"])
             self.assertEqual(
                 payload["llm_codex_preflight_soft_failure_reason"],
-                "Codex auto-preflight timed out after 3 seconds.",
+                f"Codex auto-preflight timed out after {AUTO_CODEX_PREFLIGHT_TIMEOUT_SECONDS:g} seconds.",
             )
             self.assertTrue(payload["backend_diagnostic"]["codex_preflight_soft_failed"])
             self.assertIn("preflight timeout", payload["backend_diagnostic"]["message"].lower())
@@ -1000,7 +1056,12 @@ class CliRunTests(unittest.TestCase):
                 with patch(
                     "pyquda_agent.app.build_llm_backend",
                     return_value=(
-                        _FailingBackend("Codex backend timed out after 12 seconds.", "timeout", name="codex", timeout_seconds=30.0),
+                        _FailingBackend(
+                            f"Codex backend timed out after {INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS:g} seconds.",
+                            "timeout",
+                            name="codex",
+                            timeout_seconds=60.0,
+                        ),
                         {
                             "requested_backend": "codex",
                             "selected_backend": "codex",
@@ -1018,7 +1079,8 @@ class CliRunTests(unittest.TestCase):
             payload = json.loads(stdout.getvalue())
             self.assertEqual(exit_code, 0)
             self.assertEqual(payload["backend_diagnostic"]["category"], "timeout")
-            self.assertEqual(payload["backend_diagnostic"]["intent_primary_timeout_seconds"], 12.0)
+            self.assertEqual(payload["backend_diagnostic"]["intent_primary_timeout_seconds"], INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS)
+            self.assertTrue(payload["backend_diagnostic"]["intent_timeout_capped"])
             self.assertIn("switching backend is more likely to help", payload["backend_diagnostic"]["next_step"].lower())
             self.assertIn("--backend api", payload["backend_diagnostic"]["recommended_fix"])
             backend_fix = next(item for item in payload["action_queue"] if item["kind"] == "backend_fix")
@@ -1274,7 +1336,7 @@ class CliRunTests(unittest.TestCase):
             self.assertEqual(payload["blocking_reason_detail"]["category"], "backend_local_environment_error")
             self.assertEqual(payload["blocking_reason_detail"]["backend_detail_category"], "codex_app_client_init_failed")
             backend_fix = next(item for item in payload["action_queue"] if item["kind"] == "backend_fix")
-            self.assertEqual(backend_fix["title"], "Verify local codex exec outside pyquda-agent")
+            self.assertEqual(backend_fix["title"], "Verify local codex exec in a normal shell")
             self.assertEqual(backend_fix["action_state"], "conditional")
             self.assertFalse(backend_fix["actionable"])
             self.assertEqual(backend_fix["command"], "codex exec 'Reply with exactly: OK'")
@@ -1364,7 +1426,7 @@ class CliRunTests(unittest.TestCase):
                             "fallback_category": "timeout",
                             "selection_reason": "Explicit codex backend failed short preflight and fell back to rules.",
                             "codex_preflight_attempted": True,
-                            "codex_preflight_timeout_seconds": 2.0,
+                            "codex_preflight_timeout_seconds": EXPLICIT_CODEX_PREFLIGHT_TIMEOUT_SECONDS,
                             "codex_preflight_status": "failed",
                             "codex_preflight_category": "timeout",
                             "codex_preflight_reason": "mock timeout",
@@ -2111,7 +2173,7 @@ class CliRunTests(unittest.TestCase):
             self.assertEqual(exit_code, 0)
             self.assertIn("Backend retry: no | category=local_environment_error", rendered)
             self.assertIn(
-                "Backend fix: conditional | title=Verify local codex exec outside pyquda-agent | copyable=not_now",
+                "Backend fix: conditional | title=Verify local codex exec in a normal shell | copyable=not_now",
                 rendered,
             )
             self.assertIn("Backend fix blocker: Requires checking whether bare `codex exec` works", rendered)
@@ -2292,7 +2354,8 @@ class CliRunTests(unittest.TestCase):
                       "notes": ["recovery used in cli test"]
                     }
                     """,
-                ]
+                ],
+                timeout_seconds=60.0,
             )
 
             stdout = io.StringIO()
@@ -2334,18 +2397,19 @@ class CliRunTests(unittest.TestCase):
             self.assertTrue(payload["llm_assistance"]["timeout_recovery_attempted"])
             self.assertFalse(payload["llm_assistance"]["timeout_recovery_skipped"])
             self.assertTrue(payload["llm_assistance"]["timeout_recovery_used"])
-            self.assertEqual(payload["llm_assistance"]["intent_primary_timeout_seconds"], 12.0)
+            self.assertEqual(payload["llm_assistance"]["intent_primary_timeout_seconds"], INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS)
             self.assertFalse(payload["llm_assistance"]["fallback"])
-            self.assertEqual(backend.seen_timeouts, [12.0, 10.0])
+            self.assertEqual(backend.seen_timeouts, [INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS, INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS])
             self.assertTrue(payload["result_summary"]["llm_timeout_recovery_attempted"])
             self.assertTrue(payload["result_summary"]["llm_timeout_recovery_used"])
             self.assertFalse(payload["result_summary"]["llm_timeout_recovery_failed"])
-            self.assertEqual(payload["result_summary"]["llm_intent_primary_timeout_seconds"], 12.0)
-            self.assertEqual(payload["result_summary"]["llm_timeout_recovery_timeout_seconds"], 10.0)
+            self.assertEqual(payload["result_summary"]["llm_intent_primary_timeout_seconds"], INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS)
+            self.assertEqual(payload["result_summary"]["llm_timeout_recovery_timeout_seconds"], INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS)
             self.assertEqual(payload["backend_diagnostic"]["status"], "used")
-            self.assertEqual(payload["backend_diagnostic"]["intent_primary_timeout_seconds"], 12.0)
+            self.assertEqual(payload["backend_diagnostic"]["intent_primary_timeout_seconds"], INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS)
+            self.assertTrue(payload["backend_diagnostic"]["intent_timeout_capped"])
             self.assertTrue(payload["backend_diagnostic"]["timeout_recovery_used"])
-            self.assertEqual(payload["backend_diagnostic"]["timeout_recovery_timeout_seconds"], 10.0)
+            self.assertEqual(payload["backend_diagnostic"]["timeout_recovery_timeout_seconds"], INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS)
 
     def test_cli_run_skips_timeout_recovery_for_codex_normalization_only_path(self):
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -2390,7 +2454,7 @@ class CliRunTests(unittest.TestCase):
             self.assertEqual(backend.calls, 1)
             self.assertTrue(payload["llm_assistance"]["fallback"])
             self.assertEqual(payload["llm_assistance"]["intent_strategy"], "normalization_only")
-            self.assertEqual(payload["llm_assistance"]["intent_primary_timeout_seconds"], 8.0)
+            self.assertEqual(payload["llm_assistance"]["intent_primary_timeout_seconds"], INTENT_CODEX_NORMALIZATION_PRIMARY_TIMEOUT_SECONDS)
             self.assertFalse(payload["llm_assistance"]["timeout_recovery_attempted"])
             self.assertTrue(payload["llm_assistance"]["timeout_recovery_skipped"])
             self.assertIn("normalization-only intent path", payload["llm_assistance"]["timeout_recovery_skip_reason"])

@@ -32,12 +32,45 @@ class CheckPyQudaRuntimeTests(unittest.TestCase):
             with patch("scripts.check_pyquda_runtime.probe_module", side_effect=lambda name: fake_checks[name]):
                 report = build_report(repo, use_repo_pythonpath=True)
             self.assertFalse(report["ready"])
+            self.assertEqual(report["status"], "environment_missing")
             checks = {item["module"]: item for item in report["checks"]}
             self.assertTrue(checks["numpy"]["ok"])
             self.assertFalse(checks["cupy"]["ok"])
             blockers = report["evidence_levels"]["blockers"]
             self.assertTrue(any(item["module"] == "cupy" for item in blockers))
             self.assertTrue(any("CuPy" in item["suggestion"] for item in blockers if item["module"] == "cupy"))
+            self.assertIn("module_missing", report["blocker_categories"])
+            self.assertIn("cupy", report["missing_modules"])
+            self.assertTrue(report["next_actions"])
+
+    def test_build_report_marks_repo_checkout_pythonpath_as_insufficient(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir) / "PyQUDA"
+            repo.mkdir(parents=True)
+            fake_checks = {
+                "numpy": {"module": "numpy", "ok": True, "path": "/tmp/site-packages/numpy/__init__.py"},
+                "cupy": {"module": "cupy", "ok": False, "error_type": "ModuleNotFoundError", "error": "No module named 'cupy'"},
+                "pyquda": {"module": "pyquda", "ok": False, "error_type": "ModuleNotFoundError", "error": "No module named 'pyquda'"},
+                "pyquda_utils": {
+                    "module": "pyquda_utils",
+                    "ok": False,
+                    "error_type": "ModuleNotFoundError",
+                    "error": "No module named 'pyquda_utils._version'",
+                },
+                "pyquda_utils.core": {
+                    "module": "pyquda_utils.core",
+                    "ok": False,
+                    "error_type": "ModuleNotFoundError",
+                    "error": "No module named 'pyquda_utils._version'",
+                },
+            }
+            with patch("scripts.check_pyquda_runtime.probe_module", side_effect=lambda name: fake_checks[name]):
+                report = build_report(repo, use_repo_pythonpath=True)
+            self.assertEqual(report["primary_blocker"]["category"], "module_missing")
+            self.assertEqual(report["primary_blocker"]["module"], "cupy")
+            self.assertEqual(report["repo_pythonpath_diagnostic"]["status"], "insufficient_checkout_layout")
+            self.assertIn("pyquda_utils._version", report["repo_pythonpath_diagnostic"]["detail"])
+            self.assertIn("install", " ".join(report["shortest_remaining_steps"]).lower())
 
 
 if __name__ == "__main__":

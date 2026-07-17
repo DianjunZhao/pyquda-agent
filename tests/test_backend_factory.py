@@ -327,6 +327,43 @@ class BackendFactoryTests(unittest.TestCase):
         self.assertEqual(status["codex_preflight_status"], "skipped")
         self.assertEqual(status["codex_preflight_skip_reason"], "mock skip reason")
 
+    def test_backend_can_be_intentionally_skipped_for_explicit_direct_request(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            config = RunConfig(
+                task_description=(
+                    "please compute the pion two-point correlator from gauge /tmp/weak_field.lime "
+                    "lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 "
+                    "coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 gauge fixed "
+                    "source timeslice 0 outputs/pion.npy outputs/pion.py resource_path=.cache/quda cluster_launch=local"
+                ),
+                backend="codex",
+                model=None,
+                api_key_file=Path(tmpdir) / "missing.key",
+                base_url=None,
+                pyquda_repo=Path(tmpdir) / "PyQUDA",
+                output=Path(tmpdir) / "out.py",
+                output_explicit=False,
+                interactive=False,
+                max_questions=0,
+                save_session=None,
+                resume_session=None,
+                print_context=False,
+                dry_run=True,
+                verbose=False,
+            )
+            backend, status = build_llm_backend(
+                config,
+                request_profile_hint={
+                    "backend_policy": "skip",
+                    "backend_skip_reason": "mock explicit direct request skip",
+                },
+            )
+        self.assertIsNone(backend)
+        self.assertEqual(status["requested_backend"], "codex")
+        self.assertEqual(status["selected_backend"], "rules")
+        self.assertFalse(status["fallback"])
+        self.assertEqual(status["selection_reason"], "mock explicit direct request skip")
+
     def test_auto_backend_can_skip_codex_preflight_for_normalization_only_profile_without_api_fallback(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             config = RunConfig(

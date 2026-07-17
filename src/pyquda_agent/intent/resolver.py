@@ -22,9 +22,9 @@ from .prompts import should_use_concise_intent_prompt
 from .prompts import should_use_normalization_only_intent_prompt
 from .schema import PhysicsTargetArtifact
 
-INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS = 12.0
-INTENT_CODEX_NORMALIZATION_PRIMARY_TIMEOUT_SECONDS = 8.0
-INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS = 10.0
+INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS = 45.0
+INTENT_CODEX_NORMALIZATION_PRIMARY_TIMEOUT_SECONDS = 30.0
+INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS = 20.0
 INTENT_STRATEGY_NORMALIZATION_ONLY = "normalization_only"
 INTENT_STRATEGY_FULL_INTERPRETATION = "full_interpretation"
 
@@ -204,6 +204,21 @@ def _should_attempt_timeout_recovery(
     return True, None
 
 
+def _timeout_detail_category(
+    *,
+    backend_name: str | None,
+    strategy: str,
+    recovery: bool = False,
+) -> str | None:
+    if backend_name != "codex":
+        return None
+    if recovery:
+        return "codex_timeout_recovery_timeout"
+    if strategy == INTENT_STRATEGY_NORMALIZATION_ONLY:
+        return "codex_normalization_timeout"
+    return "codex_interpretation_timeout"
+
+
 def _generate_intent_response(
     *,
     backend: LLMBackend,
@@ -347,6 +362,7 @@ def resolve_physics_target(
         "timeout_recovery_failure_reason": None,
         "timeout_recovery_timeout_seconds": None,
         "intent_primary_timeout_seconds": None,
+        "intent_timeout_capped": False,
     }
 
     if backend is None:
@@ -361,6 +377,12 @@ def resolve_physics_target(
     llm_assistance["intent_prompt_profile"] = "normalization_only" if strategy == INTENT_STRATEGY_NORMALIZATION_ONLY else ("concise" if concise_prompt else "full")
     llm_assistance["stages_attempted"] = _intent_stage_list(strategy)
     llm_assistance["intent_primary_timeout_seconds"] = _primary_intent_timeout_seconds(backend, strategy=strategy)
+    current_timeout = getattr(backend, "timeout_seconds", None)
+    llm_assistance["intent_timeout_capped"] = bool(
+        isinstance(current_timeout, (int, float))
+        and llm_assistance["intent_primary_timeout_seconds"] is not None
+        and float(llm_assistance["intent_primary_timeout_seconds"]) < float(current_timeout)
+    )
     try:
         with _temporary_backend_timeout(backend, llm_assistance["intent_primary_timeout_seconds"]):
             response_text = _generate_intent_response(
@@ -385,7 +407,10 @@ def resolve_physics_target(
                     f"Initial LLM attempt timed out ({exc}). {skip_reason}"
                 )
                 llm_assistance["fallback_category"] = exc.category
-                llm_assistance["fallback_detail_category"] = exc.detail_category
+                llm_assistance["fallback_detail_category"] = exc.detail_category or _timeout_detail_category(
+                    backend_name=backend_name,
+                    strategy=strategy,
+                )
                 physics.llm_assistance = llm_assistance
                 return physics
             try:
@@ -404,7 +429,11 @@ def resolve_physics_target(
                     f"Initial LLM attempt timed out ({exc}); timeout-recovery attempt then failed ({recovery_exc})."
                 )
                 llm_assistance["fallback_category"] = recovery_exc.category
-                llm_assistance["fallback_detail_category"] = recovery_exc.detail_category
+                llm_assistance["fallback_detail_category"] = recovery_exc.detail_category or _timeout_detail_category(
+                    backend_name=backend_name,
+                    strategy=strategy,
+                    recovery=True,
+                )
                 physics.llm_assistance = llm_assistance
                 return physics
             except Exception as recovery_exc:

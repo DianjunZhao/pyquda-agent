@@ -379,6 +379,7 @@ def _llm_view(payload: dict | None) -> dict | None:
             "fallback_reason": payload.get("llm_fallback_reason"),
             "requested_backend": payload.get("requested_backend"),
             "selected_backend": payload.get("selected_backend"),
+            "selection_reason": payload.get("backend_selection_reason"),
             "codex_preflight_attempted": payload.get("llm_codex_preflight_attempted"),
             "codex_preflight_status": payload.get("llm_codex_preflight_status"),
             "codex_preflight_category": payload.get("llm_codex_preflight_category"),
@@ -418,6 +419,13 @@ def _llm_coherent(llm_assistance: dict | None) -> bool:
         return False
     if llm_assistance.get("used"):
         return True
+    if (
+        llm_assistance.get("requested_backend")
+        and llm_assistance.get("selected_backend") == "rules"
+        and llm_assistance.get("selection_reason")
+        and not llm_assistance.get("fallback")
+    ):
+        return True
     return bool(llm_assistance.get("fallback")) and bool(llm_assistance.get("fallback_reason"))
 
 
@@ -427,6 +435,7 @@ def _backend_validation_summary(result: dict) -> dict:
     return {
         "requested_backend": llm_assistance.get("requested_backend"),
         "selected_backend": llm_assistance.get("selected_backend"),
+        "selection_reason": llm_assistance.get("selection_reason"),
         "used": bool(llm_assistance.get("used")),
         "fallback": bool(llm_assistance.get("fallback")),
         "fallback_category": llm_assistance.get("fallback_category"),
@@ -476,7 +485,11 @@ def _runtime_blocked_statuses() -> set[str]:
 
 def _runtime_probe_coherent(result: dict, expect_script: bool) -> bool:
     if not expect_script:
-        return result.get("execution_status") in {None, "not_requested"} and not result.get("probe_exists")
+        if result.get("execution_status") not in {None, "not_requested"}:
+            return False
+        if result.get("probe_exists"):
+            return False
+        return result.get("probe_status") in {None, "not_requested", "requested"}
     execution_status = result.get("execution_status")
     if execution_status == "runtime_proved":
         if not result.get("probe_exists"):

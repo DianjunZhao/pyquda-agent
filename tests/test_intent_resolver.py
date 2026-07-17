@@ -2,6 +2,9 @@ import unittest
 
 from pyquda_agent.backends.base import BackendInvocationError
 from pyquda_agent.intent.prompts import build_intent_user_prompt
+from pyquda_agent.intent.resolver import INTENT_CODEX_NORMALIZATION_PRIMARY_TIMEOUT_SECONDS
+from pyquda_agent.intent.resolver import INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS
+from pyquda_agent.intent.resolver import INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS
 from pyquda_agent.intent.resolver import resolve_physics_target
 from pyquda_agent.intent.interpreter import interpret_request
 
@@ -204,8 +207,12 @@ class IntentResolverTests(unittest.TestCase):
         self.assertTrue(physics.llm_assistance["timeout_recovery_skipped"])
         self.assertIn("smallest low-value rough-request prompt", physics.llm_assistance["timeout_recovery_skip_reason"])
         self.assertIn("Skipped timeout recovery", physics.llm_assistance["fallback_reason"])
-        self.assertEqual(physics.llm_assistance["intent_primary_timeout_seconds"], 8.0)
-        self.assertEqual(backend.seen_timeouts, [8.0])
+        self.assertEqual(physics.llm_assistance["fallback_detail_category"], "codex_normalization_timeout")
+        self.assertEqual(
+            physics.llm_assistance["intent_primary_timeout_seconds"],
+            INTENT_CODEX_NORMALIZATION_PRIMARY_TIMEOUT_SECONDS,
+        )
+        self.assertEqual(backend.seen_timeouts, [INTENT_CODEX_NORMALIZATION_PRIMARY_TIMEOUT_SECONDS])
 
     def test_timeout_recovery_uses_second_smaller_prompt_for_full_interpretation(self):
         backend = _SequenceBackend(
@@ -229,7 +236,8 @@ class IntentResolverTests(unittest.TestCase):
                   "notes": ["recovery succeeded"]
                 }
                 """,
-            ]
+            ],
+            timeout_seconds=60.0,
         )
         physics = resolve_physics_target(
             "I want a meson correlator script but I am not sure about the exact operator",
@@ -251,12 +259,21 @@ class IntentResolverTests(unittest.TestCase):
         self.assertIn("timeout_recovery_interpretation", physics.llm_assistance["stages_attempted"])
         self.assertIn("recovery succeeded", physics.llm_assistance["notes"])
         self.assertIn("llm timeout recovery path used", physics.llm_assistance["notes"])
-        self.assertEqual(physics.llm_assistance["intent_primary_timeout_seconds"], 12.0)
-        self.assertEqual(physics.llm_assistance["timeout_recovery_timeout_seconds"], 10.0)
+        self.assertEqual(
+            physics.llm_assistance["intent_primary_timeout_seconds"],
+            INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS,
+        )
+        self.assertEqual(
+            physics.llm_assistance["timeout_recovery_timeout_seconds"],
+            INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS,
+        )
         first_prompt = backend.prompts[0][1]
         second_prompt = backend.prompts[1][1]
-        self.assertEqual(backend.seen_timeouts, [12.0, 10.0])
-        self.assertEqual(backend.timeout_seconds, 30.0)
+        self.assertEqual(
+            backend.seen_timeouts,
+            [INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS, INTENT_TIMEOUT_RECOVERY_TIMEOUT_SECONDS],
+        )
+        self.assertEqual(backend.timeout_seconds, 60.0)
         self.assertLess(len(second_prompt), len(first_prompt))
         self.assertEqual(physics.llm_assistance["intent_strategy"], "full_interpretation")
         self.assertEqual(physics.llm_assistance["intent_prompt_profile"], "full")
@@ -269,7 +286,8 @@ class IntentResolverTests(unittest.TestCase):
             [
                 BackendInvocationError("initial timeout", category="timeout"),
                 BackendInvocationError("second timeout", category="timeout"),
-            ]
+            ],
+            timeout_seconds=60.0,
         )
         physics = resolve_physics_target(
             "I want a meson correlator script but I am not sure about the exact operator",
@@ -285,12 +303,16 @@ class IntentResolverTests(unittest.TestCase):
         self.assertEqual(backend.calls, 2)
         self.assertTrue(physics.llm_assistance["fallback"])
         self.assertEqual(physics.llm_assistance["fallback_category"], "timeout")
-        self.assertEqual(physics.llm_assistance["intent_primary_timeout_seconds"], 12.0)
+        self.assertEqual(
+            physics.llm_assistance["intent_primary_timeout_seconds"],
+            INTENT_CODEX_PRIMARY_TIMEOUT_SECONDS,
+        )
         self.assertTrue(physics.llm_assistance["timeout_recovery_attempted"])
         self.assertFalse(physics.llm_assistance["timeout_recovery_skipped"])
         self.assertFalse(physics.llm_assistance["timeout_recovery_used"])
         self.assertTrue(physics.llm_assistance["timeout_recovery_failed"])
         self.assertEqual(physics.llm_assistance["timeout_recovery_failure_category"], "timeout")
+        self.assertEqual(physics.llm_assistance["fallback_detail_category"], "codex_timeout_recovery_timeout")
         self.assertIn("Initial LLM attempt timed out", physics.llm_assistance["fallback_reason"])
 
     def test_api_backend_keeps_non_concise_prompt(self):

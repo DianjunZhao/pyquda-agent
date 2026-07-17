@@ -56,6 +56,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--llm-timeout", type=float, default=30.0)
     parser.add_argument(
+        "--case-timeout",
+        type=float,
+        default=90.0,
+        help="Outer subprocess timeout in seconds for each validation case.",
+    )
+    parser.add_argument(
         "--include-raw-payloads",
         action="store_true",
         help="Keep raw stdout/stderr and parsed payloads in the written report for debugging.",
@@ -80,6 +86,7 @@ def _run_case(
     output_root: Path,
     api_model: str | None,
     llm_timeout: float,
+    case_timeout: float,
 ) -> dict:
     script_path = output_root / f"{case_name}_{backend}.py"
     cmd = [
@@ -104,14 +111,90 @@ def _run_case(
     env = dict(os.environ)
     existing_pythonpath = env.get("PYTHONPATH")
     env["PYTHONPATH"] = "src" if not existing_pythonpath else f"src:{existing_pythonpath}"
-    completed = subprocess.run(
-        cmd,
-        cwd=str(REPO_ROOT),
-        text=True,
-        capture_output=True,
-        check=False,
-        env=env,
-    )
+    try:
+        completed = subprocess.run(
+            cmd,
+            cwd=str(REPO_ROOT),
+            text=True,
+            capture_output=True,
+            check=False,
+            env=env,
+            timeout=case_timeout,
+        )
+    except subprocess.TimeoutExpired as exc:
+        stdout_text = exc.output if isinstance(exc.output, str) else ""
+        stderr_text = exc.stderr if isinstance(exc.stderr, str) else ""
+        payload = None
+        if stdout_text.strip():
+            try:
+                payload = json.loads(stdout_text)
+            except json.JSONDecodeError:
+                payload = None
+        return {
+            "case": case_name,
+            "request": request,
+            "returncode": None,
+            "stdout": stdout_text.strip(),
+            "stderr": stderr_text.strip(),
+            "parsed": payload,
+            "status": "validator_timeout",
+            "target_id": None,
+            "formula_count": 0,
+            "artifacts_exist": False,
+            "llm_assistance": {
+                "attempted": True,
+                "used": False,
+                "fallback": False,
+                "requested_backend": backend,
+                "selected_backend": backend,
+                "selection_reason": (
+                    f"Validator case timed out after {case_timeout:g} seconds before a coherent CLI result was captured."
+                ),
+            },
+            "backend_diagnostic": {
+                "status": "validator_timeout",
+                "category": "timeout",
+                "detail_category": "validator_case_timeout",
+                "message": (
+                    f"validate_backend_execution.py timed out after {case_timeout:g} seconds while waiting for the CLI subprocess."
+                ),
+                "failure_origin": "local_validator",
+                "recovery_mode": "increase_validator_timeout_or_run_case_directly",
+                "retryable_now": True,
+                "recommended_fix": "Increase `--case-timeout`, or run the target CLI case directly to inspect the slower backend path.",
+                "next_step": "Retry the validator with a larger `--case-timeout`, or execute the backend-specific CLI command directly.",
+            },
+            "runtime_diagnostic": {
+                "status": "blocked_by_validator",
+                "category": "validator_timeout",
+            },
+            "product_status": "validator_timeout",
+            "generation_result": {"phase": "validator_timeout"},
+            "execution_result": {"phase": "blocked_by_validator"},
+            "delivery_status": {
+                "generation": {"phase": "validator_timeout"},
+                "execution": {"phase": "blocked_by_validator"},
+            },
+            "action_queue": [
+                {
+                    "kind": "backend_fix",
+                    "priority": "primary",
+                    "title": "Increase validator timeout or run the backend case directly",
+                    "command": (
+                        f"PYTHONPATH=src python3 scripts/validate_backend_execution.py --pyquda-repo {pyquda_repo} "
+                        f"--case-timeout {max(case_timeout * 2.0, case_timeout + 10.0):g}"
+                    ),
+                    "guidance": (
+                        "This timeout came from the outer validator subprocess budget, not from a coherent product-level backend fallback. "
+                        "Increase the validator case timeout or run the specific CLI case directly."
+                    ),
+                    "action_state": "ready",
+                    "actionable": True,
+                    "actionability_reason": None,
+                }
+            ],
+            "case_timeout_seconds": case_timeout,
+        }
     payload = None
     if completed.stdout.strip():
         try:
@@ -134,6 +217,7 @@ def _run_case(
     generation_result = None
     execution_result = None
     delivery_status = None
+    action_queue = None
     if isinstance(payload, dict):
         summary = payload.get("result_summary") or {}
         backend_diagnostic = payload.get("backend_diagnostic") or summary.get("backend_diagnostic")
@@ -142,6 +226,7 @@ def _run_case(
         generation_result = payload.get("generation_result") or summary.get("generation_result")
         execution_result = payload.get("execution_result") or summary.get("execution_result")
         delivery_status = payload.get("delivery_status") or summary.get("delivery_status")
+        action_queue = payload.get("action_queue") or summary.get("action_queue")
     return {
         "case": case_name,
         "request": request,
@@ -160,6 +245,8 @@ def _run_case(
         "generation_result": generation_result,
         "execution_result": execution_result,
         "delivery_status": delivery_status,
+        "action_queue": action_queue,
+        "case_timeout_seconds": case_timeout,
     }
 
 
@@ -265,6 +352,45 @@ def _compact_case_summary(result: dict) -> dict:
         "timeout_recovery_failure_category": backend_path.get("timeout_recovery_failure_category"),
         "runtime_category": runtime_diagnostic.get("category"),
         "runtime_status": runtime_diagnostic.get("status"),
+        "backend_repair": _backend_repair_summary(result),
+    }
+
+
+def _find_action(result: dict, kind: str) -> dict | None:
+    for item in result.get("action_queue") or []:
+        if isinstance(item, dict) and item.get("kind") == kind:
+            return item
+    return None
+
+
+def _backend_repair_summary(result: dict) -> dict | None:
+    backend_diagnostic = result.get("backend_diagnostic") or {}
+    if backend_diagnostic.get("status") != "fallback":
+        return None
+    backend_fix = _find_action(result, "backend_fix") or {}
+    verification_command = backend_fix.get("command")
+    verification_label = backend_fix.get("title")
+    if (
+        backend_diagnostic.get("category") == "local_environment_error"
+        and backend_diagnostic.get("detail_category") == "codex_app_client_init_failed"
+    ):
+        verification_command = "codex exec 'Reply with exactly: OK'"
+        verification_label = "Verify bare codex exec in a normal local shell"
+    return {
+        "reason": backend_diagnostic.get("message"),
+        "category": backend_diagnostic.get("category"),
+        "detail_category": backend_diagnostic.get("detail_category"),
+        "failure_origin": backend_diagnostic.get("failure_origin"),
+        "recovery_mode": backend_diagnostic.get("recovery_mode"),
+        "recommended_fix": backend_diagnostic.get("recommended_fix"),
+        "next_step": backend_diagnostic.get("next_step"),
+        "repair_action_title": backend_fix.get("title"),
+        "repair_action_command": backend_fix.get("command"),
+        "repair_action_state": backend_fix.get("action_state"),
+        "repair_actionable": backend_fix.get("actionable"),
+        "repair_actionability_reason": backend_fix.get("actionability_reason"),
+        "verification_label": verification_label,
+        "verification_command": verification_command,
     }
 
 
@@ -340,6 +466,8 @@ def _llm_coherent(llm_assistance: dict | None) -> bool:
 
 
 def _case_coherent(result: dict, expected: dict) -> bool:
+    if result.get("status") == "validator_timeout":
+        return False
     return (
         result.get("returncode") == 0
         and result.get("status") == expected["expected_status"]
@@ -374,6 +502,44 @@ def _availability_state(cases: list[dict]) -> str:
     return "diagnostic_only"
 
 
+def _backend_repair_contract(cases: list[dict]) -> dict | None:
+    degraded_cases = [
+        case
+        for case in cases
+        if (case.get("backend_diagnostic") or {}).get("status") in {"fallback", "validator_timeout"}
+    ]
+    if not degraded_cases:
+        return None
+    first_case = degraded_cases[0]
+    if (first_case.get("backend_diagnostic") or {}).get("status") == "validator_timeout":
+        backend_diagnostic = first_case.get("backend_diagnostic") or {}
+        backend_fix = _find_action(first_case, "backend_fix") or {}
+        return {
+            "reason": backend_diagnostic.get("message"),
+            "category": backend_diagnostic.get("category"),
+            "detail_category": backend_diagnostic.get("detail_category"),
+            "failure_origin": backend_diagnostic.get("failure_origin"),
+            "recovery_mode": backend_diagnostic.get("recovery_mode"),
+            "recommended_fix": backend_diagnostic.get("recommended_fix"),
+            "next_step": backend_diagnostic.get("next_step"),
+            "repair_action_title": backend_fix.get("title"),
+            "repair_action_command": backend_fix.get("command"),
+            "repair_action_state": backend_fix.get("action_state"),
+            "repair_actionable": backend_fix.get("actionable"),
+            "repair_actionability_reason": backend_fix.get("actionability_reason"),
+            "verification_label": "Retry validate_backend_execution.py with a larger case timeout",
+            "verification_command": backend_fix.get("command"),
+            "case_count": len(degraded_cases),
+            "case_names": [case.get("case") for case in degraded_cases],
+        }
+    repair = _backend_repair_summary(first_case)
+    if repair is None:
+        return None
+    repair["case_count"] = len(degraded_cases)
+    repair["case_names"] = [case.get("case") for case in degraded_cases]
+    return repair
+
+
 def main(argv: list[str] | None = None) -> int:
     ensure_supported_python(context="scripts/validate_backend_execution.py")
     args = parse_args(argv)
@@ -394,6 +560,7 @@ def main(argv: list[str] | None = None) -> int:
                 output_root=output_root,
                 api_model=args.api_model,
                 llm_timeout=args.llm_timeout,
+                case_timeout=args.case_timeout,
             )
             case_result["coherent"] = _case_coherent(case_result, spec)
             case_result["backend_path"] = _backend_path_summary(case_result)
@@ -413,6 +580,7 @@ def main(argv: list[str] | None = None) -> int:
                 "availability_state": _availability_state(cases),
                 "used_case_count": sum(1 for case in cases if _backend_mode(case.get("llm_assistance")) == "used"),
                 "fallback_case_count": sum(1 for case in cases if _backend_mode(case.get("llm_assistance")) == "fallback"),
+                "repair_contract": _backend_repair_contract(cases),
             }
         )
 
@@ -420,6 +588,7 @@ def main(argv: list[str] | None = None) -> int:
         "pyquda_repo": str(pyquda_repo),
         "api_model": args.api_model,
         "llm_timeout": args.llm_timeout,
+        "case_timeout": args.case_timeout,
         "backends": backends,
         "all_coherent": all(item["coherent"] for item in backends),
         "backend_summary": {
@@ -434,7 +603,8 @@ def main(argv: list[str] | None = None) -> int:
             "A backend is considered coherent only when the real CLI path either uses it successfully or records an explicit fallback "
             "with machine-readable requested/selected backend, selection reason, fallback reason/category fields, and coherent product-facing "
             "generation/execution summary phases for the rough-request clarification path. "
-            "The compact report also preserves backend failure origin and recovery semantics so product clients can separate local configuration issues from credentials, network, upstream-service, or backend-response problems. "
+            "The compact report also preserves backend failure origin and recovery semantics so product clients can separate local configuration issues from credentials, network, upstream-service, or backend-response problems, "
+            "and it records a repair contract with unavailable reason, recommended fix, repair action, and verification command when fallback occurs. "
             "This report does not claim live online lookup support."
         ),
         "payload_policy": {

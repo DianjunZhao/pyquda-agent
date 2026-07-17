@@ -40,6 +40,8 @@ This document is generated from current workflow artifacts and records the audit
 - Backend failures, network failures, runtime-environment blockers, and probe-harness failures expose clear next actions instead of silent degradation.
 - Explicit unsupported requests expose the nearest grounded recovery path with either a copyable retry action or an explicit physics-choice gate, without letting backend-fix guidance override the main unsupported action.
 - A realistic natural-language task suite covers ambiguous requests, explicit supported requests, and near-boundary unsupported variants with explicit nearest-grounded recovery expectations.
+- Execution-readiness artifacts distinguish backend repairability, runtime dependency blockers, probe-harness failures, and runtime-side handoff blockers with explicit next actions.
+- V13 validation artifacts distinguish codex usable vs fallback-only state and local runtime-proved vs exact remaining blockers without blurring those boundaries.
 
 ## Requirements partially proved
 
@@ -57,6 +59,8 @@ This document is generated from current workflow artifacts and records the audit
 - `data/supported_workflows_validation.json`
 - `data/v9_product_behavior.json`
 - `data/v11_task_suite.json`
+- `data/v12_execution_readiness.json`
+- `data/v13_codex_runtime_readiness.json`
 - `data/runtime_candidates.json`
 - `data/goal_audit.json`
 - `outputs/run_pion_api.py`
@@ -76,7 +80,7 @@ This document is generated from current workflow artifacts and records the audit
 ## Completion stance
 
 - Grounded HPC handoff readiness status: `proved`.
-- Backend execution usability summary: `api=fallback_only, auto=fallback_only, codex=fallback_only`.
+- Backend execution usability summary: `api=usable, auto=usable, codex=usable`.
 - Optional local runtime readiness status: `not_proved`.
 - Supported workflow routing status: `proved`.
 - Unified run/probe reporting status: `proved`.
@@ -87,8 +91,10 @@ This document is generated from current workflow artifacts and records the audit
 - V9 actionable recovery-guidance status: `proved`.
 - V9 unsupported actionability status: `proved`.
 - V11 realistic task-suite regression status: `proved`.
+- V12 execution-readiness status: `proved`.
+- V13 codex/runtime-readiness status: `proved`.
 - The repository default done condition is now: generate a complete, reference-grounded PyQUDA script with an auditable HPC handoff contract.
-- Backend usability is audited separately through backend_execution artifacts; a `fallback_only` backend state does not negate grounded generation or handoff readiness.
+- Backend usability is audited separately through backend_execution artifacts; current usable backends do not imply local runtime proof, and local runtime blockers remain an independent evidence layer from grounded generation and HPC handoff readiness.
 - Local runtime proof on this workstation remains a separate evidence layer; missing CuPy/PyQUDA runtime is treated as an environment limitation, not a blocker on grounded generation.
 
 ## Exit condition for this audit
