@@ -1,0 +1,13 @@
+[
+  {
+    "id": "bulava-2022-hadron-spectroscopy",
+    "type": "authoritative_review",
+    "url": "https://arxiv.org/abs/2203.03230",
+    "supports": [
+      "momentum_projected_two_point_correlators",
+      "dispersion_analysis_from_hadron_two_point_functions"
+    ],
+    "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+    "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators."
+  }
+]

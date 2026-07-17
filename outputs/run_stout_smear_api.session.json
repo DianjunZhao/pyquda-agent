@@ -1,0 +1,939 @@
+{
+  "asked_questions": [],
+  "backend_assistance": {
+    "attempted": true,
+    "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+    "codex_preflight_attempted": true,
+    "codex_preflight_category": "timeout",
+    "codex_preflight_reason": "Codex auto-preflight timed out after 2 seconds.",
+    "codex_preflight_skip_reason": null,
+    "codex_preflight_skipped": false,
+    "codex_preflight_soft_failed": true,
+    "codex_preflight_soft_failure_reason": "Codex auto-preflight timed out after 2 seconds.",
+    "codex_preflight_status": "failed",
+    "codex_preflight_timeout_seconds": 2.0,
+    "configured": true,
+    "configured_backend": "codex",
+    "fallback": true,
+    "fallback_category": "timeout",
+    "fallback_reason": "Initial LLM attempt timed out (Codex backend timed out after 5 seconds.); timeout-recovery attempt then failed (Codex backend timed out after 5 seconds.).",
+    "intent_primary_timeout_seconds": 5.0,
+    "intent_prompt_profile": "concise",
+    "intent_strategy": "full_interpretation",
+    "model_name": null,
+    "notes": [],
+    "provider": null,
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "selected_backend": "codex",
+    "selection_reason": "Explicit codex backend kept running after a short preflight timeout; the full codex call will decide whether fallback is still necessary.",
+    "session_backend_memory_considered": false,
+    "session_backend_memory_reason": null,
+    "session_backend_memory_used": false,
+    "session_backend_prior_category": null,
+    "session_backend_prior_selected_backend": null,
+    "stages_attempted": [
+      "rough_request_normalization",
+      "physics_target_interpretation",
+      "formula_operator_explanation",
+      "timeout_recovery_interpretation"
+    ],
+    "stages_completed": [],
+    "timeout_recovery_attempted": true,
+    "timeout_recovery_failed": true,
+    "timeout_recovery_failure_category": "timeout",
+    "timeout_recovery_failure_reason": "Codex backend timed out after 5 seconds.",
+    "timeout_recovery_skip_reason": null,
+    "timeout_recovery_skipped": false,
+    "timeout_recovery_timeout_seconds": 5.0,
+    "timeout_recovery_trigger_category": "timeout",
+    "timeout_recovery_trigger_reason": "Codex backend timed out after 5 seconds.",
+    "timeout_recovery_used": false,
+    "used": false
+  },
+  "confirmed_fields": {
+    "cluster_launch": "local",
+    "correlator_output_format": "npy",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy",
+    "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+    "grid_size": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "has_existing_propagators": false,
+    "lattice_size": [
+      4,
+      4,
+      4,
+      8
+    ],
+    "resource_path": ".cache/quda",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py",
+    "start_from": "gauge",
+    "target_id": "stout_smeared_gauge_configuration"
+  },
+  "context_bundle": {
+    "index_provenance": {
+      "index_path": "/Users/zhaodianjun/pyquda-agent/data/pyquda_index.json",
+      "indexed_repo_root": "/Users/zhaodianjun/PyQUDA",
+      "note": "The loaded index summary matches the requested PyQUDA repo.",
+      "requested_repo_root": "/Users/zhaodianjun/PyQUDA",
+      "status": "matched"
+    },
+    "index_summary": {
+      "area_file_counts": {
+        "examples": 9,
+        "pyquda_core": 39,
+        "pyquda_io": 13,
+        "pyquda_plugins": 4,
+        "pyquda_utils": 20,
+        "tests": 49
+      },
+      "category_counts": {
+        "cython": 4,
+        "example": 9,
+        "other": 8,
+        "package-init": 9,
+        "python": 55,
+        "test": 49
+      },
+      "cython_file_count": 4,
+      "extension_counts": {
+        ".cpp": 1,
+        ".in": 1,
+        ".ipynb": 1,
+        ".lime": 1,
+        ".md": 2,
+        ".pxd": 2,
+        ".py": 101,
+        ".pyi": 2,
+        ".pyx": 2,
+        ".sh": 3,
+        ".svg": 1,
+        ".toml": 1,
+        ".txt": 1,
+        ".xml": 10,
+        "<none>": 5
+      },
+      "file_count": 134,
+      "python_module_count": 101
+    },
+    "snippets": [
+      {
+        "excerpt": "from check_pyquda import weak_field, data\nfrom pyquda_utils import core, io\ncore.init(None, [4, 4, 4, 8], resource_path=\".cache/quda\")\ngauge = io.readQIOGauge(weak_field)\ngauge_ape = gauge.copy()\ngauge_ape.apeSmearChroma(1, 2.5, 4)\n# gauge_ape.apeSmear(1, (4 - 1) / (4 - 1 + 2.5 / 2), 4)\ngauge_stout = gauge.copy()\ngauge_stout.stoutSmear(1, 0.241, 3)\ngauge_hyp = gauge.copy()\ngauge_hyp.hypSmear(1, 0.75, 0.6, 0.3, 4)\n# gauge.setAntiPeriodicT()  # for fermion smearing",
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_smear.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from check_pyquda import weak_field, data"
+      },
+      {
+        "excerpt": "from check_pyquda import weak_field\nfrom pyquda_utils import core, io, convert, checksum\nxi_0, nu = 2.464, 0.95\nkappa = 0.115\nmass = 1 / (2 * kappa) - 4\ncoeff = 1.17\ncoeff_r, coeff_t = 0.91, 1.07\ncore.init(None, [4, 4, 4, 8], resource_path=\".cache/quda\")\ngauge = io.readQIOGauge(weak_field)\nlatt_info = core.LatticeInfo([4, 4, 4, 8], -1, xi_0 / nu)\ndslash = core.getClover(latt_info, mass, 1e-12, 1000, xi_0, coeff_t, coeff_r)\nwith dslash.useGauge(gauge):",
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from check_pyquda import weak_field"
+      },
+      {
+        "excerpt": "from typing import List\nimport numpy\nfrom pyquda.field import LatticeInfo, LatticeGauge, LatticePropagator, LatticeStaggeredPropagator, evenodd, lexico\n# matrices to convert gamma basis bewteen DeGrand-Rossi and Dirac-Pauli\n# \\psi(DP) = _DR_TO_DP \\psi(DR)\n# \\psi(DR) = _DP_TO_DR \\psi(DP)\n_DP_TO_DR = numpy.array(\n[\n[0, 1, 0, -1],\n[-1, 0, 1, 0],\n[0, 1, 0, 1],\n[-1, 0, -1, 0],",
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from typing import List"
+      },
+      {
+        "excerpt": "# Runnable Stout-Smear Spec\nThis document fixes the first supported `stout_smear` family to one narrow grounded path only:\n- start from a gauge configuration\n- read a Chroma/QIO gauge file\n- copy the gauge field\n- apply `stoutSmear(1, 0.241, 3)`\n- write one `.npy` smeared-gauge artifact\n## Required inputs\n- `gauge_format=chroma_qio`\n- `gauge_path=/path/to/cfg.lime`\n- `lattice_size`, for example `4 4 4 8`\n- `grid_size`, for example `1 1 1 1`",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_STOUT_SMEAR_SPEC.md",
+        "score": 22.0,
+        "source": "workspace",
+        "summary": "# Runnable Stout-Smear Spec"
+      },
+      {
+        "excerpt": "# Runnable Pion PCAC Workflow\nThis repository supports one narrow runnable `pion_pcac` family grounded in `~/PyQUDA/examples/4_Pion_PCAC.py`.\n## Fixed Scope\n- `task_type = pion_pcac`\n- `workflow_id = pion_pcac_chroma_wall_local_zero_momentum_npy_v1`\n- `workflow_id = pion_pcac_existing_propagator_local_zero_momentum_npy_v1`\n- start from either:\n- a Chroma/QIO gauge configuration\n- or existing wall-source propagators in `npy`, `hdf5`, or `chroma_qio` format\n- use `getDirac` with the local multigrid block pattern\n- apply one stout-smear step\n- keep `wall` source, `local` sink, zero momentum",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_PION_PCAC_SPEC.md",
+        "score": 18.0,
+        "source": "workspace",
+        "summary": "# Runnable Pion PCAC Workflow"
+      },
+      {
+        "excerpt": "# Runnable Quark Propagator Spec\nThis document fixes the first `quark_propagator` family to one narrow, reviewable path grounded in local PyQUDA references. It is not a generic propagator generator.\n## Fixed v1 workflow\n- start from a Chroma/QIO gauge configuration\n- build a Clover solve through `pyquda_utils.core.getDirac(...)`\n- apply one stout-smear step: `steps=1`, `rho=0.125`, `ndim=4`\n- use fixed multigrid blocks `[[6, 6, 6, 4], [4, 4, 4, 9]]`\n- build a point source at spatial origin `[0, 0, 0]` with one explicit `source_timeslice`\n- invert all spin-color components and save one HDF5 propagator artifact\n## Required inputs\n- `gauge_path`: Chroma/QIO gauge file visible on the target filesystem\n- `lattice_size`: four integers",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_QUARK_PROPAGATOR_SPEC.md",
+        "score": 18.0,
+        "source": "workspace",
+        "summary": "# Runnable Quark Propagator Spec"
+      },
+      {
+        "excerpt": "# Runnable Meson Spec Spec\nThis document defines the supported **complete runnable** meson-spectroscopy workflows in the current `pyquda-agent` suite.\nThe scope is intentionally narrow:\n- use a `wall` source\n- use a `local` sink contraction\n- use exactly two fixed gamma-insertion channels:\n- `gamma5_gamma5`\n- `gamma4gamma5_gamma4gamma5`\n- use a non-empty momentum list drawn from the locally grounded `|p|^2 <= 9` family from `phase.getMomList(9)`\n- output a source-timeslice-resolved meson correlator tensor to `.npy`\nSupported branches:\n1. gauge entry",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_MESON_SPEC_SPEC.md",
+        "score": 16.0,
+        "source": "workspace",
+        "summary": "# Runnable Meson Spec Spec"
+      },
+      {
+        "excerpt": "# Runnable Pion 2pt Spec\nThis document defines the first supported **complete runnable** pion two-point workflow for `pyquda-agent`.\nThe current runnable implementation path is fixed:\n`natural language request -> physics interpretation -> clarification loop -> workflow match -> structured task spec -> reference-grounded implementation plan -> complete script -> minimal validation`\n`complete script` is not the primary artifact. The physics artifact, structured task spec, and grounded plan must exist first and remain reviewable.\n## Fixed scope for v1\nThe first version supports exactly one narrow path:\n- start from a **Chroma/QIO gauge configuration**\n- use **Clover** action parameters supplied by the user\n- build a **wall source**\n- use a **local sink**\n- compute a **single pion two-point correlator**",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_PION_2PT_SPEC.md",
+        "score": 16.0,
+        "source": "workspace",
+        "summary": "# Runnable Pion 2pt Spec"
+      },
+      {
+        "excerpt": "# Runnable Proton 2pt Spec\nThis workflow family is intentionally narrow. Complete mode now supports two grounded proton paths:\n1. gauge entry\n- start from a `chroma_qio` gauge configuration\n- apply one fixed stout-smearing step\n- build the operator with `pyquda_utils.core.getDirac(...)`\n- use a `wall` source at user-specified `source_timeslice`\n- use the parity-projected zero-momentum proton contraction from `examples/3_Pion_Proton_2pt.py`\n- write the correlator to `.npy`\n2. propagator entry\n- start from existing stored propagators in `npy`, `hdf5`, or `chroma_qio` format\n- require `wall` source convention and explicit `source_timeslice` for each propagator path",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_PROTON_2PT_SPEC.md",
+        "score": 16.0,
+        "source": "workspace",
+        "summary": "# Runnable Proton 2pt Spec"
+      },
+      {
+        "excerpt": "# Runnable Wilson Flow Spec\nThis repository supports one narrow `wilson_flow` family pinned to the local PyQUDA Wilson-flow test path. It is not a generic flow-observable framework.\n## Fixed implementation target\n- `task_type = wilson_flow`\n- `workflow_id = wilson_flow_chroma_qio_energy_npy_v1`\n- start from `gauge`\n- gauge format `chroma_qio`\n- output format `.npy`\n## Required inputs\n- `gauge_path`: Chroma/QIO gauge file such as `cfg_0001.lime`\n- `lattice_size`: four integers\n- `grid_size`: four integers",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_WILSON_FLOW_SPEC.md",
+        "score": 16.0,
+        "source": "workspace",
+        "summary": "# Runnable Wilson Flow Spec"
+      }
+    ],
+    "task_type": "stout_smear"
+  },
+  "draft": {
+    "chosen_workflow_target": "stout_smear_chroma_qio_npy_v1",
+    "clarified_fields": {},
+    "cluster_launch": "local",
+    "coeff_r": null,
+    "coeff_t": null,
+    "correlator_output_format": "npy",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy",
+    "external_citations": [],
+    "fermion_action": null,
+    "field_sources": {
+      "cluster_launch": "parsed",
+      "correlator_output_format": "parsed",
+      "correlator_output_path": "parsed",
+      "gauge_fixed": "fixed",
+      "gauge_format": "parser_guess",
+      "gauge_path": "parsed",
+      "grid_size": "parsed",
+      "has_existing_propagators": "parsed",
+      "lattice_size": "parsed",
+      "momenta": "fixed",
+      "momentum_projection": "fixed",
+      "resource_path": "parsed",
+      "script_output_path": "parsed",
+      "script_style": "fixed",
+      "sink_type": "fixed",
+      "source_type": "fixed",
+      "start_from": "parsed",
+      "stout_smear_ndim": "fixed",
+      "stout_smear_rho": "fixed",
+      "stout_smear_steps": "fixed",
+      "task_type": "parser_guess",
+      "workflow_id": "fixed"
+    },
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "gauge_fixed": false,
+      "gauge_format": "chroma_qio",
+      "has_existing_propagators": false,
+      "momenta": [],
+      "momentum_projection": "none",
+      "script_style": "complete",
+      "sink_type": "gauge",
+      "source_type": "none",
+      "start_from": "gauge",
+      "stout_smear_ndim": 3,
+      "stout_smear_rho": 0.241,
+      "stout_smear_steps": 1,
+      "task_type": "stout_smear",
+      "workflow_id": "stout_smear_chroma_qio_npy_v1"
+    },
+    "flow_epsilon": null,
+    "flow_steps": null,
+    "gamma_insertions": [],
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+    "grid_size": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "has_existing_propagators": false,
+    "inferred_fields": {},
+    "inherited_fields": {},
+    "lattice_size": [
+      4,
+      4,
+      4,
+      8
+    ],
+    "mass": null,
+    "missing_fields": [],
+    "momenta": [],
+    "momentum_projection": "none",
+    "multigrid_blocks": [],
+    "notes": "please generate a stout-smeared gauge from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy /Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py resource_path=.cache/quda cluster_launch=local",
+    "nu": null,
+    "parser_guesses": {
+      "gauge_format": "chroma_qio",
+      "task_type": "stout_smear"
+    },
+    "propagator_format": null,
+    "propagator_paths": [],
+    "pyquda_references": [
+      "tests/test_smear.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py"
+    ],
+    "resource_path": ".cache/quda",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py",
+    "script_style": "complete",
+    "sink_type": "gauge",
+    "solver_maxiter": null,
+    "solver_tol": null,
+    "source_timeslices": [],
+    "source_type": "none",
+    "start_from": "gauge",
+    "stout_smear_ndim": 3,
+    "stout_smear_rho": 0.241,
+    "stout_smear_steps": 1,
+    "task_type": "stout_smear",
+    "unsupported_fields": {},
+    "unsupported_reasons": [],
+    "user_confirmed_fields": {
+      "cluster_launch": "local",
+      "correlator_output_format": "npy",
+      "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy",
+      "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+      "grid_size": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "has_existing_propagators": false,
+      "lattice_size": [
+        4,
+        4,
+        4,
+        8
+      ],
+      "resource_path": ".cache/quda",
+      "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py",
+      "start_from": "gauge"
+    },
+    "user_request": "please generate a stout-smeared gauge from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy /Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py resource_path=.cache/quda cluster_launch=local",
+    "workflow_id": "stout_smear_chroma_qio_npy_v1",
+    "xi_0": null
+  },
+  "implementation_plan": {
+    "chosen_workflow_target": "stout_smear_chroma_qio_npy_v1",
+    "clarification_trace": [],
+    "confirmed_interpretation": {
+      "confidence": "high",
+      "label": "stout-smeared gauge configuration",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+      "target_id": "stout_smeared_gauge_configuration",
+      "task_type_hint": "stout_smear"
+    },
+    "convention_decisions": [
+      {
+        "category": "pyquda",
+        "citations": [],
+        "decision": "Use the narrow local gauge-smearing path: read a Chroma/QIO gauge, copy it, and apply stoutSmear(1, 0.241, 3).",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/tests/test_smear.py"
+        ],
+        "why": "The supported stout-smear family is intentionally pinned to the exact local test_smear path rather than generalized smearing options such as APE or HYP."
+      },
+      {
+        "category": "pyquda",
+        "citations": [],
+        "decision": "Read the input gauge with io.readQIOGauge and save the smeared gauge with io.writeNPYGauge.",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+          "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py"
+        ],
+        "why": "The complete script should stay inside the local grounded IO helper family already used by upstream tests."
+      }
+    ],
+    "external_citations": [],
+    "external_lookup": {
+      "attempted": false,
+      "effect_on_interpretation": "none",
+      "enabled": false,
+      "queries": [],
+      "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+      "results": [],
+      "source_kind": "live_online_lookup",
+      "status": "disabled",
+      "used": false
+    },
+    "field_resolution": {
+      "_physics_resolution_buckets": {
+        "clarified_fields": {},
+        "fixed_by_workflow_fields": {
+          "correlator_output_format": "npy",
+          "gauge_fixed": false,
+          "gauge_format": "chroma_qio",
+          "has_existing_propagators": false,
+          "momenta": [],
+          "momentum_projection": "none",
+          "script_style": "complete",
+          "sink_type": "gauge",
+          "source_type": "none",
+          "start_from": "gauge",
+          "stout_smear_ndim": 3,
+          "stout_smear_rho": 0.241,
+          "stout_smear_steps": 1,
+          "task_type": "stout_smear",
+          "workflow_id": "stout_smear_chroma_qio_npy_v1"
+        },
+        "inferred_fields": {},
+        "inherited_fields": {},
+        "parser_guesses": {},
+        "user_confirmed_fields": {
+          "target_id": "stout_smeared_gauge_configuration"
+        }
+      },
+      "_resolution_buckets": {
+        "clarified_fields": {},
+        "fixed_fields": {
+          "correlator_output_format": "npy",
+          "gauge_fixed": false,
+          "gauge_format": "chroma_qio",
+          "has_existing_propagators": false,
+          "momenta": [],
+          "momentum_projection": "none",
+          "script_style": "complete",
+          "sink_type": "gauge",
+          "source_type": "none",
+          "start_from": "gauge",
+          "stout_smear_ndim": 3,
+          "stout_smear_rho": 0.241,
+          "stout_smear_steps": 1,
+          "task_type": "stout_smear",
+          "workflow_id": "stout_smear_chroma_qio_npy_v1"
+        },
+        "inferred_fields": {},
+        "inherited_fields": {},
+        "parser_guesses": {
+          "gauge_format": "chroma_qio",
+          "task_type": "stout_smear"
+        },
+        "user_confirmed_fields": {
+          "cluster_launch": "local",
+          "correlator_output_format": "npy",
+          "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy",
+          "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+          "grid_size": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "has_existing_propagators": false,
+          "lattice_size": [
+            4,
+            4,
+            4,
+            8
+          ],
+          "resource_path": ".cache/quda",
+          "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py",
+          "start_from": "gauge"
+        }
+      },
+      "cluster_launch": "parsed",
+      "correlator_output_format": "parsed",
+      "correlator_output_path": "parsed",
+      "gauge_fixed": "fixed",
+      "gauge_format": "parser_guess",
+      "gauge_path": "parsed",
+      "grid_size": "parsed",
+      "has_existing_propagators": "parsed",
+      "lattice_size": "parsed",
+      "momenta": "fixed",
+      "momentum_projection": "fixed",
+      "resource_path": "parsed",
+      "script_output_path": "parsed",
+      "script_style": "fixed",
+      "sink_type": "fixed",
+      "source_type": "fixed",
+      "start_from": "parsed",
+      "stout_smear_ndim": "fixed",
+      "stout_smear_rho": "fixed",
+      "stout_smear_steps": "fixed",
+      "task_type": "parser_guess",
+      "workflow_id": "fixed"
+    },
+    "handoff_contract": {
+      "cluster_launch": "local",
+      "input_manifest": [
+        {
+          "kind": "gauge",
+          "path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime"
+        }
+      ],
+      "input_mutability_policy": "immutable_inputs_never_overwritten",
+      "input_paths": [
+        "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime"
+      ],
+      "input_visibility": "all_ranks",
+      "output_paths": {
+        "probe_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.probe.json",
+        "script": "/Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py",
+        "smeared_gauge": "/Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy"
+      },
+      "output_writer_policy": "rank0_only",
+      "preflight_checks": [
+        "Ensure all gauge inputs are visible from every rank before launch.",
+        "Ensure the output directory is writable by the rank that saves the final correlator artifact.",
+        "Verify numpy, cupy, pyquda_utils, and pyquda import successfully before starting a full inversion job.",
+        "Review the sibling .physics.json, .task.json, and .plan.json artifacts before cluster submission."
+      ],
+      "required_modules": [
+        "numpy",
+        "cupy",
+        "pyquda_utils",
+        "pyquda"
+      ],
+      "resource_path": ".cache/quda",
+      "start_from": "gauge",
+      "submission_assumption": "Launch under an MPI/GPU layout consistent with GRID_SIZE and the target PyQUDA environment."
+    },
+    "inferred_interpretation": {
+      "confidence": "high",
+      "label": "stout-smeared gauge configuration",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+      "target_id": "stout_smeared_gauge_configuration",
+      "task_type_hint": "stout_smear"
+    },
+    "inherited_session_fields": {},
+    "knowledge_boundary": {
+      "live_online_lookup": {
+        "enabled": false,
+        "implemented": true,
+        "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+        "status": "disabled",
+        "used": false
+      },
+      "local_curated_citations": {
+        "implemented": true,
+        "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+        "used": false
+      },
+      "model_inference": {
+        "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+        "used": false
+      },
+      "true_online_lookup": {
+        "implemented": false,
+        "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+        "used": false
+      }
+    },
+    "local_references_used": [
+      "tests/test_smear.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py"
+    ],
+    "physics_choices": {
+      "coeff_r": null,
+      "coeff_t": null,
+      "fermion_action": null,
+      "flow_epsilon": null,
+      "flow_steps": null,
+      "gauge_fixed": false,
+      "mass": null,
+      "momenta": [],
+      "momentum_projection": "none",
+      "nu": null,
+      "sink_type": "gauge",
+      "source_timeslices": [],
+      "source_type": "none",
+      "target_id": "stout_smeared_gauge_configuration",
+      "xi_0": null
+    },
+    "pyquda_choices": {
+      "gauge_format": "chroma_qio",
+      "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+      "grid_size": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "lattice_size": [
+        4,
+        4,
+        4,
+        8
+      ],
+      "multigrid_blocks": [],
+      "output_format": "npy",
+      "resource_path": ".cache/quda",
+      "solver_maxiter": null,
+      "solver_tol": null,
+      "start_from": "gauge",
+      "stout_smear_ndim": 3,
+      "stout_smear_rho": 0.241,
+      "stout_smear_steps": 1
+    },
+    "references": [
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_smear.py",
+        "source": "pyquda",
+        "summary": "from check_pyquda import weak_field, data"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "source": "pyquda",
+        "summary": "from check_pyquda import weak_field"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+        "source": "pyquda",
+        "summary": "from typing import List"
+      }
+    ],
+    "runtime_choices": {
+      "cluster_launch": "local",
+      "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy",
+      "primary_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy",
+      "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py"
+    },
+    "runtime_readiness": {
+      "checks": [
+        {
+          "module": "numpy",
+          "ok": true,
+          "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+        },
+        {
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy",
+          "ok": false
+        },
+        {
+          "error": "No module named 'pyquda'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda",
+          "ok": false
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils",
+          "ok": false
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils.core",
+          "ok": false
+        }
+      ],
+      "environment_probe": {
+        "script": "scripts/check_pyquda_runtime.py",
+        "used_repo_pythonpath": false
+      },
+      "environment_ready": false,
+      "evidence_levels": {
+        "blockers": [
+          {
+            "error": "No module named 'cupy'",
+            "error_type": "ModuleNotFoundError",
+            "module": "cupy",
+            "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+          },
+          {
+            "error": "No module named 'pyquda'",
+            "error_type": "ModuleNotFoundError",
+            "module": "pyquda",
+            "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+          },
+          {
+            "error": "No module named 'pyquda_utils'",
+            "error_type": "ModuleNotFoundError",
+            "module": "pyquda_utils",
+            "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+          },
+          {
+            "error": "No module named 'pyquda_utils'",
+            "error_type": "ModuleNotFoundError",
+            "module": "pyquda_utils.core",
+            "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+          }
+        ],
+        "current_level": "structurally_grounded",
+        "runtime_proved": false,
+        "runtime_ready": false,
+        "structurally_grounded": true,
+        "syntax_valid": true
+      },
+      "probe_policy": {
+        "auto_run": false,
+        "reason": "Generated-script probes are not run automatically because a complete script may start a real inversion workload."
+      },
+      "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+      "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+      "ready": false,
+      "reference_grounded": true,
+      "runtime_level": "structurally_grounded",
+      "runtime_proved": false,
+      "syntax_valid": true,
+      "used_repo_pythonpath": false
+    },
+    "task_type": "stout_smear",
+    "unresolved_fields": [],
+    "unsupported_reasons": [],
+    "user_request": "please generate a stout-smeared gauge from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy /Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py resource_path=.cache/quda cluster_launch=local",
+    "validation_checks": [
+      "generated code is syntax-valid",
+      "task fields fully resolved",
+      "workflow matches supported runnable path",
+      "generated code imports real PyQUDA APIs",
+      "generated code matches local examples/tests/io helpers for the chosen workflow",
+      "generated code contains no TODO/pass/placeholder text"
+    ],
+    "workflow_id": "stout_smear_chroma_qio_npy_v1",
+    "workflow_match": {
+      "external_citations": [],
+      "fixed_fields": {
+        "correlator_output_format": "npy",
+        "gauge_fixed": false,
+        "gauge_format": "chroma_qio",
+        "has_existing_propagators": false,
+        "momenta": [],
+        "momentum_projection": "none",
+        "script_style": "complete",
+        "sink_type": "gauge",
+        "source_type": "none",
+        "start_from": "gauge",
+        "stout_smear_ndim": 3,
+        "stout_smear_rho": 0.241,
+        "stout_smear_steps": 1,
+        "task_type": "stout_smear",
+        "workflow_id": "stout_smear_chroma_qio_npy_v1"
+      },
+      "local_references": [
+        "tests/test_smear.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py"
+      ],
+      "mapping_notes": [
+        "Confirmed stout-smear target mapped to the validated gauge -> gauge.copy() -> stoutSmear(1, 0.241, 3) -> npy smeared-gauge implementation path."
+      ],
+      "matched": true,
+      "task_type": "stout_smear",
+      "unsupported_reasons": [],
+      "workflow_target": "stout_smear_chroma_qio_npy_v1"
+    }
+  },
+  "minimal_missing_fields": [],
+  "physics_target": {
+    "candidate_targets": [
+      {
+        "confidence": "high",
+        "label": "stout-smeared gauge configuration",
+        "status": "confirmed",
+        "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+        "target_id": "stout_smeared_gauge_configuration",
+        "task_type_hint": "stout_smear"
+      }
+    ],
+    "chosen_workflow_target": "stout_smear_chroma_qio_npy_v1",
+    "clarification_trace": [],
+    "clarified_fields": {},
+    "confirmed_interpretation": {
+      "confidence": "high",
+      "label": "stout-smeared gauge configuration",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+      "target_id": "stout_smeared_gauge_configuration",
+      "task_type_hint": "stout_smear"
+    },
+    "external_citations": [],
+    "external_lookup": {
+      "attempted": false,
+      "effect_on_interpretation": "none",
+      "enabled": false,
+      "queries": [],
+      "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+      "results": [],
+      "source_kind": "live_online_lookup",
+      "status": "disabled",
+      "used": false
+    },
+    "fixed_by_workflow_fields": {
+      "correlator_output_format": "npy",
+      "gauge_fixed": false,
+      "gauge_format": "chroma_qio",
+      "has_existing_propagators": false,
+      "momenta": [],
+      "momentum_projection": "none",
+      "script_style": "complete",
+      "sink_type": "gauge",
+      "source_type": "none",
+      "start_from": "gauge",
+      "stout_smear_ndim": 3,
+      "stout_smear_rho": 0.241,
+      "stout_smear_steps": 1,
+      "task_type": "stout_smear",
+      "workflow_id": "stout_smear_chroma_qio_npy_v1"
+    },
+    "formula_proposals": [
+      {
+        "citations": [],
+        "convention": "Follow the narrow local PyQUDA path: read a Chroma/QIO gauge, copy it, apply stoutSmear(1, 0.241, 3), and save the smeared gauge as npy.",
+        "correlator": "Gauge-field transformation only; no hadron correlator is formed in this workflow.",
+        "label": "One-step stout-smeared gauge configuration",
+        "local_references": [
+          "tests/test_smear.py",
+          "tests/test_io.py",
+          "pyquda_utils/io/__init__.py"
+        ],
+        "operator": "U_\\mu(x) \\rightarrow U_\\mu^{\\mathrm{stout}}(x; \\rho=0.241,\\ \\mathrm{dir\\_ignore}=3)",
+        "proposal_id": "stout_smear_one_step_rho0241_dirignore3",
+        "provenance": "local_references_plus_model_inference",
+        "target_id": "stout_smeared_gauge_configuration"
+      }
+    ],
+    "inferred_fields": {},
+    "inferred_interpretation": {
+      "confidence": "high",
+      "label": "stout-smeared gauge configuration",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+      "target_id": "stout_smeared_gauge_configuration",
+      "task_type_hint": "stout_smear"
+    },
+    "inherited_fields": {},
+    "knowledge_boundary": {
+      "live_online_lookup": {
+        "enabled": false,
+        "implemented": true,
+        "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+        "status": "disabled",
+        "used": false
+      },
+      "local_curated_citations": {
+        "implemented": true,
+        "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+        "used": false
+      },
+      "model_inference": {
+        "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+        "used": false
+      },
+      "true_online_lookup": {
+        "implemented": false,
+        "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+        "used": false
+      }
+    },
+    "llm_assistance": {
+      "attempted": true,
+      "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+      "codex_preflight_attempted": true,
+      "codex_preflight_category": "timeout",
+      "codex_preflight_reason": "Codex auto-preflight timed out after 2 seconds.",
+      "codex_preflight_skip_reason": null,
+      "codex_preflight_skipped": false,
+      "codex_preflight_soft_failed": true,
+      "codex_preflight_soft_failure_reason": "Codex auto-preflight timed out after 2 seconds.",
+      "codex_preflight_status": "failed",
+      "codex_preflight_timeout_seconds": 2.0,
+      "configured": true,
+      "configured_backend": "codex",
+      "fallback": true,
+      "fallback_category": "timeout",
+      "fallback_reason": "Initial LLM attempt timed out (Codex backend timed out after 5 seconds.); timeout-recovery attempt then failed (Codex backend timed out after 5 seconds.).",
+      "intent_primary_timeout_seconds": 5.0,
+      "intent_prompt_profile": "concise",
+      "intent_strategy": "full_interpretation",
+      "model_name": null,
+      "notes": [],
+      "provider": null,
+      "requested_backend": "codex",
+      "resolved_base_url": null,
+      "selected_backend": "codex",
+      "selection_reason": "Explicit codex backend kept running after a short preflight timeout; the full codex call will decide whether fallback is still necessary.",
+      "session_backend_memory_considered": false,
+      "session_backend_memory_reason": null,
+      "session_backend_memory_used": false,
+      "session_backend_prior_category": null,
+      "session_backend_prior_selected_backend": null,
+      "stages_attempted": [
+        "rough_request_normalization",
+        "physics_target_interpretation",
+        "formula_operator_explanation",
+        "timeout_recovery_interpretation"
+      ],
+      "stages_completed": [],
+      "timeout_recovery_attempted": true,
+      "timeout_recovery_failed": true,
+      "timeout_recovery_failure_category": "timeout",
+      "timeout_recovery_failure_reason": "Codex backend timed out after 5 seconds.",
+      "timeout_recovery_skip_reason": null,
+      "timeout_recovery_skipped": false,
+      "timeout_recovery_timeout_seconds": 5.0,
+      "timeout_recovery_trigger_category": "timeout",
+      "timeout_recovery_trigger_reason": "Codex backend timed out after 5 seconds.",
+      "timeout_recovery_used": false,
+      "used": false
+    },
+    "local_references": [
+      "tests/test_smear.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py"
+    ],
+    "normalized_request": "please generate a stout-smeared gauge from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy /Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py resource_path=.cache/quda cluster_launch=local",
+    "parser_guesses": {},
+    "status": "confirmed",
+    "task_type_hint": "stout_smear",
+    "unsupported_fields": {},
+    "unsupported_reasons": [],
+    "user_confirmed_fields": {
+      "target_id": "stout_smeared_gauge_configuration"
+    },
+    "user_request": "please generate a stout-smeared gauge from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy /Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py resource_path=.cache/quda cluster_launch=local"
+  },
+  "rejected_options": {},
+  "task_description": "please generate a stout-smeared gauge from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/stout_smeared_gauge_api.npy /Users/zhaodianjun/pyquda-agent/outputs/run_stout_smear_api.py resource_path=.cache/quda cluster_launch=local",
+  "workflow_match": {
+    "external_citations": [],
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "gauge_fixed": false,
+      "gauge_format": "chroma_qio",
+      "has_existing_propagators": false,
+      "momenta": [],
+      "momentum_projection": "none",
+      "script_style": "complete",
+      "sink_type": "gauge",
+      "source_type": "none",
+      "start_from": "gauge",
+      "stout_smear_ndim": 3,
+      "stout_smear_rho": 0.241,
+      "stout_smear_steps": 1,
+      "task_type": "stout_smear",
+      "workflow_id": "stout_smear_chroma_qio_npy_v1"
+    },
+    "local_references": [
+      "tests/test_smear.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py"
+    ],
+    "mapping_notes": [
+      "Confirmed stout-smear target mapped to the validated gauge -> gauge.copy() -> stoutSmear(1, 0.241, 3) -> npy smeared-gauge implementation path."
+    ],
+    "matched": true,
+    "task_type": "stout_smear",
+    "unsupported_reasons": [],
+    "workflow_target": "stout_smear_chroma_qio_npy_v1"
+  }
+}

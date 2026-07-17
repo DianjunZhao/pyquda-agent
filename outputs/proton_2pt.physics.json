@@ -1,0 +1,222 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "high",
+      "label": "proton two-point correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for a proton two-point correlator.",
+      "target_id": "proton_two_point_correlator",
+      "task_type_hint": "proton_2pt"
+    }
+  ],
+  "chosen_workflow_target": "proton_2pt_chroma_wall_local_zero_momentum_npy_v1",
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "proton two-point correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a proton two-point correlator.",
+    "target_id": "proton_two_point_correlator",
+    "task_type_hint": "proton_2pt"
+  },
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use the standard proton interpolating operator together with a zero-momentum Euclidean two-point correlator and parity projection, matching the narrow local PyQUDA example.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "baryon_two_point_correlators",
+        "interpolating_operators_carry_target_quantum_numbers"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "The local PyQUDA proton example fixes the implementation path; this curated review record documents the physics-side proton spectroscopy convention without implying live online lookup.",
+      "year": 2022
+    }
+  ],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "fixed_by_workflow_fields": {
+    "correlator_output_format": "npy",
+    "fermion_action": "clover",
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "has_existing_propagators": false,
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "momentum_projection": "zero",
+    "multigrid_blocks": [
+      [
+        6,
+        6,
+        6,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        9
+      ]
+    ],
+    "script_style": "complete",
+    "sink_type": "local",
+    "source_type": "wall",
+    "start_from": "gauge",
+    "stout_smear_ndim": 4,
+    "stout_smear_rho": 0.125,
+    "stout_smear_steps": 1,
+    "task_type": "proton_2pt",
+    "workflow_id": "proton_2pt_chroma_wall_local_zero_momentum_npy_v1"
+  },
+  "formula_proposals": [
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use the standard proton interpolating operator together with a zero-momentum Euclidean two-point correlator and parity projection, matching the narrow local PyQUDA example.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "baryon_two_point_correlators",
+            "interpolating_operators_carry_target_quantum_numbers"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA proton example fixes the implementation path; this curated review record documents the physics-side proton spectroscopy convention without implying live online lookup.",
+          "year": 2022
+        }
+      ],
+      "convention": "Use the standard local proton interpolating operator together with the parity-projected zero-momentum two-point contraction encoded in the local PyQUDA proton example.",
+      "correlator": "C_N(t) = \\sum_{\\vec x} \\langle N(\\vec x,t) \\bar N(\\vec 0,0) \\rangle",
+      "label": "Proton two-point correlator",
+      "local_references": [
+        "examples/3_Pion_Proton_2pt.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/source.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py"
+      ],
+      "operator": "N_\\alpha(x) = \\epsilon^{abc}(u^{aT}(x) C\\gamma_5 d^b(x)) u^c_\\alpha(x)",
+      "proposal_id": "proton_nucleon_gamma5_twopt",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "proton_two_point_correlator"
+    }
+  ],
+  "inferred_fields": {},
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "proton two-point correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a proton two-point correlator.",
+    "target_id": "proton_two_point_correlator",
+    "task_type_hint": "proton_2pt"
+  },
+  "inherited_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": true
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": true,
+    "auto_preflight_attempted": false,
+    "auto_preflight_category": null,
+    "auto_preflight_reason": null,
+    "auto_preflight_status": null,
+    "auto_preflight_timeout_seconds": null,
+    "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+    "configured": true,
+    "configured_backend": "codex",
+    "fallback": true,
+    "fallback_category": "timeout",
+    "fallback_reason": "Codex backend timed out after 30 seconds.",
+    "model_name": null,
+    "notes": [],
+    "provider": null,
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "selected_backend": "codex",
+    "selection_reason": "Explicit codex backend requested.",
+    "stages_attempted": [
+      "rough_request_normalization",
+      "physics_target_interpretation",
+      "formula_operator_explanation"
+    ],
+    "stages_completed": [],
+    "used": false
+  },
+  "local_references": [
+    "examples/3_Pion_Proton_2pt.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/source.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py"
+  ],
+  "normalized_request": "please compute the proton two-point correlator",
+  "parser_guesses": {},
+  "status": "confirmed",
+  "task_type_hint": "proton_2pt",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "target_id": "proton_two_point_correlator"
+  },
+  "user_request": "please compute the proton two-point correlator"
+}

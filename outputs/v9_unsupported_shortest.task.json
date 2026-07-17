@@ -1,0 +1,148 @@
+{
+  "chosen_workflow_target": null,
+  "clarified_fields": {},
+  "cluster_launch": "local",
+  "coeff_r": null,
+  "coeff_t": null,
+  "correlator_output_format": "npy",
+  "correlator_output_path": "/private/tmp/prop_a.npy",
+  "external_citations": [],
+  "fermion_action": null,
+  "field_sources": {
+    "cluster_launch": "parsed",
+    "correlator_output_format": "parsed",
+    "correlator_output_path": "parsed",
+    "gauge_fixed": "parsed",
+    "grid_size": "parsed",
+    "has_existing_propagators": "parsed",
+    "lattice_size": "parsed",
+    "momenta": "parsed",
+    "momentum_projection": "parsed",
+    "propagator_format": "parsed",
+    "propagator_paths": "parsed",
+    "resource_path": "parsed",
+    "script_output_path": "default",
+    "script_style": "parsed",
+    "sink_type": "parsed",
+    "source_type": "parsed",
+    "start_from": "parsed",
+    "task_type": "parser_guess"
+  },
+  "fixed_fields": {
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/v9_unsupported_shortest.py"
+  },
+  "gamma_insertions": [],
+  "gauge_fixed": true,
+  "gauge_format": null,
+  "gauge_path": null,
+  "grid_size": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "has_existing_propagators": true,
+  "inferred_fields": {},
+  "inherited_fields": {},
+  "lattice_size": [
+    4,
+    4,
+    4,
+    8
+  ],
+  "mass": null,
+  "missing_fields": [
+    "gauge_format",
+    "gauge_path",
+    "fermion_action",
+    "mass",
+    "xi_0",
+    "nu",
+    "coeff_t",
+    "coeff_r",
+    "solver_tol",
+    "solver_maxiter",
+    "source_timeslices"
+  ],
+  "momenta": [
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "momentum_projection": "zero",
+  "multigrid_blocks": [],
+  "notes": "generate complete pion 2pt from existing propagator /tmp/prop_a.npy volume source local sink zero momentum gauge fixed lattice size 4 4 4 8 grid 1 1 1 1 resource_path=.cache/quda cluster_launch=local",
+  "nu": null,
+  "parser_guesses": {
+    "task_type": "pion_2pt"
+  },
+  "propagator_format": "npy",
+  "propagator_paths": [
+    "/tmp/prop_a.npy"
+  ],
+  "pyquda_references": [],
+  "resource_path": ".cache/quda",
+  "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/v9_unsupported_shortest.py",
+  "script_style": "complete",
+  "sink_type": "local",
+  "solver_maxiter": null,
+  "solver_tol": null,
+  "source_timeslices": [],
+  "source_type": "volume",
+  "start_from": "propagator",
+  "stout_smear_ndim": null,
+  "stout_smear_rho": null,
+  "stout_smear_steps": null,
+  "task_type": "pion_2pt",
+  "unsupported_fields": {
+    "has_existing_propagators": "This workflow does not support starting from existing propagators.",
+    "source_type": "First version only supports wall source.",
+    "start_from": "First version only supports starting from a gauge configuration."
+  },
+  "unsupported_reasons": [
+    "First version only supports starting from a gauge configuration.",
+    "This workflow does not support starting from existing propagators.",
+    "First version only supports wall source."
+  ],
+  "user_confirmed_fields": {
+    "cluster_launch": "local",
+    "correlator_output_format": "npy",
+    "correlator_output_path": "/tmp/prop_a.npy",
+    "gauge_fixed": true,
+    "grid_size": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "has_existing_propagators": true,
+    "lattice_size": [
+      4,
+      4,
+      4,
+      8
+    ],
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "momentum_projection": "zero",
+    "propagator_format": "npy",
+    "propagator_paths": [
+      "/tmp/prop_a.npy"
+    ],
+    "resource_path": ".cache/quda",
+    "script_style": "complete",
+    "sink_type": "local",
+    "source_type": "volume",
+    "start_from": "propagator"
+  },
+  "user_request": "generate complete pion 2pt from existing propagator /tmp/prop_a.npy volume source local sink zero momentum gauge fixed lattice size 4 4 4 8 grid 1 1 1 1 resource_path=.cache/quda cluster_launch=local",
+  "workflow_id": null,
+  "xi_0": null
+}

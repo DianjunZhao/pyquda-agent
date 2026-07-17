@@ -1,0 +1,563 @@
+{
+  "chosen_workflow_target": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1",
+  "clarification_trace": [],
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "pion pcac ratio correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the narrow pion PCAC ratio path grounded in the local PyQUDA example.",
+    "target_id": "pion_pcac_ratio_correlator",
+    "task_type_hint": "pion_pcac"
+  },
+  "convention_decisions": [
+    {
+      "category": "physics",
+      "citations": [],
+      "decision": "Use the narrow pion PCAC ratio built from pseudoscalar and temporal-axial zero-momentum correlators.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/examples/4_Pion_PCAC.py"
+      ],
+      "why": "The supported family is pinned to the exact local PyQUDA PCAC example rather than a generalized axial-current workflow."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Read a Chroma/QIO gauge, apply one stout-smear step, then load it into a getDirac-based Clover operator.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/examples/4_Pion_PCAC.py",
+        "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py"
+      ],
+      "why": "This matches the exact setup path used by the local PCAC example and preserves the grounded stout-smear/getDirac implementation choices."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Contract both pion and pionA4 channels with gamma5/gamma4gamma5 factors and report the derived PCAC ratio in one reviewable npy artifact.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/examples/4_Pion_PCAC.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py"
+      ],
+      "why": "The fixed complete path should stay traceable to the local contraction structure instead of inventing a higher-level helper API."
+    }
+  ],
+  "external_citations": [],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "field_resolution": {
+    "_physics_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_by_workflow_fields": {
+        "correlator_output_format": "npy",
+        "fermion_action": "clover",
+        "gauge_fixed": false,
+        "gauge_format": "chroma_qio",
+        "has_existing_propagators": false,
+        "momenta": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "momentum_projection": "zero",
+        "multigrid_blocks": [
+          [
+            6,
+            6,
+            6,
+            4
+          ],
+          [
+            4,
+            4,
+            4,
+            9
+          ]
+        ],
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "wall",
+        "start_from": "gauge",
+        "stout_smear_ndim": 4,
+        "stout_smear_rho": 0.125,
+        "stout_smear_steps": 1,
+        "task_type": "pion_pcac",
+        "workflow_id": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {},
+      "user_confirmed_fields": {
+        "target_id": "pion_pcac_ratio_correlator"
+      }
+    },
+    "_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_fields": {
+        "correlator_output_format": "npy",
+        "fermion_action": "clover",
+        "gauge_fixed": false,
+        "gauge_format": "chroma_qio",
+        "has_existing_propagators": false,
+        "momenta": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "momentum_projection": "zero",
+        "multigrid_blocks": [
+          [
+            6,
+            6,
+            6,
+            4
+          ],
+          [
+            4,
+            4,
+            4,
+            9
+          ]
+        ],
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "wall",
+        "start_from": "gauge",
+        "stout_smear_ndim": 4,
+        "stout_smear_rho": 0.125,
+        "stout_smear_steps": 1,
+        "task_type": "pion_pcac",
+        "workflow_id": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {
+        "gauge_format": "chroma_qio",
+        "task_type": "pion_pcac"
+      },
+      "user_confirmed_fields": {
+        "cluster_launch": "local",
+        "coeff_r": 1.160920226,
+        "coeff_t": 1.160920226,
+        "correlator_output_format": "npy",
+        "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.npy",
+        "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+        "grid_size": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "has_existing_propagators": false,
+        "lattice_size": [
+          4,
+          4,
+          4,
+          8
+        ],
+        "mass": -0.277,
+        "nu": 1.0,
+        "resource_path": ".cache/quda",
+        "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.py",
+        "solver_maxiter": 1000,
+        "solver_tol": 1e-12,
+        "source_timeslices": [
+          0
+        ],
+        "start_from": "gauge",
+        "xi_0": 1.0
+      }
+    },
+    "cluster_launch": "parsed",
+    "coeff_r": "parsed",
+    "coeff_t": "parsed",
+    "correlator_output_format": "parsed",
+    "correlator_output_path": "parsed",
+    "fermion_action": "fixed",
+    "gauge_fixed": "fixed",
+    "gauge_format": "parser_guess",
+    "gauge_path": "parsed",
+    "grid_size": "parsed",
+    "has_existing_propagators": "parsed",
+    "lattice_size": "parsed",
+    "mass": "parsed",
+    "momenta": "fixed",
+    "momentum_projection": "fixed",
+    "multigrid_blocks": "fixed",
+    "nu": "parsed",
+    "resource_path": "parsed",
+    "script_output_path": "parsed",
+    "script_style": "fixed",
+    "sink_type": "fixed",
+    "solver_maxiter": "parsed",
+    "solver_tol": "parsed",
+    "source_timeslices": "parsed",
+    "source_type": "fixed",
+    "start_from": "parsed",
+    "stout_smear_ndim": "fixed",
+    "stout_smear_rho": "fixed",
+    "stout_smear_steps": "fixed",
+    "task_type": "parser_guess",
+    "workflow_id": "fixed",
+    "xi_0": "parsed"
+  },
+  "handoff_contract": {
+    "cluster_launch": "local",
+    "input_manifest": [
+      {
+        "kind": "gauge",
+        "path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime"
+      }
+    ],
+    "input_mutability_policy": "immutable_inputs_never_overwritten",
+    "input_paths": [
+      "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime"
+    ],
+    "input_visibility": "all_ranks",
+    "output_paths": {
+      "correlator": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.npy",
+      "probe_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.probe.json",
+      "script": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.py"
+    },
+    "output_writer_policy": "rank0_only",
+    "preflight_checks": [
+      "Ensure all gauge inputs are visible from every rank before launch.",
+      "Ensure the output directory is writable by the rank that saves the final correlator artifact.",
+      "Confirm the nearest existing parent of each emitted artifact path is writable on the target filesystem before submission.",
+      "Verify numpy, cupy, pyquda_utils, and pyquda import successfully before starting a full inversion job.",
+      "Review the sibling .physics.json, .task.json, and .plan.json artifacts before cluster submission.",
+      "Keep gauge inputs on shared read-only storage and write new outputs to a dedicated writable results directory when possible."
+    ],
+    "required_modules": [
+      "numpy",
+      "cupy",
+      "pyquda_utils",
+      "pyquda"
+    ],
+    "resource_path": ".cache/quda",
+    "start_from": "gauge",
+    "submission_assumption": "Launch under an MPI/GPU layout consistent with GRID_SIZE and the target PyQUDA environment."
+  },
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "pion pcac ratio correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the narrow pion PCAC ratio path grounded in the local PyQUDA example.",
+    "target_id": "pion_pcac_ratio_correlator",
+    "task_type_hint": "pion_pcac"
+  },
+  "inherited_session_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": false
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "local_references_used": [
+    "examples/4_Pion_PCAC.py",
+    "examples/3_Pion_Proton_2pt.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py"
+  ],
+  "physics_choices": {
+    "coeff_r": 1.160920226,
+    "coeff_t": 1.160920226,
+    "fermion_action": "clover",
+    "flow_epsilon": null,
+    "flow_steps": null,
+    "gauge_fixed": false,
+    "mass": -0.277,
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "momentum_projection": "zero",
+    "nu": 1.0,
+    "sink_type": "local",
+    "source_timeslices": [
+      0
+    ],
+    "source_type": "wall",
+    "target_id": "pion_pcac_ratio_correlator",
+    "xi_0": 1.0
+  },
+  "pyquda_choices": {
+    "gauge_format": "chroma_qio",
+    "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+    "grid_size": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "lattice_size": [
+      4,
+      4,
+      4,
+      8
+    ],
+    "multigrid_blocks": [
+      [
+        6,
+        6,
+        6,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        9
+      ]
+    ],
+    "output_format": "npy",
+    "resource_path": ".cache/quda",
+    "solver_maxiter": 1000,
+    "solver_tol": 1e-12,
+    "start_from": "gauge",
+    "stout_smear_ndim": 4,
+    "stout_smear_rho": 0.125,
+    "stout_smear_steps": 1
+  },
+  "references": [
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/examples/4_Pion_PCAC.py",
+      "source": "pyquda",
+      "summary": "import numpy as np"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/examples/3_Pion_Proton_2pt.py",
+      "source": "pyquda",
+      "summary": "from itertools import permutations"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+      "source": "pyquda",
+      "summary": "from check_pyquda import weak_field"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+      "source": "pyquda",
+      "summary": "from typing import List"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/core.py",
+      "source": "pyquda",
+      "summary": "from math import prod"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py",
+      "source": "pyquda",
+      "summary": "from pyquda_comm.field import LatticeFermion, LatticePropagator"
+    }
+  ],
+  "runtime_choices": {
+    "cluster_launch": "local",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.npy",
+    "primary_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.npy",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.py"
+  },
+  "runtime_readiness": {
+    "artifact_chain": {
+      "physics_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.physics.json",
+      "plan_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.plan.json",
+      "task_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.task.json"
+    },
+    "checks": [
+      {
+        "module": "numpy",
+        "ok": true,
+        "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+      },
+      {
+        "error": "No module named 'cupy'",
+        "error_type": "ModuleNotFoundError",
+        "module": "cupy",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils.core",
+        "ok": false
+      }
+    ],
+    "environment_probe": {
+      "script": "scripts/check_pyquda_runtime.py",
+      "used_repo_pythonpath": false
+    },
+    "environment_ready": false,
+    "evidence_levels": {
+      "blockers": [
+        "Missing runtime dependency 'cupy'. Activate a PyQUDA environment with CuPy installed before running this script."
+      ],
+      "current_level": "environment_missing",
+      "runtime_proved": false,
+      "runtime_ready": false,
+      "structurally_grounded": true,
+      "syntax_valid": true
+    },
+    "generated_script_exists": true,
+    "generated_script_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.py",
+    "generated_script_probe": {
+      "artifact_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.probe.json",
+      "command": "python3 scripts/probe_generated_workflow.py --script /Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.py --output /Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.probe.json",
+      "reason": null,
+      "result": {
+        "duration_seconds": 0.09503850003238767,
+        "evidence_levels": {
+          "blockers": [
+            "Missing runtime dependency 'cupy'. Activate a PyQUDA environment with CuPy installed before running this script."
+          ],
+          "current_level": "environment_missing",
+          "runtime_proved": false,
+          "runtime_ready": false,
+          "structurally_grounded": null,
+          "syntax_valid": null
+        },
+        "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+        "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+        "returncode": 1,
+        "runtime_level": "environment_missing",
+        "script": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.py",
+        "script_exists": true,
+        "status": "runtime_missing",
+        "stderr": "Missing runtime dependency 'cupy'. Activate a PyQUDA environment with CuPy installed before running this script.",
+        "stdout": "",
+        "used_repo_pythonpath": false
+      },
+      "status": "runtime_missing"
+    },
+    "probe_policy": {
+      "auto_run": true,
+      "current_run_attempted": true,
+      "current_run_requested": true,
+      "current_run_status": "runtime_missing",
+      "default_auto_run": false,
+      "reason": "This run explicitly requested a minimal generated-script probe after script emission."
+    },
+    "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+    "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+    "ready": false,
+    "reference_grounded": true,
+    "runtime_level": "environment_missing",
+    "runtime_proved": false,
+    "syntax_valid": true,
+    "used_repo_pythonpath": false
+  },
+  "task_type": "pion_pcac",
+  "unresolved_fields": [],
+  "unsupported_reasons": [],
+  "user_request": "please compute pion pcac ratio from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=-0.2770 xi_0=1.0 nu=1.0 coeff_t=1.160920226 coeff_r=1.160920226 tol=1e-12 maxiter=1000 source timeslice 0 /Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_pion_pcac.py resource_path=.cache/quda cluster_launch=local",
+  "validation_checks": [
+    "generated code is syntax-valid",
+    "task fields fully resolved",
+    "workflow matches supported runnable path",
+    "generated code imports real PyQUDA APIs",
+    "generated code matches local examples/tests/io helpers for the chosen workflow",
+    "generated code contains no TODO/pass/placeholder text"
+  ],
+  "workflow_id": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1",
+  "workflow_match": {
+    "external_citations": [],
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "fermion_action": "clover",
+      "gauge_fixed": false,
+      "gauge_format": "chroma_qio",
+      "has_existing_propagators": false,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "momentum_projection": "zero",
+      "multigrid_blocks": [
+        [
+          6,
+          6,
+          6,
+          4
+        ],
+        [
+          4,
+          4,
+          4,
+          9
+        ]
+      ],
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "wall",
+      "start_from": "gauge",
+      "stout_smear_ndim": 4,
+      "stout_smear_rho": 0.125,
+      "stout_smear_steps": 1,
+      "task_type": "pion_pcac",
+      "workflow_id": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1"
+    },
+    "local_references": [
+      "examples/4_Pion_PCAC.py",
+      "examples/3_Pion_Proton_2pt.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py"
+    ],
+    "mapping_notes": [
+      "Confirmed pion PCAC target mapped to the validated gauge -> stout-smear -> getDirac -> wall-source -> pion/pionA4 zero-momentum ratio -> npy implementation path."
+    ],
+    "matched": true,
+    "task_type": "pion_pcac",
+    "unsupported_reasons": [],
+    "workflow_target": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1"
+  }
+}

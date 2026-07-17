@@ -1,0 +1,194 @@
+{
+  "chosen_workflow_target": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1",
+  "clarified_fields": {},
+  "cluster_launch": "local",
+  "coeff_r": 1.160920226,
+  "coeff_t": 1.160920226,
+  "correlator_output_format": "npy",
+  "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion_pcac.npy",
+  "external_citations": [],
+  "fermion_action": "clover",
+  "field_sources": {
+    "cluster_launch": "parsed",
+    "coeff_r": "parsed",
+    "coeff_t": "parsed",
+    "correlator_output_format": "parsed",
+    "correlator_output_path": "parsed",
+    "fermion_action": "fixed",
+    "gauge_fixed": "fixed",
+    "gauge_format": "parser_guess",
+    "gauge_path": "parsed",
+    "grid_size": "parsed",
+    "has_existing_propagators": "parsed",
+    "lattice_size": "parsed",
+    "mass": "parsed",
+    "momenta": "fixed",
+    "momentum_projection": "fixed",
+    "multigrid_blocks": "fixed",
+    "nu": "parsed",
+    "resource_path": "parsed",
+    "script_output_path": "parsed",
+    "script_style": "fixed",
+    "sink_type": "fixed",
+    "solver_maxiter": "parsed",
+    "solver_tol": "parsed",
+    "source_timeslices": "parsed",
+    "source_type": "fixed",
+    "start_from": "parsed",
+    "stout_smear_ndim": "fixed",
+    "stout_smear_rho": "fixed",
+    "stout_smear_steps": "fixed",
+    "task_type": "parser_guess",
+    "workflow_id": "fixed",
+    "xi_0": "parsed"
+  },
+  "fixed_fields": {
+    "correlator_output_format": "npy",
+    "fermion_action": "clover",
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "has_existing_propagators": false,
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "momentum_projection": "zero",
+    "multigrid_blocks": [
+      [
+        6,
+        6,
+        6,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        9
+      ]
+    ],
+    "script_style": "complete",
+    "sink_type": "local",
+    "source_type": "wall",
+    "start_from": "gauge",
+    "stout_smear_ndim": 4,
+    "stout_smear_rho": 0.125,
+    "stout_smear_steps": 1,
+    "task_type": "pion_pcac",
+    "workflow_id": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1"
+  },
+  "gamma_insertions": [],
+  "gauge_fixed": false,
+  "gauge_format": "chroma_qio",
+  "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+  "grid_size": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "has_existing_propagators": false,
+  "inferred_fields": {},
+  "inherited_fields": {},
+  "lattice_size": [
+    4,
+    4,
+    4,
+    8
+  ],
+  "mass": -0.277,
+  "missing_fields": [],
+  "momenta": [
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "momentum_projection": "zero",
+  "multigrid_blocks": [
+    [
+      6,
+      6,
+      6,
+      4
+    ],
+    [
+      4,
+      4,
+      4,
+      9
+    ]
+  ],
+  "notes": "please compute pion pcac ratio from gauge ~/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=-0.2770 xi_0=1.0 nu=1.0 coeff_t=1.160920226 coeff_r=1.160920226 tol=1e-12 maxiter=1000 source timeslice 0 outputs/pion_pcac.npy outputs/run_pion_pcac.py resource_path=.cache/quda cluster_launch=local",
+  "nu": 1.0,
+  "parser_guesses": {
+    "gauge_format": "chroma_qio",
+    "task_type": "pion_pcac"
+  },
+  "propagator_format": null,
+  "propagator_paths": [],
+  "pyquda_references": [
+    "examples/4_Pion_PCAC.py",
+    "examples/3_Pion_Proton_2pt.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py"
+  ],
+  "resource_path": ".cache/quda",
+  "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/run_pion_pcac.py",
+  "script_style": "complete",
+  "sink_type": "local",
+  "solver_maxiter": 1000,
+  "solver_tol": 1e-12,
+  "source_timeslices": [
+    0
+  ],
+  "source_type": "wall",
+  "start_from": "gauge",
+  "stout_smear_ndim": 4,
+  "stout_smear_rho": 0.125,
+  "stout_smear_steps": 1,
+  "task_type": "pion_pcac",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "cluster_launch": "local",
+    "coeff_r": 1.160920226,
+    "coeff_t": 1.160920226,
+    "correlator_output_format": "npy",
+    "correlator_output_path": "outputs/pion_pcac.npy",
+    "gauge_path": "~/PyQUDA/tests/weak_field.lime",
+    "grid_size": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "has_existing_propagators": false,
+    "lattice_size": [
+      4,
+      4,
+      4,
+      8
+    ],
+    "mass": -0.277,
+    "nu": 1.0,
+    "resource_path": ".cache/quda",
+    "script_output_path": "outputs/run_pion_pcac.py",
+    "solver_maxiter": 1000,
+    "solver_tol": 1e-12,
+    "source_timeslices": [
+      0
+    ],
+    "start_from": "gauge",
+    "xi_0": 1.0
+  },
+  "user_request": "please compute pion pcac ratio from gauge ~/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=-0.2770 xi_0=1.0 nu=1.0 coeff_t=1.160920226 coeff_r=1.160920226 tol=1e-12 maxiter=1000 source timeslice 0 outputs/pion_pcac.npy outputs/run_pion_pcac.py resource_path=.cache/quda cluster_launch=local",
+  "workflow_id": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1",
+  "xi_0": 1.0
+}

@@ -9,6 +9,7 @@ from dataclasses import field
 
 @dataclass
 class Pion2ptTaskDraft:
+    user_request: str | None = None
     task_type: str | None = None
     workflow_id: str | None = None
     start_from: str | None = None
@@ -27,8 +28,18 @@ class Pion2ptTaskDraft:
     coeff_r: float | None = None
     solver_tol: float | None = None
     solver_maxiter: int | None = None
+    multigrid_blocks: list[list[int]] = field(default_factory=list)
+    stout_smear_steps: int | None = None
+    stout_smear_rho: float | None = None
+    stout_smear_ndim: int | None = None
+    source_smearing_kind: str | None = None
+    source_smearing_rho: float | None = None
+    source_smearing_steps: int | None = None
+    flow_steps: int | None = None
+    flow_epsilon: float | None = None
     source_type: str | None = None
     sink_type: str | None = None
+    gamma_insertions: list[str] = field(default_factory=list)
     momentum_projection: str | None = None
     momenta: list[list[int]] = field(default_factory=list)
     source_timeslices: list[int] = field(default_factory=list)
@@ -43,6 +54,16 @@ class Pion2ptTaskDraft:
     missing_fields: list[str] = field(default_factory=list)
     unsupported_reasons: list[str] = field(default_factory=list)
     field_sources: dict[str, str] = field(default_factory=dict)
+    inherited_fields: dict[str, object] = field(default_factory=dict)
+    user_confirmed_fields: dict[str, object] = field(default_factory=dict)
+    inferred_fields: dict[str, object] = field(default_factory=dict)
+    clarified_fields: dict[str, object] = field(default_factory=dict)
+    parser_guesses: dict[str, object] = field(default_factory=dict)
+    fixed_fields: dict[str, object] = field(default_factory=dict)
+    unsupported_fields: dict[str, str] = field(default_factory=dict)
+    chosen_workflow_target: str | None = None
+    pyquda_references: list[str] = field(default_factory=list)
+    external_citations: list[dict] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -72,8 +93,13 @@ class Pion2ptTask:
     coeff_r: float
     solver_tol: float
     solver_maxiter: int
+    multigrid_blocks: list[list[int]]
+    stout_smear_steps: int | None
+    stout_smear_rho: float | None
+    stout_smear_ndim: int | None
     source_type: str
     sink_type: str
+    gamma_insertions: list[str]
     momentum_projection: str
     momenta: list[list[int]]
     source_timeslices: list[int]
@@ -85,7 +111,12 @@ class Pion2ptTask:
     script_output_path: str
     script_style: str
     field_sources: dict[str, str]
+    flow_steps: int | None = None
+    flow_epsilon: float | None = None
     notes: str | None = None
+    source_smearing_kind: str | None = None
+    source_smearing_rho: float | None = None
+    source_smearing_steps: int | None = None
 
     def to_dict(self) -> dict:
         return asdict(self)

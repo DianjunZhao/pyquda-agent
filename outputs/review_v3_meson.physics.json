@@ -1,0 +1,57 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "medium",
+      "label": "meson two-point correlator with unspecified channel/operator",
+      "status": "needs_confirmation",
+      "summary": "The request asks for a meson correlator but does not identify the channel or operator.",
+      "target_id": "meson_two_point_correlator_unspecified",
+      "task_type_hint": null
+    },
+    {
+      "confidence": "low",
+      "label": "pion two-point correlator",
+      "status": "candidate",
+      "summary": "Pion is one plausible meson channel, but it is not confirmed by the request.",
+      "target_id": "pion_two_point_correlator",
+      "task_type_hint": "pion_2pt"
+    }
+  ],
+  "chosen_workflow_target": null,
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": null,
+  "external_citations": [],
+  "fixed_by_workflow_fields": {},
+  "formula_proposals": [
+    {
+      "citations": [],
+      "convention": "A meson two-point request is not runnable until the hadron channel and interpolating operator are fixed.",
+      "correlator": "C(t) = \\sum_{\\vec x} \\langle O(\\vec x,t) O^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Meson two-point correlator requires channel/operator choice",
+      "local_references": [],
+      "operator": "Underspecified",
+      "proposal_id": "meson_operator_needs_channel_choice",
+      "provenance": "model_inference",
+      "target_id": "meson_two_point_correlator_unspecified"
+    }
+  ],
+  "inferred_fields": {
+    "target_id": "meson_two_point_correlator_unspecified"
+  },
+  "inferred_interpretation": {
+    "confidence": "medium",
+    "label": "meson two-point correlator with unspecified channel/operator",
+    "status": "needs_confirmation",
+    "summary": "The request asks for a meson correlator but does not identify the channel or operator.",
+    "target_id": "meson_two_point_correlator_unspecified",
+    "task_type_hint": null
+  },
+  "local_references": [],
+  "status": "needs_confirmation",
+  "task_type_hint": null,
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {},
+  "user_request": "I want a meson correlator script but I am not sure about the exact operator"
+}

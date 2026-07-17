@@ -1,0 +1,452 @@
+{
+  "chosen_workflow_target": "rho_vector_existing_propagator_local_zero_momentum_npy_v1",
+  "clarification_trace": [],
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "rho / vector meson correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a rho/vector meson correlator. The first supported family is the narrow gauge-entry wall-source zero-momentum vector-channel path.",
+    "target_id": "rho_vector_meson_correlator",
+    "task_type_hint": "rho_vector"
+  },
+  "convention_decisions": [
+    {
+      "category": "physics",
+      "citations": [],
+      "decision": "Keep the same narrow rho/vector channel with spatial bilinears O_rho,i = qbar gamma_i q and zero momentum, but consume precomputed wall-source propagators instead of rebuilding inversions.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+      ],
+      "why": "This preserves the locally grounded rho/vector physics path while exposing a narrow HPC handoff branch that starts from stored propagators."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Load stored propagators through the grounded local IO helpers (NPY/HDF5/Chroma-QIO) and treat them as the handoff boundary instead of regenerating inversions.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py"
+      ],
+      "why": "The new rho/vector propagator-entry branch must stay traceable to the local IO tests and helper module rather than inventing a new serialization path."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Reuse the mesonspec tensor contraction with gamma.gamma(1/2/4), spatial gamma_i labels, and source-timeslice roll/gather postprocessing for each stored propagator.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py"
+      ],
+      "why": "This keeps the propagator-entry rho/vector branch placeholder-free and faithful to the only grounded local vector-channel contraction structure."
+    }
+  ],
+  "external_citations": [],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "field_resolution": {
+    "_physics_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_by_workflow_fields": {
+        "correlator_output_format": "npy",
+        "gamma_insertions": [
+          "gamma1_gamma1",
+          "gamma2_gamma2",
+          "gamma3_gamma3"
+        ],
+        "gauge_fixed": false,
+        "has_existing_propagators": true,
+        "momenta": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "momentum_projection": "zero",
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "wall",
+        "start_from": "propagator",
+        "task_type": "rho_vector",
+        "workflow_id": "rho_vector_existing_propagator_local_zero_momentum_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {},
+      "user_confirmed_fields": {
+        "target_id": "rho_vector_meson_correlator"
+      }
+    },
+    "_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_fields": {
+        "correlator_output_format": "npy",
+        "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.npy",
+        "gamma_insertions": [
+          "gamma1_gamma1",
+          "gamma2_gamma2",
+          "gamma3_gamma3"
+        ],
+        "gauge_fixed": false,
+        "has_existing_propagators": true,
+        "momenta": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "momentum_projection": "zero",
+        "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.py",
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "wall",
+        "start_from": "propagator",
+        "task_type": "rho_vector",
+        "workflow_id": "rho_vector_existing_propagator_local_zero_momentum_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {
+        "task_type": "rho_vector"
+      },
+      "user_confirmed_fields": {
+        "has_existing_propagators": true,
+        "start_from": "propagator"
+      }
+    },
+    "cluster_launch": "default",
+    "correlator_output_format": "default",
+    "correlator_output_path": "default",
+    "gamma_insertions": "fixed",
+    "gauge_fixed": "fixed",
+    "has_existing_propagators": "parsed",
+    "momenta": "fixed",
+    "momentum_projection": "fixed",
+    "resource_path": "default",
+    "script_output_path": "default",
+    "script_style": "fixed",
+    "sink_type": "fixed",
+    "source_type": "fixed",
+    "start_from": "parsed",
+    "task_type": "parser_guess",
+    "workflow_id": "fixed"
+  },
+  "handoff_contract": {
+    "cluster_launch": "local",
+    "input_manifest": [],
+    "input_mutability_policy": "immutable_inputs_never_overwritten",
+    "input_paths": [],
+    "input_visibility": "all_ranks",
+    "output_paths": {
+      "correlator": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.npy",
+      "probe_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.probe.json",
+      "script": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.py"
+    },
+    "output_writer_policy": "rank0_only",
+    "preflight_checks": [
+      "Ensure all propagator inputs are visible from every rank before launch.",
+      "Ensure the output directory is writable by the rank that saves the final correlator artifact.",
+      "Confirm the nearest existing parent of each emitted artifact path is writable on the target filesystem before submission.",
+      "Verify numpy, cupy, pyquda_utils, and pyquda import successfully before starting a full inversion job.",
+      "Review the sibling .physics.json, .task.json, and .plan.json artifacts before cluster submission.",
+      "Verify the propagator input manifest matches the intended source-timeslice ordering before launch.",
+      "Treat propagator inputs as immutable handoff artifacts; do not reuse an input path as an output path.",
+      "Prefer a dedicated writable results directory instead of writing new outputs beside stored propagator handoff artifacts."
+    ],
+    "required_modules": [
+      "numpy",
+      "cupy",
+      "pyquda_utils",
+      "pyquda"
+    ],
+    "resource_path": ".cache/quda",
+    "start_from": "propagator",
+    "submission_assumption": "Launch under an MPI/GPU layout consistent with GRID_SIZE and the target PyQUDA environment."
+  },
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "rho / vector meson correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a rho/vector meson correlator. The first supported family is the narrow gauge-entry wall-source zero-momentum vector-channel path.",
+    "target_id": "rho_vector_meson_correlator",
+    "task_type_hint": "rho_vector"
+  },
+  "inherited_session_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": false
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "local_references_used": [
+    "tests/test_mesonspec.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py"
+  ],
+  "physics_choices": {
+    "coeff_r": null,
+    "coeff_t": null,
+    "fermion_action": null,
+    "flow_epsilon": null,
+    "flow_steps": null,
+    "gauge_fixed": false,
+    "mass": null,
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "momentum_projection": "zero",
+    "nu": null,
+    "sink_type": "local",
+    "source_timeslices": [],
+    "source_type": "wall",
+    "target_id": "rho_vector_meson_correlator",
+    "xi_0": null
+  },
+  "pyquda_choices": {
+    "gauge_format": null,
+    "gauge_path": null,
+    "grid_size": [],
+    "lattice_size": [],
+    "multigrid_blocks": [],
+    "output_format": "npy",
+    "resource_path": ".cache/quda",
+    "solver_maxiter": null,
+    "solver_tol": null,
+    "start_from": "propagator",
+    "stout_smear_ndim": null,
+    "stout_smear_rho": null,
+    "stout_smear_steps": null
+  },
+  "references": [
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+      "source": "pyquda",
+      "summary": "from time import perf_counter"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.ini.xml",
+      "source": "pyquda",
+      "summary": "<?xml version=\"1.0\"?>"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+      "source": "pyquda",
+      "summary": "from check_pyquda import weak_field"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+      "source": "pyquda",
+      "summary": "from typing import List"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/core.py",
+      "source": "pyquda",
+      "summary": "from math import prod"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py",
+      "source": "pyquda",
+      "summary": "from pyquda_comm.field import LatticeFermion, LatticePropagator"
+    }
+  ],
+  "runtime_choices": {
+    "cluster_launch": "local",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.npy",
+    "primary_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.npy",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.py"
+  },
+  "runtime_readiness": {
+    "artifact_chain": {
+      "physics_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.physics.json",
+      "plan_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.plan.json",
+      "task_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.task.json"
+    },
+    "checks": [
+      {
+        "module": "numpy",
+        "ok": true,
+        "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+      },
+      {
+        "error": "No module named 'cupy'",
+        "error_type": "ModuleNotFoundError",
+        "module": "cupy",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils.core",
+        "ok": false
+      }
+    ],
+    "environment_probe": {
+      "script": "scripts/check_pyquda_runtime.py",
+      "used_repo_pythonpath": false
+    },
+    "environment_ready": false,
+    "evidence_levels": {
+      "blockers": [
+        {
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy",
+          "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+        },
+        {
+          "error": "No module named 'pyquda'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda",
+          "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils",
+          "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils.core",
+          "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+        }
+      ],
+      "current_level": "structurally_grounded",
+      "runtime_proved": false,
+      "runtime_ready": false,
+      "structurally_grounded": true,
+      "syntax_valid": true
+    },
+    "generated_script_exists": false,
+    "generated_script_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.py",
+    "generated_script_probe": {
+      "artifact_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.probe.json",
+      "command": "python3 scripts/probe_generated_workflow.py --script /Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.py --output /Users/zhaodianjun/pyquda-agent/outputs/validate_rho_vector_existing_propagator_rough.probe.json",
+      "reason": null,
+      "status": "requested"
+    },
+    "probe_policy": {
+      "auto_run": true,
+      "current_run_attempted": false,
+      "current_run_requested": true,
+      "current_run_status": "requested",
+      "default_auto_run": false,
+      "reason": "This run explicitly requested a minimal generated-script probe after script emission."
+    },
+    "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+    "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+    "ready": false,
+    "reference_grounded": true,
+    "runtime_level": "structurally_grounded",
+    "runtime_proved": false,
+    "syntax_valid": true,
+    "used_repo_pythonpath": false
+  },
+  "task_type": "rho_vector",
+  "unresolved_fields": [
+    "propagator_format",
+    "propagator_paths",
+    "lattice_size",
+    "grid_size",
+    "source_timeslices"
+  ],
+  "unsupported_reasons": [],
+  "user_request": "please compute the rho meson two-point correlator from existing propagator",
+  "validation_checks": [
+    "generated code is syntax-valid",
+    "task fields fully resolved",
+    "workflow matches supported runnable path",
+    "generated code imports real PyQUDA APIs",
+    "generated code matches local examples/tests/io helpers for the chosen workflow",
+    "generated code contains no TODO/pass/placeholder text"
+  ],
+  "workflow_id": "rho_vector_existing_propagator_local_zero_momentum_npy_v1",
+  "workflow_match": {
+    "external_citations": [],
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "gamma_insertions": [
+        "gamma1_gamma1",
+        "gamma2_gamma2",
+        "gamma3_gamma3"
+      ],
+      "gauge_fixed": false,
+      "has_existing_propagators": true,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "momentum_projection": "zero",
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "wall",
+      "start_from": "propagator",
+      "task_type": "rho_vector",
+      "workflow_id": "rho_vector_existing_propagator_local_zero_momentum_npy_v1"
+    },
+    "local_references": [
+      "tests/test_mesonspec.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py"
+    ],
+    "mapping_notes": [
+      "Confirmed rho/vector target mapped to the validated existing-propagator -> fixed spatial gamma_i family -> zero-momentum -> npy implementation path.",
+      "This narrow branch reuses local PyQUDA propagator IO helpers together with the exact mesonspec tensor contraction pattern for the spatial vector bilinear family."
+    ],
+    "matched": true,
+    "task_type": "rho_vector",
+    "unsupported_reasons": [],
+    "workflow_target": "rho_vector_existing_propagator_local_zero_momentum_npy_v1"
+  }
+}

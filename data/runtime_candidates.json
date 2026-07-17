@@ -4,93 +4,21 @@
     {
       "exists": true,
       "python": "/Users/zhaodianjun/.venv/bin/python",
-      "report": {
-        "checks": [
-          {
-            "module": "numpy",
-            "ok": true,
-            "path": "/Users/zhaodianjun/.venv/lib/python3.9/site-packages/numpy/__init__.py"
-          },
-          {
-            "error": "No module named 'cupy'",
-            "error_type": "ModuleNotFoundError",
-            "module": "cupy",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda_utils'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda_utils",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda_utils'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda_utils.core",
-            "ok": false
-          }
-        ],
-        "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
-        "python": "/Users/zhaodianjun/.venv/bin/python",
-        "ready": false,
-        "used_repo_pythonpath": false
-      },
+      "report": null,
       "resolved_python": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9",
       "returncode": 1,
-      "stderr": "",
-      "stdout": "{\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/.venv/lib/python3.9/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/.venv/bin/python\",\n  \"ready\": false,\n  \"used_repo_pythonpath\": false\n}",
+      "stderr": "scripts/check_pyquda_runtime.py requires Python >= 3.10. Current interpreter: 3.9.6 (/Users/zhaodianjun/.venv/bin/python). Re-run with an explicit >=3.10 interpreter, for example a virtualenv/conda/pyenv Python path; do not assume bare `python3` is new enough on every machine.",
+      "stdout": "",
       "used_repo_pythonpath": false
     },
     {
       "exists": true,
       "python": "/Users/zhaodianjun/.venv/bin/python",
-      "report": {
-        "checks": [
-          {
-            "module": "numpy",
-            "ok": true,
-            "path": "/Users/zhaodianjun/.venv/lib/python3.9/site-packages/numpy/__init__.py"
-          },
-          {
-            "error": "No module named 'cupy'",
-            "error_type": "ModuleNotFoundError",
-            "module": "cupy",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda_utils._version'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda_utils",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda_utils._version'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda_utils.core",
-            "ok": false
-          }
-        ],
-        "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
-        "python": "/Users/zhaodianjun/.venv/bin/python",
-        "ready": false,
-        "used_repo_pythonpath": true
-      },
+      "report": null,
       "resolved_python": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9",
       "returncode": 1,
-      "stderr": "",
-      "stdout": "{\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/.venv/lib/python3.9/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/.venv/bin/python\",\n  \"ready\": false,\n  \"used_repo_pythonpath\": true\n}",
+      "stderr": "scripts/check_pyquda_runtime.py requires Python >= 3.10. Current interpreter: 3.9.6 (/Users/zhaodianjun/.venv/bin/python). Re-run with an explicit >=3.10 interpreter, for example a virtualenv/conda/pyenv Python path; do not assume bare `python3` is new enough on every machine.",
+      "stdout": "",
       "used_repo_pythonpath": true
     },
     {
@@ -128,15 +56,50 @@
             "ok": false
           }
         ],
+        "environment_ready": false,
+        "evidence_levels": {
+          "blockers": [
+            {
+              "error": "No module named 'cupy'",
+              "error_type": "ModuleNotFoundError",
+              "module": "cupy",
+              "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+            },
+            {
+              "error": "No module named 'pyquda'",
+              "error_type": "ModuleNotFoundError",
+              "module": "pyquda",
+              "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+            },
+            {
+              "error": "No module named 'pyquda_utils'",
+              "error_type": "ModuleNotFoundError",
+              "module": "pyquda_utils",
+              "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+            },
+            {
+              "error": "No module named 'pyquda_utils'",
+              "error_type": "ModuleNotFoundError",
+              "module": "pyquda_utils.core",
+              "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+            }
+          ],
+          "current_level": "environment_missing",
+          "runtime_proved": false,
+          "runtime_ready": false,
+          "structurally_grounded": null,
+          "syntax_valid": null
+        },
         "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
         "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python",
         "ready": false,
+        "runtime_level": "environment_missing",
         "used_repo_pythonpath": false
       },
       "resolved_python": "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
       "returncode": 1,
       "stderr": "",
-      "stdout": "{\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/lamet-agent/.venv/bin/python\",\n  \"ready\": false,\n  \"used_repo_pythonpath\": false\n}",
+      "stdout": "{\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"environment_ready\": false,\n  \"evidence_levels\": {\n    \"blockers\": [\n      {\n        \"error\": \"No module named 'cupy'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"cupy\",\n        \"suggestion\": \"Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda\",\n        \"suggestion\": \"Build or install the PyQUDA core bindings in this Python environment before runtime proof.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda_utils'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils\",\n        \"suggestion\": \"Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda_utils'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils.core\",\n        \"suggestion\": \"Check that pyquda_utils is importable and that the built core helpers are present.\"\n      }\n    ],\n    \"current_level\": \"environment_missing\",\n    \"runtime_proved\": false,\n    \"runtime_ready\": false,\n    \"structurally_grounded\": null,\n    \"syntax_valid\": null\n  },\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/lamet-agent/.venv/bin/python\",\n  \"ready\": false,\n  \"runtime_level\": \"environment_missing\",\n  \"used_repo_pythonpath\": false\n}",
       "used_repo_pythonpath": false
     },
     {
@@ -174,109 +137,70 @@
             "ok": false
           }
         ],
+        "environment_ready": false,
+        "evidence_levels": {
+          "blockers": [
+            {
+              "error": "No module named 'cupy'",
+              "error_type": "ModuleNotFoundError",
+              "module": "cupy",
+              "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+            },
+            {
+              "error": "No module named 'pyquda'",
+              "error_type": "ModuleNotFoundError",
+              "module": "pyquda",
+              "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+            },
+            {
+              "error": "No module named 'pyquda_utils._version'",
+              "error_type": "ModuleNotFoundError",
+              "module": "pyquda_utils",
+              "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+            },
+            {
+              "error": "No module named 'pyquda_utils._version'",
+              "error_type": "ModuleNotFoundError",
+              "module": "pyquda_utils.core",
+              "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+            }
+          ],
+          "current_level": "environment_missing",
+          "runtime_proved": false,
+          "runtime_ready": false,
+          "structurally_grounded": null,
+          "syntax_valid": null
+        },
         "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
         "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python",
         "ready": false,
+        "runtime_level": "environment_missing",
         "used_repo_pythonpath": true
       },
       "resolved_python": "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
       "returncode": 1,
       "stderr": "",
-      "stdout": "{\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/lamet-agent/.venv/bin/python\",\n  \"ready\": false,\n  \"used_repo_pythonpath\": true\n}",
+      "stdout": "{\n  \"checks\": [\n    {\n      \"module\": \"numpy\",\n      \"ok\": true,\n      \"path\": \"/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py\"\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"environment_ready\": false,\n  \"evidence_levels\": {\n    \"blockers\": [\n      {\n        \"error\": \"No module named 'cupy'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"cupy\",\n        \"suggestion\": \"Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda\",\n        \"suggestion\": \"Build or install the PyQUDA core bindings in this Python environment before runtime proof.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda_utils._version'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils\",\n        \"suggestion\": \"Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.\"\n      },\n      {\n        \"error\": \"No module named 'pyquda_utils._version'\",\n        \"error_type\": \"ModuleNotFoundError\",\n        \"module\": \"pyquda_utils.core\",\n        \"suggestion\": \"Check that pyquda_utils is importable and that the built core helpers are present.\"\n      }\n    ],\n    \"current_level\": \"environment_missing\",\n    \"runtime_proved\": false,\n    \"runtime_ready\": false,\n    \"structurally_grounded\": null,\n    \"syntax_valid\": null\n  },\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Users/zhaodianjun/lamet-agent/.venv/bin/python\",\n  \"ready\": false,\n  \"runtime_level\": \"environment_missing\",\n  \"used_repo_pythonpath\": true\n}",
       "used_repo_pythonpath": true
     },
     {
       "exists": true,
       "python": "/usr/bin/python3",
-      "report": {
-        "checks": [
-          {
-            "error": "No module named 'numpy'",
-            "error_type": "ModuleNotFoundError",
-            "module": "numpy",
-            "ok": false
-          },
-          {
-            "error": "No module named 'cupy'",
-            "error_type": "ModuleNotFoundError",
-            "module": "cupy",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda_utils'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda_utils",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda_utils'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda_utils.core",
-            "ok": false
-          }
-        ],
-        "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
-        "python": "/Library/Developer/CommandLineTools/usr/bin/python3",
-        "ready": false,
-        "used_repo_pythonpath": false
-      },
+      "report": null,
       "resolved_python": "/usr/bin/python3",
       "returncode": 1,
-      "stderr": "",
-      "stdout": "{\n  \"checks\": [\n    {\n      \"error\": \"No module named 'numpy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"numpy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Library/Developer/CommandLineTools/usr/bin/python3\",\n  \"ready\": false,\n  \"used_repo_pythonpath\": false\n}",
+      "stderr": "scripts/check_pyquda_runtime.py requires Python >= 3.10. Current interpreter: 3.9.6 (/Library/Developer/CommandLineTools/usr/bin/python3). Re-run with an explicit >=3.10 interpreter, for example a virtualenv/conda/pyenv Python path; do not assume bare `python3` is new enough on every machine.",
+      "stdout": "",
       "used_repo_pythonpath": false
     },
     {
       "exists": true,
       "python": "/usr/bin/python3",
-      "report": {
-        "checks": [
-          {
-            "error": "No module named 'numpy'",
-            "error_type": "ModuleNotFoundError",
-            "module": "numpy",
-            "ok": false
-          },
-          {
-            "error": "No module named 'cupy'",
-            "error_type": "ModuleNotFoundError",
-            "module": "cupy",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda_utils._version'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda_utils",
-            "ok": false
-          },
-          {
-            "error": "No module named 'pyquda_utils._version'",
-            "error_type": "ModuleNotFoundError",
-            "module": "pyquda_utils.core",
-            "ok": false
-          }
-        ],
-        "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
-        "python": "/Library/Developer/CommandLineTools/usr/bin/python3",
-        "ready": false,
-        "used_repo_pythonpath": true
-      },
+      "report": null,
       "resolved_python": "/usr/bin/python3",
       "returncode": 1,
-      "stderr": "",
-      "stdout": "{\n  \"checks\": [\n    {\n      \"error\": \"No module named 'numpy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"numpy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'cupy'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"cupy\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils\",\n      \"ok\": false\n    },\n    {\n      \"error\": \"No module named 'pyquda_utils._version'\",\n      \"error_type\": \"ModuleNotFoundError\",\n      \"module\": \"pyquda_utils.core\",\n      \"ok\": false\n    }\n  ],\n  \"pyquda_repo\": \"/Users/zhaodianjun/PyQUDA\",\n  \"python\": \"/Library/Developer/CommandLineTools/usr/bin/python3\",\n  \"ready\": false,\n  \"used_repo_pythonpath\": true\n}",
+      "stderr": "scripts/check_pyquda_runtime.py requires Python >= 3.10. Current interpreter: 3.9.6 (/Library/Developer/CommandLineTools/usr/bin/python3). Re-run with an explicit >=3.10 interpreter, for example a virtualenv/conda/pyenv Python path; do not assume bare `python3` is new enough on every machine.",
+      "stdout": "",
       "used_repo_pythonpath": true
     }
   ],

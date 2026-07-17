@@ -1,0 +1,211 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "high",
+      "label": "pion dispersion correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+      "target_id": "pion_dispersion_correlator",
+      "task_type_hint": "pion_dispersion"
+    }
+  ],
+  "chosen_workflow_target": "pion_dispersion_chroma_point_momentum_npy_v1",
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "pion dispersion correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+    "target_id": "pion_dispersion_correlator",
+    "task_type_hint": "pion_dispersion"
+  },
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "momentum_projected_two_point_correlators",
+        "dispersion_analysis_from_hadron_two_point_functions"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+      "year": 2022
+    }
+  ],
+  "fixed_by_workflow_fields": {
+    "correlator_output_format": "npy",
+    "fermion_action": "clover",
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "has_existing_propagators": false,
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ]
+    ],
+    "momentum_projection": "explicit",
+    "script_style": "complete",
+    "sink_type": "local",
+    "source_type": "point",
+    "start_from": "gauge",
+    "task_type": "pion_dispersion",
+    "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1"
+  },
+  "formula_proposals": [
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "momentum_projected_two_point_correlators",
+            "dispersion_analysis_from_hadron_two_point_functions"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+          "year": 2022
+        }
+      ],
+      "convention": "Use the canonical pseudoscalar pion interpolating operator together with an explicit finite momentum list to build a narrow pion-dispersion workflow.",
+      "correlator": "C_\\pi(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_\\pi(\\vec x,t) O_\\pi^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Pion momentum-projected two-point correlator for dispersion analysis",
+      "local_references": [
+        "examples/5_Pion_Dispersion.py",
+        "tests/test_mesonspec.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/source.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py"
+      ],
+      "operator": "O_\\pi(x) = \\bar d(x) \\gamma_5 u(x)",
+      "proposal_id": "pion_dispersion_gamma5_momentum_projected_twopt",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "pion_dispersion_correlator"
+    }
+  ],
+  "inferred_fields": {},
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "pion dispersion correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+    "target_id": "pion_dispersion_correlator",
+    "task_type_hint": "pion_dispersion"
+  },
+  "knowledge_boundary": {
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": true
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Live online physics lookup is not implemented in the current run path.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": false,
+    "configured_backend": null,
+    "fallback": true,
+    "fallback_reason": "API backend requested but no --model was configured.",
+    "notes": [],
+    "requested_backend": "api",
+    "stages_attempted": [],
+    "stages_completed": [],
+    "used": false
+  },
+  "local_references": [
+    "examples/5_Pion_Dispersion.py",
+    "tests/test_mesonspec.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/source.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py"
+  ],
+  "normalized_request": "please compute pion dispersion from gauge ~/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 source timeslice 0 outputs/demo_v4_dispersion.npy outputs/demo_v4_dispersion.py resource_path=.cache/quda cluster_launch=local",
+  "parser_guesses": {},
+  "status": "confirmed",
+  "task_type_hint": "pion_dispersion",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "target_id": "pion_dispersion_correlator"
+  },
+  "user_request": "please compute pion dispersion from gauge ~/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 source timeslice 0 outputs/demo_v4_dispersion.npy outputs/demo_v4_dispersion.py resource_path=.cache/quda cluster_launch=local"
+}

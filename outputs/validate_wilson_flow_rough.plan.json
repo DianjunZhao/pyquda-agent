@@ -1,0 +1,384 @@
+{
+  "chosen_workflow_target": "wilson_flow_chroma_qio_energy_npy_v1",
+  "clarification_trace": [],
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "wilson-flow energy observable",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a Wilson-flow / gradient-flow gauge evolution path.",
+    "target_id": "wilson_flow_energy_observable",
+    "task_type_hint": "wilson_flow"
+  },
+  "convention_decisions": [
+    {
+      "category": "physics",
+      "citations": [],
+      "decision": "Use the narrow Wilson-flow gauge-evolution path and record the returned energy history.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_wflow.py"
+      ],
+      "why": "The supported family is pinned to the exact local test_wflow path rather than a generalized flow-observable framework."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Read the gauge with io.readQIOGauge and save the final energy history as npy.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py"
+      ],
+      "why": "The narrow implementation path stays grounded in the local IO helpers already used by the upstream tests."
+    }
+  ],
+  "external_citations": [],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "field_resolution": {
+    "_physics_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_by_workflow_fields": {
+        "correlator_output_format": "npy",
+        "gauge_fixed": false,
+        "gauge_format": "chroma_qio",
+        "has_existing_propagators": false,
+        "momenta": [],
+        "momentum_projection": "none",
+        "script_style": "complete",
+        "sink_type": "gauge",
+        "source_type": "none",
+        "start_from": "gauge",
+        "task_type": "wilson_flow",
+        "workflow_id": "wilson_flow_chroma_qio_energy_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {},
+      "user_confirmed_fields": {
+        "target_id": "wilson_flow_energy_observable"
+      }
+    },
+    "_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_fields": {
+        "correlator_output_format": "npy",
+        "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.npy",
+        "gauge_fixed": false,
+        "gauge_format": "chroma_qio",
+        "has_existing_propagators": false,
+        "momenta": [],
+        "momentum_projection": "none",
+        "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.py",
+        "script_style": "complete",
+        "sink_type": "gauge",
+        "source_type": "none",
+        "start_from": "gauge",
+        "task_type": "wilson_flow",
+        "workflow_id": "wilson_flow_chroma_qio_energy_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {
+        "task_type": "wilson_flow"
+      },
+      "user_confirmed_fields": {
+        "has_existing_propagators": false,
+        "start_from": "gauge"
+      }
+    },
+    "cluster_launch": "default",
+    "correlator_output_format": "default",
+    "correlator_output_path": "default",
+    "gauge_fixed": "fixed",
+    "gauge_format": "fixed",
+    "has_existing_propagators": "parsed",
+    "momenta": "fixed",
+    "momentum_projection": "fixed",
+    "resource_path": "default",
+    "script_output_path": "default",
+    "script_style": "fixed",
+    "sink_type": "fixed",
+    "source_type": "fixed",
+    "start_from": "parsed",
+    "task_type": "parser_guess",
+    "workflow_id": "fixed"
+  },
+  "handoff_contract": {
+    "cluster_launch": "local",
+    "input_manifest": [],
+    "input_mutability_policy": "immutable_inputs_never_overwritten",
+    "input_paths": [],
+    "input_visibility": "all_ranks",
+    "output_paths": {
+      "energy_history": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.npy",
+      "probe_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.probe.json",
+      "script": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.py"
+    },
+    "output_writer_policy": "rank0_only",
+    "preflight_checks": [
+      "Ensure all gauge inputs are visible from every rank before launch.",
+      "Ensure the output directory is writable by the rank that saves the final correlator artifact.",
+      "Confirm the nearest existing parent of each emitted artifact path is writable on the target filesystem before submission.",
+      "Verify numpy, cupy, pyquda_utils, and pyquda import successfully before starting a full inversion job.",
+      "Review the sibling .physics.json, .task.json, and .plan.json artifacts before cluster submission.",
+      "Keep gauge inputs on shared read-only storage and write new outputs to a dedicated writable results directory when possible."
+    ],
+    "required_modules": [
+      "numpy",
+      "cupy",
+      "pyquda_utils",
+      "pyquda"
+    ],
+    "resource_path": ".cache/quda",
+    "start_from": "gauge",
+    "submission_assumption": "Launch under an MPI/GPU layout consistent with GRID_SIZE and the target PyQUDA environment."
+  },
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "wilson-flow energy observable",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a Wilson-flow / gradient-flow gauge evolution path.",
+    "target_id": "wilson_flow_energy_observable",
+    "task_type_hint": "wilson_flow"
+  },
+  "inherited_session_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": false
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "local_references_used": [
+    "tests/test_wflow.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py"
+  ],
+  "physics_choices": {
+    "coeff_r": null,
+    "coeff_t": null,
+    "fermion_action": null,
+    "flow_epsilon": null,
+    "flow_steps": null,
+    "gauge_fixed": false,
+    "mass": null,
+    "momenta": [],
+    "momentum_projection": "none",
+    "nu": null,
+    "sink_type": "gauge",
+    "source_timeslices": [],
+    "source_type": "none",
+    "target_id": "wilson_flow_energy_observable",
+    "xi_0": null
+  },
+  "pyquda_choices": {
+    "gauge_format": "chroma_qio",
+    "gauge_path": null,
+    "grid_size": [],
+    "lattice_size": [],
+    "multigrid_blocks": [],
+    "output_format": "npy",
+    "resource_path": ".cache/quda",
+    "solver_maxiter": null,
+    "solver_tol": null,
+    "start_from": "gauge",
+    "stout_smear_ndim": null,
+    "stout_smear_rho": null,
+    "stout_smear_steps": null
+  },
+  "references": [
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_wflow.py",
+      "source": "pyquda",
+      "summary": "from check_pyquda import weak_field, data"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+      "source": "pyquda",
+      "summary": "from check_pyquda import weak_field"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+      "source": "pyquda",
+      "summary": "from typing import List"
+    }
+  ],
+  "runtime_choices": {
+    "cluster_launch": "local",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.npy",
+    "primary_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.npy",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.py"
+  },
+  "runtime_readiness": {
+    "artifact_chain": {
+      "physics_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.physics.json",
+      "plan_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.plan.json",
+      "task_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.task.json"
+    },
+    "checks": [
+      {
+        "module": "numpy",
+        "ok": true,
+        "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+      },
+      {
+        "error": "No module named 'cupy'",
+        "error_type": "ModuleNotFoundError",
+        "module": "cupy",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils.core",
+        "ok": false
+      }
+    ],
+    "environment_probe": {
+      "script": "scripts/check_pyquda_runtime.py",
+      "used_repo_pythonpath": false
+    },
+    "environment_ready": false,
+    "evidence_levels": {
+      "blockers": [
+        {
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy",
+          "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+        },
+        {
+          "error": "No module named 'pyquda'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda",
+          "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils",
+          "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils.core",
+          "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+        }
+      ],
+      "current_level": "structurally_grounded",
+      "runtime_proved": false,
+      "runtime_ready": false,
+      "structurally_grounded": true,
+      "syntax_valid": true
+    },
+    "generated_script_exists": false,
+    "generated_script_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.py",
+    "generated_script_probe": {
+      "artifact_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.probe.json",
+      "command": "python3 scripts/probe_generated_workflow.py --script /Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.py --output /Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow_rough.probe.json",
+      "reason": null,
+      "status": "requested"
+    },
+    "probe_policy": {
+      "auto_run": true,
+      "current_run_attempted": false,
+      "current_run_requested": true,
+      "current_run_status": "requested",
+      "default_auto_run": false,
+      "reason": "This run explicitly requested a minimal generated-script probe after script emission."
+    },
+    "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+    "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+    "ready": false,
+    "reference_grounded": true,
+    "runtime_level": "structurally_grounded",
+    "runtime_proved": false,
+    "syntax_valid": true,
+    "used_repo_pythonpath": false
+  },
+  "task_type": "wilson_flow",
+  "unresolved_fields": [
+    "gauge_path",
+    "lattice_size",
+    "grid_size",
+    "flow_steps",
+    "flow_epsilon"
+  ],
+  "unsupported_reasons": [],
+  "user_request": "please run wilson flow on this gauge configuration",
+  "validation_checks": [
+    "generated code is syntax-valid",
+    "task fields fully resolved",
+    "workflow matches supported runnable path",
+    "generated code imports real PyQUDA APIs",
+    "generated code matches local examples/tests/io helpers for the chosen workflow",
+    "generated code contains no TODO/pass/placeholder text"
+  ],
+  "workflow_id": "wilson_flow_chroma_qio_energy_npy_v1",
+  "workflow_match": {
+    "external_citations": [],
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "gauge_fixed": false,
+      "gauge_format": "chroma_qio",
+      "has_existing_propagators": false,
+      "momenta": [],
+      "momentum_projection": "none",
+      "script_style": "complete",
+      "sink_type": "gauge",
+      "source_type": "none",
+      "start_from": "gauge",
+      "task_type": "wilson_flow",
+      "workflow_id": "wilson_flow_chroma_qio_energy_npy_v1"
+    },
+    "local_references": [
+      "tests/test_wflow.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py"
+    ],
+    "mapping_notes": [
+      "Confirmed Wilson-flow target mapped to the validated gauge -> gauge.copy() -> wilsonFlowChroma(flow_steps, flow_epsilon) -> npy energy-history implementation path."
+    ],
+    "matched": true,
+    "task_type": "wilson_flow",
+    "unsupported_reasons": [],
+    "workflow_target": "wilson_flow_chroma_qio_energy_npy_v1"
+  }
+}

@@ -1,10 +1,12 @@
 # PyQUDA Runtime Bootstrap
 
-This document records the local evidence-based bootstrap path needed to turn the generated `pion_2pt` script from a structurally validated artifact into a numerically runnable workflow.
+This document records the local evidence-based bootstrap path needed to turn generated supported-workflow scripts from structurally validated artifacts into numerically runnable workflows.
+
+All commands below require a Python interpreter that reports `>= 3.10`. If bare `python3` is older on your machine, export `PYTHON_BIN=/path/to/your/python` first and use that interpreter path consistently instead of copying `python3` literally.
 
 ## What the generated script needs
 
-The fixed first workflow currently requires all of the following in one Python environment:
+The current supported workflows currently require all of the following in one Python environment:
 
 - `numpy`
 - `cupy`
@@ -24,9 +26,9 @@ The local `~/PyQUDA/README.md` and packaging files show two upstream-supported p
 ```bash
 export QUDA_PATH=/path/to/quda/build/usqcd
 cd ~/PyQUDA/pyquda_core
-python3 -m pip install .
+$PYTHON_BIN -m pip install .
 cd ~/PyQUDA
-python3 -m pip install .
+$PYTHON_BIN -m pip install .
 ```
 
 This matches:
@@ -40,9 +42,9 @@ This matches:
 ```bash
 export QUDA_PATH=/path/to/quda/build/usqcd
 cd ~/PyQUDA/pyquda_core
-python3 setup.py build_ext --inplace
+$PYTHON_BIN setup.py build_ext --inplace
 cd ~/PyQUDA
-python3 setup.py egg_info
+$PYTHON_BIN setup.py egg_info
 ln -s pyquda_core/pyquda_comm ./
 ln -s pyquda_core/pyquda ./
 ```
@@ -54,9 +56,9 @@ This is the upstream-recommended development path when you want the repository r
 The local helper script `~/install_pyquda.sh` uses:
 
 ```bash
-python3 -m pip install --no-build-isolation -U .
+$PYTHON_BIN -m pip install --no-build-isolation -U .
 cd ./pyquda_core/
-python3 -m pip install --no-build-isolation -U .
+$PYTHON_BIN -m pip install --no-build-isolation -U .
 ```
 
 This suggests that in your existing local workflow, `--no-build-isolation` may be necessary or at least preferred.
@@ -72,7 +74,7 @@ From `data/runtime_candidates.json` and `data/pyquda_runtime_check.json`:
 
 Additional local checkout evidence:
 
-- `~/PyQUDA/tests/weak_field.lime` exists, so the fixed workflow input gauge is already available locally
+- `~/PyQUDA/tests/weak_field.lime` exists, so the current demo input gauge is already available locally
 - `~/PyQUDA/pyquda_core/pyquda` and `~/PyQUDA/pyquda_core/pyquda_comm` source trees exist
 - no compiled `*.so` or `*.dylib` artifacts were found under `~/PyQUDA/pyquda_core`
 - no root-level development-mode symlinks such as `~/PyQUDA/pyquda` or `~/PyQUDA/pyquda_comm` are present
@@ -90,10 +92,10 @@ To close the last unproved audit item on this machine:
 5. rerun:
 
 ```bash
-python3 scripts/scan_runtime_candidates.py --pyquda-repo ~/PyQUDA
-python3 scripts/refresh_runtime_check.py --pyquda-repo ~/PyQUDA
-python3 scripts/probe_generated_workflow.py --script outputs/run_pion_api.py --output data/run_pion_api_probe.json
-python3 scripts/refresh_goal_audit.py
+$PYTHON_BIN scripts/scan_runtime_candidates.py --pyquda-repo ~/PyQUDA
+$PYTHON_BIN scripts/refresh_runtime_check.py --pyquda-repo ~/PyQUDA
+$PYTHON_BIN scripts/probe_generated_workflow.py --script outputs/run_pion_api.py --output data/run_pion_api_probe.json
+$PYTHON_BIN scripts/refresh_goal_audit.py
 ```
 
-The first workflow can only be marked fully runtime-proved after one interpreter reports `ready: true` and the generated script probe reports `status: ok`.
+The supported workflow suite can only be marked fully runtime-proved after one interpreter reports `ready: true` and generated script probes report `status: ok` for the scripts you care about.

@@ -1,0 +1,23 @@
+{
+  "duration_seconds": 0.10827729105949402,
+  "evidence_levels": {
+    "blockers": [
+      "Missing runtime dependency 'cupy'. Activate a PyQUDA environment with CuPy installed before running this script."
+    ],
+    "current_level": "environment_missing",
+    "runtime_proved": false,
+    "runtime_ready": false,
+    "structurally_grounded": null,
+    "syntax_valid": null
+  },
+  "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+  "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+  "returncode": 1,
+  "runtime_level": "environment_missing",
+  "script": "/Users/zhaodianjun/pyquda-agent/outputs/validate_ape_smear.py",
+  "script_exists": true,
+  "status": "runtime_missing",
+  "stderr": "Missing runtime dependency 'cupy'. Activate a PyQUDA environment with CuPy installed before running this script.",
+  "stdout": "",
+  "used_repo_pythonpath": false
+}

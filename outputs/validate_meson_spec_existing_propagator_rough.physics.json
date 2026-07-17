@@ -1,0 +1,884 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "high",
+      "label": "meson spectroscopy correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+      "target_id": "meson_spectrum_correlator",
+      "task_type_hint": "meson_spec"
+    }
+  ],
+  "chosen_workflow_target": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1",
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "meson spectroscopy correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+    "target_id": "meson_spectrum_correlator",
+    "task_type_hint": "meson_spec"
+  },
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "meson_two_point_spectroscopy",
+        "operator_channel_choice_for_hadron_spectroscopy"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+      "year": 2022
+    }
+  ],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "fixed_by_workflow_fields": {
+    "correlator_output_format": "npy",
+    "gamma_insertions": [
+      "gamma5_gamma5",
+      "gamma4gamma5_gamma4gamma5"
+    ],
+    "gauge_fixed": false,
+    "has_existing_propagators": true,
+    "momenta": [
+      [
+        0,
+        0,
+        -3
+      ],
+      [
+        -1,
+        -2,
+        -2
+      ],
+      [
+        0,
+        -2,
+        -2
+      ],
+      [
+        1,
+        -2,
+        -2
+      ],
+      [
+        -2,
+        -1,
+        -2
+      ],
+      [
+        -1,
+        -1,
+        -2
+      ],
+      [
+        0,
+        -1,
+        -2
+      ],
+      [
+        1,
+        -1,
+        -2
+      ],
+      [
+        2,
+        -1,
+        -2
+      ],
+      [
+        -2,
+        0,
+        -2
+      ],
+      [
+        -1,
+        0,
+        -2
+      ],
+      [
+        0,
+        0,
+        -2
+      ],
+      [
+        1,
+        0,
+        -2
+      ],
+      [
+        2,
+        0,
+        -2
+      ],
+      [
+        -2,
+        1,
+        -2
+      ],
+      [
+        -1,
+        1,
+        -2
+      ],
+      [
+        0,
+        1,
+        -2
+      ],
+      [
+        1,
+        1,
+        -2
+      ],
+      [
+        2,
+        1,
+        -2
+      ],
+      [
+        -1,
+        2,
+        -2
+      ],
+      [
+        0,
+        2,
+        -2
+      ],
+      [
+        1,
+        2,
+        -2
+      ],
+      [
+        -2,
+        -2,
+        -1
+      ],
+      [
+        -1,
+        -2,
+        -1
+      ],
+      [
+        0,
+        -2,
+        -1
+      ],
+      [
+        1,
+        -2,
+        -1
+      ],
+      [
+        2,
+        -2,
+        -1
+      ],
+      [
+        -2,
+        -1,
+        -1
+      ],
+      [
+        -1,
+        -1,
+        -1
+      ],
+      [
+        0,
+        -1,
+        -1
+      ],
+      [
+        1,
+        -1,
+        -1
+      ],
+      [
+        2,
+        -1,
+        -1
+      ],
+      [
+        -2,
+        0,
+        -1
+      ],
+      [
+        -1,
+        0,
+        -1
+      ],
+      [
+        0,
+        0,
+        -1
+      ],
+      [
+        1,
+        0,
+        -1
+      ],
+      [
+        2,
+        0,
+        -1
+      ],
+      [
+        -2,
+        1,
+        -1
+      ],
+      [
+        -1,
+        1,
+        -1
+      ],
+      [
+        0,
+        1,
+        -1
+      ],
+      [
+        1,
+        1,
+        -1
+      ],
+      [
+        2,
+        1,
+        -1
+      ],
+      [
+        -2,
+        2,
+        -1
+      ],
+      [
+        -1,
+        2,
+        -1
+      ],
+      [
+        0,
+        2,
+        -1
+      ],
+      [
+        1,
+        2,
+        -1
+      ],
+      [
+        2,
+        2,
+        -1
+      ],
+      [
+        0,
+        -3,
+        0
+      ],
+      [
+        -2,
+        -2,
+        0
+      ],
+      [
+        -1,
+        -2,
+        0
+      ],
+      [
+        0,
+        -2,
+        0
+      ],
+      [
+        1,
+        -2,
+        0
+      ],
+      [
+        2,
+        -2,
+        0
+      ],
+      [
+        -2,
+        -1,
+        0
+      ],
+      [
+        -1,
+        -1,
+        0
+      ],
+      [
+        0,
+        -1,
+        0
+      ],
+      [
+        1,
+        -1,
+        0
+      ],
+      [
+        2,
+        -1,
+        0
+      ],
+      [
+        -3,
+        0,
+        0
+      ],
+      [
+        -2,
+        0,
+        0
+      ],
+      [
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0
+      ],
+      [
+        -2,
+        1,
+        0
+      ],
+      [
+        -1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        -2,
+        2,
+        0
+      ],
+      [
+        -1,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        0
+      ],
+      [
+        1,
+        2,
+        0
+      ],
+      [
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        3,
+        0
+      ],
+      [
+        -2,
+        -2,
+        1
+      ],
+      [
+        -1,
+        -2,
+        1
+      ],
+      [
+        0,
+        -2,
+        1
+      ],
+      [
+        1,
+        -2,
+        1
+      ],
+      [
+        2,
+        -2,
+        1
+      ],
+      [
+        -2,
+        -1,
+        1
+      ],
+      [
+        -1,
+        -1,
+        1
+      ],
+      [
+        0,
+        -1,
+        1
+      ],
+      [
+        1,
+        -1,
+        1
+      ],
+      [
+        2,
+        -1,
+        1
+      ],
+      [
+        -2,
+        0,
+        1
+      ],
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        2,
+        0,
+        1
+      ],
+      [
+        -2,
+        1,
+        1
+      ],
+      [
+        -1,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        1
+      ],
+      [
+        -2,
+        2,
+        1
+      ],
+      [
+        -1,
+        2,
+        1
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        -1,
+        -2,
+        2
+      ],
+      [
+        0,
+        -2,
+        2
+      ],
+      [
+        1,
+        -2,
+        2
+      ],
+      [
+        -2,
+        -1,
+        2
+      ],
+      [
+        -1,
+        -1,
+        2
+      ],
+      [
+        0,
+        -1,
+        2
+      ],
+      [
+        1,
+        -1,
+        2
+      ],
+      [
+        2,
+        -1,
+        2
+      ],
+      [
+        -2,
+        0,
+        2
+      ],
+      [
+        -1,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        2
+      ],
+      [
+        1,
+        0,
+        2
+      ],
+      [
+        2,
+        0,
+        2
+      ],
+      [
+        -2,
+        1,
+        2
+      ],
+      [
+        -1,
+        1,
+        2
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        2,
+        1,
+        2
+      ],
+      [
+        -1,
+        2,
+        2
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3
+      ]
+    ],
+    "momentum_projection": "explicit",
+    "script_style": "complete",
+    "sink_type": "local",
+    "source_type": "wall",
+    "start_from": "propagator",
+    "task_type": "meson_spec",
+    "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+  },
+  "formula_proposals": [
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "meson_two_point_spectroscopy",
+            "operator_channel_choice_for_hadron_spectroscopy"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+          "year": 2022
+        }
+      ],
+      "convention": "Use the fixed wall-source meson-spectroscopy path from the local PyQUDA meson-spec test, including the grounded momentum family with |p|^2 <= 9.",
+      "correlator": "C_{\\gamma_5}(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_{\\gamma_5}(\\vec x,t) O_{\\gamma_5}^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Meson spectroscopy correlator with pseudoscalar insertion",
+      "local_references": [
+        "tests/test_mesonspec.py",
+        "tests/test_mesonspec.ini.xml",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py",
+        "pyquda_utils/phase.py"
+      ],
+      "operator": "O_{\\gamma_5}(x) = \\bar q(x) \\gamma_5 q(x)",
+      "proposal_id": "meson_spec_gamma5_wall_momentum_family",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "meson_spectrum_correlator"
+    },
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "meson_two_point_spectroscopy",
+            "operator_channel_choice_for_hadron_spectroscopy"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+          "year": 2022
+        }
+      ],
+      "convention": "Keep the same local meson-spec workflow, but expose the second fixed gamma-insertion channel already present in the upstream test path.",
+      "correlator": "C_{\\gamma_4\\gamma_5}(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_{\\gamma_4\\gamma_5}(\\vec x,t) O_{\\gamma_4\\gamma_5}^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Meson spectroscopy correlator with temporal-axial insertion",
+      "local_references": [
+        "tests/test_mesonspec.py",
+        "tests/test_mesonspec.ini.xml",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py",
+        "pyquda_utils/phase.py"
+      ],
+      "operator": "O_{\\gamma_4\\gamma_5}(x) = \\bar q(x) \\gamma_4 \\gamma_5 q(x)",
+      "proposal_id": "meson_spec_gamma4gamma5_wall_momentum_family",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "meson_spectrum_correlator"
+    }
+  ],
+  "inferred_fields": {},
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "meson spectroscopy correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+    "target_id": "meson_spectrum_correlator",
+    "task_type_hint": "meson_spec"
+  },
+  "inherited_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": true
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": false,
+    "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+    "codex_preflight_attempted": true,
+    "codex_preflight_category": "local_environment_error",
+    "codex_preflight_detail_category": "codex_app_client_init_failed",
+    "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment.",
+    "codex_preflight_skip_reason": null,
+    "codex_preflight_skipped": false,
+    "codex_preflight_soft_failed": false,
+    "codex_preflight_soft_failure_reason": null,
+    "codex_preflight_status": "failed",
+    "codex_preflight_timeout_seconds": 2.0,
+    "configured": false,
+    "configured_backend": null,
+    "fallback": true,
+    "fallback_category": "local_environment_error",
+    "fallback_detail_category": "codex_app_client_init_failed",
+    "fallback_reason": "Explicit codex backend failed preflight (Codex backend failed during local app-client initialization in the current environment.), so the run will use the rule-based path.",
+    "intent_primary_timeout_seconds": null,
+    "intent_prompt_profile": null,
+    "intent_strategy": null,
+    "model_name": null,
+    "notes": [],
+    "provider": null,
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "selected_backend": "rules",
+    "selection_reason": "Explicit codex backend failed short preflight and fell back to rules.",
+    "session_backend_memory_considered": false,
+    "session_backend_memory_reason": null,
+    "session_backend_memory_used": false,
+    "session_backend_prior_category": null,
+    "session_backend_prior_selected_backend": null,
+    "stages_attempted": [],
+    "stages_completed": [],
+    "timeout_recovery_attempted": false,
+    "timeout_recovery_failed": false,
+    "timeout_recovery_failure_category": null,
+    "timeout_recovery_failure_detail_category": null,
+    "timeout_recovery_failure_reason": null,
+    "timeout_recovery_skip_reason": null,
+    "timeout_recovery_skipped": false,
+    "timeout_recovery_timeout_seconds": null,
+    "timeout_recovery_trigger_category": null,
+    "timeout_recovery_trigger_reason": null,
+    "timeout_recovery_used": false,
+    "used": false
+  },
+  "local_references": [
+    "tests/test_mesonspec.py",
+    "tests/test_mesonspec.ini.xml",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py",
+    "pyquda_utils/phase.py"
+  ],
+  "normalized_request": "please compute meson spectroscopy correlators from existing propagator",
+  "parser_guesses": {},
+  "status": "confirmed",
+  "task_type_hint": "meson_spec",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "target_id": "meson_spectrum_correlator"
+  },
+  "user_request": "please compute meson spectroscopy correlators from existing propagator"
+}

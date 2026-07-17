@@ -1,0 +1,217 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "medium",
+      "label": "baryon two-point correlator with unresolved channel/operator",
+      "status": "needs_confirmation",
+      "summary": "The request asks for a baryon correlator, but the baryon channel is not specific enough to map directly to a supported implementation. The current grounded local baryon path is proton two-point only.",
+      "target_id": "baryon_two_point_correlator_unspecified",
+      "task_type_hint": null
+    },
+    {
+      "confidence": "medium",
+      "label": "proton two-point correlator",
+      "status": "candidate",
+      "summary": "Proton is the only currently grounded baryon workflow family in local PyQUDA references, but that channel still needs explicit confirmation.",
+      "target_id": "proton_two_point_correlator",
+      "task_type_hint": "proton_2pt"
+    }
+  ],
+  "chosen_workflow_target": null,
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": null,
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use the standard proton interpolating operator together with a zero-momentum Euclidean two-point correlator and parity projection, matching the narrow local PyQUDA example.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "baryon_two_point_correlators",
+        "interpolating_operators_carry_target_quantum_numbers"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "The local PyQUDA proton example fixes the implementation path; this curated review record documents the physics-side proton spectroscopy convention without implying live online lookup.",
+      "year": 2022
+    }
+  ],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "fixed_by_workflow_fields": {},
+  "formula_proposals": [
+    {
+      "citations": [],
+      "convention": "A nucleon/baryon two-point request is not runnable until the baryon channel and interpolating operator are fixed. The current grounded local baryon path is proton two-point only.",
+      "correlator": "C_B(t) = \\sum_{\\vec x} \\langle O_B(\\vec x,t) \\bar O_B(\\vec 0,0) \\rangle",
+      "label": "Baryon two-point correlator requires flavor/interpolator choice",
+      "local_references": [],
+      "operator": "Underspecified",
+      "proposal_id": "baryon_operator_needs_channel_choice",
+      "provenance": "model_inference",
+      "target_id": "baryon_two_point_correlator_unspecified"
+    },
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use the standard proton interpolating operator together with a zero-momentum Euclidean two-point correlator and parity projection, matching the narrow local PyQUDA example.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "baryon_two_point_correlators",
+            "interpolating_operators_carry_target_quantum_numbers"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA proton example fixes the implementation path; this curated review record documents the physics-side proton spectroscopy convention without implying live online lookup.",
+          "year": 2022
+        }
+      ],
+      "convention": "Use the standard local proton interpolating operator together with the parity-projected zero-momentum two-point contraction encoded in the local PyQUDA proton example.",
+      "correlator": "C_N(t) = \\sum_{\\vec x} \\langle N(\\vec x,t) \\bar N(\\vec 0,0) \\rangle",
+      "label": "Proton two-point correlator",
+      "local_references": [
+        "examples/3_Pion_Proton_2pt.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/source.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py"
+      ],
+      "operator": "N_\\alpha(x) = \\epsilon^{abc}(u^{aT}(x) C\\gamma_5 d^b(x)) u^c_\\alpha(x)",
+      "proposal_id": "proton_nucleon_gamma5_twopt",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "proton_two_point_correlator"
+    }
+  ],
+  "inferred_fields": {
+    "target_id": "baryon_two_point_correlator_unspecified"
+  },
+  "inferred_interpretation": {
+    "confidence": "medium",
+    "label": "baryon two-point correlator with unresolved channel/operator",
+    "status": "needs_confirmation",
+    "summary": "The request asks for a baryon correlator, but the baryon channel is not specific enough to map directly to a supported implementation. The current grounded local baryon path is proton two-point only.",
+    "target_id": "baryon_two_point_correlator_unspecified",
+    "task_type_hint": null
+  },
+  "inherited_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": true
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": false,
+    "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+    "codex_preflight_attempted": true,
+    "codex_preflight_category": "local_environment_error",
+    "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment.",
+    "codex_preflight_skip_reason": null,
+    "codex_preflight_skipped": false,
+    "codex_preflight_soft_failed": false,
+    "codex_preflight_soft_failure_reason": null,
+    "codex_preflight_status": "failed",
+    "codex_preflight_timeout_seconds": 2.0,
+    "configured": false,
+    "configured_backend": null,
+    "fallback": true,
+    "fallback_category": "local_environment_error",
+    "fallback_reason": "Explicit codex backend failed preflight (Codex backend failed during local app-client initialization in the current environment.), so the run will use the rule-based path.",
+    "intent_primary_timeout_seconds": null,
+    "intent_prompt_profile": null,
+    "intent_strategy": null,
+    "model_name": null,
+    "notes": [],
+    "provider": null,
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "selected_backend": "rules",
+    "selection_reason": "Explicit codex backend failed short preflight and fell back to rules.",
+    "session_backend_memory_considered": false,
+    "session_backend_memory_reason": null,
+    "session_backend_memory_used": false,
+    "session_backend_prior_category": null,
+    "session_backend_prior_selected_backend": null,
+    "stages_attempted": [],
+    "stages_completed": [],
+    "timeout_recovery_attempted": false,
+    "timeout_recovery_failed": false,
+    "timeout_recovery_failure_category": null,
+    "timeout_recovery_failure_reason": null,
+    "timeout_recovery_skip_reason": null,
+    "timeout_recovery_skipped": false,
+    "timeout_recovery_timeout_seconds": null,
+    "timeout_recovery_trigger_category": null,
+    "timeout_recovery_trigger_reason": null,
+    "timeout_recovery_used": false,
+    "used": false
+  },
+  "local_references": [
+    "examples/3_Pion_Proton_2pt.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/source.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py"
+  ],
+  "normalized_request": "I want a baryon correlator script but I am not sure about the exact operator",
+  "parser_guesses": {
+    "target_id": "baryon_two_point_correlator_unspecified"
+  },
+  "status": "needs_confirmation",
+  "task_type_hint": null,
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {},
+  "user_request": "I want a baryon correlator script but I am not sure about the exact operator"
+}

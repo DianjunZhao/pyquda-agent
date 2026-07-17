@@ -1,0 +1,375 @@
+{
+  "all_passed": true,
+  "cases": [
+    {
+      "case_id": "ambiguous_meson_operator",
+      "category": "ambiguous_meson",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "physics_confirmation",
+        "physics_candidate_preview": [
+          "meson_two_point_correlator_unspecified",
+          "pion_two_point_correlator",
+          "meson_spectrum_correlator",
+          "pion_dispersion_correlator"
+        ],
+        "physics_formula_preview": [
+          "meson_operator_needs_channel_choice",
+          "pion_pseudoscalar_gamma5_twopt",
+          "pion_dispersion_gamma5_momentum_projected_twopt",
+          "meson_spec_gamma5_wall_momentum_family"
+        ],
+        "physics_target": "meson_two_point_correlator_unspecified",
+        "primary_action_kind": "continue_by_reply",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": null
+      },
+      "passed": true,
+      "request": "I want a meson correlator script but I am not sure about the exact operator"
+    },
+    {
+      "case_id": "explicit_pion_2pt",
+      "category": "explicit_supported",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "task_fields",
+        "physics_candidate_preview": [
+          "pion_two_point_correlator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "pion_two_point_correlator",
+        "primary_action_kind": "continue_by_set",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": "pion_2pt_chroma_wall_local_zero_momentum_npy_v1"
+      },
+      "passed": true,
+      "request": "please compute the pion two-point correlator"
+    },
+    {
+      "case_id": "explicit_pion_pcac",
+      "category": "explicit_supported",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "task_fields",
+        "physics_candidate_preview": [
+          "pion_pcac_ratio_correlator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "pion_pcac_ratio_correlator",
+        "primary_action_kind": "continue_by_set",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": "pion_pcac_chroma_wall_local_zero_momentum_npy_v1"
+      },
+      "passed": true,
+      "request": "please compute pion pcac ratio"
+    },
+    {
+      "case_id": "explicit_meson_spec",
+      "category": "explicit_supported",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "task_fields",
+        "physics_candidate_preview": [
+          "meson_spectrum_correlator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "meson_spectrum_correlator",
+        "primary_action_kind": "continue_by_set",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": "meson_spec_chroma_wall_gamma5_axial_mom2max9_npy_v1"
+      },
+      "passed": true,
+      "request": "please compute meson spectroscopy correlators"
+    },
+    {
+      "case_id": "explicit_rho",
+      "category": "explicit_supported",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "task_fields",
+        "physics_candidate_preview": [
+          "rho_vector_meson_correlator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "rho_vector_meson_correlator",
+        "primary_action_kind": "continue_by_set",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": "rho_vector_chroma_wall_local_zero_momentum_npy_v1"
+      },
+      "passed": true,
+      "request": "please compute the rho meson two-point correlator"
+    },
+    {
+      "case_id": "explicit_proton",
+      "category": "explicit_supported",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "task_fields",
+        "physics_candidate_preview": [
+          "proton_two_point_correlator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "proton_two_point_correlator",
+        "primary_action_kind": "continue_by_set",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": "proton_2pt_chroma_wall_local_zero_momentum_npy_v1"
+      },
+      "passed": true,
+      "request": "please compute the proton two-point correlator"
+    },
+    {
+      "case_id": "explicit_quark_propagator",
+      "category": "propagator",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "task_fields",
+        "physics_candidate_preview": [
+          "quark_propagator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "quark_propagator",
+        "primary_action_kind": "continue_by_set",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": "quark_propagator_chroma_point_hdf5_v1"
+      },
+      "passed": true,
+      "request": "please generate a quark propagator"
+    },
+    {
+      "case_id": "explicit_gaussian_shell_propagator",
+      "category": "propagator",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "task_fields",
+        "physics_candidate_preview": [
+          "quark_propagator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "quark_propagator",
+        "primary_action_kind": "continue_by_set",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": "quark_propagator_gaussian_shell_chroma_hdf5_v1"
+      },
+      "passed": true,
+      "request": "please generate a gaussian-shell quark propagator"
+    },
+    {
+      "case_id": "rough_gauge_smear_family",
+      "category": "smear",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "physics_confirmation",
+        "physics_candidate_preview": [
+          "stout_smeared_gauge_configuration",
+          "ape_smeared_gauge_configuration",
+          "hyp_smeared_gauge_configuration"
+        ],
+        "physics_formula_preview": [
+          "stout_smear_one_step_rho0241_dirignore3",
+          "ape_smear_one_step_alpha25_dirignore4",
+          "hyp_smear_one_step_075_06_03_dirignore4"
+        ],
+        "physics_target": "stout_smeared_gauge_configuration",
+        "primary_action_kind": "continue_by_reply",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": null
+      },
+      "passed": true,
+      "request": "please smear this gauge field and save the result"
+    },
+    {
+      "case_id": "explicit_wilson_flow",
+      "category": "flow",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "task_fields",
+        "physics_candidate_preview": [
+          "wilson_flow_energy_observable"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "wilson_flow_energy_observable",
+        "primary_action_kind": "continue_by_set",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": "wilson_flow_chroma_qio_energy_npy_v1"
+      },
+      "passed": true,
+      "request": "please run wilson flow on this gauge configuration"
+    },
+    {
+      "case_id": "unsupported_neutron",
+      "category": "unsupported_baryon",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "not_applicable",
+        "physics_candidate_preview": [
+          "neutron_two_point_correlator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "neutron_two_point_correlator",
+        "primary_action_kind": "retry_supported_workflow",
+        "product_status": "unsupported",
+        "shortest_fix_target": "proton_2pt_chroma_wall_local_zero_momentum_npy_v1",
+        "unsupported_scope": "physics",
+        "workflow_target": null
+      },
+      "passed": true,
+      "request": "please compute the neutron two-point correlator"
+    },
+    {
+      "case_id": "unsupported_quark_wall_source",
+      "category": "unsupported_propagator_variant",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "not_applicable",
+        "physics_candidate_preview": [
+          "quark_propagator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "quark_propagator",
+        "primary_action_kind": "retry_supported_workflow",
+        "product_status": "unsupported",
+        "shortest_fix_target": "quark_propagator_chroma_point_hdf5_v1",
+        "unsupported_scope": "physics",
+        "workflow_target": null
+      },
+      "passed": true,
+      "request": "please generate a quark propagator from gauge /tmp/cfg_0001.lime wall source lattice size 24 24 24 72 grid 1 1 1 2 mass=-0.2770 xi_0=1.0 nu=1.0 coeff_t=1.160920226 coeff_r=1.160920226 tol=1e-12 maxiter=1000 source timeslice 0 outputs/pt_prop.h5 outputs/run_quark.py resource_path=.cache/quda cluster_launch=local"
+    },
+    {
+      "case_id": "unsupported_stout_existing_propagator",
+      "category": "unsupported_smear_variant",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "not_applicable",
+        "physics_candidate_preview": [
+          "stout_smeared_gauge_configuration"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "stout_smeared_gauge_configuration",
+        "primary_action_kind": "retry_supported_workflow",
+        "product_status": "unsupported",
+        "shortest_fix_target": "stout_smear_chroma_qio_npy_v1",
+        "unsupported_scope": "implementation",
+        "workflow_target": null
+      },
+      "passed": true,
+      "request": "please generate a stout-smeared gauge from existing propagator /tmp/q.npy lattice size 24 24 24 72 grid 1 1 1 2 outputs/s.npy outputs/s.py resource_path=.cache/quda cluster_launch=local"
+    },
+    {
+      "case_id": "unsupported_wilson_flow_existing_propagator",
+      "category": "unsupported_flow_variant",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "not_applicable",
+        "physics_candidate_preview": [
+          "wilson_flow_energy_observable"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "wilson_flow_energy_observable",
+        "primary_action_kind": "retry_supported_workflow",
+        "product_status": "unsupported",
+        "shortest_fix_target": "wilson_flow_chroma_qio_energy_npy_v1",
+        "unsupported_scope": "implementation",
+        "workflow_target": null
+      },
+      "passed": true,
+      "request": "please run wilson flow from existing propagator /tmp/q.npy lattice size 24 24 24 72 grid 1 1 1 2 flow_steps=100 flow_epsilon=1.0 outputs/f.npy outputs/f.py resource_path=.cache/quda cluster_launch=local"
+    },
+    {
+      "case_id": "unsupported_eta_needs_clarification",
+      "category": "non_grounded_meson_like",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "physics_confirmation",
+        "physics_candidate_preview": [
+          "meson_two_point_correlator_unspecified",
+          "pion_two_point_correlator",
+          "meson_spectrum_correlator",
+          "pion_dispersion_correlator"
+        ],
+        "physics_formula_preview": [
+          "meson_operator_needs_channel_choice",
+          "pion_pseudoscalar_gamma5_twopt",
+          "pion_dispersion_gamma5_momentum_projected_twopt",
+          "meson_spec_gamma5_wall_momentum_family"
+        ],
+        "physics_target": "meson_two_point_correlator_unspecified",
+        "primary_action_kind": "continue_by_reply",
+        "product_status": "needs_input",
+        "shortest_fix_target": null,
+        "unsupported_scope": null,
+        "workflow_target": null
+      },
+      "passed": true,
+      "request": "please compute the eta meson correlator"
+    },
+    {
+      "case_id": "unsupported_meson_spec_gauge_fixed",
+      "category": "non_grounded_meson_like",
+      "failures": [],
+      "observed": {
+        "clarification_mode": "not_applicable",
+        "physics_candidate_preview": [
+          "meson_spectrum_correlator"
+        ],
+        "physics_formula_preview": [],
+        "physics_target": "meson_spectrum_correlator",
+        "primary_action_kind": "retry_supported_workflow",
+        "product_status": "unsupported",
+        "shortest_fix_target": "meson_spec_chroma_wall_gamma5_axial_mom2max9_npy_v1",
+        "unsupported_scope": "physics",
+        "workflow_target": null
+      },
+      "passed": true,
+      "request": "please compute the meson spectrum correlator with gauge fixed"
+    }
+  ],
+  "note": "This suite records current natural-language routing behavior against the summary contract. It validates interpretation, clarification mode, workflow selection, and nearest grounded recovery signals, but it does not prove a local PyQUDA runtime.",
+  "suite": "v11_task_suite",
+  "summary": {
+    "case_count": 16,
+    "categories": [
+      "ambiguous_meson",
+      "explicit_supported",
+      "flow",
+      "non_grounded_meson_like",
+      "propagator",
+      "smear",
+      "unsupported_baryon",
+      "unsupported_flow_variant",
+      "unsupported_propagator_variant",
+      "unsupported_smear_variant"
+    ],
+    "contract": "summary_only_dry_run",
+    "coverage": [
+      "ambiguous meson",
+      "explicit pion / pion_pcac / meson_spec / rho / proton",
+      "propagator / gaussian-shell propagator",
+      "smear / flow",
+      "unsupported propagator / smear / flow boundary variants",
+      "unsupported neutron",
+      "unsupported non-grounded meson-like variants"
+    ],
+    "passed_case_count": 16
+  }
+}

@@ -22,6 +22,12 @@ def score_document(query: str, document: RepoDocument) -> float:
     path_lower = document.path.lower()
     if "pion" in query_tokens and "pion" in document.path.lower():
         score += 3.0
+    if "proton" in query_tokens and "proton" in document.path.lower():
+        score += 3.0
+    if "meson" in query_tokens and "meson" in document.path.lower():
+        score += 2.5
+    if "spectrum" in query_tokens and "meson" in document.path.lower():
+        score += 2.0
     if "2pt" in query_tokens and "2pt" in document.path.lower():
         score += 2.0
     if "test_mesonspec.py" in path_lower:
@@ -30,6 +36,8 @@ def score_document(query: str, document: RepoDocument) -> float:
         score += 2.5
     if "5_pion_dispersion.py" in path_lower:
         score += 1.5
+    if "4_pion_pcac.py" in path_lower:
+        score += 2.0
     if "pyquda_utils/io/__init__.py" in path_lower or "pyquda_utils/core.py" in path_lower:
         score += 1.0
     if document.source == "pyquda":

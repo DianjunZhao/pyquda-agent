@@ -1,0 +1,163 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "high",
+      "label": "wilson-flow energy observable",
+      "status": "confirmed",
+      "summary": "User explicitly asked for a Wilson-flow / gradient-flow gauge evolution path.",
+      "target_id": "wilson_flow_energy_observable",
+      "task_type_hint": "wilson_flow"
+    }
+  ],
+  "chosen_workflow_target": "wilson_flow_chroma_qio_energy_npy_v1",
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "wilson-flow energy observable",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a Wilson-flow / gradient-flow gauge evolution path.",
+    "target_id": "wilson_flow_energy_observable",
+    "task_type_hint": "wilson_flow"
+  },
+  "external_citations": [],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "fixed_by_workflow_fields": {
+    "correlator_output_format": "npy",
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "has_existing_propagators": false,
+    "momenta": [],
+    "momentum_projection": "none",
+    "script_style": "complete",
+    "sink_type": "gauge",
+    "source_type": "none",
+    "start_from": "gauge",
+    "task_type": "wilson_flow",
+    "workflow_id": "wilson_flow_chroma_qio_energy_npy_v1"
+  },
+  "formula_proposals": [
+    {
+      "citations": [],
+      "convention": "Follow the narrow local PyQUDA path: read a Chroma/QIO gauge, copy it, evolve it with wilsonFlowChroma(flow_steps, flow_epsilon), and save the returned energy-history array as npy.",
+      "correlator": "E(t) \\ \\mathrm{sampled\\ along\\ the\\ discrete\\ Wilson-flow\\ trajectory}",
+      "label": "Wilson-flow energy-density history for a gauge field",
+      "local_references": [
+        "tests/test_wflow.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py"
+      ],
+      "operator": "\\partial_t V_t(x,\\mu) = - g_0^2 \\{\\partial_{x,\\mu} S_G(V_t)\\} V_t(x,\\mu)",
+      "proposal_id": "wilson_flow_energy_density_history",
+      "provenance": "local_references_plus_model_inference",
+      "target_id": "wilson_flow_energy_observable"
+    }
+  ],
+  "inferred_fields": {},
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "wilson-flow energy observable",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a Wilson-flow / gradient-flow gauge evolution path.",
+    "target_id": "wilson_flow_energy_observable",
+    "task_type_hint": "wilson_flow"
+  },
+  "inherited_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": false
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": false,
+    "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+    "codex_preflight_attempted": true,
+    "codex_preflight_category": "local_environment_error",
+    "codex_preflight_detail_category": "codex_app_client_init_failed",
+    "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment.",
+    "codex_preflight_skip_reason": null,
+    "codex_preflight_skipped": false,
+    "codex_preflight_soft_failed": false,
+    "codex_preflight_soft_failure_reason": null,
+    "codex_preflight_status": "failed",
+    "codex_preflight_timeout_seconds": 2.0,
+    "configured": false,
+    "configured_backend": null,
+    "fallback": true,
+    "fallback_category": "local_environment_error",
+    "fallback_detail_category": "codex_app_client_init_failed",
+    "fallback_reason": "Explicit codex backend failed preflight (Codex backend failed during local app-client initialization in the current environment.), so the run will use the rule-based path.",
+    "intent_primary_timeout_seconds": null,
+    "intent_prompt_profile": null,
+    "intent_strategy": null,
+    "model_name": null,
+    "notes": [],
+    "provider": null,
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "selected_backend": "rules",
+    "selection_reason": "Explicit codex backend failed short preflight and fell back to rules.",
+    "session_backend_memory_considered": false,
+    "session_backend_memory_reason": null,
+    "session_backend_memory_used": false,
+    "session_backend_prior_category": null,
+    "session_backend_prior_selected_backend": null,
+    "stages_attempted": [],
+    "stages_completed": [],
+    "timeout_recovery_attempted": false,
+    "timeout_recovery_failed": false,
+    "timeout_recovery_failure_category": null,
+    "timeout_recovery_failure_detail_category": null,
+    "timeout_recovery_failure_reason": null,
+    "timeout_recovery_skip_reason": null,
+    "timeout_recovery_skipped": false,
+    "timeout_recovery_timeout_seconds": null,
+    "timeout_recovery_trigger_category": null,
+    "timeout_recovery_trigger_reason": null,
+    "timeout_recovery_used": false,
+    "used": false
+  },
+  "local_references": [
+    "tests/test_wflow.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py"
+  ],
+  "normalized_request": "please run wilson flow from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 flow_steps=100 flow_epsilon=1.0 not gauge fixed /Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow.py resource_path=.cache/quda cluster_launch=local",
+  "parser_guesses": {},
+  "status": "confirmed",
+  "task_type_hint": "wilson_flow",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "target_id": "wilson_flow_energy_observable"
+  },
+  "user_request": "please run wilson flow from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 flow_steps=100 flow_epsilon=1.0 not gauge fixed /Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_wilson_flow.py resource_path=.cache/quda cluster_launch=local"
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "bulava-2022-hadron-spectroscopy",
+    "type": "authoritative_review",
+    "title": "Hadron Spectroscopy with Lattice QCD",
+    "authors": [
+      "John Bulava",
+      "Raul Briceno",
+      "William Detmold",
+      "et al."
+    ],
+    "year": 2022,
+    "url": "https://arxiv.org/abs/2203.03230",
+    "metadata_source": "curated_fallback",
+    "metadata_refresh": "curated_fallback",
+    "supports": [
+      "baryon_two_point_correlators",
+      "interpolating_operators_carry_target_quantum_numbers"
+    ],
+    "chosen_convention": "Use the standard proton interpolating operator together with a zero-momentum Euclidean two-point correlator and parity projection, matching the narrow local PyQUDA example.",
+    "why_needed": "The local PyQUDA proton example fixes the implementation path; this curated review record documents the physics-side proton spectroscopy convention without implying live online lookup."
+  }
+]

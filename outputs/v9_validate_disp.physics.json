@@ -1,0 +1,265 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "high",
+      "label": "pion dispersion correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+      "target_id": "pion_dispersion_correlator",
+      "task_type_hint": "pion_dispersion"
+    }
+  ],
+  "chosen_workflow_target": "pion_dispersion_chroma_point_momentum_npy_v1",
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "pion dispersion correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+    "target_id": "pion_dispersion_correlator",
+    "task_type_hint": "pion_dispersion"
+  },
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "momentum_projected_two_point_correlators",
+        "dispersion_analysis_from_hadron_two_point_functions"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+      "year": 2022
+    }
+  ],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "fixed_by_workflow_fields": {
+    "correlator_output_format": "npy",
+    "fermion_action": "clover",
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "has_existing_propagators": false,
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ]
+    ],
+    "momentum_projection": "explicit",
+    "script_style": "complete",
+    "sink_type": "local",
+    "source_type": "point",
+    "start_from": "gauge",
+    "task_type": "pion_dispersion",
+    "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1"
+  },
+  "formula_proposals": [
+    {
+      "citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "momentum_projected_two_point_correlators",
+            "dispersion_analysis_from_hadron_two_point_functions"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+          "year": 2022
+        }
+      ],
+      "convention": "Use the canonical pseudoscalar pion interpolating operator together with an explicit finite momentum list to build a narrow pion-dispersion workflow.",
+      "correlator": "C_\\pi(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_\\pi(\\vec x,t) O_\\pi^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Pion momentum-projected two-point correlator for dispersion analysis",
+      "local_references": [
+        "examples/5_Pion_Dispersion.py",
+        "tests/test_mesonspec.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/source.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py"
+      ],
+      "operator": "O_\\pi(x) = \\bar d(x) \\gamma_5 u(x)",
+      "proposal_id": "pion_dispersion_gamma5_momentum_projected_twopt",
+      "provenance": "local_references_plus_curated_citations",
+      "target_id": "pion_dispersion_correlator"
+    }
+  ],
+  "inferred_fields": {},
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "pion dispersion correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+    "target_id": "pion_dispersion_correlator",
+    "task_type_hint": "pion_dispersion"
+  },
+  "inherited_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": true
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": false,
+    "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+    "codex_preflight_attempted": true,
+    "codex_preflight_category": "local_environment_error",
+    "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment.",
+    "codex_preflight_skip_reason": null,
+    "codex_preflight_skipped": false,
+    "codex_preflight_soft_failed": false,
+    "codex_preflight_soft_failure_reason": null,
+    "codex_preflight_status": "failed",
+    "codex_preflight_timeout_seconds": 2.0,
+    "configured": false,
+    "configured_backend": null,
+    "fallback": true,
+    "fallback_category": "local_environment_error",
+    "fallback_reason": "Explicit codex backend failed preflight (Codex backend failed during local app-client initialization in the current environment.), so the run will use the rule-based path.",
+    "intent_primary_timeout_seconds": null,
+    "intent_prompt_profile": null,
+    "intent_strategy": null,
+    "model_name": null,
+    "notes": [],
+    "provider": null,
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "selected_backend": "rules",
+    "selection_reason": "Explicit codex backend failed short preflight and fell back to rules.",
+    "session_backend_memory_considered": false,
+    "session_backend_memory_reason": null,
+    "session_backend_memory_used": false,
+    "session_backend_prior_category": null,
+    "session_backend_prior_selected_backend": null,
+    "stages_attempted": [],
+    "stages_completed": [],
+    "timeout_recovery_attempted": false,
+    "timeout_recovery_failed": false,
+    "timeout_recovery_failure_category": null,
+    "timeout_recovery_failure_reason": null,
+    "timeout_recovery_skip_reason": null,
+    "timeout_recovery_skipped": false,
+    "timeout_recovery_timeout_seconds": null,
+    "timeout_recovery_trigger_category": null,
+    "timeout_recovery_trigger_reason": null,
+    "timeout_recovery_used": false,
+    "used": false
+  },
+  "local_references": [
+    "examples/5_Pion_Dispersion.py",
+    "tests/test_mesonspec.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/source.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py"
+  ],
+  "normalized_request": "please compute pion dispersion with nonzero momentum from gauge ~/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 source timeslice 0 outputs/v9_validate_disp.npy outputs/v9_validate_disp.py resource_path=.cache/quda cluster_launch=local",
+  "parser_guesses": {},
+  "status": "confirmed",
+  "task_type_hint": "pion_dispersion",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "target_id": "pion_dispersion_correlator"
+  },
+  "user_request": "please compute pion dispersion with nonzero momentum from gauge ~/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 source timeslice 0 outputs/v9_validate_disp.npy outputs/v9_validate_disp.py resource_path=.cache/quda cluster_launch=local"
+}

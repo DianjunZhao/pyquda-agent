@@ -1,0 +1,77 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "high",
+      "label": "proton two-point correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for a proton two-point correlator.",
+      "target_id": "proton_two_point_correlator",
+      "task_type_hint": null
+    }
+  ],
+  "chosen_workflow_target": null,
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "proton two-point correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a proton two-point correlator.",
+    "target_id": "proton_two_point_correlator",
+    "task_type_hint": null
+  },
+  "external_citations": [],
+  "fixed_by_workflow_fields": {},
+  "formula_proposals": [],
+  "inferred_fields": {},
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "proton two-point correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a proton two-point correlator.",
+    "target_id": "proton_two_point_correlator",
+    "task_type_hint": null
+  },
+  "knowledge_boundary": {
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": false
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Live online physics lookup is not implemented in the current run path.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": false,
+    "configured_backend": null,
+    "fallback": true,
+    "fallback_reason": "API backend requested but no --model was configured.",
+    "notes": [],
+    "requested_backend": "api",
+    "stages_attempted": [],
+    "stages_completed": [],
+    "used": false
+  },
+  "local_references": [],
+  "normalized_request": "please compute the proton two-point correlator",
+  "parser_guesses": {},
+  "status": "confirmed",
+  "task_type_hint": null,
+  "unsupported_fields": {
+    "target_id": "Only pion two-point correlators are currently implemented."
+  },
+  "unsupported_reasons": [
+    "Only pion two-point correlators are currently implemented."
+  ],
+  "user_confirmed_fields": {
+    "target_id": "proton_two_point_correlator"
+  },
+  "user_request": "please compute the proton two-point correlator"
+}

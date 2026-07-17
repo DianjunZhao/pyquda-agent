@@ -1,0 +1,431 @@
+{
+  "chosen_workflow_target": null,
+  "clarification_trace": [],
+  "confirmed_interpretation": null,
+  "convention_decisions": [
+    {
+      "category": "physics",
+      "citations": [],
+      "decision": "Use wall source at a specified source timeslice.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+      ],
+      "why": "The fixed v1 workflow follows the local meson-spec test pattern for wall-source propagator generation."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Use the gamma5-based zero-momentum pion contraction written with CuPy einsum.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+        "/Users/zhaodianjun/PyQUDA/examples/3_Pion_Proton_2pt.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py"
+      ],
+      "why": "The contraction shape and gamma-matrix usage are grounded in the local meson-spec test and pion example, with gamma helpers from pyquda_utils.gamma."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Read the input gauge with io.readQIOGauge from a Chroma/QIO gauge path.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py"
+      ],
+      "why": "The grounded workflow uses the same QIO gauge-loading path exercised in the local IO test and helper module."
+    },
+    {
+      "category": "physics",
+      "citations": [
+        "bulava-2022-hadron-spectroscopy",
+        "howarth-giedt-2015-sigma"
+      ],
+      "decision": "Restrict v1 to a single pion two-point correlator at zero momentum.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/examples/5_Pion_Dispersion.py",
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+      ],
+      "why": "The local examples separate zero-momentum and dispersion workflows; the external citations justify the narrow two-point zero-momentum convention."
+    }
+  ],
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use a Euclidean two-point correlator with interpolating operators chosen to overlap the target pion channel at zero momentum.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "two_point_spectral_decomposition",
+        "interpolating_operators_carry_target_quantum_numbers_and_momentum"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "PyQUDA examples and tests show the implementation pattern, but this review provides the lattice-spectroscopy framing for the correlator and operator-selection convention.",
+      "year": 2022
+    },
+    {
+      "authors": [
+        "Dean Howarth",
+        "Joel Giedt"
+      ],
+      "chosen_convention": "Use the narrow wall-source zero-momentum convention and record that the p=0 truncation corresponds to wall sources.",
+      "citation_source_kind": "local_curated_json",
+      "id": "howarth-giedt-2015-sigma",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "wall_source_as_p_equals_0_momentum_source",
+        "zero_momentum_projection"
+      ],
+      "title": "The sigma meson from lattice QCD with two-pion interpolating operators",
+      "type": "primary_reference",
+      "url": "https://arxiv.org/abs/1508.05658",
+      "why_needed": "PyQUDA local references encode wall inversions and zero-momentum contractions but do not explain the physics-side meaning of the wall-source p=0 choice.",
+      "year": 2015
+    }
+  ],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "field_resolution": {
+    "_physics_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_by_workflow_fields": {},
+      "inferred_fields": {
+        "target_id": "pion_two_point_correlator"
+      },
+      "inherited_fields": {},
+      "parser_guesses": {
+        "target_id": "pion_two_point_correlator"
+      },
+      "user_confirmed_fields": {}
+    },
+    "_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_fields": {
+        "correlator_output_format": "npy",
+        "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.npy",
+        "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.py"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {},
+      "user_confirmed_fields": {}
+    },
+    "cluster_launch": "default",
+    "correlator_output_format": "default",
+    "correlator_output_path": "default",
+    "resource_path": "default",
+    "script_output_path": "default"
+  },
+  "handoff_contract": {
+    "cluster_launch": "local",
+    "input_manifest": [],
+    "input_mutability_policy": "immutable_inputs_never_overwritten",
+    "input_paths": [],
+    "input_visibility": "all_ranks",
+    "output_paths": {
+      "correlator": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.npy",
+      "probe_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.probe.json",
+      "script": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.py"
+    },
+    "output_writer_policy": "rank0_only",
+    "preflight_checks": [
+      "Ensure all gauge inputs are visible from every rank before launch.",
+      "Ensure the output directory is writable by the rank that saves the final correlator artifact.",
+      "Confirm the nearest existing parent of each emitted artifact path is writable on the target filesystem before submission.",
+      "Verify numpy, cupy, pyquda_utils, and pyquda import successfully before starting a full inversion job.",
+      "Review the sibling .physics.json, .task.json, and .plan.json artifacts before cluster submission."
+    ],
+    "required_modules": [
+      "numpy",
+      "cupy",
+      "pyquda_utils",
+      "pyquda"
+    ],
+    "resource_path": ".cache/quda",
+    "start_from": null,
+    "submission_assumption": "Launch under an MPI/GPU layout consistent with GRID_SIZE and the target PyQUDA environment."
+  },
+  "inferred_interpretation": {
+    "confidence": "medium",
+    "label": "pion two-point correlator",
+    "status": "inferred",
+    "summary": "The request likely refers to a pion two-point correlator, but the normalized physics label is inferred from the rough wording.",
+    "target_id": "pion_two_point_correlator",
+    "task_type_hint": "pion_2pt"
+  },
+  "inherited_session_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": true
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "local_references_used": [],
+  "physics_choices": {
+    "coeff_r": null,
+    "coeff_t": null,
+    "fermion_action": null,
+    "flow_epsilon": null,
+    "flow_steps": null,
+    "gauge_fixed": null,
+    "mass": null,
+    "momenta": [],
+    "momentum_projection": null,
+    "nu": null,
+    "sink_type": null,
+    "source_timeslices": [],
+    "source_type": null,
+    "target_id": "pion_two_point_correlator",
+    "xi_0": null
+  },
+  "pyquda_choices": {
+    "gauge_format": null,
+    "gauge_path": null,
+    "grid_size": [],
+    "lattice_size": [],
+    "multigrid_blocks": [],
+    "output_format": "npy",
+    "resource_path": ".cache/quda",
+    "solver_maxiter": null,
+    "solver_tol": null,
+    "start_from": null,
+    "stout_smear_ndim": null,
+    "stout_smear_rho": null,
+    "stout_smear_steps": null
+  },
+  "references": [
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/examples/3_Pion_Proton_2pt.py",
+      "source": "pyquda",
+      "summary": "from itertools import permutations"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/examples/5_Pion_Dispersion.py",
+      "source": "pyquda",
+      "summary": "import numpy as np"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+      "source": "pyquda",
+      "summary": "from time import perf_counter"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+      "source": "pyquda",
+      "summary": "from check_pyquda import weak_field"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+      "source": "pyquda",
+      "summary": "from typing import List"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/source.py",
+      "source": "pyquda",
+      "summary": "from typing import List, Literal, Union, overload"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/core.py",
+      "source": "pyquda",
+      "summary": "from math import prod"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py",
+      "source": "pyquda",
+      "summary": "from pyquda_comm.field import LatticeFermion, LatticePropagator"
+    }
+  ],
+  "runtime_choices": {
+    "cluster_launch": "local",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.npy",
+    "primary_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.npy",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.py"
+  },
+  "runtime_readiness": {
+    "artifact_chain": {
+      "physics_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.physics.json",
+      "plan_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.plan.json",
+      "task_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.task.json"
+    },
+    "checks": [
+      {
+        "module": "numpy",
+        "ok": true,
+        "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+      },
+      {
+        "error": "No module named 'cupy'",
+        "error_type": "ModuleNotFoundError",
+        "module": "cupy",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils.core",
+        "ok": false
+      }
+    ],
+    "environment_probe": {
+      "script": "scripts/check_pyquda_runtime.py",
+      "used_repo_pythonpath": false
+    },
+    "environment_ready": false,
+    "evidence_levels": {
+      "blockers": [
+        {
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy",
+          "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+        },
+        {
+          "error": "No module named 'pyquda'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda",
+          "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils",
+          "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils.core",
+          "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+        }
+      ],
+      "current_level": "structurally_grounded",
+      "runtime_proved": false,
+      "runtime_ready": false,
+      "structurally_grounded": true,
+      "syntax_valid": true
+    },
+    "generated_script_exists": false,
+    "generated_script_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.py",
+    "generated_script_probe": {
+      "artifact_path": "/Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.probe.json",
+      "command": "python3 scripts/probe_generated_workflow.py --script /Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.py --output /Users/zhaodianjun/pyquda-agent/outputs/backend_execution/rough_pion_api.probe.json",
+      "reason": "The run path does not auto-execute generated workflow scripts because they may launch a real PyQUDA inversion workload.",
+      "status": "not_run"
+    },
+    "probe_policy": {
+      "auto_run": false,
+      "current_run_attempted": false,
+      "current_run_requested": false,
+      "current_run_status": "not_requested",
+      "default_auto_run": false,
+      "reason": "Generated-script probes are opt-in because a complete script may start a real PyQUDA inversion workload."
+    },
+    "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+    "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+    "ready": false,
+    "reference_grounded": true,
+    "runtime_level": "structurally_grounded",
+    "runtime_proved": false,
+    "syntax_valid": true,
+    "used_repo_pythonpath": false
+  },
+  "task_type": "unknown",
+  "unresolved_fields": [
+    "start_from",
+    "has_existing_propagators",
+    "gauge_format",
+    "gauge_path",
+    "lattice_size",
+    "grid_size",
+    "fermion_action",
+    "mass",
+    "xi_0",
+    "nu",
+    "coeff_t",
+    "coeff_r",
+    "solver_tol",
+    "solver_maxiter",
+    "source_type",
+    "sink_type",
+    "momentum_projection",
+    "momenta",
+    "source_timeslices",
+    "gauge_fixed",
+    "script_style"
+  ],
+  "unsupported_reasons": [
+    "Physics target is not confirmed yet."
+  ],
+  "user_request": "write a simple PyQUDA script for pi meson two-point",
+  "validation_checks": [
+    "generated code is syntax-valid",
+    "task fields fully resolved",
+    "workflow matches supported runnable path",
+    "generated code imports real PyQUDA APIs",
+    "generated code matches local examples/tests/io helpers for the chosen workflow",
+    "generated code contains no TODO/pass/placeholder text"
+  ],
+  "workflow_id": "unknown",
+  "workflow_match": {
+    "external_citations": [],
+    "fixed_fields": {},
+    "local_references": [],
+    "mapping_notes": [],
+    "matched": false,
+    "task_type": null,
+    "unsupported_reasons": [
+      "Physics target is not confirmed yet."
+    ],
+    "workflow_target": null
+  }
+}

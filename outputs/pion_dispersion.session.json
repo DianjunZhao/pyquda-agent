@@ -1,0 +1,1368 @@
+{
+  "asked_questions": [],
+  "confirmed_fields": {
+    "momentum_projection": "explicit",
+    "target_id": "pion_dispersion_correlator"
+  },
+  "context_bundle": {
+    "index_provenance": {
+      "index_path": "/Users/zhaodianjun/pyquda-agent/data/pyquda_index.json",
+      "indexed_repo_root": "/Users/zhaodianjun/PyQUDA",
+      "note": "The loaded index summary matches the requested PyQUDA repo.",
+      "requested_repo_root": "/Users/zhaodianjun/PyQUDA",
+      "status": "matched"
+    },
+    "index_summary": {
+      "area_file_counts": {
+        "examples": 9,
+        "pyquda_core": 39,
+        "pyquda_io": 13,
+        "pyquda_plugins": 4,
+        "pyquda_utils": 20,
+        "tests": 49
+      },
+      "category_counts": {
+        "cython": 4,
+        "example": 9,
+        "other": 8,
+        "package-init": 9,
+        "python": 55,
+        "test": 49
+      },
+      "cython_file_count": 4,
+      "extension_counts": {
+        ".cpp": 1,
+        ".in": 1,
+        ".ipynb": 1,
+        ".lime": 1,
+        ".md": 2,
+        ".pxd": 2,
+        ".py": 101,
+        ".pyi": 2,
+        ".pyx": 2,
+        ".sh": 3,
+        ".svg": 1,
+        ".toml": 1,
+        ".txt": 1,
+        ".xml": 10,
+        "<none>": 5
+      },
+      "file_count": 134,
+      "python_module_count": 101
+    },
+    "snippets": [
+      {
+        "excerpt": "import numpy as np\nimport cupy as cp\nfrom opt_einsum import contract\nfrom matplotlib import pyplot as plt\nfrom pyquda_utils import core, io, gamma, phase\ncore.init([1, 1, 1, 2], resource_path=\".cache/quda\")\nlatt_info = core.LatticeInfo([24, 24, 24, 72], -1, 1.0)\ndirac = core.getDirac(latt_info, -0.2770, 1e-12, 1000, 1.0, 1.160920226, 1.160920226, [[6, 6, 6, 4], [4, 4, 4, 9]])\ngauge = io.readChromaQIOGauge(\"/public/ensemble/C24P29/beta6.20_mu-0.2770_ms-0.2400_L24x72_cfg_48000.lime\")\ngauge.stoutSmear(1, 0.125, 4)\nG5 = gamma.gamma(15)\nmomentum_list = [[0, 0, 0], [0, 0, 1], [0, 1, 1], [1, 1, 1], [0, 0, 2], [0, 1, 2], [1, 1, 2], [0, 2, 2], [1, 2, 2]]",
+        "path": "/Users/zhaodianjun/PyQUDA/examples/5_Pion_Dispersion.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "import numpy as np"
+      },
+      {
+        "excerpt": "from time import perf_counter\nimport numpy as np\nimport cupy as cp\nfrom check_pyquda import weak_field\nfrom pyquda_utils import core, gamma, phase, io\nxi_0, nu = 4.8965, 0.86679\nmass = 0.09253\nkappa = 0.5 / (mass + 1 + 3 / (xi_0 / nu))\ncoeff_r, coeff_t = 2.32582045, 0.8549165664\ncore.init([1, 1, 1, 1], [4, 4, 4, 8], resource_path=\".cache/quda\")\nlatt_info = core.LatticeInfo([4, 4, 4, 8], -1, xi_0 / nu)\nLx, Ly, Lz, Lt = latt_info.size",
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from time import perf_counter"
+      },
+      {
+        "excerpt": "from check_pyquda import weak_field\nfrom pyquda_utils import core, io, convert, checksum\nxi_0, nu = 2.464, 0.95\nkappa = 0.115\nmass = 1 / (2 * kappa) - 4\ncoeff = 1.17\ncoeff_r, coeff_t = 0.91, 1.07\ncore.init(None, [4, 4, 4, 8], resource_path=\".cache/quda\")\ngauge = io.readQIOGauge(weak_field)\nlatt_info = core.LatticeInfo([4, 4, 4, 8], -1, xi_0 / nu)\ndslash = core.getClover(latt_info, mass, 1e-12, 1000, xi_0, coeff_t, coeff_r)\nwith dslash.useGauge(gauge):",
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from check_pyquda import weak_field"
+      },
+      {
+        "excerpt": "from typing import List\nimport numpy\nfrom pyquda.field import LatticeInfo, LatticeGauge, LatticePropagator, LatticeStaggeredPropagator, evenodd, lexico\n# matrices to convert gamma basis bewteen DeGrand-Rossi and Dirac-Pauli\n# \\psi(DP) = _DR_TO_DP \\psi(DR)\n# \\psi(DR) = _DP_TO_DR \\psi(DP)\n_DP_TO_DR = numpy.array(\n[\n[0, 1, 0, -1],\n[-1, 0, 1, 0],\n[0, 1, 0, 1],\n[-1, 0, -1, 0],",
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from typing import List"
+      },
+      {
+        "excerpt": "from typing import List, Literal, Union, overload\nfrom pyquda import getGridSize, getLogger\nfrom pyquda.field import (\nNs,\nNc,\nLatticeInfo,\nLatticeGauge,\nLatticeFermion,\nMultiLatticeFermion,\nLatticePropagator,\nLatticeStaggeredFermion,\nMultiLatticeStaggeredFermion,",
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/source.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from typing import List, Literal, Union, overload"
+      },
+      {
+        "excerpt": "from math import prod\nfrom typing import List, Literal, Optional, Union\nimport numpy\nfrom pyquda_comm import getCoordFromRank, getRankFromCoord  # noqa: F401\nfrom pyquda import (  # noqa: F401\ninit,\ngetMPIComm,\ngetMPISize,\ngetMPIRank,\ngetGridSize,\ngetGridCoord,\ngetGridMap,",
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/core.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from math import prod"
+      },
+      {
+        "excerpt": "from pyquda_comm.field import LatticeFermion, LatticePropagator\nfrom pyquda.gamma import DeGrandRossiMatrix, Gamma, Projector\n__all__ = [\"gamma\", \"Gamma\", \"Projector\"]\ndef gamma_mul_fermion(lhs: Gamma, propag: LatticeFermion):\nif not isinstance(lhs, Gamma):\nreturn NotImplemented\nassert propag.latt_info.Ns == 4, \"Ns should be 4\"\nresult = LatticeFermion(propag.latt_info)\nfor i in range(4):\nk = lhs.sparse_indices[i]\ngamma_ik = lhs.factor * lhs.sparse_data[i]\nresult.data[:, :, :, :, :, i] = gamma_ik * propag.data[:, :, :, :, :, k]",
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from pyquda_comm.field import LatticeFermion, LatticePropagator"
+      },
+      {
+        "excerpt": "from itertools import permutations\nimport numpy as np\nimport cupy as cp\nfrom opt_einsum import contract\nfrom matplotlib import pyplot as plt\nfrom pyquda_utils import core, io, gamma\ncore.init([1, 1, 1, 2], resource_path=\".cache/quda\")\nlatt_info = core.LatticeInfo([24, 24, 24, 72], -1, 1.0)\ndirac = core.getDirac(latt_info, -0.2770, 1e-12, 1000, 1.0, 1.160920226, 1.160920226, [[6, 6, 6, 4], [4, 4, 4, 9]])\ngauge = io.readChromaQIOGauge(\"/public/ensemble/C24P29/beta6.20_mu-0.2770_ms-0.2400_L24x72_cfg_48000.lime\")\ngauge.stoutSmear(1, 0.125, 4)\nC = gamma.gamma(2) @ gamma.gamma(8)",
+        "path": "/Users/zhaodianjun/PyQUDA/examples/3_Pion_Proton_2pt.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from itertools import permutations"
+      },
+      {
+        "excerpt": "# Runnable Pion 2pt Spec\nThis document defines the first supported **complete runnable** pion two-point workflow for `pyquda-agent`.\nThe current runnable implementation path is fixed:\n`natural language request -> physics interpretation -> clarification loop -> workflow match -> structured task spec -> reference-grounded implementation plan -> complete script -> minimal validation`\n`complete script` is not the primary artifact. The physics artifact, structured task spec, and grounded plan must exist first and remain reviewable.\n## Fixed scope for v1\nThe first version supports exactly one narrow path:\n- start from a **Chroma/QIO gauge configuration**\n- use **Clover** action parameters supplied by the user\n- build a **wall source**\n- use a **local sink**\n- compute a **single pion two-point correlator**",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_PION_2PT_SPEC.md",
+        "score": 7.0,
+        "source": "workspace",
+        "summary": "# Runnable Pion 2pt Spec"
+      },
+      {
+        "excerpt": "# Runnable Pion Dispersion Spec\nThis document defines one supported **complete runnable** workflow in the current `pyquda-agent` suite.\nThe scope is intentionally narrow:\n- start from a `Chroma/QIO` gauge configuration\n- use `Clover`\n- use a `point` source fixed at spatial origin `[0, 0, 0]`\n- use a user-specified `source timeslice`\n- use a non-empty momentum list drawn from the locally grounded 9-momentum family in `examples/5_Pion_Dispersion.py`\n- output a momentum-indexed pion correlator array to `.npy`\nPrimary local references:\n- `~/PyQUDA/examples/5_Pion_Dispersion.py`\n- `~/PyQUDA/tests/test_mesonspec.py`",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_PION_DISPERSION_SPEC.md",
+        "score": 7.0,
+        "source": "workspace",
+        "summary": "# Runnable Pion Dispersion Spec"
+      },
+      {
+        "excerpt": "# Run Workflow\n`pyquda-agent` keeps `~/PyQUDA` read-only and writes all derived artifacts inside this repository or to an explicit user output path.\n## Primary path\nThe main path is:\n`natural language request -> physics interpretation -> clarification loop -> workflow match -> structured task spec -> reference-grounded implementation plan -> complete script -> minimal validation`\nThe runnable implementation set is still intentionally narrow. The new part is above it: rough requests are first interpreted at the physics level, then either confirmed and matched to one of the supported workflows, or refused explicitly.\n## Refresh analysis artifacts\n```bash\npython3 scripts/refresh_pyquda_analysis.py\n```\nThis updates:\n- `data/pyquda_index.json`",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUN_WORKFLOW.md",
+        "score": 5.0,
+        "source": "workspace",
+        "summary": "# Run Workflow"
+      },
+      {
+        "excerpt": "# Task Schemas\n## Workflow families\nCurrent runnable implementation set supports four concrete workflow targets:\n- `pion_2pt_chroma_wall_local_zero_momentum_npy_v1`\n- `pion_2pt_existing_propagator_local_zero_momentum_npy_v1`\n- `pion_dispersion_chroma_point_momentum_npy_v1`\n- `proton_2pt_chroma_wall_local_zero_momentum_npy_v1`\nThe supported flow is:\n`natural language request -> physics interpretation -> clarification loop -> workflow match -> structured task spec -> reference-grounded implementation plan -> complete script -> minimal validation`\nThe implementation targets remain intentionally narrow so complete mode does not collapse into pseudocode, but the system-level parser and intent layer are no longer hard-coded to a single workflow.\n## Physics artifact\nEach run now writes `*.physics.json` before any complete generation. It records:",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/TASK_SCHEMAS.md",
+        "score": 4.0,
+        "source": "workspace",
+        "summary": "# Task Schemas"
+      }
+    ],
+    "task_type": "pion_dispersion"
+  },
+  "draft": {
+    "chosen_workflow_target": "pion_dispersion_chroma_point_momentum_npy_v1",
+    "clarified_fields": {},
+    "cluster_launch": null,
+    "coeff_r": null,
+    "coeff_t": null,
+    "correlator_output_format": "npy",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion_dispersion.npy",
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "momentum_projected_two_point_correlators",
+          "dispersion_analysis_from_hadron_two_point_functions"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+        "year": 2022
+      }
+    ],
+    "fermion_action": "clover",
+    "field_sources": {
+      "correlator_output_format": "default",
+      "correlator_output_path": "default",
+      "fermion_action": "fixed",
+      "gauge_fixed": "fixed",
+      "gauge_format": "fixed",
+      "has_existing_propagators": "fixed",
+      "momenta": "fixed",
+      "momentum_projection": "parsed",
+      "script_output_path": "default",
+      "script_style": "fixed",
+      "sink_type": "fixed",
+      "source_type": "fixed",
+      "start_from": "fixed",
+      "task_type": "parser_guess",
+      "workflow_id": "fixed"
+    },
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion_dispersion.npy",
+      "fermion_action": "clover",
+      "gauge_fixed": false,
+      "gauge_format": "chroma_qio",
+      "has_existing_propagators": false,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          1,
+          2,
+          2
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion_dispersion.py",
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "point",
+      "start_from": "gauge",
+      "task_type": "pion_dispersion",
+      "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1"
+    },
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "gauge_path": null,
+    "grid_size": [],
+    "has_existing_propagators": false,
+    "inferred_fields": {},
+    "inherited_fields": {},
+    "lattice_size": [],
+    "mass": null,
+    "missing_fields": [
+      "gauge_path",
+      "lattice_size",
+      "grid_size",
+      "mass",
+      "xi_0",
+      "nu",
+      "coeff_t",
+      "coeff_r",
+      "solver_tol",
+      "solver_maxiter",
+      "source_timeslices",
+      "resource_path",
+      "cluster_launch"
+    ],
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ]
+    ],
+    "momentum_projection": "explicit",
+    "multigrid_blocks": [],
+    "notes": "please compute pion dispersion with nonzero momentum",
+    "nu": null,
+    "parser_guesses": {
+      "task_type": "pion_dispersion"
+    },
+    "propagator_format": null,
+    "propagator_paths": [],
+    "pyquda_references": [
+      "examples/5_Pion_Dispersion.py",
+      "tests/test_mesonspec.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/source.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py",
+      "examples/3_Pion_Proton_2pt.py"
+    ],
+    "resource_path": null,
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion_dispersion.py",
+    "script_style": "complete",
+    "sink_type": "local",
+    "solver_maxiter": null,
+    "solver_tol": null,
+    "source_timeslices": [],
+    "source_type": "point",
+    "start_from": "gauge",
+    "stout_smear_ndim": null,
+    "stout_smear_rho": null,
+    "stout_smear_steps": null,
+    "task_type": "pion_dispersion",
+    "unsupported_fields": {},
+    "unsupported_reasons": [],
+    "user_confirmed_fields": {
+      "momentum_projection": "explicit"
+    },
+    "user_request": "please compute pion dispersion with nonzero momentum",
+    "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1",
+    "xi_0": null
+  },
+  "implementation_plan": {
+    "chosen_workflow_target": "pion_dispersion_chroma_point_momentum_npy_v1",
+    "clarification_trace": [],
+    "confirmed_interpretation": {
+      "confidence": "high",
+      "label": "pion dispersion correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+      "target_id": "pion_dispersion_correlator",
+      "task_type_hint": "pion_dispersion"
+    },
+    "convention_decisions": [
+      {
+        "category": "physics",
+        "citations": [],
+        "decision": "Use a point source at the fixed spatial origin with a user-specified source timeslice.",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/examples/5_Pion_Dispersion.py"
+        ],
+        "why": "The narrow pion-dispersion workflow follows the local PyQUDA example that builds momentum-projected pion correlators from a point source."
+      },
+      {
+        "category": "pyquda",
+        "citations": [],
+        "decision": "Use MomentumPhase with a momentum list drawn from the locally validated 9-momentum family in the pion-dispersion example.",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/examples/5_Pion_Dispersion.py",
+          "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+        ],
+        "why": "The supported dispersion family stays grounded in the explicit momentum-phase construction already present in local PyQUDA references, while allowing reviewable subsets of that same local momentum family."
+      },
+      {
+        "category": "pyquda",
+        "citations": [],
+        "decision": "Contract the propagator with gamma5 bilinears and momentum phases to produce a momentum-indexed pion correlator array.",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/examples/5_Pion_Dispersion.py",
+          "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py"
+        ],
+        "why": "This mirrors the contraction pattern of the local pion-dispersion example without inventing new helper APIs."
+      },
+      {
+        "category": "physics",
+        "citations": [
+          "bulava-2022-hadron-spectroscopy"
+        ],
+        "decision": "Treat the workflow as a momentum-projected pion two-point path for dispersion analysis, not a generic nonzero-momentum correlator generator.",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/examples/5_Pion_Dispersion.py",
+          "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+        ],
+        "why": "The implementation target is intentionally pinned to one local PyQUDA example and one locally grounded momentum family so that complete mode remains fully grounded even when the user asks for a subset of the validated momentum list."
+      }
+    ],
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "momentum_projected_two_point_correlators",
+          "dispersion_analysis_from_hadron_two_point_functions"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+        "year": 2022
+      }
+    ],
+    "external_lookup": {
+      "attempted": false,
+      "effect_on_interpretation": "none",
+      "enabled": false,
+      "queries": [],
+      "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+      "results": [],
+      "source_kind": "live_online_lookup",
+      "status": "disabled",
+      "used": false
+    },
+    "field_resolution": {
+      "_physics_resolution_buckets": {
+        "clarified_fields": {},
+        "fixed_by_workflow_fields": {
+          "correlator_output_format": "npy",
+          "fermion_action": "clover",
+          "gauge_fixed": false,
+          "gauge_format": "chroma_qio",
+          "has_existing_propagators": false,
+          "momenta": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              2
+            ],
+            [
+              1,
+              2,
+              2
+            ]
+          ],
+          "momentum_projection": "explicit",
+          "script_style": "complete",
+          "sink_type": "local",
+          "source_type": "point",
+          "start_from": "gauge",
+          "task_type": "pion_dispersion",
+          "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1"
+        },
+        "inferred_fields": {},
+        "inherited_fields": {},
+        "parser_guesses": {},
+        "user_confirmed_fields": {
+          "target_id": "pion_dispersion_correlator"
+        }
+      },
+      "_resolution_buckets": {
+        "clarified_fields": {},
+        "fixed_fields": {
+          "correlator_output_format": "npy",
+          "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion_dispersion.npy",
+          "fermion_action": "clover",
+          "gauge_fixed": false,
+          "gauge_format": "chroma_qio",
+          "has_existing_propagators": false,
+          "momenta": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              2
+            ],
+            [
+              1,
+              2,
+              2
+            ]
+          ],
+          "momentum_projection": "explicit",
+          "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion_dispersion.py",
+          "script_style": "complete",
+          "sink_type": "local",
+          "source_type": "point",
+          "start_from": "gauge",
+          "task_type": "pion_dispersion",
+          "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1"
+        },
+        "inferred_fields": {},
+        "inherited_fields": {},
+        "parser_guesses": {
+          "task_type": "pion_dispersion"
+        },
+        "user_confirmed_fields": {
+          "momentum_projection": "explicit"
+        }
+      },
+      "correlator_output_format": "default",
+      "correlator_output_path": "default",
+      "fermion_action": "fixed",
+      "gauge_fixed": "fixed",
+      "gauge_format": "fixed",
+      "has_existing_propagators": "fixed",
+      "momenta": "fixed",
+      "momentum_projection": "parsed",
+      "script_output_path": "default",
+      "script_style": "fixed",
+      "sink_type": "fixed",
+      "source_type": "fixed",
+      "start_from": "fixed",
+      "task_type": "parser_guess",
+      "workflow_id": "fixed"
+    },
+    "inferred_interpretation": {
+      "confidence": "high",
+      "label": "pion dispersion correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+      "target_id": "pion_dispersion_correlator",
+      "task_type_hint": "pion_dispersion"
+    },
+    "inherited_session_fields": {},
+    "knowledge_boundary": {
+      "live_online_lookup": {
+        "enabled": false,
+        "implemented": true,
+        "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+        "status": "disabled",
+        "used": false
+      },
+      "local_curated_citations": {
+        "implemented": true,
+        "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+        "used": true
+      },
+      "model_inference": {
+        "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+        "used": false
+      },
+      "true_online_lookup": {
+        "implemented": false,
+        "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+        "used": false
+      }
+    },
+    "local_references_used": [
+      "examples/5_Pion_Dispersion.py",
+      "tests/test_mesonspec.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/source.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py",
+      "examples/3_Pion_Proton_2pt.py"
+    ],
+    "physics_choices": {
+      "coeff_r": null,
+      "coeff_t": null,
+      "fermion_action": "clover",
+      "gauge_fixed": false,
+      "mass": null,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          1,
+          2,
+          2
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "nu": null,
+      "sink_type": "local",
+      "source_timeslices": [],
+      "source_type": "point",
+      "target_id": "pion_dispersion_correlator",
+      "xi_0": null
+    },
+    "pyquda_choices": {
+      "gauge_format": "chroma_qio",
+      "gauge_path": null,
+      "grid_size": [],
+      "lattice_size": [],
+      "output_format": "npy",
+      "resource_path": null,
+      "solver_maxiter": null,
+      "solver_tol": null,
+      "start_from": "gauge"
+    },
+    "references": [
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/examples/5_Pion_Dispersion.py",
+        "source": "pyquda",
+        "summary": "import numpy as np"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+        "source": "pyquda",
+        "summary": "from time import perf_counter"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "source": "pyquda",
+        "summary": "from check_pyquda import weak_field"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+        "source": "pyquda",
+        "summary": "from typing import List"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/source.py",
+        "source": "pyquda",
+        "summary": "from typing import List, Literal, Union, overload"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/core.py",
+        "source": "pyquda",
+        "summary": "from math import prod"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py",
+        "source": "pyquda",
+        "summary": "from pyquda_comm.field import LatticeFermion, LatticePropagator"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/examples/3_Pion_Proton_2pt.py",
+        "source": "pyquda",
+        "summary": "from itertools import permutations"
+      }
+    ],
+    "runtime_choices": {
+      "cluster_launch": null,
+      "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion_dispersion.npy",
+      "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/pion_dispersion.py"
+    },
+    "runtime_readiness": {
+      "checks": [
+        {
+          "module": "numpy",
+          "ok": true,
+          "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+        },
+        {
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy",
+          "ok": false
+        },
+        {
+          "error": "No module named 'pyquda'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda",
+          "ok": false
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils",
+          "ok": false
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils.core",
+          "ok": false
+        }
+      ],
+      "environment_probe": {
+        "script": "scripts/check_pyquda_runtime.py",
+        "used_repo_pythonpath": false
+      },
+      "environment_ready": false,
+      "evidence_levels": {
+        "blockers": [
+          {
+            "error": "No module named 'cupy'",
+            "error_type": "ModuleNotFoundError",
+            "module": "cupy",
+            "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+          },
+          {
+            "error": "No module named 'pyquda'",
+            "error_type": "ModuleNotFoundError",
+            "module": "pyquda",
+            "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+          },
+          {
+            "error": "No module named 'pyquda_utils'",
+            "error_type": "ModuleNotFoundError",
+            "module": "pyquda_utils",
+            "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+          },
+          {
+            "error": "No module named 'pyquda_utils'",
+            "error_type": "ModuleNotFoundError",
+            "module": "pyquda_utils.core",
+            "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+          }
+        ],
+        "current_level": "structurally_grounded",
+        "runtime_proved": false,
+        "runtime_ready": false,
+        "structurally_grounded": true,
+        "syntax_valid": true
+      },
+      "probe_policy": {
+        "auto_run": false,
+        "reason": "Generated-script probes are not run automatically because a complete script may start a real inversion workload."
+      },
+      "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+      "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+      "ready": false,
+      "reference_grounded": true,
+      "runtime_level": "structurally_grounded",
+      "runtime_proved": false,
+      "syntax_valid": true,
+      "used_repo_pythonpath": false
+    },
+    "task_type": "pion_dispersion",
+    "unresolved_fields": [
+      "gauge_path",
+      "lattice_size",
+      "grid_size",
+      "mass",
+      "xi_0",
+      "nu",
+      "coeff_t",
+      "coeff_r",
+      "solver_tol",
+      "solver_maxiter",
+      "source_timeslices",
+      "resource_path",
+      "cluster_launch"
+    ],
+    "unsupported_reasons": [],
+    "user_request": "please compute pion dispersion with nonzero momentum",
+    "validation_checks": [
+      "generated code is syntax-valid",
+      "task fields fully resolved",
+      "workflow matches supported runnable path",
+      "generated code imports real PyQUDA APIs",
+      "generated code matches local examples/tests/io helpers for the chosen workflow",
+      "generated code contains no TODO/pass/placeholder text"
+    ],
+    "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1",
+    "workflow_match": {
+      "external_citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "momentum_projected_two_point_correlators",
+            "dispersion_analysis_from_hadron_two_point_functions"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+          "year": 2022
+        }
+      ],
+      "fixed_fields": {
+        "correlator_output_format": "npy",
+        "fermion_action": "clover",
+        "gauge_fixed": false,
+        "gauge_format": "chroma_qio",
+        "has_existing_propagators": false,
+        "momenta": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "momentum_projection": "explicit",
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "point",
+        "start_from": "gauge",
+        "task_type": "pion_dispersion",
+        "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1"
+      },
+      "local_references": [
+        "examples/5_Pion_Dispersion.py",
+        "tests/test_mesonspec.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/source.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py",
+        "examples/3_Pion_Proton_2pt.py"
+      ],
+      "mapping_notes": [
+        "Confirmed pion-dispersion target mapped to the validated gauge -> Clover -> point-source at spatial origin -> fixed momentum list -> npy implementation path."
+      ],
+      "matched": true,
+      "task_type": "pion_dispersion",
+      "unsupported_reasons": [],
+      "workflow_target": "pion_dispersion_chroma_point_momentum_npy_v1"
+    }
+  },
+  "minimal_missing_fields": [
+    "gauge_path",
+    "lattice_size",
+    "grid_size",
+    "mass",
+    "xi_0",
+    "nu",
+    "coeff_t",
+    "coeff_r",
+    "solver_tol",
+    "solver_maxiter",
+    "source_timeslices",
+    "resource_path",
+    "cluster_launch"
+  ],
+  "physics_target": {
+    "candidate_targets": [
+      {
+        "confidence": "high",
+        "label": "pion dispersion correlator",
+        "status": "confirmed",
+        "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+        "target_id": "pion_dispersion_correlator",
+        "task_type_hint": "pion_dispersion"
+      }
+    ],
+    "chosen_workflow_target": "pion_dispersion_chroma_point_momentum_npy_v1",
+    "clarification_trace": [],
+    "clarified_fields": {},
+    "confirmed_interpretation": {
+      "confidence": "high",
+      "label": "pion dispersion correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+      "target_id": "pion_dispersion_correlator",
+      "task_type_hint": "pion_dispersion"
+    },
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "momentum_projected_two_point_correlators",
+          "dispersion_analysis_from_hadron_two_point_functions"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+        "year": 2022
+      }
+    ],
+    "external_lookup": {
+      "attempted": false,
+      "effect_on_interpretation": "none",
+      "enabled": false,
+      "queries": [],
+      "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+      "results": [],
+      "source_kind": "live_online_lookup",
+      "status": "disabled",
+      "used": false
+    },
+    "fixed_by_workflow_fields": {
+      "correlator_output_format": "npy",
+      "fermion_action": "clover",
+      "gauge_fixed": false,
+      "gauge_format": "chroma_qio",
+      "has_existing_propagators": false,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          1,
+          2,
+          2
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "point",
+      "start_from": "gauge",
+      "task_type": "pion_dispersion",
+      "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1"
+    },
+    "formula_proposals": [
+      {
+        "citations": [
+          {
+            "authors": [
+              "John Bulava",
+              "Raul Briceno",
+              "William Detmold",
+              "et al."
+            ],
+            "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+            "citation_source_kind": "local_curated_json",
+            "id": "bulava-2022-hadron-spectroscopy",
+            "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+            "metadata_refresh": "curated_fallback",
+            "metadata_source": "curated_fallback",
+            "online_lookup_used": false,
+            "supports": [
+              "momentum_projected_two_point_correlators",
+              "dispersion_analysis_from_hadron_two_point_functions"
+            ],
+            "title": "Hadron Spectroscopy with Lattice QCD",
+            "type": "authoritative_review",
+            "url": "https://arxiv.org/abs/2203.03230",
+            "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+            "year": 2022
+          }
+        ],
+        "convention": "Use the canonical pseudoscalar pion interpolating operator together with an explicit finite momentum list to build a narrow pion-dispersion workflow.",
+        "correlator": "C_\\pi(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_\\pi(\\vec x,t) O_\\pi^\\dagger(\\vec 0,0) \\rangle",
+        "label": "Pion momentum-projected two-point correlator for dispersion analysis",
+        "local_references": [
+          "examples/5_Pion_Dispersion.py",
+          "tests/test_mesonspec.py",
+          "tests/test_io.py",
+          "pyquda_utils/io/__init__.py",
+          "pyquda_utils/source.py",
+          "pyquda_utils/core.py",
+          "pyquda_utils/gamma.py"
+        ],
+        "operator": "O_\\pi(x) = \\bar d(x) \\gamma_5 u(x)",
+        "proposal_id": "pion_dispersion_gamma5_momentum_projected_twopt",
+        "provenance": "local_references_plus_curated_citations",
+        "target_id": "pion_dispersion_correlator"
+      }
+    ],
+    "inferred_fields": {},
+    "inferred_interpretation": {
+      "confidence": "high",
+      "label": "pion dispersion correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for a pion momentum-projected correlator / dispersion workflow.",
+      "target_id": "pion_dispersion_correlator",
+      "task_type_hint": "pion_dispersion"
+    },
+    "inherited_fields": {},
+    "knowledge_boundary": {
+      "live_online_lookup": {
+        "enabled": false,
+        "implemented": true,
+        "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+        "status": "disabled",
+        "used": false
+      },
+      "local_curated_citations": {
+        "implemented": true,
+        "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+        "used": true
+      },
+      "model_inference": {
+        "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+        "used": false
+      },
+      "true_online_lookup": {
+        "implemented": false,
+        "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+        "used": false
+      }
+    },
+    "llm_assistance": {
+      "attempted": true,
+      "auto_preflight_attempted": false,
+      "auto_preflight_category": null,
+      "auto_preflight_reason": null,
+      "auto_preflight_status": null,
+      "auto_preflight_timeout_seconds": null,
+      "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+      "configured": true,
+      "configured_backend": "codex",
+      "fallback": true,
+      "fallback_category": "network_error",
+      "fallback_reason": "Codex backend could start locally but could not reach the upstream service from the current environment.",
+      "model_name": null,
+      "notes": [],
+      "provider": null,
+      "requested_backend": "codex",
+      "resolved_base_url": null,
+      "selected_backend": "codex",
+      "selection_reason": "Explicit codex backend requested.",
+      "stages_attempted": [
+        "rough_request_normalization",
+        "physics_target_interpretation",
+        "formula_operator_explanation"
+      ],
+      "stages_completed": [],
+      "used": false
+    },
+    "local_references": [
+      "examples/5_Pion_Dispersion.py",
+      "tests/test_mesonspec.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/source.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py"
+    ],
+    "normalized_request": "please compute pion dispersion with nonzero momentum",
+    "parser_guesses": {},
+    "status": "confirmed",
+    "task_type_hint": "pion_dispersion",
+    "unsupported_fields": {},
+    "unsupported_reasons": [],
+    "user_confirmed_fields": {
+      "target_id": "pion_dispersion_correlator"
+    },
+    "user_request": "please compute pion dispersion with nonzero momentum"
+  },
+  "rejected_options": {},
+  "task_description": "please compute pion dispersion with nonzero momentum",
+  "workflow_match": {
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "momentum_projected_two_point_correlators",
+          "dispersion_analysis_from_hadron_two_point_functions"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+        "year": 2022
+      }
+    ],
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "fermion_action": "clover",
+      "gauge_fixed": false,
+      "gauge_format": "chroma_qio",
+      "has_existing_propagators": false,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          1,
+          2,
+          2
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "point",
+      "start_from": "gauge",
+      "task_type": "pion_dispersion",
+      "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1"
+    },
+    "local_references": [
+      "examples/5_Pion_Dispersion.py",
+      "tests/test_mesonspec.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/source.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py",
+      "examples/3_Pion_Proton_2pt.py"
+    ],
+    "mapping_notes": [
+      "Confirmed pion-dispersion target mapped to the validated gauge -> Clover -> point-source at spatial origin -> fixed momentum list -> npy implementation path."
+    ],
+    "matched": true,
+    "task_type": "pion_dispersion",
+    "unsupported_reasons": [],
+    "workflow_target": "pion_dispersion_chroma_point_momentum_npy_v1"
+  }
+}

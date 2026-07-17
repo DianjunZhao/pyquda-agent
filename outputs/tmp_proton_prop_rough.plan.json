@@ -1,0 +1,477 @@
+{
+  "chosen_workflow_target": "proton_2pt_existing_propagator_local_zero_momentum_npy_v1",
+  "clarification_trace": [],
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "proton two-point correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a proton two-point correlator.",
+    "target_id": "proton_two_point_correlator",
+    "task_type_hint": "proton_2pt"
+  },
+  "convention_decisions": [
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Load stored propagators through the grounded local IO helpers (NPY/HDF5/Chroma-QIO) and treat them as the handoff boundary instead of regenerating inversions.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py"
+      ],
+      "why": "The new proton propagator-entry branch must stay traceable to the local IO tests and helper module rather than inventing a new serialization path."
+    },
+    {
+      "category": "physics",
+      "citations": [
+        "bulava-2022-hadron-spectroscopy"
+      ],
+      "decision": "Keep the same zero-momentum proton operator and parity-projected contraction as the local proton example, but consume precomputed wall-source propagators instead of rebuilding them from a gauge field.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/examples/3_Pion_Proton_2pt.py"
+      ],
+      "why": "This preserves the locally grounded proton physics path while exposing a narrow HPC handoff branch that starts from stored propagators."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Reuse the same Cgamma5 spin coupling, color permutations, and gather-and-roll postprocessing from the upstream proton example for each stored source timeslice.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/examples/3_Pion_Proton_2pt.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py"
+      ],
+      "why": "This keeps the contraction code placeholder-free and faithful to the only grounded local proton contraction path."
+    }
+  ],
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use the standard proton interpolating operator together with a zero-momentum Euclidean two-point correlator and parity projection, matching the narrow local PyQUDA example.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "baryon_two_point_correlators",
+        "interpolating_operators_carry_target_quantum_numbers"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "The local PyQUDA proton example fixes the implementation path; this curated review record documents the physics-side proton spectroscopy convention without implying live online lookup.",
+      "year": 2022
+    }
+  ],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "field_resolution": {
+    "_physics_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_by_workflow_fields": {
+        "correlator_output_format": "npy",
+        "gauge_fixed": false,
+        "has_existing_propagators": true,
+        "momenta": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "momentum_projection": "zero",
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "wall",
+        "start_from": "propagator",
+        "task_type": "proton_2pt",
+        "workflow_id": "proton_2pt_existing_propagator_local_zero_momentum_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {},
+      "user_confirmed_fields": {
+        "target_id": "proton_two_point_correlator"
+      }
+    },
+    "_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_fields": {
+        "correlator_output_format": "npy",
+        "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.npy",
+        "gauge_fixed": false,
+        "has_existing_propagators": true,
+        "momenta": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "momentum_projection": "zero",
+        "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.py",
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "wall",
+        "start_from": "propagator",
+        "task_type": "proton_2pt",
+        "workflow_id": "proton_2pt_existing_propagator_local_zero_momentum_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {
+        "task_type": "proton_2pt"
+      },
+      "user_confirmed_fields": {
+        "has_existing_propagators": true,
+        "start_from": "propagator"
+      }
+    },
+    "cluster_launch": "default",
+    "correlator_output_format": "default",
+    "correlator_output_path": "default",
+    "gauge_fixed": "fixed",
+    "has_existing_propagators": "parsed",
+    "momenta": "fixed",
+    "momentum_projection": "fixed",
+    "resource_path": "default",
+    "script_output_path": "default",
+    "script_style": "fixed",
+    "sink_type": "fixed",
+    "source_type": "fixed",
+    "start_from": "parsed",
+    "task_type": "parser_guess",
+    "workflow_id": "fixed"
+  },
+  "handoff_contract": {
+    "cluster_launch": "local",
+    "input_paths": [],
+    "input_visibility": "all_ranks",
+    "output_paths": {
+      "correlator": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.npy",
+      "probe_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.probe.json",
+      "script": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.py"
+    },
+    "output_writer_policy": "rank0_only",
+    "preflight_checks": [
+      "Ensure all propagator inputs are visible from every rank before launch.",
+      "Ensure the output directory is writable by the rank that saves the final correlator artifact.",
+      "Verify numpy, cupy, pyquda_utils, and pyquda import successfully before starting a full inversion job.",
+      "Review the sibling .physics.json, .task.json, and .plan.json artifacts before cluster submission."
+    ],
+    "required_modules": [
+      "numpy",
+      "cupy",
+      "pyquda_utils",
+      "pyquda"
+    ],
+    "resource_path": ".cache/quda",
+    "start_from": "propagator",
+    "submission_assumption": "Launch under an MPI/GPU layout consistent with GRID_SIZE and the target PyQUDA environment."
+  },
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "proton two-point correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for a proton two-point correlator.",
+    "target_id": "proton_two_point_correlator",
+    "task_type_hint": "proton_2pt"
+  },
+  "inherited_session_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": true
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "local_references_used": [
+    "examples/3_Pion_Proton_2pt.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py",
+    "pyquda_utils/source.py"
+  ],
+  "physics_choices": {
+    "coeff_r": null,
+    "coeff_t": null,
+    "fermion_action": null,
+    "gauge_fixed": false,
+    "mass": null,
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "momentum_projection": "zero",
+    "nu": null,
+    "sink_type": "local",
+    "source_timeslices": [],
+    "source_type": "wall",
+    "target_id": "proton_two_point_correlator",
+    "xi_0": null
+  },
+  "pyquda_choices": {
+    "gauge_format": null,
+    "gauge_path": null,
+    "grid_size": [],
+    "lattice_size": [],
+    "output_format": "npy",
+    "resource_path": ".cache/quda",
+    "solver_maxiter": null,
+    "solver_tol": null,
+    "start_from": "propagator"
+  },
+  "references": [
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/examples/3_Pion_Proton_2pt.py",
+      "source": "pyquda",
+      "summary": "from itertools import permutations"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+      "source": "pyquda",
+      "summary": "from check_pyquda import weak_field"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+      "source": "pyquda",
+      "summary": "from typing import List"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/core.py",
+      "source": "pyquda",
+      "summary": "from math import prod"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py",
+      "source": "pyquda",
+      "summary": "from pyquda_comm.field import LatticeFermion, LatticePropagator"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/source.py",
+      "source": "pyquda",
+      "summary": "from typing import List, Literal, Union, overload"
+    }
+  ],
+  "runtime_choices": {
+    "cluster_launch": "local",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.npy",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.py"
+  },
+  "runtime_readiness": {
+    "artifact_chain": {
+      "physics_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.physics.json",
+      "plan_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.plan.json",
+      "task_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.task.json"
+    },
+    "checks": [
+      {
+        "module": "numpy",
+        "ok": true,
+        "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+      },
+      {
+        "error": "No module named 'cupy'",
+        "error_type": "ModuleNotFoundError",
+        "module": "cupy",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils.core",
+        "ok": false
+      }
+    ],
+    "environment_probe": {
+      "script": "scripts/check_pyquda_runtime.py",
+      "used_repo_pythonpath": false
+    },
+    "environment_ready": false,
+    "evidence_levels": {
+      "blockers": [
+        {
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy",
+          "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+        },
+        {
+          "error": "No module named 'pyquda'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda",
+          "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils",
+          "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils.core",
+          "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+        }
+      ],
+      "current_level": "structurally_grounded",
+      "runtime_proved": false,
+      "runtime_ready": false,
+      "structurally_grounded": true,
+      "syntax_valid": true
+    },
+    "generated_script_exists": false,
+    "generated_script_path": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.py",
+    "generated_script_probe": {
+      "artifact_path": "/Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.probe.json",
+      "command": "python3 scripts/probe_generated_workflow.py --script /Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.py --output /Users/zhaodianjun/pyquda-agent/outputs/tmp_proton_prop_rough.probe.json",
+      "reason": "The run path does not auto-execute generated workflow scripts because they may launch a real PyQUDA inversion workload.",
+      "status": "not_run"
+    },
+    "probe_policy": {
+      "auto_run": false,
+      "current_run_attempted": false,
+      "current_run_requested": false,
+      "current_run_status": "not_requested",
+      "default_auto_run": false,
+      "reason": "Generated-script probes are opt-in because a complete script may start a real PyQUDA inversion workload."
+    },
+    "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+    "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+    "ready": false,
+    "reference_grounded": true,
+    "runtime_level": "structurally_grounded",
+    "runtime_proved": false,
+    "syntax_valid": true,
+    "used_repo_pythonpath": false
+  },
+  "task_type": "proton_2pt",
+  "unresolved_fields": [
+    "propagator_format",
+    "propagator_paths",
+    "lattice_size",
+    "grid_size",
+    "source_timeslices"
+  ],
+  "unsupported_reasons": [],
+  "user_request": "please compute the proton two-point correlator from existing propagator",
+  "validation_checks": [
+    "generated code is syntax-valid",
+    "task fields fully resolved",
+    "workflow matches supported runnable path",
+    "generated code imports real PyQUDA APIs",
+    "generated code matches local examples/tests/io helpers for the chosen workflow",
+    "generated code contains no TODO/pass/placeholder text"
+  ],
+  "workflow_id": "proton_2pt_existing_propagator_local_zero_momentum_npy_v1",
+  "workflow_match": {
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use the standard proton interpolating operator together with a zero-momentum Euclidean two-point correlator and parity projection, matching the narrow local PyQUDA example.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "baryon_two_point_correlators",
+          "interpolating_operators_carry_target_quantum_numbers"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA proton example fixes the implementation path; this curated review record documents the physics-side proton spectroscopy convention without implying live online lookup.",
+        "year": 2022
+      }
+    ],
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "gauge_fixed": false,
+      "has_existing_propagators": true,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "momentum_projection": "zero",
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "wall",
+      "start_from": "propagator",
+      "task_type": "proton_2pt",
+      "workflow_id": "proton_2pt_existing_propagator_local_zero_momentum_npy_v1"
+    },
+    "local_references": [
+      "examples/3_Pion_Proton_2pt.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py",
+      "pyquda_utils/source.py"
+    ],
+    "mapping_notes": [
+      "Confirmed proton two-point target mapped to the validated existing-propagator -> parity-projected zero-momentum proton contraction -> npy implementation path.",
+      "This narrow branch reuses local PyQUDA propagator IO helpers and the exact proton contraction structure from the upstream proton example."
+    ],
+    "matched": true,
+    "task_type": "proton_2pt",
+    "unsupported_reasons": [],
+    "workflow_target": "proton_2pt_existing_propagator_local_zero_momentum_npy_v1"
+  }
+}

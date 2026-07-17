@@ -1,6 +1,11 @@
 {
-  "objective": "first_workflow_pion_2pt",
-  "last_audited_on": "2026-07-10",
+  "objective": "product_like_multi_workflow_pyquda_agent",
+  "last_audited_on": "2026-07-17",
+  "backend_availability": {
+    "api": "fallback_only",
+    "auto": "fallback_only",
+    "codex": "fallback_only"
+  },
   "items": [
     {
       "id": "req-1-local-retrieval",
@@ -10,9 +15,10 @@
         "src/pyquda_agent/retrieval/context_builder.py",
         "src/pyquda_agent/retrieval/repo_scan.py",
         "outputs/run_pion_api.plan.json",
+        "data/supported_workflows_validation.json",
         "tests/test_context_builder.py"
       ],
-      "notes": "The implementation plan records pinned PyQUDA references including examples, tests, io/__init__.py, source.py, core.py, and gamma.py."
+      "notes": "The audit aggregates pinned PyQUDA references from the representative plan plus the validated workflow-plan artifacts, covering examples, tests, io/__init__.py, source.py, core.py, gamma.py, and family-specific references such as the PCAC example."
     },
     {
       "id": "req-2-external-citations",
@@ -93,11 +99,11 @@
         "src/pyquda_agent/generator/templates.py",
         "outputs/run_pion_api.py",
         "outputs/run_pion_api.plan.json",
-        "data/run_pion_api_probe.json",
+        "outputs/run_pion_api.probe.json",
         "scripts/probe_generated_workflow.py",
         "tests/test_generator.py"
       ],
-      "notes": "Static structure and reference grounding are validated; direct execution is also probed. Full numerical validation still depends on a working PyQUDA runtime."
+      "notes": "Static structure and reference grounding are validated; direct execution evidence is tracked through the unified run-path probe artifact. Full numerical validation still depends on a working PyQUDA runtime."
     },
     {
       "id": "dod-real-imports-and-apis",
@@ -107,7 +113,7 @@
         "outputs/run_pion_api.py",
         "outputs/run_pion_api.task.json",
         "outputs/run_pion_api.plan.json",
-        "data/run_pion_api_probe.json",
+        "outputs/run_pion_api.probe.json",
         "tests/test_generator.py"
       ],
       "notes": "The script uses real local gauge input and reference-grounded API choices; the direct probe shows runtime preflight is reached."
@@ -156,10 +162,26 @@
         "src/pyquda_agent/cli.py",
         "src/pyquda_agent/app.py",
         "data/backend_parity.json",
+        "data/backend_execution.json",
+        "data/supported_workflows_validation.json",
         "scripts/check_backend_parity.py",
+        "scripts/validate_backend_execution.py",
         "tests/test_cli_run.py"
       ],
-      "notes": "Both backends drive the same structured generation path for the fixed workflow, and artifact parity is checked directly."
+      "notes": "Both backends drive the same structured generation path. Parity and non-mocked execution artifacts track either real use or explicit fallback. Current backend availability states: {'api': 'fallback_only', 'auto': 'fallback_only', 'codex': 'fallback_only'}."
+    },
+    {
+      "id": "multi-workflow-routing",
+      "requirement": "The system reliably selects among the currently supported workflow families from rough or direct runnable requests, with the pion_2pt family retaining both grounded gauge-entry and propagator-entry paths.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/intent/interpreter.py",
+        "src/pyquda_agent/workflows/matcher.py",
+        "data/supported_workflows_validation.json",
+        "tests/test_cli_run.py",
+        "tests/test_workflow_matcher.py"
+      ],
+      "notes": "The current supported set spans the grounded pion_2pt, pion_pcac, pion_dispersion, meson_spec, proton_2pt, rho_vector, quark_propagator, ape_smear, hyp_smear, stout_smear, and wilson_flow families, including the validated propagator-entry branches where applicable. Unsupported requests must remain explicit."
     },
     {
       "id": "dod-hpc-script-readiness",
@@ -173,7 +195,7 @@
         "tests/test_generator.py",
         "tests/test_cli_run.py"
       ],
-      "notes": "This repository now treats static HPC readiness as the default done condition. A local runtime probe remains optional evidence, not a merge blocker."
+      "notes": "This repository now treats grounded HPC handoff readiness as the default done condition. Local runtime proof remains optional evidence and must be reported separately."
     },
     {
       "id": "env-local-runtime-readiness",
@@ -182,7 +204,7 @@
       "evidence": [
         "data/pyquda_runtime_check.json",
         "data/runtime_candidates.json",
-        "data/run_pion_api_probe.json",
+        "outputs/run_pion_api.probe.json",
         "outputs/run_pion_api.plan.json",
         "scripts/check_pyquda_runtime.py",
         "scripts/probe_generated_workflow.py",
@@ -190,7 +212,111 @@
         "scripts/refresh_runtime_check.py",
         "docs/PYQUDA_RUNTIME_BOOTSTRAP.md"
       ],
-      "notes": "Local runtime proof is informative only. The generated script may still be complete for HPC handoff even when this workstation lacks CuPy, pyquda, or built QUDA bindings."
+      "notes": "Local runtime proof is informative only. Current probe status='runtime_missing', runtime_level='environment_missing'. The generated script may still be complete for HPC handoff even when this workstation lacks CuPy, pyquda, or built QUDA bindings."
+    },
+    {
+      "id": "v8-unified-run-and-probe-reporting",
+      "requirement": "The main run path distinguishes generation success from execution/probe success and persists sibling probe artifacts for auditable runtime evidence.",
+      "status": "proved",
+      "evidence": [
+        "src/pyquda_agent/app.py",
+        "outputs/run_pion_api.plan.json",
+        "outputs/run_pion_api.probe.json",
+        "scripts/refresh_first_workflow_demo.py",
+        "scripts/validate_supported_workflows.py",
+        "tests/test_cli_run.py"
+      ],
+      "notes": "The top-level run result carries execution_status while runtime_evidence.generated_script_probe links the sibling .probe.json artifact and its command path."
+    },
+    {
+      "id": "v8-product-facing-validation-chain",
+      "requirement": "Validation artifacts preserve product-facing lifecycle evidence, including product_status plus generation/execution phases for both backend execution checks and supported-workflow integration checks.",
+      "status": "proved",
+      "evidence": [
+        "data/backend_execution.json",
+        "data/supported_workflows_validation.json",
+        "scripts/validate_backend_execution.py",
+        "scripts/validate_supported_workflows.py",
+        "tests/test_validate_backend_execution.py",
+        "tests/test_validate_supported_workflows.py"
+      ],
+      "notes": "The compact validation artifacts now record rough-request and direct-run product-facing phases so product clients can audit the same lifecycle contract outside individual CLI invocations."
+    },
+    {
+      "id": "v9-product-behavior-regression-surface",
+      "requirement": "Product-behavior regression artifacts cover clarification routing, backend degradation, terminal execution awareness, terminal repair guidance, supported workflow generation, explicit unsupported refusal, and probe artifact consistency.",
+      "status": "proved",
+      "evidence": [
+        "data/v9_product_behavior.json",
+        "scripts/validate_v9_product_behavior.py",
+        "tests/test_validate_v9_product_behavior.py",
+        "tests/test_cli_run.py",
+        "tests/test_summary_contract.py"
+      ],
+      "notes": "The current v9 product-behavior groups are ['rough_request_clarification', 'backend_degradation', 'terminal_execution_awareness', 'supported_workflow_generation', 'hpc_handoff_quality', 'runtime_recovery_guidance', 'explicit_unsupported_refusal', 'probe_artifact_consistency']."
+    },
+    {
+      "id": "v9-rough-request-clarification-routing",
+      "requirement": "Rough but reasonable supported requests enter clarification instead of collapsing into pseudocode or premature unsupported output.",
+      "status": "proved",
+      "evidence": [
+        "data/v9_product_behavior.json",
+        "data/supported_workflows_validation.json",
+        "tests/test_intent_interpreter.py",
+        "tests/test_cli_run.py"
+      ],
+      "notes": "The supported-workflow validator checks rough request shapes across the current workflow catalog, while the v9 product-behavior validator checks the product-facing clarification path explicitly."
+    },
+    {
+      "id": "v9-direct-supported-generation-consistency",
+      "requirement": "Explicit supported requests generate grounded scripts together with coherent generation/probe/runtime status reporting.",
+      "status": "proved",
+      "evidence": [
+        "data/v9_product_behavior.json",
+        "data/supported_workflows_validation.json",
+        "tests/test_cli_run.py",
+        "tests/test_summary_contract.py"
+      ],
+      "notes": "Direct supported runs are expected to reach generated/probe-available, generated/runtime-blocked, or runtime-proved states with matching lifecycle cards and sibling artifacts."
+    },
+    {
+      "id": "v9-actionable-recovery-guidance",
+      "requirement": "Backend failures, network failures, runtime-environment blockers, and probe-harness failures expose clear next actions instead of silent degradation.",
+      "status": "proved",
+      "evidence": [
+        "data/v9_product_behavior.json",
+        "tests/test_cli_run.py",
+        "src/pyquda_agent/app.py",
+        "src/pyquda_agent/cli.py"
+      ],
+      "notes": "This requirement is proved by the current backend degradation, terminal execution-awareness, probe consistency, and explicit refusal groups in the v9 product-behavior validator."
+    },
+    {
+      "id": "v9-unsupported-actionability-contract",
+      "requirement": "Explicit unsupported requests expose the nearest grounded recovery path with either a copyable retry action or an explicit physics-choice gate, without letting backend-fix guidance override the main unsupported action.",
+      "status": "proved",
+      "evidence": [
+        "data/v9_product_behavior.json",
+        "scripts/validate_v9_product_behavior.py",
+        "tests/test_validate_v9_product_behavior.py",
+        "tests/test_cli_run.py",
+        "src/pyquda_agent/app.py"
+      ],
+      "notes": "The v9 product-behavior summary now records the unsupported-action contract directly: {'backend_fix_should_not_be_primary': True, 'choice_required_kind': 'choose_supported_variant', 'copyable_retry_kind': 'retry_supported_workflow'}."
+    },
+    {
+      "id": "v11-realistic-task-suite-regression",
+      "requirement": "A realistic natural-language task suite covers ambiguous requests, explicit supported requests, and near-boundary unsupported variants with explicit nearest-grounded recovery expectations.",
+      "status": "proved",
+      "evidence": [
+        "data/v11_task_suite.json",
+        "src/pyquda_agent/v11_task_suite.py",
+        "scripts/validate_v11_task_suite.py",
+        "tests/test_validate_v11_task_suite.py",
+        "tests/test_intent_interpreter.py",
+        "tests/test_cli_run.py"
+      ],
+      "notes": "The current v11 task suite covers 16 realistic requests across ['ambiguous_meson', 'explicit_supported', 'flow', 'non_grounded_meson_like', 'propagator', 'smear', 'unsupported_baryon', 'unsupported_flow_variant', 'unsupported_propagator_variant', 'unsupported_smear_variant'], including unsupported propagator/smear/flow boundary variants."
     }
   ]
 }

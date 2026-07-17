@@ -1,0 +1,214 @@
+{
+  "all_passed": true,
+  "groups": [
+    {
+      "command": [
+        "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_intent_interpreter.IntentInterpreterTests.test_ambiguous_meson_request_generates_physics_question",
+        "tests.test_intent_interpreter.IntentInterpreterTests.test_generic_pyquda_request_generates_capability_chooser_prompt",
+        "tests.test_intent_interpreter.IntentInterpreterTests.test_axial_meson_request_prefers_meson_spec_confirmation",
+        "tests.test_cli_run.CliRunTests.test_rough_pion_request_needs_input_instead_of_unsupported",
+        "tests.test_cli_run.CliRunTests.test_generic_pyquda_request_enters_capability_chooser_instead_of_meson_only_prompt",
+        "tests.test_cli_run.CliRunTests.test_axial_meson_request_prefers_meson_spec_clarification",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_physics_candidates_for_ambiguous_meson_request"
+      ],
+      "group": "rough_request_clarification",
+      "passed": true,
+      "returncode": 0,
+      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.130s\n\nOK",
+      "stdout": "",
+      "tests": [
+        "tests.test_intent_interpreter.IntentInterpreterTests.test_ambiguous_meson_request_generates_physics_question",
+        "tests.test_intent_interpreter.IntentInterpreterTests.test_generic_pyquda_request_generates_capability_chooser_prompt",
+        "tests.test_intent_interpreter.IntentInterpreterTests.test_axial_meson_request_prefers_meson_spec_confirmation",
+        "tests.test_cli_run.CliRunTests.test_rough_pion_request_needs_input_instead_of_unsupported",
+        "tests.test_cli_run.CliRunTests.test_generic_pyquda_request_enters_capability_chooser_instead_of_meson_only_prompt",
+        "tests.test_cli_run.CliRunTests.test_axial_meson_request_prefers_meson_spec_clarification",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_physics_candidates_for_ambiguous_meson_request"
+      ]
+    },
+    {
+      "command": [
+        "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_cli_run.CliRunTests.test_cli_run_summary_reports_codex_timeout_guidance",
+        "tests.test_cli_run.CliRunTests.test_cli_run_summary_reports_api_network_guidance",
+        "tests.test_cli_run.CliRunTests.test_cli_run_summary_reports_codex_local_environment_guidance"
+      ],
+      "group": "backend_degradation",
+      "passed": true,
+      "returncode": 0,
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.082s\n\nOK",
+      "stdout": "",
+      "tests": [
+        "tests.test_cli_run.CliRunTests.test_cli_run_summary_reports_codex_timeout_guidance",
+        "tests.test_cli_run.CliRunTests.test_cli_run_summary_reports_api_network_guidance",
+        "tests.test_cli_run.CliRunTests.test_cli_run_summary_reports_codex_local_environment_guidance"
+      ]
+    },
+    {
+      "command": [
+        "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_cli_run.CliRunTests.test_cli_run_can_print_terminal_message_via_result_format",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_runtime_execution_closure",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_runtime_proved_without_repair_noise",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_backend_fix_for_timeout",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_conditional_backend_fix_for_local_codex_failure"
+      ],
+      "group": "terminal_execution_awareness",
+      "passed": true,
+      "returncode": 0,
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.115s\n\nOK",
+      "stdout": "",
+      "tests": [
+        "tests.test_cli_run.CliRunTests.test_cli_run_can_print_terminal_message_via_result_format",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_runtime_execution_closure",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_runtime_proved_without_repair_noise",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_backend_fix_for_timeout",
+        "tests.test_cli_run.CliRunTests.test_cli_run_terminal_mode_surfaces_conditional_backend_fix_for_local_codex_failure"
+      ]
+    },
+    {
+      "command": [
+        "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_cli_run.CliRunTests.test_cli_run_can_report_runtime_proved_after_probe",
+        "tests.test_cli_run.CliRunTests.test_cli_run_complete_generation_supports_quark_propagator_workflow",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_generated_probe_available",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_generated_runtime_blocked_environment",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_runtime_proved"
+      ],
+      "group": "supported_workflow_generation",
+      "passed": true,
+      "returncode": 0,
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.130s\n\nOK",
+      "stdout": "",
+      "tests": [
+        "tests.test_cli_run.CliRunTests.test_cli_run_can_report_runtime_proved_after_probe",
+        "tests.test_cli_run.CliRunTests.test_cli_run_complete_generation_supports_quark_propagator_workflow",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_generated_probe_available",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_generated_runtime_blocked_environment",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_runtime_proved"
+      ]
+    },
+    {
+      "command": [
+        "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_generated_probe_available",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_propagator_entry_handoff_exposes_input_manifest_and_immutability",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_rho_propagator_entry_handoff_exposes_input_manifest_and_immutability",
+        "tests.test_cli_run.CliRunTests.test_cli_run_complete_generation_supports_quark_propagator_workflow"
+      ],
+      "group": "hpc_handoff_quality",
+      "passed": true,
+      "returncode": 0,
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.111s\n\nOK",
+      "stdout": "",
+      "tests": [
+        "tests.test_summary_contract.SummaryContractTests.test_contract_generated_probe_available",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_propagator_entry_handoff_exposes_input_manifest_and_immutability",
+        "tests.test_summary_contract.SummaryContractTests.test_contract_rho_propagator_entry_handoff_exposes_input_manifest_and_immutability",
+        "tests.test_cli_run.CliRunTests.test_cli_run_complete_generation_supports_quark_propagator_workflow"
+      ]
+    },
+    {
+      "command": [
+        "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_cli_run.CliRunTests.test_cli_run_can_optionally_probe_after_generation",
+        "tests.test_cli_run.CliRunTests.test_cli_run_records_probe_driver_failure_without_losing_generated_script"
+      ],
+      "group": "runtime_recovery_guidance",
+      "passed": true,
+      "returncode": 0,
+      "stderr": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.090s\n\nOK",
+      "stdout": "",
+      "tests": [
+        "tests.test_cli_run.CliRunTests.test_cli_run_can_optionally_probe_after_generation",
+        "tests.test_cli_run.CliRunTests.test_cli_run_records_probe_driver_failure_without_losing_generated_script"
+      ]
+    },
+    {
+      "command": [
+        "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_cli_run.CliRunTests.test_cli_run_explicit_unsupported_request_does_not_suggest_backend_fix_as_primary_action",
+        "tests.test_cli_run.CliRunTests.test_cli_run_quark_unsupported_request_reports_shortest_fix_against_quark_family",
+        "tests.test_cli_run.CliRunTests.test_cli_run_explicit_rho_request_reports_nearest_grounded_meson_fix",
+        "tests.test_cli_run.CliRunTests.test_cli_run_explicit_neutron_request_reports_nearest_grounded_baryon_fix"
+      ],
+      "group": "explicit_unsupported_refusal",
+      "passed": true,
+      "returncode": 0,
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.105s\n\nOK",
+      "stdout": "",
+      "tests": [
+        "tests.test_cli_run.CliRunTests.test_cli_run_explicit_unsupported_request_does_not_suggest_backend_fix_as_primary_action",
+        "tests.test_cli_run.CliRunTests.test_cli_run_quark_unsupported_request_reports_shortest_fix_against_quark_family",
+        "tests.test_cli_run.CliRunTests.test_cli_run_explicit_rho_request_reports_nearest_grounded_meson_fix",
+        "tests.test_cli_run.CliRunTests.test_cli_run_explicit_neutron_request_reports_nearest_grounded_baryon_fix"
+      ]
+    },
+    {
+      "command": [
+        "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_cli_run.CliRunTests.test_cli_run_can_optionally_probe_after_generation",
+        "tests.test_cli_run.CliRunTests.test_cli_run_records_probe_driver_failure_without_losing_generated_script"
+      ],
+      "group": "probe_artifact_consistency",
+      "passed": true,
+      "returncode": 0,
+      "stderr": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.079s\n\nOK",
+      "stdout": "",
+      "tests": [
+        "tests.test_cli_run.CliRunTests.test_cli_run_can_optionally_probe_after_generation",
+        "tests.test_cli_run.CliRunTests.test_cli_run_records_probe_driver_failure_without_losing_generated_script"
+      ]
+    }
+  ],
+  "note": "This validator is a product-behavior regression entry point. It focuses on clarification routing, backend degradation guidance, terminal execution-state rendering, terminal repair guidance, runtime recovery guidance, explicit unsupported refusal, supported workflow generation states, HPC handoff quality, and probe-artifact consistency. It is intentionally unit/integration-style and does not by itself prove a real local PyQUDA runtime.",
+  "suite": "v9_product_behavior",
+  "summary": {
+    "group_count": 8,
+    "passed_group_count": 8,
+    "unsupported_behavior": {
+      "covered": true,
+      "covered_tests": {
+        "choice_required_path": [
+          "tests.test_cli_run.CliRunTests.test_cli_run_explicit_unsupported_request_does_not_suggest_backend_fix_as_primary_action"
+        ],
+        "copyable_retry_paths": [
+          "tests.test_cli_run.CliRunTests.test_cli_run_quark_unsupported_request_reports_shortest_fix_against_quark_family",
+          "tests.test_cli_run.CliRunTests.test_cli_run_explicit_rho_request_reports_nearest_grounded_meson_fix",
+          "tests.test_cli_run.CliRunTests.test_cli_run_explicit_neutron_request_reports_nearest_grounded_baryon_fix"
+        ]
+      },
+      "note": "Unsupported user paths are expected to surface a nearest grounded recovery action. Some paths are copyable immediately via `retry_supported_workflow`, while others intentionally stop at `choose_supported_variant` until one physics-side choice is confirmed.",
+      "primary_action_contract": {
+        "backend_fix_should_not_be_primary": true,
+        "choice_required_kind": "choose_supported_variant",
+        "copyable_retry_kind": "retry_supported_workflow"
+      }
+    }
+  }
+}

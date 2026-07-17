@@ -1,0 +1,163 @@
+{
+  "chosen_workflow_target": "pion_2pt_existing_propagator_local_zero_momentum_npy_v1",
+  "clarified_fields": {},
+  "cluster_launch": "local",
+  "coeff_r": null,
+  "coeff_t": null,
+  "correlator_output_format": "npy",
+  "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_2pt_existing_propagator_rough.npy",
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use a Euclidean two-point correlator with interpolating operators chosen to overlap the target pion channel at zero momentum.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "two_point_spectral_decomposition",
+        "interpolating_operators_carry_target_quantum_numbers_and_momentum"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "PyQUDA examples and tests show the implementation pattern, but this review provides the lattice-spectroscopy framing for the correlator and operator-selection convention.",
+      "year": 2022
+    },
+    {
+      "authors": [
+        "Dean Howarth",
+        "Joel Giedt"
+      ],
+      "chosen_convention": "Use the narrow wall-source zero-momentum convention and record that the p=0 truncation corresponds to wall sources.",
+      "citation_source_kind": "local_curated_json",
+      "id": "howarth-giedt-2015-sigma",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "wall_source_as_p_equals_0_momentum_source",
+        "zero_momentum_projection"
+      ],
+      "title": "The sigma meson from lattice QCD with two-pion interpolating operators",
+      "type": "primary_reference",
+      "url": "https://arxiv.org/abs/1508.05658",
+      "why_needed": "PyQUDA local references encode wall inversions and zero-momentum contractions but do not explain the physics-side meaning of the wall-source p=0 choice.",
+      "year": 2015
+    }
+  ],
+  "fermion_action": null,
+  "field_sources": {
+    "cluster_launch": "default",
+    "correlator_output_format": "default",
+    "correlator_output_path": "default",
+    "has_existing_propagators": "parsed",
+    "momenta": "fixed",
+    "momentum_projection": "fixed",
+    "resource_path": "default",
+    "script_output_path": "default",
+    "script_style": "fixed",
+    "sink_type": "fixed",
+    "source_type": "fixed",
+    "start_from": "parsed",
+    "task_type": "parser_guess",
+    "workflow_id": "fixed"
+  },
+  "fixed_fields": {
+    "correlator_output_format": "npy",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_2pt_existing_propagator_rough.npy",
+    "has_existing_propagators": true,
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "momentum_projection": "zero",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_2pt_existing_propagator_rough.py",
+    "script_style": "complete",
+    "sink_type": "local",
+    "source_type": "wall",
+    "start_from": "propagator",
+    "task_type": "pion_2pt",
+    "workflow_id": "pion_2pt_existing_propagator_local_zero_momentum_npy_v1"
+  },
+  "flow_epsilon": null,
+  "flow_steps": null,
+  "gamma_insertions": [],
+  "gauge_fixed": null,
+  "gauge_format": null,
+  "gauge_path": null,
+  "grid_size": [],
+  "has_existing_propagators": true,
+  "inferred_fields": {},
+  "inherited_fields": {},
+  "lattice_size": [],
+  "mass": null,
+  "missing_fields": [
+    "propagator_format",
+    "propagator_paths",
+    "lattice_size",
+    "grid_size",
+    "gauge_fixed"
+  ],
+  "momenta": [
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "momentum_projection": "zero",
+  "multigrid_blocks": [],
+  "notes": "please compute the pion two-point correlator from existing propagator",
+  "nu": null,
+  "parser_guesses": {
+    "task_type": "pion_2pt"
+  },
+  "propagator_format": null,
+  "propagator_paths": [],
+  "pyquda_references": [
+    "tests/test_mesonspec.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py",
+    "pyquda_utils/source.py",
+    "examples/3_Pion_Proton_2pt.py"
+  ],
+  "resource_path": ".cache/quda",
+  "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_2pt_existing_propagator_rough.py",
+  "script_style": "complete",
+  "sink_type": "local",
+  "solver_maxiter": null,
+  "solver_tol": null,
+  "source_smearing_kind": null,
+  "source_smearing_rho": null,
+  "source_smearing_steps": null,
+  "source_timeslices": [],
+  "source_type": "wall",
+  "start_from": "propagator",
+  "stout_smear_ndim": null,
+  "stout_smear_rho": null,
+  "stout_smear_steps": null,
+  "task_type": "pion_2pt",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "has_existing_propagators": true,
+    "start_from": "propagator"
+  },
+  "user_request": "please compute the pion two-point correlator from existing propagator",
+  "workflow_id": "pion_2pt_existing_propagator_local_zero_momentum_npy_v1",
+  "xi_0": null
+}

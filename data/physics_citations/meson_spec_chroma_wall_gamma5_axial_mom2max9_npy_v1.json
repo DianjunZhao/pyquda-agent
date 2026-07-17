@@ -1,0 +1,23 @@
+[
+  {
+    "id": "bulava-2022-hadron-spectroscopy",
+    "type": "authoritative_review",
+    "title": "Hadron Spectroscopy with Lattice QCD",
+    "authors": [
+      "John Bulava",
+      "Raul Briceno",
+      "William Detmold",
+      "et al."
+    ],
+    "year": 2022,
+    "url": "https://arxiv.org/abs/2203.03230",
+    "metadata_source": "curated_fallback",
+    "metadata_refresh": "curated_fallback",
+    "supports": [
+      "meson_two_point_spectroscopy",
+      "operator_channel_choice_for_hadron_spectroscopy"
+    ],
+    "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+    "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family."
+  }
+]

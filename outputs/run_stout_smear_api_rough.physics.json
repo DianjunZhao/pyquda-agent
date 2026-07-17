@@ -1,0 +1,177 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "high",
+      "label": "stout-smeared gauge configuration",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+      "target_id": "stout_smeared_gauge_configuration",
+      "task_type_hint": "stout_smear"
+    }
+  ],
+  "chosen_workflow_target": "stout_smear_chroma_qio_npy_v1",
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "stout-smeared gauge configuration",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+    "target_id": "stout_smeared_gauge_configuration",
+    "task_type_hint": "stout_smear"
+  },
+  "external_citations": [],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "fixed_by_workflow_fields": {
+    "correlator_output_format": "npy",
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "has_existing_propagators": false,
+    "momenta": [],
+    "momentum_projection": "none",
+    "script_style": "complete",
+    "sink_type": "gauge",
+    "source_type": "none",
+    "start_from": "gauge",
+    "stout_smear_ndim": 3,
+    "stout_smear_rho": 0.241,
+    "stout_smear_steps": 1,
+    "task_type": "stout_smear",
+    "workflow_id": "stout_smear_chroma_qio_npy_v1"
+  },
+  "formula_proposals": [
+    {
+      "citations": [],
+      "convention": "Follow the narrow local PyQUDA path: read a Chroma/QIO gauge, copy it, apply stoutSmear(1, 0.241, 3), and save the smeared gauge as npy.",
+      "correlator": "Gauge-field transformation only; no hadron correlator is formed in this workflow.",
+      "label": "One-step stout-smeared gauge configuration",
+      "local_references": [
+        "tests/test_smear.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py"
+      ],
+      "operator": "U_\\mu(x) \\rightarrow U_\\mu^{\\mathrm{stout}}(x; \\rho=0.241,\\ \\mathrm{dir\\_ignore}=3)",
+      "proposal_id": "stout_smear_one_step_rho0241_dirignore3",
+      "provenance": "local_references_plus_model_inference",
+      "target_id": "stout_smeared_gauge_configuration"
+    }
+  ],
+  "inferred_fields": {},
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "stout-smeared gauge configuration",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+    "target_id": "stout_smeared_gauge_configuration",
+    "task_type_hint": "stout_smear"
+  },
+  "inherited_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": false
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": true
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": true,
+    "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+    "codex_preflight_attempted": true,
+    "codex_preflight_category": "timeout",
+    "codex_preflight_reason": "Codex auto-preflight timed out after 2 seconds.",
+    "codex_preflight_skip_reason": null,
+    "codex_preflight_skipped": false,
+    "codex_preflight_soft_failed": true,
+    "codex_preflight_soft_failure_reason": "Codex auto-preflight timed out after 2 seconds.",
+    "codex_preflight_status": "failed",
+    "codex_preflight_timeout_seconds": 2.0,
+    "configured": true,
+    "configured_backend": "codex",
+    "fallback": false,
+    "fallback_category": null,
+    "fallback_reason": null,
+    "intent_primary_timeout_seconds": 5.0,
+    "intent_prompt_profile": "concise",
+    "intent_strategy": "full_interpretation",
+    "model_name": null,
+    "notes": [
+      "llm timeout recovery path used",
+      "Interpretation is confirmed from the user's explicit request.",
+      "No external citations were used."
+    ],
+    "provider": null,
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "selected_backend": "codex",
+    "selection_reason": "Explicit codex backend kept running after a short preflight timeout; the full codex call will decide whether fallback is still necessary.",
+    "session_backend_memory_considered": false,
+    "session_backend_memory_reason": null,
+    "session_backend_memory_used": false,
+    "session_backend_prior_category": null,
+    "session_backend_prior_selected_backend": null,
+    "stages_attempted": [
+      "rough_request_normalization",
+      "physics_target_interpretation",
+      "formula_operator_explanation",
+      "timeout_recovery_interpretation"
+    ],
+    "stages_completed": [
+      "rough_request_normalization",
+      "physics_target_interpretation",
+      "formula_operator_explanation",
+      "timeout_recovery_interpretation"
+    ],
+    "timeout_recovery_attempted": true,
+    "timeout_recovery_failed": false,
+    "timeout_recovery_failure_category": null,
+    "timeout_recovery_failure_reason": null,
+    "timeout_recovery_skip_reason": null,
+    "timeout_recovery_skipped": false,
+    "timeout_recovery_timeout_seconds": 5.0,
+    "timeout_recovery_trigger_category": "timeout",
+    "timeout_recovery_trigger_reason": "Codex backend timed out after 5 seconds.",
+    "timeout_recovery_used": true,
+    "used": true
+  },
+  "local_references": [
+    "tests/test_smear.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py"
+  ],
+  "normalized_request": "stout-smear this gauge configuration",
+  "parser_guesses": {},
+  "status": "confirmed",
+  "task_type_hint": "stout_smear",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "target_id": "stout_smeared_gauge_configuration"
+  },
+  "user_request": "please stout-smear this gauge configuration"
+}

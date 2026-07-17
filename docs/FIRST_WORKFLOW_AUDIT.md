@@ -1,8 +1,19 @@
-# First Workflow Audit
+# Current Product Audit
 
 This document is generated from current workflow artifacts and records the audit state for:
 
-- `pion_2pt_chroma_wall_local_zero_momentum_npy_v1`
+- support surface: `11` workflow families / `17` concrete grounded workflow targets
+- family `pion_2pt`: `pion_2pt_chroma_wall_local_zero_momentum_npy_v1`, `pion_2pt_existing_propagator_local_zero_momentum_npy_v1`
+- family `pion_pcac`: `pion_pcac_chroma_wall_local_zero_momentum_npy_v1`, `pion_pcac_existing_propagator_local_zero_momentum_npy_v1`
+- family `pion_dispersion`: `pion_dispersion_chroma_point_momentum_npy_v1`
+- family `meson_spec`: `meson_spec_chroma_wall_gamma5_axial_mom2max9_npy_v1`, `meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1`
+- family `proton_2pt`: `proton_2pt_chroma_wall_local_zero_momentum_npy_v1`, `proton_2pt_existing_propagator_local_zero_momentum_npy_v1`
+- family `rho_vector`: `rho_vector_chroma_wall_local_zero_momentum_npy_v1`, `rho_vector_existing_propagator_local_zero_momentum_npy_v1`
+- family `quark_propagator`: `quark_propagator_chroma_point_hdf5_v1`, `quark_propagator_gaussian_shell_chroma_hdf5_v1`
+- family `ape_smear`: `ape_smear_chroma_qio_npy_v1`
+- family `hyp_smear`: `hyp_smear_chroma_qio_npy_v1`
+- family `stout_smear`: `stout_smear_chroma_qio_npy_v1`
+- family `wilson_flow`: `wilson_flow_chroma_qio_energy_npy_v1`
 
 ## Requirements currently proved
 
@@ -19,7 +30,16 @@ This document is generated from current workflow artifacts and records the audit
 - Generated complete script contains no TODO/pass/placeholder sections.
 - The system explains which task fields were user-specified, clarified interactively, and which conventions were chosen from references.
 - The system supports both --backend api and --backend codex.
+- The system reliably selects among the currently supported workflow families from rough or direct runnable requests, with the pion_2pt family retaining both grounded gauge-entry and propagator-entry paths.
 - Generated script is complete and HPC-ready: real APIs, explicit cluster/runtime assumptions, no placeholders, and suitable for handoff to a properly configured PyQUDA cluster environment.
+- The main run path distinguishes generation success from execution/probe success and persists sibling probe artifacts for auditable runtime evidence.
+- Validation artifacts preserve product-facing lifecycle evidence, including product_status plus generation/execution phases for both backend execution checks and supported-workflow integration checks.
+- Product-behavior regression artifacts cover clarification routing, backend degradation, terminal execution awareness, terminal repair guidance, supported workflow generation, explicit unsupported refusal, and probe artifact consistency.
+- Rough but reasonable supported requests enter clarification instead of collapsing into pseudocode or premature unsupported output.
+- Explicit supported requests generate grounded scripts together with coherent generation/probe/runtime status reporting.
+- Backend failures, network failures, runtime-environment blockers, and probe-harness failures expose clear next actions instead of silent degradation.
+- Explicit unsupported requests expose the nearest grounded recovery path with either a copyable retry action or an explicit physics-choice gate, without letting backend-fix guidance override the main unsupported action.
+- A realistic natural-language task suite covers ambiguous requests, explicit supported requests, and near-boundary unsupported variants with explicit nearest-grounded recovery expectations.
 
 ## Requirements partially proved
 
@@ -33,22 +53,47 @@ This document is generated from current workflow artifacts and records the audit
 - `data/pyquda_runtime_check.json`
 - `data/run_pion_api_probe.json`
 - `data/backend_parity.json`
+- `data/backend_execution.json`
+- `data/supported_workflows_validation.json`
+- `data/v9_product_behavior.json`
+- `data/v11_task_suite.json`
 - `data/runtime_candidates.json`
 - `data/goal_audit.json`
 - `outputs/run_pion_api.py`
+- `outputs/run_pion_api.physics.json`
 - `outputs/run_pion_api.task.json`
 - `outputs/run_pion_api.plan.json`
+- `outputs/run_pion_api.probe.json`
+- `outputs/run_pion_pcac.py`
+- `outputs/validate_pion_dispersion.py`
+- `outputs/run_meson_spec.py`
+- `outputs/validate_proton_2pt.py`
+- `outputs/validate_quark_propagator.py`
+- `outputs/validate_ape_smear.py`
+- `outputs/validate_hyp_smear.py`
+- `outputs/run_stout_smear_api.py`
 
 ## Completion stance
 
-- HPC script readiness status: `proved`.
+- Grounded HPC handoff readiness status: `proved`.
+- Backend execution usability summary: `api=fallback_only, auto=fallback_only, codex=fallback_only`.
 - Optional local runtime readiness status: `not_proved`.
-- The repository default done condition is now: generate a complete, reference-grounded PyQUDA script that should run in a properly configured HPC environment.
-- This workstation's missing CuPy/PyQUDA runtime is treated as a local environment limitation, not a blocker on complete script generation.
+- Supported workflow routing status: `proved`.
+- Unified run/probe reporting status: `proved`.
+- Product-facing validation-chain status: `proved`.
+- V9 product-behavior regression status: `proved`.
+- V9 rough-request clarification status: `proved`.
+- V9 direct supported-generation status: `proved`.
+- V9 actionable recovery-guidance status: `proved`.
+- V9 unsupported actionability status: `proved`.
+- V11 realistic task-suite regression status: `proved`.
+- The repository default done condition is now: generate a complete, reference-grounded PyQUDA script with an auditable HPC handoff contract.
+- Backend usability is audited separately through backend_execution artifacts; a `fallback_only` backend state does not negate grounded generation or handoff readiness.
+- Local runtime proof on this workstation remains a separate evidence layer; missing CuPy/PyQUDA runtime is treated as an environment limitation, not a blocker on grounded generation.
 
 ## Exit condition for this audit
 
-1. `outputs/*.task.json` and `outputs/*.plan.json` fully resolve the fixed workflow without unsupported fields.
-2. The generated script remains traceable to concrete local PyQUDA references and passes placeholder-free static validation.
-3. The script records explicit cluster/runtime assumptions for HPC handoff.
+1. `outputs/*.task.json` and `outputs/*.plan.json` fully resolve each supported workflow without unsupported fields.
+2. Generated scripts remain traceable to concrete local PyQUDA references and pass placeholder-free static validation.
+3. The scripts record explicit cluster/runtime assumptions for HPC handoff.
 4. Optional: capture local runtime evidence when a usable PyQUDA environment happens to be available.

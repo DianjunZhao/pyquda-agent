@@ -9,8 +9,23 @@ import json
 from pathlib import Path
 import sys
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent
+SRC_ROOT = REPO_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from pyquda_agent.python_version import ensure_supported_python
+
 
 DEFAULT_REPO = Path.home() / "PyQUDA"
+MODULE_HINTS = {
+    "numpy": "Install NumPy into the target Python environment used for PyQUDA handoff.",
+    "cupy": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support.",
+    "pyquda": "Build or install the PyQUDA core bindings in this Python environment before runtime proof.",
+    "pyquda_utils": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment.",
+    "pyquda_utils.core": "Check that pyquda_utils is importable and that the built core helpers are present.",
+}
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -64,10 +79,31 @@ def build_report(pyquda_repo: Path, use_repo_pythonpath: bool) -> dict:
         ],
     }
     results["ready"] = all(item["ok"] for item in results["checks"])
+    results["environment_ready"] = results["ready"]
+    results["runtime_level"] = "runtime_ready" if results["ready"] else "environment_missing"
+    blocker_details = [
+        {
+            "module": item["module"],
+            "error_type": item.get("error_type"),
+            "error": item.get("error"),
+            "suggestion": MODULE_HINTS.get(item["module"], "Inspect the failing import and align the Python environment with the target PyQUDA runtime."),
+        }
+        for item in results["checks"]
+        if not item["ok"]
+    ]
+    results["evidence_levels"] = {
+        "syntax_valid": None,
+        "structurally_grounded": None,
+        "runtime_ready": results["environment_ready"],
+        "runtime_proved": False,
+        "current_level": "runtime_ready" if results["environment_ready"] else "environment_missing",
+        "blockers": blocker_details,
+    }
     return results
 
 
 def main(argv: list[str] | None = None) -> int:
+    ensure_supported_python(context="scripts/check_pyquda_runtime.py")
     args = parse_args(argv)
     results = build_report(args.pyquda_repo, args.use_repo_pythonpath)
     print(json.dumps(results, indent=2, sort_keys=True))

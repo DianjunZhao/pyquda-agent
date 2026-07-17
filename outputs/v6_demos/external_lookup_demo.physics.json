@@ -1,0 +1,127 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "medium",
+      "label": "meson two-point correlator with unspecified channel/operator",
+      "status": "needs_confirmation",
+      "summary": "The request asks for a meson correlator but does not identify the channel or operator.",
+      "target_id": "meson_two_point_correlator_unspecified",
+      "task_type_hint": null
+    },
+    {
+      "confidence": "low",
+      "label": "pion two-point correlator",
+      "status": "candidate",
+      "summary": "Pion is one plausible meson channel, but it is not confirmed by the request.",
+      "target_id": "pion_two_point_correlator",
+      "task_type_hint": "pion_2pt"
+    },
+    {
+      "confidence": "low",
+      "label": "pion dispersion correlator",
+      "status": "candidate",
+      "summary": "If the user intends a momentum-projected pion study, the supported narrow dispersion workflow is another plausible candidate.",
+      "target_id": "pion_dispersion_correlator",
+      "task_type_hint": "pion_dispersion"
+    }
+  ],
+  "chosen_workflow_target": null,
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": null,
+  "external_citations": [],
+  "external_lookup": {
+    "attempted": true,
+    "effect_on_interpretation": "none",
+    "enabled": true,
+    "queries": [
+      {
+        "provider": "arxiv_api",
+        "query": "all:meson two-point correlator interpolating operator"
+      }
+    ],
+    "reason": "Live online lookup failed: URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "failed",
+    "used": false
+  },
+  "fixed_by_workflow_fields": {},
+  "formula_proposals": [
+    {
+      "citations": [],
+      "convention": "A meson two-point request is not runnable until the hadron channel and interpolating operator are fixed.",
+      "correlator": "C(t) = \\sum_{\\vec x} \\langle O(\\vec x,t) O^\\dagger(\\vec 0,0) \\rangle",
+      "label": "Meson two-point correlator requires channel/operator choice",
+      "local_references": [],
+      "operator": "Underspecified",
+      "proposal_id": "meson_operator_needs_channel_choice",
+      "provenance": "model_inference",
+      "target_id": "meson_two_point_correlator_unspecified"
+    }
+  ],
+  "inferred_fields": {
+    "target_id": "meson_two_point_correlator_unspecified"
+  },
+  "inferred_interpretation": {
+    "confidence": "medium",
+    "label": "meson two-point correlator with unspecified channel/operator",
+    "status": "needs_confirmation",
+    "summary": "The request asks for a meson correlator but does not identify the channel or operator.",
+    "target_id": "meson_two_point_correlator_unspecified",
+    "task_type_hint": null
+  },
+  "inherited_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": true,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "failed",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": false
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": true,
+    "configured": true,
+    "configured_backend": "codex",
+    "fallback": true,
+    "fallback_category": "network_error",
+    "fallback_reason": "Codex backend could start locally but could not reach the upstream service from the current environment.",
+    "notes": [],
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "stages_attempted": [
+      "rough_request_normalization",
+      "physics_target_interpretation",
+      "formula_operator_explanation"
+    ],
+    "stages_completed": [],
+    "used": false
+  },
+  "local_references": [],
+  "normalized_request": "I want a meson correlator script but I am not sure about the exact operator",
+  "parser_guesses": {
+    "target_id": "meson_two_point_correlator_unspecified"
+  },
+  "status": "needs_confirmation",
+  "task_type_hint": null,
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {},
+  "user_request": "I want a meson correlator script but I am not sure about the exact operator"
+}

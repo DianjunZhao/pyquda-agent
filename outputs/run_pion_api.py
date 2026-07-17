@@ -7,7 +7,7 @@ from pathlib import Path
 from time import perf_counter
 
 # Fixed workflow: gauge -> Clover inversion -> wall source -> local sink -> zero momentum -> npy.
-# Review the sibling .task.json and .plan.json artifacts before treating this script as complete.
+# Review the sibling .physics.json, .task.json, and .plan.json artifacts before treating this script as complete.
 # HPC handoff contract:
 # - launch mode assumption: local
 # - gauge input is expected on a filesystem visible to all ranks
@@ -17,6 +17,7 @@ from time import perf_counter
 WORKFLOW_ID = 'pion_2pt_chroma_wall_local_zero_momentum_npy_v1'
 SCRIPT_PATH = Path(__file__).resolve()
 TASK_ARTIFACT = SCRIPT_PATH.with_suffix(".task.json")
+PHYSICS_ARTIFACT = SCRIPT_PATH.with_suffix(".physics.json")
 PLAN_ARTIFACT = SCRIPT_PATH.with_suffix(".plan.json")
 GAUGE_PATH = Path('/Users/zhaodianjun/PyQUDA/tests/weak_field.lime')
 CORRELATOR_OUTPUT = Path('/Users/zhaodianjun/pyquda-agent/outputs/pion_api.npy')
@@ -62,10 +63,10 @@ def _validate_handoff_contract() -> None:
         )
     if not RESOURCE_PATH:
         raise ValueError("RESOURCE_PATH must be a non-empty string.")
-    if not TASK_ARTIFACT.exists() or not PLAN_ARTIFACT.exists():
+    if not TASK_ARTIFACT.exists() or not PHYSICS_ARTIFACT.exists() or not PLAN_ARTIFACT.exists():
         raise FileNotFoundError(
             "Expected sibling review artifacts next to this script: "
-            f"{TASK_ARTIFACT.name} and {PLAN_ARTIFACT.name}"
+            f"{PHYSICS_ARTIFACT.name}, {TASK_ARTIFACT.name}, and {PLAN_ARTIFACT.name}"
         )
 
 
@@ -74,6 +75,7 @@ def _print_handoff_summary() -> None:
     print(f"Launch assumption: local")
     print(f"Gauge input path: {GAUGE_PATH}")
     print(f"Correlator output path: {CORRELATOR_OUTPUT}")
+    print(f"Physics artifact: {PHYSICS_ARTIFACT}")
     print(f"Structured task artifact: {TASK_ARTIFACT}")
     print(f"Implementation plan artifact: {PLAN_ARTIFACT}")
     print("Filesystem contract: gauge input must be visible to all ranks; only rank 0 writes output.")

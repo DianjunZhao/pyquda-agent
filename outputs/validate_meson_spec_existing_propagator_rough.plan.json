@@ -1,0 +1,2959 @@
+{
+  "chosen_workflow_target": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1",
+  "clarification_trace": [],
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "meson spectroscopy correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+    "target_id": "meson_spectrum_correlator",
+    "task_type_hint": "meson_spec"
+  },
+  "convention_decisions": [
+    {
+      "category": "physics",
+      "citations": [
+        "bulava-2022-hadron-spectroscopy"
+      ],
+      "decision": "Use the fixed wall-source meson-spectroscopy path with gamma5 and gamma4gamma5 insertion channels.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+      ],
+      "why": "The supported workflow is intentionally pinned to the exact correlator family already encoded in the local PyQUDA mesonspec test."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Use MomentumPhase with the grounded |p|^2<=9 momentum family from phase.getMomList(9).",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/phase.py"
+      ],
+      "why": "This keeps the workflow traceable to the exact local momentum-family construction used in the upstream mesonspec reference."
+    },
+    {
+      "category": "pyquda",
+      "citations": [],
+      "decision": "Contract the propagator with the fixed gamma5/gamma4gamma5 bilinear family using CuPy einsum over the local mesonspec tensor layout.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+        "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py"
+      ],
+      "why": "The complete script should mirror the local mesonspec contraction path instead of inventing a generic spectroscopy helper API."
+    },
+    {
+      "category": "physics",
+      "citations": [
+        "bulava-2022-hadron-spectroscopy"
+      ],
+      "decision": "Keep this family narrow: gauge entry, Clover, wall source, fixed gamma insertion family, grounded momentum family, and npy tensor output.",
+      "references": [
+        "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+      ],
+      "why": "The goal is one fully grounded meson-spectroscopy path, not a shallow generic meson-correlator template."
+    }
+  ],
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "meson_two_point_spectroscopy",
+        "operator_channel_choice_for_hadron_spectroscopy"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+      "year": 2022
+    }
+  ],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "field_resolution": {
+    "_physics_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_by_workflow_fields": {
+        "correlator_output_format": "npy",
+        "gamma_insertions": [
+          "gamma5_gamma5",
+          "gamma4gamma5_gamma4gamma5"
+        ],
+        "gauge_fixed": false,
+        "has_existing_propagators": true,
+        "momenta": [
+          [
+            0,
+            0,
+            -3
+          ],
+          [
+            -1,
+            -2,
+            -2
+          ],
+          [
+            0,
+            -2,
+            -2
+          ],
+          [
+            1,
+            -2,
+            -2
+          ],
+          [
+            -2,
+            -1,
+            -2
+          ],
+          [
+            -1,
+            -1,
+            -2
+          ],
+          [
+            0,
+            -1,
+            -2
+          ],
+          [
+            1,
+            -1,
+            -2
+          ],
+          [
+            2,
+            -1,
+            -2
+          ],
+          [
+            -2,
+            0,
+            -2
+          ],
+          [
+            -1,
+            0,
+            -2
+          ],
+          [
+            0,
+            0,
+            -2
+          ],
+          [
+            1,
+            0,
+            -2
+          ],
+          [
+            2,
+            0,
+            -2
+          ],
+          [
+            -2,
+            1,
+            -2
+          ],
+          [
+            -1,
+            1,
+            -2
+          ],
+          [
+            0,
+            1,
+            -2
+          ],
+          [
+            1,
+            1,
+            -2
+          ],
+          [
+            2,
+            1,
+            -2
+          ],
+          [
+            -1,
+            2,
+            -2
+          ],
+          [
+            0,
+            2,
+            -2
+          ],
+          [
+            1,
+            2,
+            -2
+          ],
+          [
+            -2,
+            -2,
+            -1
+          ],
+          [
+            -1,
+            -2,
+            -1
+          ],
+          [
+            0,
+            -2,
+            -1
+          ],
+          [
+            1,
+            -2,
+            -1
+          ],
+          [
+            2,
+            -2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1
+          ],
+          [
+            0,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1
+          ],
+          [
+            2,
+            -1,
+            -1
+          ],
+          [
+            -2,
+            0,
+            -1
+          ],
+          [
+            -1,
+            0,
+            -1
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            1,
+            0,
+            -1
+          ],
+          [
+            2,
+            0,
+            -1
+          ],
+          [
+            -2,
+            1,
+            -1
+          ],
+          [
+            -1,
+            1,
+            -1
+          ],
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1
+          ],
+          [
+            2,
+            1,
+            -1
+          ],
+          [
+            -2,
+            2,
+            -1
+          ],
+          [
+            -1,
+            2,
+            -1
+          ],
+          [
+            0,
+            2,
+            -1
+          ],
+          [
+            1,
+            2,
+            -1
+          ],
+          [
+            2,
+            2,
+            -1
+          ],
+          [
+            0,
+            -3,
+            0
+          ],
+          [
+            -2,
+            -2,
+            0
+          ],
+          [
+            -1,
+            -2,
+            0
+          ],
+          [
+            0,
+            -2,
+            0
+          ],
+          [
+            1,
+            -2,
+            0
+          ],
+          [
+            2,
+            -2,
+            0
+          ],
+          [
+            -2,
+            -1,
+            0
+          ],
+          [
+            -1,
+            -1,
+            0
+          ],
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            1,
+            -1,
+            0
+          ],
+          [
+            2,
+            -1,
+            0
+          ],
+          [
+            -3,
+            0,
+            0
+          ],
+          [
+            -2,
+            0,
+            0
+          ],
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            -2,
+            1,
+            0
+          ],
+          [
+            -1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            -2,
+            2,
+            0
+          ],
+          [
+            -1,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            -2,
+            -2,
+            1
+          ],
+          [
+            -1,
+            -2,
+            1
+          ],
+          [
+            0,
+            -2,
+            1
+          ],
+          [
+            1,
+            -2,
+            1
+          ],
+          [
+            2,
+            -2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            1
+          ],
+          [
+            -1,
+            -1,
+            1
+          ],
+          [
+            0,
+            -1,
+            1
+          ],
+          [
+            1,
+            -1,
+            1
+          ],
+          [
+            2,
+            -1,
+            1
+          ],
+          [
+            -2,
+            0,
+            1
+          ],
+          [
+            -1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            -2,
+            1,
+            1
+          ],
+          [
+            -1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            2,
+            1
+          ],
+          [
+            -1,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            2,
+            1
+          ],
+          [
+            -1,
+            -2,
+            2
+          ],
+          [
+            0,
+            -2,
+            2
+          ],
+          [
+            1,
+            -2,
+            2
+          ],
+          [
+            -2,
+            -1,
+            2
+          ],
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            0,
+            -1,
+            2
+          ],
+          [
+            1,
+            -1,
+            2
+          ],
+          [
+            2,
+            -1,
+            2
+          ],
+          [
+            -2,
+            0,
+            2
+          ],
+          [
+            -1,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            -2,
+            1,
+            2
+          ],
+          [
+            -1,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            -1,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        "momentum_projection": "explicit",
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "wall",
+        "start_from": "propagator",
+        "task_type": "meson_spec",
+        "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {},
+      "user_confirmed_fields": {
+        "target_id": "meson_spectrum_correlator"
+      }
+    },
+    "_resolution_buckets": {
+      "clarified_fields": {},
+      "fixed_fields": {
+        "correlator_output_format": "npy",
+        "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.npy",
+        "gamma_insertions": [
+          "gamma5_gamma5",
+          "gamma4gamma5_gamma4gamma5"
+        ],
+        "gauge_fixed": false,
+        "has_existing_propagators": true,
+        "momenta": [
+          [
+            0,
+            0,
+            -3
+          ],
+          [
+            -1,
+            -2,
+            -2
+          ],
+          [
+            0,
+            -2,
+            -2
+          ],
+          [
+            1,
+            -2,
+            -2
+          ],
+          [
+            -2,
+            -1,
+            -2
+          ],
+          [
+            -1,
+            -1,
+            -2
+          ],
+          [
+            0,
+            -1,
+            -2
+          ],
+          [
+            1,
+            -1,
+            -2
+          ],
+          [
+            2,
+            -1,
+            -2
+          ],
+          [
+            -2,
+            0,
+            -2
+          ],
+          [
+            -1,
+            0,
+            -2
+          ],
+          [
+            0,
+            0,
+            -2
+          ],
+          [
+            1,
+            0,
+            -2
+          ],
+          [
+            2,
+            0,
+            -2
+          ],
+          [
+            -2,
+            1,
+            -2
+          ],
+          [
+            -1,
+            1,
+            -2
+          ],
+          [
+            0,
+            1,
+            -2
+          ],
+          [
+            1,
+            1,
+            -2
+          ],
+          [
+            2,
+            1,
+            -2
+          ],
+          [
+            -1,
+            2,
+            -2
+          ],
+          [
+            0,
+            2,
+            -2
+          ],
+          [
+            1,
+            2,
+            -2
+          ],
+          [
+            -2,
+            -2,
+            -1
+          ],
+          [
+            -1,
+            -2,
+            -1
+          ],
+          [
+            0,
+            -2,
+            -1
+          ],
+          [
+            1,
+            -2,
+            -1
+          ],
+          [
+            2,
+            -2,
+            -1
+          ],
+          [
+            -2,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            -1
+          ],
+          [
+            0,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            -1
+          ],
+          [
+            2,
+            -1,
+            -1
+          ],
+          [
+            -2,
+            0,
+            -1
+          ],
+          [
+            -1,
+            0,
+            -1
+          ],
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            1,
+            0,
+            -1
+          ],
+          [
+            2,
+            0,
+            -1
+          ],
+          [
+            -2,
+            1,
+            -1
+          ],
+          [
+            -1,
+            1,
+            -1
+          ],
+          [
+            0,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            -1
+          ],
+          [
+            2,
+            1,
+            -1
+          ],
+          [
+            -2,
+            2,
+            -1
+          ],
+          [
+            -1,
+            2,
+            -1
+          ],
+          [
+            0,
+            2,
+            -1
+          ],
+          [
+            1,
+            2,
+            -1
+          ],
+          [
+            2,
+            2,
+            -1
+          ],
+          [
+            0,
+            -3,
+            0
+          ],
+          [
+            -2,
+            -2,
+            0
+          ],
+          [
+            -1,
+            -2,
+            0
+          ],
+          [
+            0,
+            -2,
+            0
+          ],
+          [
+            1,
+            -2,
+            0
+          ],
+          [
+            2,
+            -2,
+            0
+          ],
+          [
+            -2,
+            -1,
+            0
+          ],
+          [
+            -1,
+            -1,
+            0
+          ],
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            1,
+            -1,
+            0
+          ],
+          [
+            2,
+            -1,
+            0
+          ],
+          [
+            -3,
+            0,
+            0
+          ],
+          [
+            -2,
+            0,
+            0
+          ],
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            -2,
+            1,
+            0
+          ],
+          [
+            -1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            -2,
+            2,
+            0
+          ],
+          [
+            -1,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            -2,
+            -2,
+            1
+          ],
+          [
+            -1,
+            -2,
+            1
+          ],
+          [
+            0,
+            -2,
+            1
+          ],
+          [
+            1,
+            -2,
+            1
+          ],
+          [
+            2,
+            -2,
+            1
+          ],
+          [
+            -2,
+            -1,
+            1
+          ],
+          [
+            -1,
+            -1,
+            1
+          ],
+          [
+            0,
+            -1,
+            1
+          ],
+          [
+            1,
+            -1,
+            1
+          ],
+          [
+            2,
+            -1,
+            1
+          ],
+          [
+            -2,
+            0,
+            1
+          ],
+          [
+            -1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            -2,
+            1,
+            1
+          ],
+          [
+            -1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            -2,
+            2,
+            1
+          ],
+          [
+            -1,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            2,
+            1
+          ],
+          [
+            -1,
+            -2,
+            2
+          ],
+          [
+            0,
+            -2,
+            2
+          ],
+          [
+            1,
+            -2,
+            2
+          ],
+          [
+            -2,
+            -1,
+            2
+          ],
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            0,
+            -1,
+            2
+          ],
+          [
+            1,
+            -1,
+            2
+          ],
+          [
+            2,
+            -1,
+            2
+          ],
+          [
+            -2,
+            0,
+            2
+          ],
+          [
+            -1,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            -2,
+            1,
+            2
+          ],
+          [
+            -1,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            -1,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        "momentum_projection": "explicit",
+        "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.py",
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "wall",
+        "start_from": "propagator",
+        "task_type": "meson_spec",
+        "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+      },
+      "inferred_fields": {},
+      "inherited_fields": {},
+      "parser_guesses": {
+        "task_type": "meson_spec"
+      },
+      "user_confirmed_fields": {
+        "has_existing_propagators": true,
+        "start_from": "propagator"
+      }
+    },
+    "cluster_launch": "default",
+    "correlator_output_format": "default",
+    "correlator_output_path": "default",
+    "gamma_insertions": "fixed",
+    "gauge_fixed": "fixed",
+    "has_existing_propagators": "parsed",
+    "momenta": "fixed",
+    "momentum_projection": "fixed",
+    "resource_path": "default",
+    "script_output_path": "default",
+    "script_style": "fixed",
+    "sink_type": "fixed",
+    "source_type": "fixed",
+    "start_from": "parsed",
+    "task_type": "parser_guess",
+    "workflow_id": "fixed"
+  },
+  "handoff_contract": {
+    "cluster_launch": "local",
+    "input_manifest": [],
+    "input_mutability_policy": "immutable_inputs_never_overwritten",
+    "input_paths": [],
+    "input_visibility": "all_ranks",
+    "output_paths": {
+      "correlator": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.npy",
+      "probe_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.probe.json",
+      "script": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.py"
+    },
+    "output_writer_policy": "rank0_only",
+    "preflight_checks": [
+      "Ensure all propagator inputs are visible from every rank before launch.",
+      "Ensure the output directory is writable by the rank that saves the final correlator artifact.",
+      "Confirm the nearest existing parent of each emitted artifact path is writable on the target filesystem before submission.",
+      "Verify numpy, cupy, pyquda_utils, and pyquda import successfully before starting a full inversion job.",
+      "Review the sibling .physics.json, .task.json, and .plan.json artifacts before cluster submission.",
+      "Verify the propagator input manifest matches the intended source-timeslice ordering before launch.",
+      "Treat propagator inputs as immutable handoff artifacts; do not reuse an input path as an output path.",
+      "Prefer a dedicated writable results directory instead of writing new outputs beside stored propagator handoff artifacts."
+    ],
+    "required_modules": [
+      "numpy",
+      "cupy",
+      "pyquda_utils",
+      "pyquda"
+    ],
+    "resource_path": ".cache/quda",
+    "start_from": "propagator",
+    "submission_assumption": "Launch under an MPI/GPU layout consistent with GRID_SIZE and the target PyQUDA environment."
+  },
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "meson spectroscopy correlator",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+    "target_id": "meson_spectrum_correlator",
+    "task_type_hint": "meson_spec"
+  },
+  "inherited_session_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": true
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": false
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "local_references_used": [
+    "tests/test_mesonspec.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py",
+    "pyquda_utils/phase.py"
+  ],
+  "physics_choices": {
+    "coeff_r": null,
+    "coeff_t": null,
+    "fermion_action": null,
+    "flow_epsilon": null,
+    "flow_steps": null,
+    "gauge_fixed": false,
+    "mass": null,
+    "momenta": [
+      [
+        0,
+        0,
+        -3
+      ],
+      [
+        -1,
+        -2,
+        -2
+      ],
+      [
+        0,
+        -2,
+        -2
+      ],
+      [
+        1,
+        -2,
+        -2
+      ],
+      [
+        -2,
+        -1,
+        -2
+      ],
+      [
+        -1,
+        -1,
+        -2
+      ],
+      [
+        0,
+        -1,
+        -2
+      ],
+      [
+        1,
+        -1,
+        -2
+      ],
+      [
+        2,
+        -1,
+        -2
+      ],
+      [
+        -2,
+        0,
+        -2
+      ],
+      [
+        -1,
+        0,
+        -2
+      ],
+      [
+        0,
+        0,
+        -2
+      ],
+      [
+        1,
+        0,
+        -2
+      ],
+      [
+        2,
+        0,
+        -2
+      ],
+      [
+        -2,
+        1,
+        -2
+      ],
+      [
+        -1,
+        1,
+        -2
+      ],
+      [
+        0,
+        1,
+        -2
+      ],
+      [
+        1,
+        1,
+        -2
+      ],
+      [
+        2,
+        1,
+        -2
+      ],
+      [
+        -1,
+        2,
+        -2
+      ],
+      [
+        0,
+        2,
+        -2
+      ],
+      [
+        1,
+        2,
+        -2
+      ],
+      [
+        -2,
+        -2,
+        -1
+      ],
+      [
+        -1,
+        -2,
+        -1
+      ],
+      [
+        0,
+        -2,
+        -1
+      ],
+      [
+        1,
+        -2,
+        -1
+      ],
+      [
+        2,
+        -2,
+        -1
+      ],
+      [
+        -2,
+        -1,
+        -1
+      ],
+      [
+        -1,
+        -1,
+        -1
+      ],
+      [
+        0,
+        -1,
+        -1
+      ],
+      [
+        1,
+        -1,
+        -1
+      ],
+      [
+        2,
+        -1,
+        -1
+      ],
+      [
+        -2,
+        0,
+        -1
+      ],
+      [
+        -1,
+        0,
+        -1
+      ],
+      [
+        0,
+        0,
+        -1
+      ],
+      [
+        1,
+        0,
+        -1
+      ],
+      [
+        2,
+        0,
+        -1
+      ],
+      [
+        -2,
+        1,
+        -1
+      ],
+      [
+        -1,
+        1,
+        -1
+      ],
+      [
+        0,
+        1,
+        -1
+      ],
+      [
+        1,
+        1,
+        -1
+      ],
+      [
+        2,
+        1,
+        -1
+      ],
+      [
+        -2,
+        2,
+        -1
+      ],
+      [
+        -1,
+        2,
+        -1
+      ],
+      [
+        0,
+        2,
+        -1
+      ],
+      [
+        1,
+        2,
+        -1
+      ],
+      [
+        2,
+        2,
+        -1
+      ],
+      [
+        0,
+        -3,
+        0
+      ],
+      [
+        -2,
+        -2,
+        0
+      ],
+      [
+        -1,
+        -2,
+        0
+      ],
+      [
+        0,
+        -2,
+        0
+      ],
+      [
+        1,
+        -2,
+        0
+      ],
+      [
+        2,
+        -2,
+        0
+      ],
+      [
+        -2,
+        -1,
+        0
+      ],
+      [
+        -1,
+        -1,
+        0
+      ],
+      [
+        0,
+        -1,
+        0
+      ],
+      [
+        1,
+        -1,
+        0
+      ],
+      [
+        2,
+        -1,
+        0
+      ],
+      [
+        -3,
+        0,
+        0
+      ],
+      [
+        -2,
+        0,
+        0
+      ],
+      [
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0
+      ],
+      [
+        -2,
+        1,
+        0
+      ],
+      [
+        -1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        -2,
+        2,
+        0
+      ],
+      [
+        -1,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        0
+      ],
+      [
+        1,
+        2,
+        0
+      ],
+      [
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        3,
+        0
+      ],
+      [
+        -2,
+        -2,
+        1
+      ],
+      [
+        -1,
+        -2,
+        1
+      ],
+      [
+        0,
+        -2,
+        1
+      ],
+      [
+        1,
+        -2,
+        1
+      ],
+      [
+        2,
+        -2,
+        1
+      ],
+      [
+        -2,
+        -1,
+        1
+      ],
+      [
+        -1,
+        -1,
+        1
+      ],
+      [
+        0,
+        -1,
+        1
+      ],
+      [
+        1,
+        -1,
+        1
+      ],
+      [
+        2,
+        -1,
+        1
+      ],
+      [
+        -2,
+        0,
+        1
+      ],
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        2,
+        0,
+        1
+      ],
+      [
+        -2,
+        1,
+        1
+      ],
+      [
+        -1,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        1
+      ],
+      [
+        -2,
+        2,
+        1
+      ],
+      [
+        -1,
+        2,
+        1
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        2,
+        1
+      ],
+      [
+        -1,
+        -2,
+        2
+      ],
+      [
+        0,
+        -2,
+        2
+      ],
+      [
+        1,
+        -2,
+        2
+      ],
+      [
+        -2,
+        -1,
+        2
+      ],
+      [
+        -1,
+        -1,
+        2
+      ],
+      [
+        0,
+        -1,
+        2
+      ],
+      [
+        1,
+        -1,
+        2
+      ],
+      [
+        2,
+        -1,
+        2
+      ],
+      [
+        -2,
+        0,
+        2
+      ],
+      [
+        -1,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        2
+      ],
+      [
+        1,
+        0,
+        2
+      ],
+      [
+        2,
+        0,
+        2
+      ],
+      [
+        -2,
+        1,
+        2
+      ],
+      [
+        -1,
+        1,
+        2
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        2,
+        1,
+        2
+      ],
+      [
+        -1,
+        2,
+        2
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3
+      ]
+    ],
+    "momentum_projection": "explicit",
+    "nu": null,
+    "sink_type": "local",
+    "source_timeslices": [],
+    "source_type": "wall",
+    "target_id": "meson_spectrum_correlator",
+    "xi_0": null
+  },
+  "pyquda_choices": {
+    "gauge_format": null,
+    "gauge_path": null,
+    "grid_size": [],
+    "lattice_size": [],
+    "multigrid_blocks": [],
+    "output_format": "npy",
+    "resource_path": ".cache/quda",
+    "solver_maxiter": null,
+    "solver_tol": null,
+    "start_from": "propagator",
+    "stout_smear_ndim": null,
+    "stout_smear_rho": null,
+    "stout_smear_steps": null
+  },
+  "references": [
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+      "source": "pyquda",
+      "summary": "from time import perf_counter"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.ini.xml",
+      "source": "pyquda",
+      "summary": "<?xml version=\"1.0\"?>"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+      "source": "pyquda",
+      "summary": "from check_pyquda import weak_field"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+      "source": "pyquda",
+      "summary": "from typing import List"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/core.py",
+      "source": "pyquda",
+      "summary": "from math import prod"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py",
+      "source": "pyquda",
+      "summary": "from pyquda_comm.field import LatticeFermion, LatticePropagator"
+    },
+    {
+      "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/phase.py",
+      "source": "pyquda",
+      "summary": "from math import pi, isqrt"
+    }
+  ],
+  "runtime_choices": {
+    "cluster_launch": "local",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.npy",
+    "primary_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.npy",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.py"
+  },
+  "runtime_readiness": {
+    "artifact_chain": {
+      "physics_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.physics.json",
+      "plan_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.plan.json",
+      "task_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.task.json"
+    },
+    "checks": [
+      {
+        "module": "numpy",
+        "ok": true,
+        "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+      },
+      {
+        "error": "No module named 'cupy'",
+        "error_type": "ModuleNotFoundError",
+        "module": "cupy",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils",
+        "ok": false
+      },
+      {
+        "error": "No module named 'pyquda_utils'",
+        "error_type": "ModuleNotFoundError",
+        "module": "pyquda_utils.core",
+        "ok": false
+      }
+    ],
+    "environment_probe": {
+      "script": "scripts/check_pyquda_runtime.py",
+      "used_repo_pythonpath": false
+    },
+    "environment_ready": false,
+    "evidence_levels": {
+      "blockers": [
+        {
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy",
+          "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+        },
+        {
+          "error": "No module named 'pyquda'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda",
+          "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils",
+          "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils.core",
+          "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+        }
+      ],
+      "current_level": "structurally_grounded",
+      "runtime_proved": false,
+      "runtime_ready": false,
+      "structurally_grounded": true,
+      "syntax_valid": true
+    },
+    "generated_script_exists": false,
+    "generated_script_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.py",
+    "generated_script_probe": {
+      "artifact_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.probe.json",
+      "command": "python3 scripts/probe_generated_workflow.py --script /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.py --output /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator_rough.probe.json",
+      "reason": null,
+      "status": "requested"
+    },
+    "probe_policy": {
+      "auto_run": true,
+      "current_run_attempted": false,
+      "current_run_requested": true,
+      "current_run_status": "requested",
+      "default_auto_run": false,
+      "reason": "This run explicitly requested a minimal generated-script probe after script emission."
+    },
+    "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+    "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+    "ready": false,
+    "reference_grounded": true,
+    "runtime_level": "structurally_grounded",
+    "runtime_proved": false,
+    "syntax_valid": true,
+    "used_repo_pythonpath": false
+  },
+  "task_type": "meson_spec",
+  "unresolved_fields": [
+    "propagator_format",
+    "propagator_paths",
+    "lattice_size",
+    "grid_size",
+    "source_timeslices"
+  ],
+  "unsupported_reasons": [],
+  "user_request": "please compute meson spectroscopy correlators from existing propagator",
+  "validation_checks": [
+    "generated code is syntax-valid",
+    "task fields fully resolved",
+    "workflow matches supported runnable path",
+    "generated code imports real PyQUDA APIs",
+    "generated code matches local examples/tests/io helpers for the chosen workflow",
+    "generated code contains no TODO/pass/placeholder text"
+  ],
+  "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1",
+  "workflow_match": {
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "meson_two_point_spectroscopy",
+          "operator_channel_choice_for_hadron_spectroscopy"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+        "year": 2022
+      }
+    ],
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "gamma_insertions": [
+        "gamma5_gamma5",
+        "gamma4gamma5_gamma4gamma5"
+      ],
+      "gauge_fixed": false,
+      "has_existing_propagators": true,
+      "momenta": [
+        [
+          0,
+          0,
+          -3
+        ],
+        [
+          -1,
+          -2,
+          -2
+        ],
+        [
+          0,
+          -2,
+          -2
+        ],
+        [
+          1,
+          -2,
+          -2
+        ],
+        [
+          -2,
+          -1,
+          -2
+        ],
+        [
+          -1,
+          -1,
+          -2
+        ],
+        [
+          0,
+          -1,
+          -2
+        ],
+        [
+          1,
+          -1,
+          -2
+        ],
+        [
+          2,
+          -1,
+          -2
+        ],
+        [
+          -2,
+          0,
+          -2
+        ],
+        [
+          -1,
+          0,
+          -2
+        ],
+        [
+          0,
+          0,
+          -2
+        ],
+        [
+          1,
+          0,
+          -2
+        ],
+        [
+          2,
+          0,
+          -2
+        ],
+        [
+          -2,
+          1,
+          -2
+        ],
+        [
+          -1,
+          1,
+          -2
+        ],
+        [
+          0,
+          1,
+          -2
+        ],
+        [
+          1,
+          1,
+          -2
+        ],
+        [
+          2,
+          1,
+          -2
+        ],
+        [
+          -1,
+          2,
+          -2
+        ],
+        [
+          0,
+          2,
+          -2
+        ],
+        [
+          1,
+          2,
+          -2
+        ],
+        [
+          -2,
+          -2,
+          -1
+        ],
+        [
+          -1,
+          -2,
+          -1
+        ],
+        [
+          0,
+          -2,
+          -1
+        ],
+        [
+          1,
+          -2,
+          -1
+        ],
+        [
+          2,
+          -2,
+          -1
+        ],
+        [
+          -2,
+          -1,
+          -1
+        ],
+        [
+          -1,
+          -1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          -1
+        ],
+        [
+          1,
+          -1,
+          -1
+        ],
+        [
+          2,
+          -1,
+          -1
+        ],
+        [
+          -2,
+          0,
+          -1
+        ],
+        [
+          -1,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1
+        ],
+        [
+          1,
+          0,
+          -1
+        ],
+        [
+          2,
+          0,
+          -1
+        ],
+        [
+          -2,
+          1,
+          -1
+        ],
+        [
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          1,
+          1,
+          -1
+        ],
+        [
+          2,
+          1,
+          -1
+        ],
+        [
+          -2,
+          2,
+          -1
+        ],
+        [
+          -1,
+          2,
+          -1
+        ],
+        [
+          0,
+          2,
+          -1
+        ],
+        [
+          1,
+          2,
+          -1
+        ],
+        [
+          2,
+          2,
+          -1
+        ],
+        [
+          0,
+          -3,
+          0
+        ],
+        [
+          -2,
+          -2,
+          0
+        ],
+        [
+          -1,
+          -2,
+          0
+        ],
+        [
+          0,
+          -2,
+          0
+        ],
+        [
+          1,
+          -2,
+          0
+        ],
+        [
+          2,
+          -2,
+          0
+        ],
+        [
+          -2,
+          -1,
+          0
+        ],
+        [
+          -1,
+          -1,
+          0
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          2,
+          -1,
+          0
+        ],
+        [
+          -3,
+          0,
+          0
+        ],
+        [
+          -2,
+          0,
+          0
+        ],
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          3,
+          0,
+          0
+        ],
+        [
+          -2,
+          1,
+          0
+        ],
+        [
+          -1,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          -2,
+          2,
+          0
+        ],
+        [
+          -1,
+          2,
+          0
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          2,
+          2,
+          0
+        ],
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          -2,
+          -2,
+          1
+        ],
+        [
+          -1,
+          -2,
+          1
+        ],
+        [
+          0,
+          -2,
+          1
+        ],
+        [
+          1,
+          -2,
+          1
+        ],
+        [
+          2,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          1
+        ],
+        [
+          -1,
+          -1,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          1,
+          -1,
+          1
+        ],
+        [
+          2,
+          -1,
+          1
+        ],
+        [
+          -2,
+          0,
+          1
+        ],
+        [
+          -1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          -2,
+          1,
+          1
+        ],
+        [
+          -1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          2,
+          1
+        ],
+        [
+          -1,
+          2,
+          1
+        ],
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          2,
+          2,
+          1
+        ],
+        [
+          -1,
+          -2,
+          2
+        ],
+        [
+          0,
+          -2,
+          2
+        ],
+        [
+          1,
+          -2,
+          2
+        ],
+        [
+          -2,
+          -1,
+          2
+        ],
+        [
+          -1,
+          -1,
+          2
+        ],
+        [
+          0,
+          -1,
+          2
+        ],
+        [
+          1,
+          -1,
+          2
+        ],
+        [
+          2,
+          -1,
+          2
+        ],
+        [
+          -2,
+          0,
+          2
+        ],
+        [
+          -1,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          1,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          -2,
+          1,
+          2
+        ],
+        [
+          -1,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          -1,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          2
+        ],
+        [
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          3
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "wall",
+      "start_from": "propagator",
+      "task_type": "meson_spec",
+      "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+    },
+    "local_references": [
+      "tests/test_mesonspec.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py",
+      "pyquda_utils/phase.py"
+    ],
+    "mapping_notes": [
+      "Confirmed meson-spectroscopy target mapped to the validated existing-propagator -> fixed gamma5/gamma4gamma5 insertion family -> full grounded |p|^2<=9 momentum family -> npy implementation path.",
+      "This narrow branch reuses local PyQUDA propagator IO helpers together with the exact meson-spectroscopy contraction structure from tests/test_mesonspec.py."
+    ],
+    "matched": true,
+    "task_type": "meson_spec",
+    "unsupported_reasons": [],
+    "workflow_target": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+  }
+}

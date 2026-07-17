@@ -1,0 +1,106 @@
+{
+  "check_backend_parity": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "generate_workflow": {
+    "delivery_status": {
+      "execution": {
+        "phase": "runtime_missing"
+      },
+      "generation": {
+        "phase": "generated"
+      }
+    },
+    "execution_result": {
+      "phase": "runtime_missing"
+    },
+    "execution_status": "runtime_missing",
+    "generation_result": {
+      "phase": "generated"
+    },
+    "next_action": null,
+    "physics_artifact": null,
+    "physics_target": null,
+    "plan_artifact": null,
+    "probe_hint": null,
+    "probe_status": "runtime_missing",
+    "product_status": "generated_runtime_blocked",
+    "returncode": 0,
+    "status": "ok",
+    "stderr": "",
+    "stdout": "{\"status\": \"ok\", \"product_status\": \"generated_runtime_blocked\", \"execution_status\": \"runtime_missing\", \"workflow_outcome\": {\"phase\": \"generated_and_probed\", \"runtime_probe_status\": \"runtime_missing\"}, \"generation_result\": {\"phase\": \"generated\"}, \"execution_result\": {\"phase\": \"runtime_missing\"}, \"delivery_status\": {\"generation\": {\"phase\": \"generated\"}, \"execution\": {\"phase\": \"runtime_missing\"}}}",
+    "task_artifact": null,
+    "workflow_outcome": {
+      "phase": "generated_and_probed",
+      "runtime_probe_status": "runtime_missing"
+    },
+    "workflow_target": null
+  },
+  "preview_rough_request": {
+    "delivery_status": {
+      "execution": {
+        "phase": "blocked_by_generation"
+      },
+      "generation": {
+        "phase": "blocked_on_input"
+      }
+    },
+    "execution_result": {
+      "phase": "blocked_by_generation"
+    },
+    "execution_status": null,
+    "generation_result": {
+      "phase": "blocked_on_input"
+    },
+    "next_action": null,
+    "physics_artifact": null,
+    "physics_target": null,
+    "plan_artifact": null,
+    "probe_hint": null,
+    "probe_status": "pending_generation",
+    "product_status": "needs_input",
+    "returncode": 0,
+    "status": "needs_input",
+    "stderr": "",
+    "stdout": "{\"status\": \"needs_input\", \"product_status\": \"needs_input\", \"workflow_outcome\": {\"phase\": \"clarification\", \"runtime_probe_status\": \"pending_generation\"}, \"generation_result\": {\"phase\": \"blocked_on_input\"}, \"execution_result\": {\"phase\": \"blocked_by_generation\"}, \"delivery_status\": {\"generation\": {\"phase\": \"blocked_on_input\"}, \"execution\": {\"phase\": \"blocked_by_generation\"}}}",
+    "task_artifact": null,
+    "workflow_outcome": {
+      "phase": "clarification",
+      "runtime_probe_status": "pending_generation"
+    },
+    "workflow_target": null
+  },
+  "probe_artifact": {
+    "exists": true,
+    "path": "/Users/zhaodianjun/pyquda-agent/outputs/run_pion_api.probe.json",
+    "runtime_level": "environment_missing",
+    "status": "runtime_missing"
+  },
+  "refresh_analysis": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "refresh_citations": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "refresh_goal_audit": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "refresh_runtime": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "scan_runtime_candidates": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  }
+}

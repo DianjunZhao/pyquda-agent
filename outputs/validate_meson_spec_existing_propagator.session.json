@@ -1,0 +1,1387 @@
+{
+  "asked_questions": [],
+  "backend_assistance": {
+    "attempted": false,
+    "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+    "codex_preflight_attempted": true,
+    "codex_preflight_category": "local_environment_error",
+    "codex_preflight_detail_category": "codex_app_client_init_failed",
+    "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment.",
+    "codex_preflight_skip_reason": null,
+    "codex_preflight_skipped": false,
+    "codex_preflight_soft_failed": false,
+    "codex_preflight_soft_failure_reason": null,
+    "codex_preflight_status": "failed",
+    "codex_preflight_timeout_seconds": 2.0,
+    "configured": false,
+    "configured_backend": null,
+    "fallback": true,
+    "fallback_category": "local_environment_error",
+    "fallback_detail_category": "codex_app_client_init_failed",
+    "fallback_reason": "Explicit codex backend failed preflight (Codex backend failed during local app-client initialization in the current environment.), so the run will use the rule-based path.",
+    "intent_primary_timeout_seconds": null,
+    "intent_prompt_profile": null,
+    "intent_strategy": null,
+    "model_name": null,
+    "notes": [],
+    "provider": null,
+    "requested_backend": "codex",
+    "resolved_base_url": null,
+    "selected_backend": "rules",
+    "selection_reason": "Explicit codex backend failed short preflight and fell back to rules.",
+    "session_backend_memory_considered": false,
+    "session_backend_memory_reason": null,
+    "session_backend_memory_used": false,
+    "session_backend_prior_category": null,
+    "session_backend_prior_selected_backend": null,
+    "stages_attempted": [],
+    "stages_completed": [],
+    "timeout_recovery_attempted": false,
+    "timeout_recovery_failed": false,
+    "timeout_recovery_failure_category": null,
+    "timeout_recovery_failure_detail_category": null,
+    "timeout_recovery_failure_reason": null,
+    "timeout_recovery_skip_reason": null,
+    "timeout_recovery_skipped": false,
+    "timeout_recovery_timeout_seconds": null,
+    "timeout_recovery_trigger_category": null,
+    "timeout_recovery_trigger_reason": null,
+    "timeout_recovery_used": false,
+    "used": false
+  },
+  "confirmed_fields": {
+    "cluster_launch": "local",
+    "correlator_output_format": "npy",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy",
+    "gauge_fixed": false,
+    "grid_size": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "has_existing_propagators": true,
+    "lattice_size": [
+      4,
+      4,
+      4,
+      8
+    ],
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "momentum_projection": "explicit",
+    "propagator_format": "npy",
+    "propagator_paths": [
+      "/tmp/meson_prop_0.npy"
+    ],
+    "resource_path": ".cache/quda",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py",
+    "source_timeslices": [
+      0
+    ],
+    "source_type": "wall",
+    "start_from": "propagator",
+    "target_id": "meson_spectrum_correlator"
+  },
+  "context_bundle": {
+    "index_provenance": {
+      "index_path": "/Users/zhaodianjun/pyquda-agent/data/pyquda_index.json",
+      "indexed_repo_root": "/Users/zhaodianjun/PyQUDA",
+      "note": "The loaded index summary matches the requested PyQUDA repo.",
+      "requested_repo_root": "/Users/zhaodianjun/PyQUDA",
+      "status": "matched"
+    },
+    "index_summary": {
+      "area_file_counts": {
+        "examples": 9,
+        "pyquda_core": 39,
+        "pyquda_io": 13,
+        "pyquda_plugins": 4,
+        "pyquda_utils": 20,
+        "tests": 49
+      },
+      "category_counts": {
+        "cython": 4,
+        "example": 9,
+        "other": 8,
+        "package-init": 9,
+        "python": 55,
+        "test": 49
+      },
+      "cython_file_count": 4,
+      "extension_counts": {
+        ".cpp": 1,
+        ".in": 1,
+        ".ipynb": 1,
+        ".lime": 1,
+        ".md": 2,
+        ".pxd": 2,
+        ".py": 101,
+        ".pyi": 2,
+        ".pyx": 2,
+        ".sh": 3,
+        ".svg": 1,
+        ".toml": 1,
+        ".txt": 1,
+        ".xml": 10,
+        "<none>": 5
+      },
+      "file_count": 134,
+      "python_module_count": 101
+    },
+    "snippets": [
+      {
+        "excerpt": "from time import perf_counter\nimport numpy as np\nimport cupy as cp\nfrom check_pyquda import weak_field\nfrom pyquda_utils import core, gamma, phase, io\nxi_0, nu = 4.8965, 0.86679\nmass = 0.09253\nkappa = 0.5 / (mass + 1 + 3 / (xi_0 / nu))\ncoeff_r, coeff_t = 2.32582045, 0.8549165664\ncore.init([1, 1, 1, 1], [4, 4, 4, 8], resource_path=\".cache/quda\")\nlatt_info = core.LatticeInfo([4, 4, 4, 8], -1, xi_0 / nu)\nLx, Ly, Lz, Lt = latt_info.size",
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from time import perf_counter"
+      },
+      {
+        "excerpt": "<?xml version=\"1.0\"?>\n<chroma>\n<annotation>\nMeson Spectrum input\n</annotation>\n<Param>\n<InlineMeasurements>\n<elem>\n<Name>MAKE_SOURCE</Name>\n<Frequency>1</Frequency>\n<Param>\n<version>6</version>",
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.ini.xml",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "<?xml version=\"1.0\"?>"
+      },
+      {
+        "excerpt": "from check_pyquda import weak_field\nfrom pyquda_utils import core, io, convert, checksum\nxi_0, nu = 2.464, 0.95\nkappa = 0.115\nmass = 1 / (2 * kappa) - 4\ncoeff = 1.17\ncoeff_r, coeff_t = 0.91, 1.07\ncore.init(None, [4, 4, 4, 8], resource_path=\".cache/quda\")\ngauge = io.readQIOGauge(weak_field)\nlatt_info = core.LatticeInfo([4, 4, 4, 8], -1, xi_0 / nu)\ndslash = core.getClover(latt_info, mass, 1e-12, 1000, xi_0, coeff_t, coeff_r)\nwith dslash.useGauge(gauge):",
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from check_pyquda import weak_field"
+      },
+      {
+        "excerpt": "from typing import List\nimport numpy\nfrom pyquda.field import LatticeInfo, LatticeGauge, LatticePropagator, LatticeStaggeredPropagator, evenodd, lexico\n# matrices to convert gamma basis bewteen DeGrand-Rossi and Dirac-Pauli\n# \\psi(DP) = _DR_TO_DP \\psi(DR)\n# \\psi(DR) = _DP_TO_DR \\psi(DP)\n_DP_TO_DR = numpy.array(\n[\n[0, 1, 0, -1],\n[-1, 0, 1, 0],\n[0, 1, 0, 1],\n[-1, 0, -1, 0],",
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from typing import List"
+      },
+      {
+        "excerpt": "from math import prod\nfrom typing import List, Literal, Optional, Union\nimport numpy\nfrom pyquda_comm import getCoordFromRank, getRankFromCoord  # noqa: F401\nfrom pyquda import (  # noqa: F401\ninit,\ngetMPIComm,\ngetMPISize,\ngetMPIRank,\ngetGridSize,\ngetGridCoord,\ngetGridMap,",
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/core.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from math import prod"
+      },
+      {
+        "excerpt": "from pyquda_comm.field import LatticeFermion, LatticePropagator\nfrom pyquda.gamma import DeGrandRossiMatrix, Gamma, Projector\n__all__ = [\"gamma\", \"Gamma\", \"Projector\"]\ndef gamma_mul_fermion(lhs: Gamma, propag: LatticeFermion):\nif not isinstance(lhs, Gamma):\nreturn NotImplemented\nassert propag.latt_info.Ns == 4, \"Ns should be 4\"\nresult = LatticeFermion(propag.latt_info)\nfor i in range(4):\nk = lhs.sparse_indices[i]\ngamma_ik = lhs.factor * lhs.sparse_data[i]\nresult.data[:, :, :, :, :, i] = gamma_ik * propag.data[:, :, :, :, :, k]",
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from pyquda_comm.field import LatticeFermion, LatticePropagator"
+      },
+      {
+        "excerpt": "from math import pi, isqrt\nfrom typing import Sequence\nimport numpy\nfrom pyquda_comm.array import arrayAsArray, arrayZeros, arrayExp\nfrom .core import getLogger, getArrayBackend, LatticeInfo\ndef getMomList(mom2_max, mom2_min=0):\nmom_list = []\nradius = isqrt(mom2_max)\nfor npz in range(-radius, radius + 1):\nfor npy in range(-radius, radius + 1):\nfor npx in range(-radius, radius + 1):\nnp2 = npx**2 + npy**2 + npz**2",
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/phase.py",
+        "score": 999.0,
+        "source": "pyquda",
+        "summary": "from math import pi, isqrt"
+      },
+      {
+        "excerpt": "# Runnable Meson Spec Spec\nThis document defines the supported **complete runnable** meson-spectroscopy workflows in the current `pyquda-agent` suite.\nThe scope is intentionally narrow:\n- use a `wall` source\n- use a `local` sink contraction\n- use exactly two fixed gamma-insertion channels:\n- `gamma5_gamma5`\n- `gamma4gamma5_gamma4gamma5`\n- use a non-empty momentum list drawn from the locally grounded `|p|^2 <= 9` family from `phase.getMomList(9)`\n- output a source-timeslice-resolved meson correlator tensor to `.npy`\nSupported branches:\n1. gauge entry",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_MESON_SPEC_SPEC.md",
+        "score": 27.5,
+        "source": "workspace",
+        "summary": "# Runnable Meson Spec Spec"
+      },
+      {
+        "excerpt": "# Runnable Quark Propagator Spec\nThis document fixes the first `quark_propagator` branch to one narrow, reviewable path grounded in local PyQUDA references. It is not a generic propagator generator. For the separate Gaussian shell-source branch, see `docs/RUNNABLE_GAUSSIAN_SHELL_QUARK_PROPAGATOR_SPEC.md`.\n## Fixed v1 workflow\n- start from a Chroma/QIO gauge configuration\n- build a Clover solve through `pyquda_utils.core.getDirac(...)`\n- apply one stout-smear step: `steps=1`, `rho=0.125`, `ndim=4`\n- use fixed multigrid blocks `[[6, 6, 6, 4], [4, 4, 4, 9]]`\n- build a point source at spatial origin `[0, 0, 0]` with one explicit `source_timeslice`\n- invert all spin-color components and save one HDF5 propagator artifact\n## Required inputs\n- `gauge_path`: Chroma/QIO gauge file visible on the target filesystem\n- `lattice_size`: four integers",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_QUARK_PROPAGATOR_SPEC.md",
+        "score": 22.0,
+        "source": "workspace",
+        "summary": "# Runnable Quark Propagator Spec"
+      },
+      {
+        "excerpt": "# Runnable HYP-Smear Spec\nThis document fixes the first supported `hyp_smear` family to one narrow grounded path only:\n- start from a gauge configuration\n- read a Chroma/QIO gauge file\n- copy the gauge field\n- apply `hypSmear(1, 0.75, 0.6, 0.3, 4)`\n- write one `.npy` smeared-gauge artifact\n## Required inputs\n- `start_from=gauge`\n- `gauge_format=chroma_qio`\n- `gauge_path=/path/to/cfg.lime`\n- `lattice_size`, for example `24 24 24 72`",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_HYP_SMEAR_SPEC.md",
+        "score": 21.0,
+        "source": "workspace",
+        "summary": "# Runnable HYP-Smear Spec"
+      },
+      {
+        "excerpt": "# Runnable Proton 2pt Spec\nThis workflow family is intentionally narrow. Complete mode now supports two grounded proton paths:\n1. gauge entry\n- start from a `chroma_qio` gauge configuration\n- apply one fixed stout-smearing step\n- build the operator with `pyquda_utils.core.getDirac(...)`\n- use a `wall` source at user-specified `source_timeslice`\n- use the parity-projected zero-momentum proton contraction from `examples/3_Pion_Proton_2pt.py`\n- write the correlator to `.npy`\n2. propagator entry\n- start from existing stored propagators in `npy`, `hdf5`, or `chroma_qio` format\n- require `wall` source convention and explicit `source_timeslice` for each propagator path",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_PROTON_2PT_SPEC.md",
+        "score": 21.0,
+        "source": "workspace",
+        "summary": "# Runnable Proton 2pt Spec"
+      },
+      {
+        "excerpt": "# Runnable APE-Smear Spec\nThis document fixes the first supported `ape_smear` family to one narrow grounded path only:\n- start from a gauge configuration\n- read a Chroma/QIO gauge file\n- copy the gauge field\n- apply `apeSmearChroma(1, 2.5, 4)`\n- write one `.npy` smeared-gauge artifact\n## Required inputs\n- `start_from=gauge`\n- `gauge_format=chroma_qio`\n- `gauge_path=/path/to/cfg.lime`\n- `lattice_size`, for example `24 24 24 72`",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_APE_SMEAR_SPEC.md",
+        "score": 20.0,
+        "source": "workspace",
+        "summary": "# Runnable APE-Smear Spec"
+      },
+      {
+        "excerpt": "# Runnable Pion 2pt Spec\nThis document defines the first supported **complete runnable** pion two-point workflow for `pyquda-agent`.\nThe current runnable implementation path is fixed:\n`natural language request -> physics interpretation -> clarification loop -> workflow match -> structured task spec -> reference-grounded implementation plan -> complete script -> minimal validation`\n`complete script` is not the primary artifact. The physics artifact, structured task spec, and grounded plan must exist first and remain reviewable.\n## Fixed scope for v1\nThe first version supports exactly one narrow path:\n- start from a **Chroma/QIO gauge configuration**\n- use **Clover** action parameters supplied by the user\n- build a **wall source**\n- use a **local sink**\n- compute a **single pion two-point correlator**",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_PION_2PT_SPEC.md",
+        "score": 20.0,
+        "source": "workspace",
+        "summary": "# Runnable Pion 2pt Spec"
+      },
+      {
+        "excerpt": "# Runnable Pion PCAC Workflow\nThis repository supports one narrow runnable `pion_pcac` family grounded in `~/PyQUDA/examples/4_Pion_PCAC.py`.\n## Fixed Scope\n- `task_type = pion_pcac`\n- `workflow_id = pion_pcac_chroma_wall_local_zero_momentum_npy_v1`\n- `workflow_id = pion_pcac_existing_propagator_local_zero_momentum_npy_v1`\n- start from either:\n- a Chroma/QIO gauge configuration\n- or existing wall-source propagators in `npy`, `hdf5`, or `chroma_qio` format\n- use `getDirac` with the local multigrid block pattern\n- apply one stout-smear step\n- keep `wall` source, `local` sink, zero momentum",
+        "path": "/Users/zhaodianjun/pyquda-agent/docs/RUNNABLE_PION_PCAC_SPEC.md",
+        "score": 20.0,
+        "source": "workspace",
+        "summary": "# Runnable Pion PCAC Workflow"
+      }
+    ],
+    "task_type": "meson_spec"
+  },
+  "draft": {
+    "chosen_workflow_target": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1",
+    "clarified_fields": {},
+    "cluster_launch": "local",
+    "coeff_r": null,
+    "coeff_t": null,
+    "correlator_output_format": "npy",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy",
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "meson_two_point_spectroscopy",
+          "operator_channel_choice_for_hadron_spectroscopy"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+        "year": 2022
+      }
+    ],
+    "fermion_action": null,
+    "field_sources": {
+      "cluster_launch": "parsed",
+      "correlator_output_format": "parsed",
+      "correlator_output_path": "parsed",
+      "gamma_insertions": "fixed",
+      "gauge_fixed": "parsed",
+      "grid_size": "parsed",
+      "has_existing_propagators": "parsed",
+      "lattice_size": "parsed",
+      "momenta": "parsed",
+      "momentum_projection": "parsed",
+      "propagator_format": "parsed",
+      "propagator_paths": "parsed",
+      "resource_path": "parsed",
+      "script_output_path": "parsed",
+      "script_style": "fixed",
+      "sink_type": "fixed",
+      "source_timeslices": "parsed",
+      "source_type": "parsed",
+      "start_from": "parsed",
+      "task_type": "parser_guess",
+      "workflow_id": "fixed"
+    },
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "gamma_insertions": [
+        "gamma5_gamma5",
+        "gamma4gamma5_gamma4gamma5"
+      ],
+      "gauge_fixed": false,
+      "has_existing_propagators": true,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "wall",
+      "start_from": "propagator",
+      "task_type": "meson_spec",
+      "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+    },
+    "flow_epsilon": null,
+    "flow_steps": null,
+    "gamma_insertions": [
+      "gamma5_gamma5",
+      "gamma4gamma5_gamma4gamma5"
+    ],
+    "gauge_fixed": false,
+    "gauge_format": null,
+    "gauge_path": null,
+    "grid_size": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "has_existing_propagators": true,
+    "inferred_fields": {},
+    "inherited_fields": {},
+    "lattice_size": [
+      4,
+      4,
+      4,
+      8
+    ],
+    "mass": null,
+    "missing_fields": [],
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ],
+    "momentum_projection": "explicit",
+    "multigrid_blocks": [],
+    "notes": "please compute meson spectroscopy correlators from existing propagator /tmp/meson_prop_0.npy wall source momentum [0,0,0] momentum [1,1,1] not gauge fixed timeslice 0 lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py resource_path=.cache/quda cluster_launch=local",
+    "nu": null,
+    "parser_guesses": {
+      "task_type": "meson_spec"
+    },
+    "propagator_format": "npy",
+    "propagator_paths": [
+      "/tmp/meson_prop_0.npy"
+    ],
+    "pyquda_references": [
+      "tests/test_mesonspec.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py",
+      "pyquda_utils/phase.py"
+    ],
+    "resource_path": ".cache/quda",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py",
+    "script_style": "complete",
+    "sink_type": "local",
+    "solver_maxiter": null,
+    "solver_tol": null,
+    "source_smearing_kind": null,
+    "source_smearing_rho": null,
+    "source_smearing_steps": null,
+    "source_timeslices": [
+      0
+    ],
+    "source_type": "wall",
+    "start_from": "propagator",
+    "stout_smear_ndim": null,
+    "stout_smear_rho": null,
+    "stout_smear_steps": null,
+    "task_type": "meson_spec",
+    "unsupported_fields": {},
+    "unsupported_reasons": [],
+    "user_confirmed_fields": {
+      "cluster_launch": "local",
+      "correlator_output_format": "npy",
+      "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy",
+      "gauge_fixed": false,
+      "grid_size": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "has_existing_propagators": true,
+      "lattice_size": [
+        4,
+        4,
+        4,
+        8
+      ],
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "propagator_format": "npy",
+      "propagator_paths": [
+        "/tmp/meson_prop_0.npy"
+      ],
+      "resource_path": ".cache/quda",
+      "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py",
+      "source_timeslices": [
+        0
+      ],
+      "source_type": "wall",
+      "start_from": "propagator"
+    },
+    "user_request": "please compute meson spectroscopy correlators from existing propagator /tmp/meson_prop_0.npy wall source momentum [0,0,0] momentum [1,1,1] not gauge fixed timeslice 0 lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py resource_path=.cache/quda cluster_launch=local",
+    "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1",
+    "xi_0": null
+  },
+  "implementation_plan": {
+    "chosen_workflow_target": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1",
+    "clarification_trace": [],
+    "confirmed_interpretation": {
+      "confidence": "high",
+      "label": "meson spectroscopy correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+      "target_id": "meson_spectrum_correlator",
+      "task_type_hint": "meson_spec"
+    },
+    "convention_decisions": [
+      {
+        "category": "physics",
+        "citations": [
+          "bulava-2022-hadron-spectroscopy"
+        ],
+        "decision": "Use the fixed wall-source meson-spectroscopy path with gamma5 and gamma4gamma5 insertion channels.",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+        ],
+        "why": "The supported workflow is intentionally pinned to the exact correlator family already encoded in the local PyQUDA mesonspec test."
+      },
+      {
+        "category": "pyquda",
+        "citations": [],
+        "decision": "Use MomentumPhase with the grounded |p|^2<=9 momentum family from phase.getMomList(9).",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+          "/Users/zhaodianjun/PyQUDA/pyquda_utils/phase.py"
+        ],
+        "why": "This keeps the workflow traceable to the exact local momentum-family construction used in the upstream mesonspec reference."
+      },
+      {
+        "category": "pyquda",
+        "citations": [],
+        "decision": "Contract the propagator with the fixed gamma5/gamma4gamma5 bilinear family using CuPy einsum over the local mesonspec tensor layout.",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+          "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py"
+        ],
+        "why": "The complete script should mirror the local mesonspec contraction path instead of inventing a generic spectroscopy helper API."
+      },
+      {
+        "category": "physics",
+        "citations": [
+          "bulava-2022-hadron-spectroscopy"
+        ],
+        "decision": "Keep this family narrow: gauge entry, Clover, wall source, fixed gamma insertion family, grounded momentum family, and npy tensor output.",
+        "references": [
+          "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py"
+        ],
+        "why": "The goal is one fully grounded meson-spectroscopy path, not a shallow generic meson-correlator template."
+      }
+    ],
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "meson_two_point_spectroscopy",
+          "operator_channel_choice_for_hadron_spectroscopy"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+        "year": 2022
+      }
+    ],
+    "external_lookup": {
+      "attempted": false,
+      "effect_on_interpretation": "none",
+      "enabled": false,
+      "queries": [],
+      "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+      "results": [],
+      "source_kind": "live_online_lookup",
+      "status": "disabled",
+      "used": false
+    },
+    "field_resolution": {
+      "_physics_resolution_buckets": {
+        "clarified_fields": {},
+        "fixed_by_workflow_fields": {
+          "correlator_output_format": "npy",
+          "gamma_insertions": [
+            "gamma5_gamma5",
+            "gamma4gamma5_gamma4gamma5"
+          ],
+          "gauge_fixed": false,
+          "has_existing_propagators": true,
+          "momenta": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "momentum_projection": "explicit",
+          "script_style": "complete",
+          "sink_type": "local",
+          "source_type": "wall",
+          "start_from": "propagator",
+          "task_type": "meson_spec",
+          "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+        },
+        "inferred_fields": {},
+        "inherited_fields": {},
+        "parser_guesses": {},
+        "user_confirmed_fields": {
+          "target_id": "meson_spectrum_correlator"
+        }
+      },
+      "_resolution_buckets": {
+        "clarified_fields": {},
+        "fixed_fields": {
+          "correlator_output_format": "npy",
+          "gamma_insertions": [
+            "gamma5_gamma5",
+            "gamma4gamma5_gamma4gamma5"
+          ],
+          "gauge_fixed": false,
+          "has_existing_propagators": true,
+          "momenta": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "momentum_projection": "explicit",
+          "script_style": "complete",
+          "sink_type": "local",
+          "source_type": "wall",
+          "start_from": "propagator",
+          "task_type": "meson_spec",
+          "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+        },
+        "inferred_fields": {},
+        "inherited_fields": {},
+        "parser_guesses": {
+          "task_type": "meson_spec"
+        },
+        "user_confirmed_fields": {
+          "cluster_launch": "local",
+          "correlator_output_format": "npy",
+          "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy",
+          "gauge_fixed": false,
+          "grid_size": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "has_existing_propagators": true,
+          "lattice_size": [
+            4,
+            4,
+            4,
+            8
+          ],
+          "momenta": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          "momentum_projection": "explicit",
+          "propagator_format": "npy",
+          "propagator_paths": [
+            "/tmp/meson_prop_0.npy"
+          ],
+          "resource_path": ".cache/quda",
+          "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py",
+          "source_timeslices": [
+            0
+          ],
+          "source_type": "wall",
+          "start_from": "propagator"
+        }
+      },
+      "cluster_launch": "parsed",
+      "correlator_output_format": "parsed",
+      "correlator_output_path": "parsed",
+      "gamma_insertions": "fixed",
+      "gauge_fixed": "parsed",
+      "grid_size": "parsed",
+      "has_existing_propagators": "parsed",
+      "lattice_size": "parsed",
+      "momenta": "parsed",
+      "momentum_projection": "parsed",
+      "propagator_format": "parsed",
+      "propagator_paths": "parsed",
+      "resource_path": "parsed",
+      "script_output_path": "parsed",
+      "script_style": "fixed",
+      "sink_type": "fixed",
+      "source_timeslices": "parsed",
+      "source_type": "parsed",
+      "start_from": "parsed",
+      "task_type": "parser_guess",
+      "workflow_id": "fixed"
+    },
+    "handoff_contract": {
+      "cluster_launch": "local",
+      "input_manifest": [
+        {
+          "index": 0,
+          "kind": "propagator",
+          "path": "/tmp/meson_prop_0.npy",
+          "source_timeslice": 0
+        }
+      ],
+      "input_mutability_policy": "immutable_inputs_never_overwritten",
+      "input_paths": [
+        "/tmp/meson_prop_0.npy"
+      ],
+      "input_visibility": "all_ranks",
+      "output_paths": {
+        "correlator": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy",
+        "probe_artifact": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.probe.json",
+        "script": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py"
+      },
+      "output_writer_policy": "rank0_only",
+      "preflight_checks": [
+        "Ensure all propagator inputs are visible from every rank before launch.",
+        "Ensure the output directory is writable by the rank that saves the final correlator artifact.",
+        "Confirm the nearest existing parent of each emitted artifact path is writable on the target filesystem before submission.",
+        "Verify numpy, cupy, pyquda_utils, and pyquda import successfully before starting a full inversion job.",
+        "Review the sibling .physics.json, .task.json, and .plan.json artifacts before cluster submission.",
+        "Verify the propagator input manifest matches the intended source-timeslice ordering before launch.",
+        "Treat propagator inputs as immutable handoff artifacts; do not reuse an input path as an output path.",
+        "Prefer a dedicated writable results directory instead of writing new outputs beside stored propagator handoff artifacts."
+      ],
+      "required_modules": [
+        "numpy",
+        "cupy",
+        "pyquda_utils",
+        "pyquda"
+      ],
+      "resource_path": ".cache/quda",
+      "start_from": "propagator",
+      "submission_assumption": "Launch under an MPI/GPU layout consistent with GRID_SIZE and the target PyQUDA environment."
+    },
+    "inferred_interpretation": {
+      "confidence": "high",
+      "label": "meson spectroscopy correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+      "target_id": "meson_spectrum_correlator",
+      "task_type_hint": "meson_spec"
+    },
+    "inherited_session_fields": {},
+    "knowledge_boundary": {
+      "live_online_lookup": {
+        "enabled": false,
+        "implemented": true,
+        "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+        "status": "disabled",
+        "used": false
+      },
+      "local_curated_citations": {
+        "implemented": true,
+        "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+        "used": true
+      },
+      "model_inference": {
+        "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+        "used": false
+      },
+      "true_online_lookup": {
+        "implemented": false,
+        "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+        "used": false
+      }
+    },
+    "local_references_used": [
+      "tests/test_mesonspec.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py",
+      "pyquda_utils/phase.py"
+    ],
+    "physics_choices": {
+      "coeff_r": null,
+      "coeff_t": null,
+      "fermion_action": null,
+      "flow_epsilon": null,
+      "flow_steps": null,
+      "gauge_fixed": false,
+      "mass": null,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "nu": null,
+      "sink_type": "local",
+      "source_timeslices": [
+        0
+      ],
+      "source_type": "wall",
+      "target_id": "meson_spectrum_correlator",
+      "xi_0": null
+    },
+    "pyquda_choices": {
+      "gauge_format": null,
+      "gauge_path": null,
+      "grid_size": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "lattice_size": [
+        4,
+        4,
+        4,
+        8
+      ],
+      "multigrid_blocks": [],
+      "output_format": "npy",
+      "resource_path": ".cache/quda",
+      "solver_maxiter": null,
+      "solver_tol": null,
+      "start_from": "propagator",
+      "stout_smear_ndim": null,
+      "stout_smear_rho": null,
+      "stout_smear_steps": null
+    },
+    "references": [
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.py",
+        "source": "pyquda",
+        "summary": "from time import perf_counter"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_mesonspec.ini.xml",
+        "source": "pyquda",
+        "summary": "<?xml version=\"1.0\"?>"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/tests/test_io.py",
+        "source": "pyquda",
+        "summary": "from check_pyquda import weak_field"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/io/__init__.py",
+        "source": "pyquda",
+        "summary": "from typing import List"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/core.py",
+        "source": "pyquda",
+        "summary": "from math import prod"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/gamma.py",
+        "source": "pyquda",
+        "summary": "from pyquda_comm.field import LatticeFermion, LatticePropagator"
+      },
+      {
+        "path": "/Users/zhaodianjun/PyQUDA/pyquda_utils/phase.py",
+        "source": "pyquda",
+        "summary": "from math import pi, isqrt"
+      }
+    ],
+    "runtime_choices": {
+      "cluster_launch": "local",
+      "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy",
+      "primary_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy",
+      "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py"
+    },
+    "runtime_readiness": {
+      "checks": [
+        {
+          "module": "numpy",
+          "ok": true,
+          "path": "/Users/zhaodianjun/lamet-agent/.venv/lib/python3.13/site-packages/numpy/__init__.py"
+        },
+        {
+          "error": "No module named 'cupy'",
+          "error_type": "ModuleNotFoundError",
+          "module": "cupy",
+          "ok": false
+        },
+        {
+          "error": "No module named 'pyquda'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda",
+          "ok": false
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils",
+          "ok": false
+        },
+        {
+          "error": "No module named 'pyquda_utils'",
+          "error_type": "ModuleNotFoundError",
+          "module": "pyquda_utils.core",
+          "ok": false
+        }
+      ],
+      "environment_probe": {
+        "script": "scripts/check_pyquda_runtime.py",
+        "used_repo_pythonpath": false
+      },
+      "environment_ready": false,
+      "evidence_levels": {
+        "blockers": [
+          {
+            "error": "No module named 'cupy'",
+            "error_type": "ModuleNotFoundError",
+            "module": "cupy",
+            "suggestion": "Use a GPU-enabled Python environment with CuPy installed and matching CUDA runtime support."
+          },
+          {
+            "error": "No module named 'pyquda'",
+            "error_type": "ModuleNotFoundError",
+            "module": "pyquda",
+            "suggestion": "Build or install the PyQUDA core bindings in this Python environment before runtime proof."
+          },
+          {
+            "error": "No module named 'pyquda_utils'",
+            "error_type": "ModuleNotFoundError",
+            "module": "pyquda_utils",
+            "suggestion": "Expose the local PyQUDA checkout on PYTHONPATH or install pyquda_utils into the runtime environment."
+          },
+          {
+            "error": "No module named 'pyquda_utils'",
+            "error_type": "ModuleNotFoundError",
+            "module": "pyquda_utils.core",
+            "suggestion": "Check that pyquda_utils is importable and that the built core helpers are present."
+          }
+        ],
+        "current_level": "structurally_grounded",
+        "runtime_proved": false,
+        "runtime_ready": false,
+        "structurally_grounded": true,
+        "syntax_valid": true
+      },
+      "probe_policy": {
+        "auto_run": false,
+        "reason": "Generated-script probes are not run automatically because a complete script may start a real inversion workload."
+      },
+      "pyquda_repo": "/Users/zhaodianjun/PyQUDA",
+      "python": "/Users/zhaodianjun/lamet-agent/.venv/bin/python3",
+      "ready": false,
+      "reference_grounded": true,
+      "runtime_level": "structurally_grounded",
+      "runtime_proved": false,
+      "syntax_valid": true,
+      "used_repo_pythonpath": false
+    },
+    "task_type": "meson_spec",
+    "unresolved_fields": [],
+    "unsupported_reasons": [],
+    "user_request": "please compute meson spectroscopy correlators from existing propagator /tmp/meson_prop_0.npy wall source momentum [0,0,0] momentum [1,1,1] not gauge fixed timeslice 0 lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py resource_path=.cache/quda cluster_launch=local",
+    "validation_checks": [
+      "generated code is syntax-valid",
+      "task fields fully resolved",
+      "workflow matches supported runnable path",
+      "generated code imports real PyQUDA APIs",
+      "generated code matches local examples/tests/io helpers for the chosen workflow",
+      "generated code contains no TODO/pass/placeholder text"
+    ],
+    "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1",
+    "workflow_match": {
+      "external_citations": [
+        {
+          "authors": [
+            "John Bulava",
+            "Raul Briceno",
+            "William Detmold",
+            "et al."
+          ],
+          "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+          "citation_source_kind": "local_curated_json",
+          "id": "bulava-2022-hadron-spectroscopy",
+          "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+          "metadata_refresh": "curated_fallback",
+          "metadata_source": "curated_fallback",
+          "online_lookup_used": false,
+          "supports": [
+            "meson_two_point_spectroscopy",
+            "operator_channel_choice_for_hadron_spectroscopy"
+          ],
+          "title": "Hadron Spectroscopy with Lattice QCD",
+          "type": "authoritative_review",
+          "url": "https://arxiv.org/abs/2203.03230",
+          "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+          "year": 2022
+        }
+      ],
+      "fixed_fields": {
+        "correlator_output_format": "npy",
+        "gamma_insertions": [
+          "gamma5_gamma5",
+          "gamma4gamma5_gamma4gamma5"
+        ],
+        "gauge_fixed": false,
+        "has_existing_propagators": true,
+        "momenta": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "momentum_projection": "explicit",
+        "script_style": "complete",
+        "sink_type": "local",
+        "source_type": "wall",
+        "start_from": "propagator",
+        "task_type": "meson_spec",
+        "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+      },
+      "local_references": [
+        "tests/test_mesonspec.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py",
+        "pyquda_utils/core.py",
+        "pyquda_utils/gamma.py",
+        "pyquda_utils/phase.py"
+      ],
+      "mapping_notes": [
+        "Confirmed meson-spectroscopy target mapped to the validated existing-propagator -> fixed gamma5/gamma4gamma5 insertion family -> grounded momentum-subset -> npy implementation path.",
+        "This narrow branch reuses local PyQUDA propagator IO helpers together with the exact meson-spectroscopy contraction structure from tests/test_mesonspec.py."
+      ],
+      "matched": true,
+      "task_type": "meson_spec",
+      "unsupported_reasons": [],
+      "workflow_target": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+    }
+  },
+  "minimal_missing_fields": [],
+  "physics_target": {
+    "candidate_targets": [
+      {
+        "confidence": "high",
+        "label": "meson spectroscopy correlator",
+        "status": "confirmed",
+        "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+        "target_id": "meson_spectrum_correlator",
+        "task_type_hint": "meson_spec"
+      }
+    ],
+    "chosen_workflow_target": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1",
+    "clarification_trace": [],
+    "clarified_fields": {},
+    "confirmed_interpretation": {
+      "confidence": "high",
+      "label": "meson spectroscopy correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+      "target_id": "meson_spectrum_correlator",
+      "task_type_hint": "meson_spec"
+    },
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "meson_two_point_spectroscopy",
+          "operator_channel_choice_for_hadron_spectroscopy"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+        "year": 2022
+      }
+    ],
+    "external_lookup": {
+      "attempted": false,
+      "effect_on_interpretation": "none",
+      "enabled": false,
+      "queries": [],
+      "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+      "results": [],
+      "source_kind": "live_online_lookup",
+      "status": "disabled",
+      "used": false
+    },
+    "fixed_by_workflow_fields": {
+      "correlator_output_format": "npy",
+      "gamma_insertions": [
+        "gamma5_gamma5",
+        "gamma4gamma5_gamma4gamma5"
+      ],
+      "gauge_fixed": false,
+      "has_existing_propagators": true,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "wall",
+      "start_from": "propagator",
+      "task_type": "meson_spec",
+      "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+    },
+    "formula_proposals": [
+      {
+        "citations": [
+          {
+            "authors": [
+              "John Bulava",
+              "Raul Briceno",
+              "William Detmold",
+              "et al."
+            ],
+            "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+            "citation_source_kind": "local_curated_json",
+            "id": "bulava-2022-hadron-spectroscopy",
+            "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+            "metadata_refresh": "curated_fallback",
+            "metadata_source": "curated_fallback",
+            "online_lookup_used": false,
+            "supports": [
+              "meson_two_point_spectroscopy",
+              "operator_channel_choice_for_hadron_spectroscopy"
+            ],
+            "title": "Hadron Spectroscopy with Lattice QCD",
+            "type": "authoritative_review",
+            "url": "https://arxiv.org/abs/2203.03230",
+            "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+            "year": 2022
+          }
+        ],
+        "convention": "Use the fixed wall-source meson-spectroscopy path from the local PyQUDA meson-spec test, including the grounded momentum family with |p|^2 <= 9.",
+        "correlator": "C_{\\gamma_5}(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_{\\gamma_5}(\\vec x,t) O_{\\gamma_5}^\\dagger(\\vec 0,0) \\rangle",
+        "label": "Meson spectroscopy correlator with pseudoscalar insertion",
+        "local_references": [
+          "tests/test_mesonspec.py",
+          "tests/test_mesonspec.ini.xml",
+          "tests/test_io.py",
+          "pyquda_utils/io/__init__.py",
+          "pyquda_utils/core.py",
+          "pyquda_utils/gamma.py",
+          "pyquda_utils/phase.py"
+        ],
+        "operator": "O_{\\gamma_5}(x) = \\bar q(x) \\gamma_5 q(x)",
+        "proposal_id": "meson_spec_gamma5_wall_momentum_family",
+        "provenance": "local_references_plus_curated_citations",
+        "target_id": "meson_spectrum_correlator"
+      },
+      {
+        "citations": [
+          {
+            "authors": [
+              "John Bulava",
+              "Raul Briceno",
+              "William Detmold",
+              "et al."
+            ],
+            "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+            "citation_source_kind": "local_curated_json",
+            "id": "bulava-2022-hadron-spectroscopy",
+            "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+            "metadata_refresh": "curated_fallback",
+            "metadata_source": "curated_fallback",
+            "online_lookup_used": false,
+            "supports": [
+              "meson_two_point_spectroscopy",
+              "operator_channel_choice_for_hadron_spectroscopy"
+            ],
+            "title": "Hadron Spectroscopy with Lattice QCD",
+            "type": "authoritative_review",
+            "url": "https://arxiv.org/abs/2203.03230",
+            "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+            "year": 2022
+          }
+        ],
+        "convention": "Keep the same local meson-spec workflow, but expose the second fixed gamma-insertion channel already present in the upstream test path.",
+        "correlator": "C_{\\gamma_4\\gamma_5}(t,\\vec p) = \\sum_{\\vec x} e^{i\\vec p\\cdot\\vec x}\\langle O_{\\gamma_4\\gamma_5}(\\vec x,t) O_{\\gamma_4\\gamma_5}^\\dagger(\\vec 0,0) \\rangle",
+        "label": "Meson spectroscopy correlator with temporal-axial insertion",
+        "local_references": [
+          "tests/test_mesonspec.py",
+          "tests/test_mesonspec.ini.xml",
+          "tests/test_io.py",
+          "pyquda_utils/io/__init__.py",
+          "pyquda_utils/core.py",
+          "pyquda_utils/gamma.py",
+          "pyquda_utils/phase.py"
+        ],
+        "operator": "O_{\\gamma_4\\gamma_5}(x) = \\bar q(x) \\gamma_4 \\gamma_5 q(x)",
+        "proposal_id": "meson_spec_gamma4gamma5_wall_momentum_family",
+        "provenance": "local_references_plus_curated_citations",
+        "target_id": "meson_spectrum_correlator"
+      }
+    ],
+    "inferred_fields": {},
+    "inferred_interpretation": {
+      "confidence": "high",
+      "label": "meson spectroscopy correlator",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the grounded meson-spectroscopy correlator path with fixed gamma insertions.",
+      "target_id": "meson_spectrum_correlator",
+      "task_type_hint": "meson_spec"
+    },
+    "inherited_fields": {},
+    "knowledge_boundary": {
+      "live_online_lookup": {
+        "enabled": false,
+        "implemented": true,
+        "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+        "status": "disabled",
+        "used": false
+      },
+      "local_curated_citations": {
+        "implemented": true,
+        "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+        "used": true
+      },
+      "model_inference": {
+        "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+        "used": false
+      },
+      "true_online_lookup": {
+        "implemented": false,
+        "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+        "used": false
+      }
+    },
+    "llm_assistance": {
+      "attempted": false,
+      "backend_executable": "/Users/zhaodianjun/.nvm/versions/node/v24.14.0/bin/codex",
+      "codex_preflight_attempted": true,
+      "codex_preflight_category": "local_environment_error",
+      "codex_preflight_detail_category": "codex_app_client_init_failed",
+      "codex_preflight_reason": "Codex backend failed during local app-client initialization in the current environment.",
+      "codex_preflight_skip_reason": null,
+      "codex_preflight_skipped": false,
+      "codex_preflight_soft_failed": false,
+      "codex_preflight_soft_failure_reason": null,
+      "codex_preflight_status": "failed",
+      "codex_preflight_timeout_seconds": 2.0,
+      "configured": false,
+      "configured_backend": null,
+      "fallback": true,
+      "fallback_category": "local_environment_error",
+      "fallback_detail_category": "codex_app_client_init_failed",
+      "fallback_reason": "Explicit codex backend failed preflight (Codex backend failed during local app-client initialization in the current environment.), so the run will use the rule-based path.",
+      "intent_primary_timeout_seconds": null,
+      "intent_prompt_profile": null,
+      "intent_strategy": null,
+      "model_name": null,
+      "notes": [],
+      "provider": null,
+      "requested_backend": "codex",
+      "resolved_base_url": null,
+      "selected_backend": "rules",
+      "selection_reason": "Explicit codex backend failed short preflight and fell back to rules.",
+      "session_backend_memory_considered": false,
+      "session_backend_memory_reason": null,
+      "session_backend_memory_used": false,
+      "session_backend_prior_category": null,
+      "session_backend_prior_selected_backend": null,
+      "stages_attempted": [],
+      "stages_completed": [],
+      "timeout_recovery_attempted": false,
+      "timeout_recovery_failed": false,
+      "timeout_recovery_failure_category": null,
+      "timeout_recovery_failure_detail_category": null,
+      "timeout_recovery_failure_reason": null,
+      "timeout_recovery_skip_reason": null,
+      "timeout_recovery_skipped": false,
+      "timeout_recovery_timeout_seconds": null,
+      "timeout_recovery_trigger_category": null,
+      "timeout_recovery_trigger_reason": null,
+      "timeout_recovery_used": false,
+      "used": false
+    },
+    "local_references": [
+      "tests/test_mesonspec.py",
+      "tests/test_mesonspec.ini.xml",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py",
+      "pyquda_utils/phase.py"
+    ],
+    "normalized_request": "please compute meson spectroscopy correlators from existing propagator /tmp/meson_prop_0.npy wall source momentum [0,0,0] momentum [1,1,1] not gauge fixed timeslice 0 lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py resource_path=.cache/quda cluster_launch=local",
+    "parser_guesses": {},
+    "status": "confirmed",
+    "task_type_hint": "meson_spec",
+    "unsupported_fields": {},
+    "unsupported_reasons": [],
+    "user_confirmed_fields": {
+      "target_id": "meson_spectrum_correlator"
+    },
+    "user_request": "please compute meson spectroscopy correlators from existing propagator /tmp/meson_prop_0.npy wall source momentum [0,0,0] momentum [1,1,1] not gauge fixed timeslice 0 lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py resource_path=.cache/quda cluster_launch=local"
+  },
+  "rejected_options": {},
+  "task_description": "please compute meson spectroscopy correlators from existing propagator /tmp/meson_prop_0.npy wall source momentum [0,0,0] momentum [1,1,1] not gauge fixed timeslice 0 lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_meson_spec_existing_propagator.py resource_path=.cache/quda cluster_launch=local",
+  "workflow_match": {
+    "external_citations": [
+      {
+        "authors": [
+          "John Bulava",
+          "Raul Briceno",
+          "William Detmold",
+          "et al."
+        ],
+        "chosen_convention": "Use a narrow meson-spectroscopy two-point workflow with fixed wall-source bilinears and a grounded finite-momentum family.",
+        "citation_source_kind": "local_curated_json",
+        "id": "bulava-2022-hadron-spectroscopy",
+        "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+        "metadata_refresh": "curated_fallback",
+        "metadata_source": "curated_fallback",
+        "online_lookup_used": false,
+        "supports": [
+          "meson_two_point_spectroscopy",
+          "operator_channel_choice_for_hadron_spectroscopy"
+        ],
+        "title": "Hadron Spectroscopy with Lattice QCD",
+        "type": "authoritative_review",
+        "url": "https://arxiv.org/abs/2203.03230",
+        "why_needed": "The local PyQUDA mesonspec test provides the implementation path, while this curated review record documents the spectroscopy-side interpretation of the correlator family.",
+        "year": 2022
+      }
+    ],
+    "fixed_fields": {
+      "correlator_output_format": "npy",
+      "gamma_insertions": [
+        "gamma5_gamma5",
+        "gamma4gamma5_gamma4gamma5"
+      ],
+      "gauge_fixed": false,
+      "has_existing_propagators": true,
+      "momenta": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "momentum_projection": "explicit",
+      "script_style": "complete",
+      "sink_type": "local",
+      "source_type": "wall",
+      "start_from": "propagator",
+      "task_type": "meson_spec",
+      "workflow_id": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+    },
+    "local_references": [
+      "tests/test_mesonspec.py",
+      "tests/test_io.py",
+      "pyquda_utils/io/__init__.py",
+      "pyquda_utils/core.py",
+      "pyquda_utils/gamma.py",
+      "pyquda_utils/phase.py"
+    ],
+    "mapping_notes": [
+      "Confirmed meson-spectroscopy target mapped to the validated existing-propagator -> fixed gamma5/gamma4gamma5 insertion family -> grounded momentum-subset -> npy implementation path.",
+      "This narrow branch reuses local PyQUDA propagator IO helpers together with the exact meson-spectroscopy contraction structure from tests/test_mesonspec.py."
+    ],
+    "matched": true,
+    "task_type": "meson_spec",
+    "unsupported_reasons": [],
+    "workflow_target": "meson_spec_existing_propagator_local_gamma5_axial_mom2max9_npy_v1"
+  }
+}

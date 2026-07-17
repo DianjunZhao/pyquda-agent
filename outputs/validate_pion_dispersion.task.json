@@ -1,0 +1,272 @@
+{
+  "chosen_workflow_target": "pion_dispersion_chroma_point_momentum_npy_v1",
+  "clarified_fields": {},
+  "cluster_launch": "local",
+  "coeff_r": 2.32582045,
+  "coeff_t": 0.8549165664,
+  "correlator_output_format": "npy",
+  "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_dispersion.npy",
+  "external_citations": [
+    {
+      "authors": [
+        "John Bulava",
+        "Raul Briceno",
+        "William Detmold",
+        "et al."
+      ],
+      "chosen_convention": "Use a momentum-projected Euclidean pion two-point correlator with a fixed explicit momentum list to support a narrow dispersion workflow.",
+      "citation_source_kind": "local_curated_json",
+      "id": "bulava-2022-hadron-spectroscopy",
+      "knowledge_boundary_note": "This citation record comes from a local curated JSON artifact, not from a live online lookup during the current run.",
+      "metadata_refresh": "curated_fallback",
+      "metadata_source": "curated_fallback",
+      "online_lookup_used": false,
+      "supports": [
+        "momentum_projected_two_point_correlators",
+        "dispersion_analysis_from_hadron_two_point_functions"
+      ],
+      "title": "Hadron Spectroscopy with Lattice QCD",
+      "type": "authoritative_review",
+      "url": "https://arxiv.org/abs/2203.03230",
+      "why_needed": "The local PyQUDA example provides the implementation path, while this curated review record documents the physics-side interpretation of momentum-projected two-point correlators.",
+      "year": 2022
+    }
+  ],
+  "fermion_action": "clover",
+  "field_sources": {
+    "cluster_launch": "parsed",
+    "coeff_r": "parsed",
+    "coeff_t": "parsed",
+    "correlator_output_format": "parsed",
+    "correlator_output_path": "parsed",
+    "fermion_action": "fixed",
+    "gauge_fixed": "fixed",
+    "gauge_format": "parser_guess",
+    "gauge_path": "parsed",
+    "grid_size": "parsed",
+    "has_existing_propagators": "parsed",
+    "lattice_size": "parsed",
+    "mass": "parsed",
+    "momenta": "fixed",
+    "momentum_projection": "fixed",
+    "nu": "parsed",
+    "resource_path": "parsed",
+    "script_output_path": "parsed",
+    "script_style": "fixed",
+    "sink_type": "fixed",
+    "solver_maxiter": "parsed",
+    "solver_tol": "parsed",
+    "source_timeslices": "parsed",
+    "source_type": "fixed",
+    "start_from": "parsed",
+    "task_type": "parser_guess",
+    "workflow_id": "fixed",
+    "xi_0": "parsed"
+  },
+  "fixed_fields": {
+    "correlator_output_format": "npy",
+    "fermion_action": "clover",
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "has_existing_propagators": false,
+    "momenta": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ]
+    ],
+    "momentum_projection": "explicit",
+    "script_style": "complete",
+    "sink_type": "local",
+    "source_type": "point",
+    "start_from": "gauge",
+    "task_type": "pion_dispersion",
+    "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1"
+  },
+  "flow_epsilon": null,
+  "flow_steps": null,
+  "gamma_insertions": [],
+  "gauge_fixed": false,
+  "gauge_format": "chroma_qio",
+  "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+  "grid_size": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "has_existing_propagators": false,
+  "inferred_fields": {},
+  "inherited_fields": {},
+  "lattice_size": [
+    4,
+    4,
+    4,
+    8
+  ],
+  "mass": 0.09253,
+  "missing_fields": [],
+  "momenta": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      2
+    ],
+    [
+      0,
+      1,
+      2
+    ],
+    [
+      1,
+      1,
+      2
+    ],
+    [
+      0,
+      2,
+      2
+    ],
+    [
+      1,
+      2,
+      2
+    ]
+  ],
+  "momentum_projection": "explicit",
+  "multigrid_blocks": [],
+  "notes": "please compute pion dispersion from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 source timeslice 0 /Users/zhaodianjun/pyquda-agent/outputs/validate_pion_dispersion.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_pion_dispersion.py resource_path=.cache/quda cluster_launch=local",
+  "nu": 0.86679,
+  "parser_guesses": {
+    "gauge_format": "chroma_qio",
+    "task_type": "pion_dispersion"
+  },
+  "propagator_format": null,
+  "propagator_paths": [],
+  "pyquda_references": [
+    "examples/5_Pion_Dispersion.py",
+    "tests/test_mesonspec.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py",
+    "pyquda_utils/source.py",
+    "pyquda_utils/core.py",
+    "pyquda_utils/gamma.py",
+    "examples/3_Pion_Proton_2pt.py"
+  ],
+  "resource_path": ".cache/quda",
+  "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_dispersion.py",
+  "script_style": "complete",
+  "sink_type": "local",
+  "solver_maxiter": 1000,
+  "solver_tol": 1e-12,
+  "source_smearing_kind": null,
+  "source_smearing_rho": null,
+  "source_smearing_steps": null,
+  "source_timeslices": [
+    0
+  ],
+  "source_type": "point",
+  "start_from": "gauge",
+  "stout_smear_ndim": null,
+  "stout_smear_rho": null,
+  "stout_smear_steps": null,
+  "task_type": "pion_dispersion",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "cluster_launch": "local",
+    "coeff_r": 2.32582045,
+    "coeff_t": 0.8549165664,
+    "correlator_output_format": "npy",
+    "correlator_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_dispersion.npy",
+    "gauge_path": "/Users/zhaodianjun/PyQUDA/tests/weak_field.lime",
+    "grid_size": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "has_existing_propagators": false,
+    "lattice_size": [
+      4,
+      4,
+      4,
+      8
+    ],
+    "mass": 0.09253,
+    "nu": 0.86679,
+    "resource_path": ".cache/quda",
+    "script_output_path": "/Users/zhaodianjun/pyquda-agent/outputs/validate_pion_dispersion.py",
+    "solver_maxiter": 1000,
+    "solver_tol": 1e-12,
+    "source_timeslices": [
+      0
+    ],
+    "start_from": "gauge",
+    "xi_0": 4.8965
+  },
+  "user_request": "please compute pion dispersion from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 mass=0.09253 xi_0=4.8965 nu=0.86679 coeff_t=0.8549165664 coeff_r=2.32582045 tol=1e-12 maxiter=1000 source timeslice 0 /Users/zhaodianjun/pyquda-agent/outputs/validate_pion_dispersion.npy /Users/zhaodianjun/pyquda-agent/outputs/validate_pion_dispersion.py resource_path=.cache/quda cluster_launch=local",
+  "workflow_id": "pion_dispersion_chroma_point_momentum_npy_v1",
+  "xi_0": 4.8965
+}

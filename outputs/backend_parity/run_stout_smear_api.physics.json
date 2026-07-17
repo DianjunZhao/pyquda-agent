@@ -1,0 +1,174 @@
+{
+  "candidate_targets": [
+    {
+      "confidence": "high",
+      "label": "stout-smeared gauge configuration",
+      "status": "confirmed",
+      "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+      "target_id": "stout_smeared_gauge_configuration",
+      "task_type_hint": "stout_smear"
+    }
+  ],
+  "chosen_workflow_target": "stout_smear_chroma_qio_npy_v1",
+  "clarification_trace": [],
+  "clarified_fields": {},
+  "confirmed_interpretation": {
+    "confidence": "high",
+    "label": "stout-smeared gauge configuration",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+    "target_id": "stout_smeared_gauge_configuration",
+    "task_type_hint": "stout_smear"
+  },
+  "external_citations": [],
+  "external_lookup": {
+    "attempted": false,
+    "effect_on_interpretation": "none",
+    "enabled": false,
+    "queries": [],
+    "reason": "External lookup is disabled by default. Re-run with --enable-external-lookup to allow live online lookup.",
+    "results": [],
+    "source_kind": "live_online_lookup",
+    "status": "disabled",
+    "used": false
+  },
+  "fixed_by_workflow_fields": {
+    "correlator_output_format": "npy",
+    "gauge_fixed": false,
+    "gauge_format": "chroma_qio",
+    "has_existing_propagators": false,
+    "momenta": [],
+    "momentum_projection": "none",
+    "script_style": "complete",
+    "sink_type": "gauge",
+    "source_type": "none",
+    "start_from": "gauge",
+    "stout_smear_ndim": 3,
+    "stout_smear_rho": 0.241,
+    "stout_smear_steps": 1,
+    "task_type": "stout_smear",
+    "workflow_id": "stout_smear_chroma_qio_npy_v1"
+  },
+  "formula_proposals": [
+    {
+      "citations": [],
+      "convention": "Follow the narrow local PyQUDA path: read a Chroma/QIO gauge, copy it, apply stoutSmear(1, 0.241, 3), and save the smeared gauge as npy.",
+      "correlator": "Gauge-field transformation only; no hadron correlator is formed in this workflow.",
+      "label": "One-step stout-smeared gauge configuration",
+      "local_references": [
+        "tests/test_smear.py",
+        "tests/test_io.py",
+        "pyquda_utils/io/__init__.py"
+      ],
+      "operator": "U_\\mu(x) \\rightarrow U_\\mu^{\\mathrm{stout}}(x; \\rho=0.241,\\ \\mathrm{dir\\_ignore}=3)",
+      "proposal_id": "stout_smear_one_step_rho0241_dirignore3",
+      "provenance": "local_references_plus_model_inference",
+      "target_id": "stout_smeared_gauge_configuration"
+    }
+  ],
+  "inferred_fields": {},
+  "inferred_interpretation": {
+    "confidence": "high",
+    "label": "stout-smeared gauge configuration",
+    "status": "confirmed",
+    "summary": "User explicitly asked for the narrow local stout-smear gauge-output path.",
+    "target_id": "stout_smeared_gauge_configuration",
+    "task_type_hint": "stout_smear"
+  },
+  "inherited_fields": {},
+  "knowledge_boundary": {
+    "live_online_lookup": {
+      "enabled": false,
+      "implemented": true,
+      "note": "Live online lookup is opt-in and only used when local PyQUDA evidence is insufficient for the physics-side target definition.",
+      "status": "disabled",
+      "used": false
+    },
+    "local_curated_citations": {
+      "implemented": true,
+      "note": "Curated local JSON citations are available and may be attached to the physics artifact or implementation plan.",
+      "used": false
+    },
+    "model_inference": {
+      "note": "Model inference may be used for normalization or formula/operator explanation when an LLM backend is configured.",
+      "used": true
+    },
+    "true_online_lookup": {
+      "implemented": false,
+      "note": "Legacy boundary label retained for compatibility. The active opt-in capability is recorded under knowledge_boundary.live_online_lookup.",
+      "used": false
+    }
+  },
+  "llm_assistance": {
+    "attempted": true,
+    "backend_executable": null,
+    "codex_preflight_attempted": false,
+    "codex_preflight_category": null,
+    "codex_preflight_reason": null,
+    "codex_preflight_skip_reason": null,
+    "codex_preflight_skipped": false,
+    "codex_preflight_soft_failed": false,
+    "codex_preflight_soft_failure_reason": null,
+    "codex_preflight_status": null,
+    "codex_preflight_timeout_seconds": null,
+    "configured": true,
+    "configured_backend": "api:deepseek/deepseek-chat",
+    "fallback": false,
+    "fallback_category": null,
+    "fallback_reason": null,
+    "intent_primary_timeout_seconds": null,
+    "intent_prompt_profile": "full",
+    "intent_strategy": "full_interpretation",
+    "model_name": "deepseek-chat",
+    "notes": [
+      "The request is explicit about generating a stout-smeared gauge, but the user did not confirm a specific physics target (e.g., for a correlation function or spectroscopy). The task is clearly a stout-smear operation, but the intended downstream use is not stated. Therefore, the status is set to needs_confirmation.",
+      "The request includes file paths, lattice size, grid, and output files, which are consistent with a PyQUDA stout-smear workflow. No other physics target (pion two-point, dispersion, meson spectroscopy, proton two-point) is indicated."
+    ],
+    "provider": "deepseek",
+    "requested_backend": "api",
+    "resolved_base_url": "https://api.deepseek.com/v1",
+    "selected_backend": "api",
+    "selection_reason": "Explicit API backend requested.",
+    "session_backend_memory_considered": false,
+    "session_backend_memory_reason": null,
+    "session_backend_memory_used": false,
+    "session_backend_prior_category": null,
+    "session_backend_prior_selected_backend": null,
+    "stages_attempted": [
+      "rough_request_normalization",
+      "physics_target_interpretation",
+      "formula_operator_explanation"
+    ],
+    "stages_completed": [
+      "rough_request_normalization",
+      "physics_target_interpretation",
+      "formula_operator_explanation"
+    ],
+    "timeout_recovery_attempted": false,
+    "timeout_recovery_failed": false,
+    "timeout_recovery_failure_category": null,
+    "timeout_recovery_failure_reason": null,
+    "timeout_recovery_skip_reason": null,
+    "timeout_recovery_skipped": false,
+    "timeout_recovery_timeout_seconds": null,
+    "timeout_recovery_trigger_category": null,
+    "timeout_recovery_trigger_reason": null,
+    "timeout_recovery_used": false,
+    "used": true
+  },
+  "local_references": [
+    "tests/test_smear.py",
+    "tests/test_io.py",
+    "pyquda_utils/io/__init__.py"
+  ],
+  "normalized_request": "generate a stout-smeared gauge from gauge file /Users/zhaodianjun/PyQUDA/tests/weak_field.lime with lattice size 4 4 4 8, grid 1 1 1 1, output to /Users/zhaodianjun/pyquda-agent/outputs/backend_parity/run_stout_smear_api.npy and /Users/zhaodianjun/pyquda-agent/outputs/backend_parity/run_stout_smear_api.py, resource_path=.cache/quda, cluster_launch=local",
+  "parser_guesses": {},
+  "status": "confirmed",
+  "task_type_hint": "stout_smear",
+  "unsupported_fields": {},
+  "unsupported_reasons": [],
+  "user_confirmed_fields": {
+    "target_id": "stout_smeared_gauge_configuration"
+  },
+  "user_request": "please generate a stout-smeared gauge from gauge /Users/zhaodianjun/PyQUDA/tests/weak_field.lime lattice size 4 4 4 8 grid 1 1 1 1 /Users/zhaodianjun/pyquda-agent/outputs/backend_parity/run_stout_smear_api.npy /Users/zhaodianjun/pyquda-agent/outputs/backend_parity/run_stout_smear_api.py resource_path=.cache/quda cluster_launch=local"
+}
